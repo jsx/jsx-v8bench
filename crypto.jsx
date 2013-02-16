@@ -1,3 +1,4 @@
+// -*- mode: jsx; jsx-indent-level: 4; indent-tabs-mode: nil; -*-
 /*
  * Copyright (c) 2003-2005  Tom Wu
  * All Rights Reserved.

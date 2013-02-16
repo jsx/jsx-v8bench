@@ -1,3 +1,4 @@
+// -*- mode: jsx; jsx-indent-level: 4; indent-tabs-mode: nil; -*-
 /**
  * Copyright 2012 the V8 project authors. All rights reserved.
  * Copyright 2009 Oliver Hunt <http://nerget.com>
