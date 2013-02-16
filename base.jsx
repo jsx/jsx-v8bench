@@ -133,9 +133,9 @@ class BenchmarkSuite {
     static var version = '7';
 
 
-    var name                : string;
-    var reference        : int;
-    var benchmarks        : Benchmark[];
+    var name       : string;
+    var reference  : int;
+    var benchmarks : Benchmark[];
 
 
     // Suites of benchmarks consist of a name and the set of benchmarks in
