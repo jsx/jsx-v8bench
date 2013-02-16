@@ -404,20 +404,32 @@ class Field {
     function setDensity(x : number, y : number, d : number) : void {
         this.dens[(x + 1) + (y + 1) * FluidField.rowSize] = d;
     }
+
     function getDensity(x : number, y : number) : number {
         return this.dens[(x + 1) + (y + 1) * FluidField.rowSize];
     }
+
     function setVelocity(x : number, y : number, xv : number, yv : number) : void {
         this.u[(x + 1) + (y + 1) * FluidField.rowSize] = xv;
         this.v[(x + 1) + (y + 1) * FluidField.rowSize] = yv;
     }
+
     function getXVelocity(x : number, y : number) : number {
         return this.u[(x + 1) + (y + 1) * FluidField.rowSize];
     }
+
     function getYVelocity(x : number, y : number) : number {
         return this.v[(x + 1) + (y + 1) * FluidField.rowSize];
     }
-    function width() : number { return FluidField.width; }
-    function height() : number{ return FluidField.height; }
+
+    function width() : number {
+	    return FluidField.width;
+    }
+
+    function height() : number {
+	    return FluidField.height;
+    }
+
 }
+
 // vim: set expandtab:
