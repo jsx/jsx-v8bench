@@ -40,12 +40,12 @@ import "./base.jsx";
 
 class Splay {
 
-    function constructor() {
+    // Configuration.
+    static const SPLAY_TREE_SIZE = 8000;
+    static const SPLAY_TREE_MODIFICATIONS = 80;
+    static const SPLAY_TREE_PAYLOAD_DEPTH = 5;
 
-        // Configuration.
-        var kSplayTreeSize = 8000;
-        var kSplayTreeModifications = 80;
-        var kSplayTreePayloadDepth = 5;
+    function constructor() {
 
         var splayTree = null : SplayTree;
 
@@ -63,13 +63,11 @@ class Splay {
             }
         }
 
-
         function GenerateKey() : number {
             // The benchmark framework guarantees that random is
             // deterministic; see base.js.
             return BenchmarkUtil.random();
         }
-
 
         function InsertNewNode() : number {
             // Insert new node with a unique key.
@@ -77,18 +75,15 @@ class Splay {
             do {
                 key = GenerateKey();
             } while (splayTree.find(key) != null);
-            var payload = GeneratePayloadTree(kSplayTreePayloadDepth, key);
+            var payload = GeneratePayloadTree(Splay.SPLAY_TREE_PAYLOAD_DEPTH, key);
             splayTree.insert(key, payload);
             return key;
         }
 
-
-
         function SplaySetup() : void {
             splayTree = new SplayTree();
-            for (var i = 0; i < kSplayTreeSize; i++) InsertNewNode();
+            for (var i = 0; i < Splay.SPLAY_TREE_SIZE; i++) InsertNewNode();
         }
-
 
         function SplayTearDown() : void {
             // Allow the garbage collector to reclaim the memory
@@ -99,7 +94,7 @@ class Splay {
 
             // Verify that the splay tree has the right size.
             var length = keys.length;
-            if (length != kSplayTreeSize) {
+            if (length != Splay.SPLAY_TREE_SIZE) {
                 throw new Error("Splay tree has wrong size");
             }
 
@@ -111,10 +106,9 @@ class Splay {
             }
         }
 
-
         function SplayRun() : void {
             // Replace a few nodes in the splay tree.
-            for (var i = 0; i < kSplayTreeModifications; i++) {
+            for (var i = 0; i < Splay.SPLAY_TREE_MODIFICATIONS; i++) {
                 var key = InsertNewNode();
                 var greatest = splayTree.findGreatestLessThan(key);
                 if (greatest == null) splayTree.remove(key);
