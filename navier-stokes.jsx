@@ -95,17 +95,18 @@ class FluidField {
     static var height : number;
     static var rowSize : number;
 
+    var _iterations = 10;
+    var _uiCallback = function(f : Field) : void {};
+    var _displayFunc = null : (Field) -> void;
+
+    var _size = -1;
+
     var setResolution : (number, number) -> boolean;
-    var setIterations : (number) -> void;
-    var setDisplayFunction : ((Field)->void) -> void;
-    var setUICallback : ((Field)->void) -> void;
     var reset : () -> void;
     var update : () -> void;
-    var iterations : () -> number;
 
     function constructor() {
 
-        var iterations = 10;
         var visc = 0.5;
         var dt = 0.1;
         var dens = null : number[];
@@ -114,12 +115,10 @@ class FluidField {
         var u_prev = null : number[];
         var v = null : number[];
         var v_prev = null : number[];
-        var size = -1;
-        var displayFunc = null : (Field) -> void;
 
         function addFields(x : number[], s : number[], dt : number) : void
         {
-            for (var i=0; i<size ; i++ ) x[i] += dt*s[i];
+            for (var i=0; i<this._size ; i++ ) x[i] += dt*s[i];
         }
 
         function set_bnd(b : number, x : number[]) : void
@@ -176,7 +175,7 @@ class FluidField {
                 set_bnd(b, x);
             } else {
                 var invC = 1 / c;
-                for (var k=0 ; k<iterations; k++) {
+                for (var k=0 ; k<this._iterations; k++) {
                     for (var j=1 ; j<=FluidField.height; j++) {
                         var lastRow = (j - 1) * FluidField.rowSize;
                         var currentRow = j * FluidField.rowSize;
@@ -213,7 +212,7 @@ class FluidField {
                 set_bnd(2, y);
             } else {
                 var invC = 1/c;
-                for (var k=0 ; k<iterations; k++) {
+                for (var k=0 ; k<this._iterations; k++) {
                     for (var j=1 ; j <= FluidField.height; j++) {
                         var lastRow = (j - 1) * FluidField.rowSize;
                         var currentRow = j * FluidField.rowSize;
@@ -333,44 +332,24 @@ class FluidField {
             project(u, v, u0, v0 );
         }
 
-        var uiCallback = function(f : Field) : void {};
-
-        function queryUI(d : number[], u : number[], v : number[]) : void
-        {
-            for (var i = 0; i < size; i++)
-                u[i] = v[i] = d[i] = 0.0;
-            uiCallback(new Field(d, u, v));
-        }
-
         this.update = function () {
-            queryUI(dens_prev, u_prev, v_prev);
+            this.queryUI(dens_prev, u_prev, v_prev);
             vel_step(u, v, u_prev, v_prev, dt);
             dens_step(dens, dens_prev, u, v, dt);
-            displayFunc(new Field(dens, u, v));
-        };
-        this.setDisplayFunction = function(func) {
-            displayFunc = func;
+            this._displayFunc(new Field(dens, u, v));
         };
 
-        this.iterations = function() { return iterations; };
-        this.setIterations = function(iters) {
-            if (iters > 0 && iters <= 100)
-                iterations = iters;
-        };
-        this.setUICallback = function(callback) {
-            uiCallback = callback;
-        };
         function reset() : void
         {
             FluidField.rowSize = FluidField.width + 2;
-            size = (FluidField.width+2)*(FluidField.height+2);
-            dens = new Array.<number>(size);
-            dens_prev = new Array.<number>(size);
-            u = new Array.<number>(size);
-            u_prev = new Array.<number>(size);
-            v = new Array.<number>(size);
-            v_prev = new Array.<number>(size);
-            for (var i = 0; i < size; i++)
+            this._size = (FluidField.width+2)*(FluidField.height+2);
+            dens = new Array.<number>(this._size);
+            dens_prev = new Array.<number>(this._size);
+            u = new Array.<number>(this._size);
+            u_prev = new Array.<number>(this._size);
+            v = new Array.<number>(this._size);
+            v_prev = new Array.<number>(this._size);
+            for (var i = 0; i < this._size; i++)
                 dens_prev[i] = u_prev[i] = v_prev[i] = dens[i] = u[i] = v[i] = 0;
         };
         this.reset = reset;
@@ -387,6 +366,30 @@ class FluidField {
         };
         this.setResolution(64, 64);
     }
+
+    function iterations () : number {
+        return this._iterations;
+    }
+
+    function setIterations (iters : number) : void {
+        if (iters > 0 && iters <= 100)
+            this._iterations = iters;
+    }
+
+    function queryUI (d : number[], u : number[], v : number[]) : void {
+        for (var i = 0; i < this._size; i++)
+            u[i] = v[i] = d[i] = 0.0;
+        this._uiCallback(new Field(d, u, v));
+    }
+
+    function setUICallback (callback : (Field) -> void) : void {
+        this._uiCallback = callback;
+    }
+
+    function setDisplayFunction (func : (Field) -> void) : void {
+        this._displayFunc = func;
+    }
+    
 }
 
 class Field {
