@@ -1,3 +1,4 @@
+// -*- mode: jsx; jsx-indent-level: 4; indent-tabs-mode: nil; -*-
 // The ray tracer code in this file is written by Adam Burmister. It
 // is available in its original form from:
 //

@@ -1,3 +1,4 @@
+// -*- mode: jsx; jsx-indent-level: 4; indent-tabs-mode: nil; -*-
 // Copyright 2008 the V8 project authors. All rights reserved.
 // Copyright 1996 John Maloney and Mario Wolczko.
 

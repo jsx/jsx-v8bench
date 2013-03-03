@@ -1,3 +1,4 @@
+// -*- mode: jsx; jsx-indent-level: 4; indent-tabs-mode: nil; -*-
 // Copyright 2012 the V8 project authors. All rights reserved.
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -132,9 +133,9 @@ class BenchmarkSuite {
     static var version = '7';
 
 
-    var name                : string;
-    var reference        : int;
-    var benchmarks        : Benchmark[];
+    var name       : string;
+    var reference  : int;
+    var benchmarks : Benchmark[];
 
 
     // Suites of benchmarks consist of a name and the set of benchmarks in
