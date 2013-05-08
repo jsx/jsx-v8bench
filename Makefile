@@ -7,7 +7,8 @@ version:
 
 jsx:
 	@echo
-	jsx --release --run run.jsx
+	jsx --release --executable node --output v8bench.jsx.js run.jsx
+	node v8bench.jsx.js
 
 original:
 	@echo
