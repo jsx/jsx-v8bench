@@ -1,4 +1,6 @@
 
+RUNJS := node
+
 all: version jsx original
 
 version:
@@ -8,12 +10,12 @@ version:
 jsx:
 	@echo
 	jsx --release --executable node --output v8bench.jsx.js run.jsx
-	node v8bench.jsx.js
+	$(RUNJS) v8bench.jsx.js
 
 original:
 	@echo
 	cat v8bench-v7/{base,richards,deltablue,crypto,raytrace,regexp,splay,navier-stokes,run}.js > original.js
-	node original.js
+	$(RUNJS) original.js
 	@rm original.js
 
 .PHONY: all original
