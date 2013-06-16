@@ -27,9 +27,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-import "timer.jsx";
-
-
 // Simple framework for running the benchmark suites and
 // computing a score based on the timing measurements.
 
@@ -159,6 +156,8 @@ class BenchmarkSuite {
         var length = suites.length;
         BenchmarkSuite.scores = [] : number[];
         var index = 0;
+
+        var queue = new Array.<function():void>;
         function RunStep() : void {
             while (continuation || index < length) {
                 if (continuation) {
@@ -169,7 +168,7 @@ class BenchmarkSuite {
                     continuation = suite.RunStep(runner) as () -> variant;
                 }
                 if (continuation) {
-                    Timer.setTimeout(RunStep, 25);
+                    queue.push(RunStep);
                     return;
                 }
             }
@@ -177,7 +176,10 @@ class BenchmarkSuite {
             var formatted = BenchmarkSuite.FormatScore(100 * score);
             runner.NotifyScore(formatted);
         }
-        RunStep();
+        queue.push(RunStep);
+        while (queue.length > 0) {
+            queue.shift()();
+        }
     }
 
 
