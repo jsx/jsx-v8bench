@@ -1,21 +1,37 @@
 
 RUNJS := node
 
-all: version jsx original
+all: version jsx-build jsx original-build original
+
+3times: version
+	$(MAKE) jsx-build
+	$(MAKE) jsx
+	$(MAKE) jsx
+	$(MAKE) jsx
+	$(MAKE) original-build
+	$(MAKE) original
+	$(MAKE) original
+	$(MAKE) original
 
 version:
 	jsx --version
 	node --version
 
+jsx-build:
+	jsx --release --executable node --output v8bench.jsx.js run.jsx
+
 jsx:
 	@echo
-	jsx --release --executable node --output v8bench.jsx.js run.jsx
 	$(RUNJS) v8bench.jsx.js
+
+original-build:
+	cat v8bench-v7/{base,richards,deltablue,crypto,raytrace,regexp,splay,navier-stokes,run}.js > original.js
 
 original:
 	@echo
-	cat v8bench-v7/{base,richards,deltablue,crypto,raytrace,regexp,splay,navier-stokes,run}.js > original.js
 	$(RUNJS) original.js
-	@rm original.js
+
+clean:
+	rm original.js v8bench.jsx.js
 
 .PHONY: all original
