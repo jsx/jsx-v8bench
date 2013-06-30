@@ -6,9 +6,11 @@ JSX port of V8 Benchmark Suite
 
 	make # runs jsx-v8bench and original v8bench
 
-# EXAMPLE RESULT
+# RESULT IN NODEJS
 
 Do `make` three times on MacBook Air (Core i5 1.7 GHz, OSX 10.8.4)
+
+In summary, the total socre of the original code 8461, while JSX is 9721, which is 15% faster than the original.
 
     $ make 3times
 
