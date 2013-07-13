@@ -1254,21 +1254,21 @@ class BigInteger {
 
 
 
-abstract class Reducer {
+interface Reducer {
 
-    abstract function convert(x : BigInteger) : BigInteger;
+    function convert(x : BigInteger) : BigInteger;
 
-    abstract function revert(x : BigInteger) : BigInteger;
+    function revert(x : BigInteger) : BigInteger;
 
-    abstract function reduce(x : BigInteger) : void;
+    function reduce(x : BigInteger) : void;
 
-    abstract function mulTo(x : BigInteger, y : BigInteger, r : BigInteger) : void;
+    function mulTo(x : BigInteger, y : BigInteger, r : BigInteger) : void;
 
-    abstract function sqrTo(x : BigInteger, r : BigInteger) : void;
+    function sqrTo(x : BigInteger, r : BigInteger) : void;
 }
 
 // Modular reduction using "classic" algorithm
-class Classic extends Reducer {
+class Classic implements Reducer {
 
     var m : BigInteger;
 
@@ -1301,7 +1301,7 @@ class Classic extends Reducer {
 }
 
 // Montgomery reduction
-class Montgomery extends Reducer {
+class Montgomery implements Reducer {
 
     var m       : BigInteger;
     var mp      : number;
@@ -1371,7 +1371,7 @@ class Montgomery extends Reducer {
 
 
 // A "null" reducer
-class NullExp extends Reducer {
+class NullExp implements Reducer {
 
     function constructor() {
     }
@@ -1398,7 +1398,7 @@ class NullExp extends Reducer {
 
 
 // Barrett modular reduction
-class Barrett extends Reducer {
+class Barrett implements Reducer {
 
     var r2 : BigInteger;
     var q3 : BigInteger;
