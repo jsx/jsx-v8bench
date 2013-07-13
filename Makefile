@@ -31,6 +31,9 @@ original:
 	@echo
 	$(RUNJS) original.js
 
+profile:
+	jsx --profile --release --run run-with-profile.jsx
+
 clean:
 	rm original.js v8bench.jsx.js
 
