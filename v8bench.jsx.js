@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// generatedy by JSX compiler 0.9.53 (2013-07-13 12:41:39 -0700; 88b73fbdcb06e9d55160c0c07566b6a85c7bdfcd)
+// generatedy by JSX compiler 0.9.56 (2013-07-17 21:18:01 -0700; 6acc52a3f509ed30c9e04715405d1181adc00070)
 var JSX = {};
 (function (JSX) {
 /**
@@ -155,12 +155,6 @@ function BenchmarkResult$valueOf$LBenchmarkResult$($this) {
 
 BenchmarkResult.valueOf$LBenchmarkResult$ = BenchmarkResult$valueOf$LBenchmarkResult$;
 
-function BenchmarkResult$valueOf_0$LBenchmarkResult$($this) {
-	return $this.time;
-};
-
-BenchmarkResult.valueOf_0$LBenchmarkResult$ = BenchmarkResult$valueOf_0$LBenchmarkResult$;
-
 function BenchmarkData(runs, elapsed) {
 	this.runs = runs;
 	this.elapsed = elapsed;
@@ -175,19 +169,19 @@ BenchmarkRunner.prototype.NotifyStart$S = function (name) {
 };
 
 
-function BenchmarkRunner$NotifyStart_0$LBenchmarkRunner$S($this, name) {
+function BenchmarkRunner$NotifyStart$LBenchmarkRunner$S($this, name) {
 };
 
-BenchmarkRunner.NotifyStart_0$LBenchmarkRunner$S = BenchmarkRunner$NotifyStart_0$LBenchmarkRunner$S;
+BenchmarkRunner.NotifyStart$LBenchmarkRunner$S = BenchmarkRunner$NotifyStart$LBenchmarkRunner$S;
 
 BenchmarkRunner.prototype.NotifyStep$S = function (name) {
 };
 
 
-function BenchmarkRunner$NotifyStep_0$LBenchmarkRunner$S($this, name) {
+function BenchmarkRunner$NotifyStep$LBenchmarkRunner$S($this, name) {
 };
 
-BenchmarkRunner.NotifyStep_0$LBenchmarkRunner$S = BenchmarkRunner$NotifyStep_0$LBenchmarkRunner$S;
+BenchmarkRunner.NotifyStep$LBenchmarkRunner$S = BenchmarkRunner$NotifyStep$LBenchmarkRunner$S;
 
 BenchmarkRunner.prototype.NotifyResult$SS = function (name, result) {
 };
@@ -276,7 +270,7 @@ function BenchmarkSuite$RunSuites$LBenchmarkRunner$(runner) {
 				continuation = continuation();
 			} else {
 				suite = suites[index++];
-				continuation = BenchmarkSuite$RunStep_0$LBenchmarkSuite$LBenchmarkRunner$(suite, runner);
+				continuation = BenchmarkSuite$RunStep$LBenchmarkSuite$LBenchmarkRunner$(suite, runner);
 			}
 			if (continuation) {
 				queue.push(RunStep);
@@ -330,7 +324,7 @@ function BenchmarkSuite$GeometricMean$ALBenchmarkResult$(numbers) {
 	var numbers$len$0;
 	loga = 0;
 	for ((i = 0, numbers$len$0 = numbers.length); i < numbers$len$0; i++) {
-		loga += Math.log(BenchmarkResult$valueOf_0$LBenchmarkResult$(numbers[i]));
+		loga += Math.log(numbers[i].time);
 	}
 	return Math.pow(2.718281828459045, loga / numbers.length);
 };
@@ -348,11 +342,11 @@ BenchmarkSuite.prototype.NotifyStep$LBenchmarkResult$ = function (result) {
 };
 
 
-function BenchmarkSuite$NotifyStep_0$LBenchmarkSuite$LBenchmarkResult$($this, result) {
+function BenchmarkSuite$NotifyStep$LBenchmarkSuite$LBenchmarkResult$($this, result) {
 	$this.results.push(result);
 };
 
-BenchmarkSuite.NotifyStep_0$LBenchmarkSuite$LBenchmarkResult$ = BenchmarkSuite$NotifyStep_0$LBenchmarkSuite$LBenchmarkResult$;
+BenchmarkSuite.NotifyStep$LBenchmarkSuite$LBenchmarkResult$ = BenchmarkSuite$NotifyStep$LBenchmarkSuite$LBenchmarkResult$;
 
 BenchmarkSuite.prototype.NotifyResult$ = function () {
 	var mean;
@@ -368,7 +362,7 @@ BenchmarkSuite.prototype.NotifyResult$ = function () {
 };
 
 
-function BenchmarkSuite$NotifyResult_0$LBenchmarkSuite$($this) {
+function BenchmarkSuite$NotifyResult$LBenchmarkSuite$($this) {
 	var mean;
 	var score;
 	var formatted;
@@ -381,18 +375,18 @@ function BenchmarkSuite$NotifyResult_0$LBenchmarkSuite$($this) {
 	$this.runner.NotifyResult$SS($this.name, formatted);
 };
 
-BenchmarkSuite.NotifyResult_0$LBenchmarkSuite$ = BenchmarkSuite$NotifyResult_0$LBenchmarkSuite$;
+BenchmarkSuite.NotifyResult$LBenchmarkSuite$ = BenchmarkSuite$NotifyResult$LBenchmarkSuite$;
 
 BenchmarkSuite.prototype.NotifyError$LError$ = function (error) {
 	this.runner.NotifyError$SLError$(this.name, error);
 };
 
 
-function BenchmarkSuite$NotifyError_0$LBenchmarkSuite$LError$($this, error) {
+function BenchmarkSuite$NotifyError$LBenchmarkSuite$LError$($this, error) {
 	$this.runner.NotifyError$SLError$($this.name, error);
 };
 
-BenchmarkSuite.NotifyError_0$LBenchmarkSuite$LError$ = BenchmarkSuite$NotifyError_0$LBenchmarkSuite$LError$;
+BenchmarkSuite.NotifyError$LBenchmarkSuite$LError$ = BenchmarkSuite$NotifyError$LBenchmarkSuite$LError$;
 
 BenchmarkSuite.prototype.RunSingleBenchmark$LBenchmark$LBenchmarkData$ = function (benchmark, data) {
 	var $this = this;
@@ -430,7 +424,7 @@ BenchmarkSuite.prototype.RunSingleBenchmark$LBenchmark$LBenchmarkData$ = functio
 };
 
 
-function BenchmarkSuite$RunSingleBenchmark_0$LBenchmarkSuite$LBenchmark$LBenchmarkData$($this, benchmark, data) {
+function BenchmarkSuite$RunSingleBenchmark$LBenchmarkSuite$LBenchmark$LBenchmarkData$($this, benchmark, data) {
 	var Measure;
 	var usec;
 	var result$0;
@@ -464,7 +458,7 @@ function BenchmarkSuite$RunSingleBenchmark_0$LBenchmarkSuite$LBenchmark$LBenchma
 	}
 };
 
-BenchmarkSuite.RunSingleBenchmark_0$LBenchmarkSuite$LBenchmark$LBenchmarkData$ = BenchmarkSuite$RunSingleBenchmark_0$LBenchmarkSuite$LBenchmark$LBenchmarkData$;
+BenchmarkSuite.RunSingleBenchmark$LBenchmarkSuite$LBenchmark$LBenchmarkData$ = BenchmarkSuite$RunSingleBenchmark$LBenchmarkSuite$LBenchmark$LBenchmarkData$;
 
 BenchmarkSuite.prototype.RunStep$LBenchmarkRunner$ = function (runner) {
 	var $this = this;
@@ -495,12 +489,12 @@ BenchmarkSuite.prototype.RunStep$LBenchmarkRunner$ = function (runner) {
 			}
 			return RunNextBenchmark;
 		}
-		BenchmarkSuite$NotifyResult_0$LBenchmarkSuite$(suite);
+		BenchmarkSuite$NotifyResult$LBenchmarkSuite$(suite);
 		return null;
 	});
 	RunNextBenchmark = (function () {
 		try {
-			data = BenchmarkSuite$RunSingleBenchmark_0$LBenchmarkSuite$LBenchmark$LBenchmarkData$(suite, suite.benchmarks[index], data);
+			data = BenchmarkSuite$RunSingleBenchmark$LBenchmarkSuite$LBenchmark$LBenchmarkData$(suite, suite.benchmarks[index], data);
 		} catch ($__jsx_catch_0) {
 			if ($__jsx_catch_0 instanceof Error) {
 				suite.runner.NotifyError$SLError$(suite.name, $__jsx_catch_0);
@@ -528,7 +522,7 @@ BenchmarkSuite.prototype.RunStep$LBenchmarkRunner$ = function (runner) {
 };
 
 
-function BenchmarkSuite$RunStep_0$LBenchmarkSuite$LBenchmarkRunner$($this, runner) {
+function BenchmarkSuite$RunStep$LBenchmarkSuite$LBenchmarkRunner$($this, runner) {
 	var length;
 	var index;
 	var suite;
@@ -556,12 +550,12 @@ function BenchmarkSuite$RunStep_0$LBenchmarkSuite$LBenchmarkRunner$($this, runne
 			}
 			return RunNextBenchmark;
 		}
-		BenchmarkSuite$NotifyResult_0$LBenchmarkSuite$(suite);
+		BenchmarkSuite$NotifyResult$LBenchmarkSuite$(suite);
 		return null;
 	});
 	RunNextBenchmark = (function () {
 		try {
-			data = BenchmarkSuite$RunSingleBenchmark_0$LBenchmarkSuite$LBenchmark$LBenchmarkData$(suite, suite.benchmarks[index], data);
+			data = BenchmarkSuite$RunSingleBenchmark$LBenchmarkSuite$LBenchmark$LBenchmarkData$(suite, suite.benchmarks[index], data);
 		} catch ($__jsx_catch_0) {
 			if ($__jsx_catch_0 instanceof Error) {
 				suite.runner.NotifyError$SLError$(suite.name, $__jsx_catch_0);
@@ -588,12 +582,12 @@ function BenchmarkSuite$RunStep_0$LBenchmarkSuite$LBenchmarkRunner$($this, runne
 	return RunNextSetup();
 };
 
-BenchmarkSuite.RunStep_0$LBenchmarkSuite$LBenchmarkRunner$ = BenchmarkSuite$RunStep_0$LBenchmarkSuite$LBenchmarkRunner$;
+BenchmarkSuite.RunStep$LBenchmarkSuite$LBenchmarkRunner$ = BenchmarkSuite$RunStep$LBenchmarkSuite$LBenchmarkRunner$;
 
 function Richards() {
 	var $this = this;
 	new BenchmarkSuite('Richards', 35302, [ new Benchmark("Richards", (function () {
-		Richards$runRichards_0$LRichards$($this);
+		Richards$runRichards$LRichards$($this);
 	})) ]);
 };
 
@@ -603,21 +597,21 @@ Richards.prototype.runRichards$ = function () {
 	var queue;
 	var msg;
 	scheduler = ({queueCount: 0, holdCount: 0, blocks: new Array(6), list: null, currentTcb: null, currentId: null});
-	Scheduler$addIdleTask_0$LScheduler$IILPacket$I(scheduler, 0, 0, null, 1000);
+	Scheduler$addIdleTask$LScheduler$IILPacket$I(scheduler, 0, 0, null, 1000);
 	queue = new Packet(null, 1, 1);
 	queue = new Packet(queue, 1, 1);
-	Scheduler$addWorkerTask_0$LScheduler$IILPacket$(scheduler, 1, 1000, queue);
+	Scheduler$addWorkerTask$LScheduler$IILPacket$(scheduler, 1, 1000, queue);
 	queue = new Packet(null, 4, 0);
 	queue = new Packet(queue, 4, 0);
 	queue = new Packet(queue, 4, 0);
-	Scheduler$addHandlerTask_0$LScheduler$IILPacket$(scheduler, 2, 2000, queue);
+	Scheduler$addHandlerTask$LScheduler$IILPacket$(scheduler, 2, 2000, queue);
 	queue = new Packet(null, 5, 0);
 	queue = new Packet(queue, 5, 0);
 	queue = new Packet(queue, 5, 0);
-	Scheduler$addHandlerTask_0$LScheduler$IILPacket$(scheduler, 3, 3000, queue);
-	Scheduler$addDeviceTask_0$LScheduler$IILPacket$(scheduler, 4, 4000, null);
-	Scheduler$addDeviceTask_0$LScheduler$IILPacket$(scheduler, 5, 5000, null);
-	Scheduler$schedule_0$LScheduler$(scheduler);
+	Scheduler$addHandlerTask$LScheduler$IILPacket$(scheduler, 3, 3000, queue);
+	Scheduler$addDeviceTask$LScheduler$IILPacket$(scheduler, 4, 4000, null);
+	Scheduler$addDeviceTask$LScheduler$IILPacket$(scheduler, 5, 5000, null);
+	Scheduler$schedule$LScheduler$(scheduler);
 	if (scheduler.queueCount !== 2322 || scheduler.holdCount !== 928) {
 		msg = "Error during execution: queueCount = " + (scheduler.queueCount + "") + ", holdCount = " + (scheduler.holdCount + "") + ".";
 		throw new Error(msg);
@@ -625,33 +619,33 @@ Richards.prototype.runRichards$ = function () {
 };
 
 
-function Richards$runRichards_0$LRichards$($this) {
+function Richards$runRichards$LRichards$($this) {
 	var scheduler;
 	var queue;
 	var msg;
 	scheduler = ({queueCount: 0, holdCount: 0, blocks: new Array(6), list: null, currentTcb: null, currentId: null});
-	Scheduler$addIdleTask_0$LScheduler$IILPacket$I(scheduler, 0, 0, null, 1000);
+	Scheduler$addIdleTask$LScheduler$IILPacket$I(scheduler, 0, 0, null, 1000);
 	queue = new Packet(null, 1, 1);
 	queue = new Packet(queue, 1, 1);
-	Scheduler$addWorkerTask_0$LScheduler$IILPacket$(scheduler, 1, 1000, queue);
+	Scheduler$addWorkerTask$LScheduler$IILPacket$(scheduler, 1, 1000, queue);
 	queue = new Packet(null, 4, 0);
 	queue = new Packet(queue, 4, 0);
 	queue = new Packet(queue, 4, 0);
-	Scheduler$addHandlerTask_0$LScheduler$IILPacket$(scheduler, 2, 2000, queue);
+	Scheduler$addHandlerTask$LScheduler$IILPacket$(scheduler, 2, 2000, queue);
 	queue = new Packet(null, 5, 0);
 	queue = new Packet(queue, 5, 0);
 	queue = new Packet(queue, 5, 0);
-	Scheduler$addHandlerTask_0$LScheduler$IILPacket$(scheduler, 3, 3000, queue);
-	Scheduler$addDeviceTask_0$LScheduler$IILPacket$(scheduler, 4, 4000, null);
-	Scheduler$addDeviceTask_0$LScheduler$IILPacket$(scheduler, 5, 5000, null);
-	Scheduler$schedule_0$LScheduler$(scheduler);
+	Scheduler$addHandlerTask$LScheduler$IILPacket$(scheduler, 3, 3000, queue);
+	Scheduler$addDeviceTask$LScheduler$IILPacket$(scheduler, 4, 4000, null);
+	Scheduler$addDeviceTask$LScheduler$IILPacket$(scheduler, 5, 5000, null);
+	Scheduler$schedule$LScheduler$(scheduler);
 	if (scheduler.queueCount !== 2322 || scheduler.holdCount !== 928) {
 		msg = "Error during execution: queueCount = " + (scheduler.queueCount + "") + ", holdCount = " + (scheduler.holdCount + "") + ".";
 		throw new Error(msg);
 	}
 };
 
-Richards.runRichards_0$LRichards$ = Richards$runRichards_0$LRichards$;
+Richards.runRichards$LRichards$ = Richards$runRichards$LRichards$;
 
 function Scheduler() {
 	this.queueCount = 0;
@@ -664,16 +658,16 @@ function Scheduler() {
 
 $__jsx_extend([Scheduler], Object);
 function Scheduler$addIdleTask$LScheduler$IILPacket$I($this, id, priority, queue, count) {
-	Scheduler$addRunningTask_0$LScheduler$IILPacket$LTask$($this, id, priority, queue, new IdleTask($this, 1, count));
+	var task$0;
+	var currentTcb$0;
+	task$0 = new IdleTask($this, 1, count);
+	currentTcb$0 = $this.currentTcb = new TaskControlBlock($this.list, id, priority, queue, task$0);
+	$this.list = currentTcb$0;
+	$this.blocks[id] = $this.currentTcb;
+	$this.currentTcb.state = 0;
 };
 
 Scheduler.addIdleTask$LScheduler$IILPacket$I = Scheduler$addIdleTask$LScheduler$IILPacket$I;
-
-function Scheduler$addIdleTask_0$LScheduler$IILPacket$I($this, id, priority, queue, count) {
-	Scheduler$addRunningTask_0$LScheduler$IILPacket$LTask$($this, id, priority, queue, new IdleTask($this, 1, count));
-};
-
-Scheduler.addIdleTask_0$LScheduler$IILPacket$I = Scheduler$addIdleTask_0$LScheduler$IILPacket$I;
 
 function Scheduler$addWorkerTask$LScheduler$IILPacket$($this, id, priority, queue) {
 	var task$0;
@@ -686,17 +680,6 @@ function Scheduler$addWorkerTask$LScheduler$IILPacket$($this, id, priority, queu
 
 Scheduler.addWorkerTask$LScheduler$IILPacket$ = Scheduler$addWorkerTask$LScheduler$IILPacket$;
 
-function Scheduler$addWorkerTask_0$LScheduler$IILPacket$($this, id, priority, queue) {
-	var task$0;
-	var currentTcb$0;
-	task$0 = new WorkerTask($this, 2, 0);
-	currentTcb$0 = $this.currentTcb = new TaskControlBlock($this.list, id, priority, queue, task$0);
-	$this.list = currentTcb$0;
-	$this.blocks[id] = $this.currentTcb;
-};
-
-Scheduler.addWorkerTask_0$LScheduler$IILPacket$ = Scheduler$addWorkerTask_0$LScheduler$IILPacket$;
-
 function Scheduler$addHandlerTask$LScheduler$IILPacket$($this, id, priority, queue) {
 	var task$0;
 	var currentTcb$0;
@@ -707,17 +690,6 @@ function Scheduler$addHandlerTask$LScheduler$IILPacket$($this, id, priority, que
 };
 
 Scheduler.addHandlerTask$LScheduler$IILPacket$ = Scheduler$addHandlerTask$LScheduler$IILPacket$;
-
-function Scheduler$addHandlerTask_0$LScheduler$IILPacket$($this, id, priority, queue) {
-	var task$0;
-	var currentTcb$0;
-	task$0 = new HandlerTask($this);
-	currentTcb$0 = $this.currentTcb = new TaskControlBlock($this.list, id, priority, queue, task$0);
-	$this.list = currentTcb$0;
-	$this.blocks[id] = $this.currentTcb;
-};
-
-Scheduler.addHandlerTask_0$LScheduler$IILPacket$ = Scheduler$addHandlerTask_0$LScheduler$IILPacket$;
 
 function Scheduler$addDeviceTask$LScheduler$IILPacket$($this, id, priority, queue) {
 	var task$0;
@@ -730,40 +702,15 @@ function Scheduler$addDeviceTask$LScheduler$IILPacket$($this, id, priority, queu
 
 Scheduler.addDeviceTask$LScheduler$IILPacket$ = Scheduler$addDeviceTask$LScheduler$IILPacket$;
 
-function Scheduler$addDeviceTask_0$LScheduler$IILPacket$($this, id, priority, queue) {
-	var task$0;
-	var currentTcb$0;
-	task$0 = new DeviceTask($this);
-	currentTcb$0 = $this.currentTcb = new TaskControlBlock($this.list, id, priority, queue, task$0);
-	$this.list = currentTcb$0;
-	$this.blocks[id] = $this.currentTcb;
-};
-
-Scheduler.addDeviceTask_0$LScheduler$IILPacket$ = Scheduler$addDeviceTask_0$LScheduler$IILPacket$;
-
 function Scheduler$addRunningTask$LScheduler$IILPacket$LTask$($this, id, priority, queue, task) {
-	var $this$0;
 	var currentTcb$0;
 	currentTcb$0 = $this.currentTcb = new TaskControlBlock($this.list, id, priority, queue, task);
 	$this.list = currentTcb$0;
 	$this.blocks[id] = $this.currentTcb;
-	$this$0 = $this.currentTcb;
-	$this$0.state = 0;
+	$this.currentTcb.state = 0;
 };
 
 Scheduler.addRunningTask$LScheduler$IILPacket$LTask$ = Scheduler$addRunningTask$LScheduler$IILPacket$LTask$;
-
-function Scheduler$addRunningTask_0$LScheduler$IILPacket$LTask$($this, id, priority, queue, task) {
-	var $this$0;
-	var currentTcb$0;
-	currentTcb$0 = $this.currentTcb = new TaskControlBlock($this.list, id, priority, queue, task);
-	$this.list = currentTcb$0;
-	$this.blocks[id] = $this.currentTcb;
-	$this$0 = $this.currentTcb;
-	$this$0.state = 0;
-};
-
-Scheduler.addRunningTask_0$LScheduler$IILPacket$LTask$ = Scheduler$addRunningTask_0$LScheduler$IILPacket$LTask$;
 
 function Scheduler$addTask$LScheduler$IILPacket$LTask$($this, id, priority, queue, task) {
 	var currentTcb$0;
@@ -774,50 +721,23 @@ function Scheduler$addTask$LScheduler$IILPacket$LTask$($this, id, priority, queu
 
 Scheduler.addTask$LScheduler$IILPacket$LTask$ = Scheduler$addTask$LScheduler$IILPacket$LTask$;
 
-function Scheduler$addTask_0$LScheduler$IILPacket$LTask$($this, id, priority, queue, task) {
-	var currentTcb$0;
-	currentTcb$0 = $this.currentTcb = new TaskControlBlock($this.list, id, priority, queue, task);
-	$this.list = currentTcb$0;
-	$this.blocks[id] = $this.currentTcb;
-};
-
-Scheduler.addTask_0$LScheduler$IILPacket$LTask$ = Scheduler$addTask_0$LScheduler$IILPacket$LTask$;
-
 function Scheduler$schedule$LScheduler$($this) {
-	var $this$0;
+	var this$0;
 	var currentTcb$0;
 	var state$0;
 	$this.currentTcb = $this.list;
 	while ($this.currentTcb != null) {
-		$this$0 = $this.currentTcb;
-		if (((state$0 = $this$0.state) & 4) !== 0 || state$0 === 2) {
+		this$0 = $this.currentTcb;
+		if (((state$0 = this$0.state) & 4) !== 0 || state$0 === 2) {
 			$this.currentTcb = $this.currentTcb.link;
 		} else {
 			$this.currentId = (currentTcb$0 = $this.currentTcb).id;
-			$this.currentTcb = TaskControlBlock$run_0$LTaskControlBlock$(currentTcb$0);
+			$this.currentTcb = TaskControlBlock$run$LTaskControlBlock$(currentTcb$0);
 		}
 	}
 };
 
 Scheduler.schedule$LScheduler$ = Scheduler$schedule$LScheduler$;
-
-function Scheduler$schedule_0$LScheduler$($this) {
-	var $this$0;
-	var currentTcb$0;
-	var state$0;
-	$this.currentTcb = $this.list;
-	while ($this.currentTcb != null) {
-		$this$0 = $this.currentTcb;
-		if (((state$0 = $this$0.state) & 4) !== 0 || state$0 === 2) {
-			$this.currentTcb = $this.currentTcb.link;
-		} else {
-			$this.currentId = (currentTcb$0 = $this.currentTcb).id;
-			$this.currentTcb = TaskControlBlock$run_0$LTaskControlBlock$(currentTcb$0);
-		}
-	}
-};
-
-Scheduler.schedule_0$LScheduler$ = Scheduler$schedule_0$LScheduler$;
 
 function Scheduler$release$LScheduler$I($this, id) {
 	var tcb;
@@ -825,65 +745,32 @@ function Scheduler$release$LScheduler$I($this, id) {
 	if (tcb == null) {
 		return tcb;
 	}
-	tcb.state = tcb.state & TaskControlBlock.STATE_NOT_HELD;
+	tcb.state = tcb.state & -5;
 	return (tcb.priority > $this.currentTcb.priority ? tcb : $this.currentTcb);
 };
 
 Scheduler.release$LScheduler$I = Scheduler$release$LScheduler$I;
 
-function Scheduler$release_0$LScheduler$I($this, id) {
-	var tcb;
-	tcb = $this.blocks[id];
-	if (tcb == null) {
-		return tcb;
-	}
-	tcb.state = tcb.state & TaskControlBlock.STATE_NOT_HELD;
-	return (tcb.priority > $this.currentTcb.priority ? tcb : $this.currentTcb);
-};
-
-Scheduler.release_0$LScheduler$I = Scheduler$release_0$LScheduler$I;
-
 function Scheduler$holdCurrent$LScheduler$($this) {
-	var $this$0;
+	var this$0;
 	var currentTcb$0;
 	$this.holdCount++;
-	$this$0 = currentTcb$0 = $this.currentTcb;
-	$this$0.state = $this$0.state | 4;
+	this$0 = currentTcb$0 = $this.currentTcb;
+	this$0.state = this$0.state | 4;
 	return currentTcb$0.link;
 };
 
 Scheduler.holdCurrent$LScheduler$ = Scheduler$holdCurrent$LScheduler$;
 
-function Scheduler$holdCurrent_0$LScheduler$($this) {
-	var $this$0;
-	var currentTcb$0;
-	$this.holdCount++;
-	$this$0 = currentTcb$0 = $this.currentTcb;
-	$this$0.state = $this$0.state | 4;
-	return currentTcb$0.link;
-};
-
-Scheduler.holdCurrent_0$LScheduler$ = Scheduler$holdCurrent_0$LScheduler$;
-
 function Scheduler$suspendCurrent$LScheduler$($this) {
-	var $this$0;
+	var this$0;
 	var currentTcb$0;
-	$this$0 = currentTcb$0 = $this.currentTcb;
-	$this$0.state = $this$0.state | 2;
+	this$0 = currentTcb$0 = $this.currentTcb;
+	this$0.state = this$0.state | 2;
 	return currentTcb$0;
 };
 
 Scheduler.suspendCurrent$LScheduler$ = Scheduler$suspendCurrent$LScheduler$;
-
-function Scheduler$suspendCurrent_0$LScheduler$($this) {
-	var $this$0;
-	var currentTcb$0;
-	$this$0 = currentTcb$0 = $this.currentTcb;
-	$this$0.state = $this$0.state | 2;
-	return currentTcb$0;
-};
-
-Scheduler.suspendCurrent_0$LScheduler$ = Scheduler$suspendCurrent_0$LScheduler$;
 
 function Scheduler$queue$LScheduler$LPacket$($this, packet) {
 	var t;
@@ -894,24 +781,10 @@ function Scheduler$queue$LScheduler$LPacket$($this, packet) {
 	$this.queueCount++;
 	packet.link = null;
 	packet.id = $this.currentId;
-	return TaskControlBlock$checkPriorityAdd_0$LTaskControlBlock$LTaskControlBlock$LPacket$(t, $this.currentTcb, packet);
+	return TaskControlBlock$checkPriorityAdd$LTaskControlBlock$LTaskControlBlock$LPacket$(t, $this.currentTcb, packet);
 };
 
 Scheduler.queue$LScheduler$LPacket$ = Scheduler$queue$LScheduler$LPacket$;
-
-function Scheduler$queue_0$LScheduler$LPacket$($this, packet) {
-	var t;
-	t = $this.blocks[packet.id];
-	if (t == null) {
-		return t;
-	}
-	$this.queueCount++;
-	packet.link = null;
-	packet.id = $this.currentId;
-	return TaskControlBlock$checkPriorityAdd_0$LTaskControlBlock$LTaskControlBlock$LPacket$(t, $this.currentTcb, packet);
-};
-
-Scheduler.queue_0$LScheduler$LPacket$ = Scheduler$queue_0$LScheduler$LPacket$;
 
 function TaskControlBlock(link, id, priority, queue, task) {
 	this.state = 0;
@@ -933,33 +806,33 @@ TaskControlBlock.prototype.setRunning$ = function () {
 };
 
 
-function TaskControlBlock$setRunning_0$LTaskControlBlock$($this) {
+function TaskControlBlock$setRunning$LTaskControlBlock$($this) {
 	$this.state = 0;
 };
 
-TaskControlBlock.setRunning_0$LTaskControlBlock$ = TaskControlBlock$setRunning_0$LTaskControlBlock$;
+TaskControlBlock.setRunning$LTaskControlBlock$ = TaskControlBlock$setRunning$LTaskControlBlock$;
 
 TaskControlBlock.prototype.markAsNotHeld$ = function () {
-	this.state = this.state & TaskControlBlock.STATE_NOT_HELD;
+	this.state = this.state & -5;
 };
 
 
-function TaskControlBlock$markAsNotHeld_0$LTaskControlBlock$($this) {
-	$this.state = $this.state & TaskControlBlock.STATE_NOT_HELD;
+function TaskControlBlock$markAsNotHeld$LTaskControlBlock$($this) {
+	$this.state = $this.state & -5;
 };
 
-TaskControlBlock.markAsNotHeld_0$LTaskControlBlock$ = TaskControlBlock$markAsNotHeld_0$LTaskControlBlock$;
+TaskControlBlock.markAsNotHeld$LTaskControlBlock$ = TaskControlBlock$markAsNotHeld$LTaskControlBlock$;
 
 TaskControlBlock.prototype.markAsHeld$ = function () {
 	this.state = this.state | 4;
 };
 
 
-function TaskControlBlock$markAsHeld_0$LTaskControlBlock$($this) {
+function TaskControlBlock$markAsHeld$LTaskControlBlock$($this) {
 	$this.state = $this.state | 4;
 };
 
-TaskControlBlock.markAsHeld_0$LTaskControlBlock$ = TaskControlBlock$markAsHeld_0$LTaskControlBlock$;
+TaskControlBlock.markAsHeld$LTaskControlBlock$ = TaskControlBlock$markAsHeld$LTaskControlBlock$;
 
 TaskControlBlock.prototype.isHeldOrSuspended$ = function () {
 	var state$0;
@@ -967,34 +840,34 @@ TaskControlBlock.prototype.isHeldOrSuspended$ = function () {
 };
 
 
-function TaskControlBlock$isHeldOrSuspended_0$LTaskControlBlock$($this) {
+function TaskControlBlock$isHeldOrSuspended$LTaskControlBlock$($this) {
 	var state$0;
 	return ((state$0 = $this.state) & 4) !== 0 || state$0 === 2;
 };
 
-TaskControlBlock.isHeldOrSuspended_0$LTaskControlBlock$ = TaskControlBlock$isHeldOrSuspended_0$LTaskControlBlock$;
+TaskControlBlock.isHeldOrSuspended$LTaskControlBlock$ = TaskControlBlock$isHeldOrSuspended$LTaskControlBlock$;
 
 TaskControlBlock.prototype.markAsSuspended$ = function () {
 	this.state = this.state | 2;
 };
 
 
-function TaskControlBlock$markAsSuspended_0$LTaskControlBlock$($this) {
+function TaskControlBlock$markAsSuspended$LTaskControlBlock$($this) {
 	$this.state = $this.state | 2;
 };
 
-TaskControlBlock.markAsSuspended_0$LTaskControlBlock$ = TaskControlBlock$markAsSuspended_0$LTaskControlBlock$;
+TaskControlBlock.markAsSuspended$LTaskControlBlock$ = TaskControlBlock$markAsSuspended$LTaskControlBlock$;
 
 TaskControlBlock.prototype.markAsRunnable$ = function () {
 	this.state = this.state | 1;
 };
 
 
-function TaskControlBlock$markAsRunnable_0$LTaskControlBlock$($this) {
+function TaskControlBlock$markAsRunnable$LTaskControlBlock$($this) {
 	$this.state = $this.state | 1;
 };
 
-TaskControlBlock.markAsRunnable_0$LTaskControlBlock$ = TaskControlBlock$markAsRunnable_0$LTaskControlBlock$;
+TaskControlBlock.markAsRunnable$LTaskControlBlock$ = TaskControlBlock$markAsRunnable$LTaskControlBlock$;
 
 TaskControlBlock.prototype.run$ = function () {
 	var packet;
@@ -1014,7 +887,7 @@ TaskControlBlock.prototype.run$ = function () {
 };
 
 
-function TaskControlBlock$run_0$LTaskControlBlock$($this) {
+function TaskControlBlock$run$LTaskControlBlock$($this) {
 	var packet;
 	var queue$0;
 	if ($this.state === 3) {
@@ -1031,7 +904,7 @@ function TaskControlBlock$run_0$LTaskControlBlock$($this) {
 	return $this.task.run$LPacket$(packet);
 };
 
-TaskControlBlock.run_0$LTaskControlBlock$ = TaskControlBlock$run_0$LTaskControlBlock$;
+TaskControlBlock.run$LTaskControlBlock$ = TaskControlBlock$run$LTaskControlBlock$;
 
 TaskControlBlock.prototype.checkPriorityAdd$LTaskControlBlock$LPacket$ = function (task, packet) {
 	if (this.queue == null) {
@@ -1041,13 +914,13 @@ TaskControlBlock.prototype.checkPriorityAdd$LTaskControlBlock$LPacket$ = functio
 			return this;
 		}
 	} else {
-		this.queue = Packet$addTo_0$LPacket$LPacket$(packet, this.queue);
+		this.queue = Packet$addTo$LPacket$LPacket$(packet, this.queue);
 	}
 	return task;
 };
 
 
-function TaskControlBlock$checkPriorityAdd_0$LTaskControlBlock$LTaskControlBlock$LPacket$($this, task, packet) {
+function TaskControlBlock$checkPriorityAdd$LTaskControlBlock$LTaskControlBlock$LPacket$($this, task, packet) {
 	if ($this.queue == null) {
 		$this.queue = packet;
 		$this.state = $this.state | 1;
@@ -1055,12 +928,12 @@ function TaskControlBlock$checkPriorityAdd_0$LTaskControlBlock$LTaskControlBlock
 			return $this;
 		}
 	} else {
-		$this.queue = Packet$addTo_0$LPacket$LPacket$(packet, $this.queue);
+		$this.queue = Packet$addTo$LPacket$LPacket$(packet, $this.queue);
 	}
 	return task;
 };
 
-TaskControlBlock.checkPriorityAdd_0$LTaskControlBlock$LTaskControlBlock$LPacket$ = TaskControlBlock$checkPriorityAdd_0$LTaskControlBlock$LTaskControlBlock$LPacket$;
+TaskControlBlock.checkPriorityAdd$LTaskControlBlock$LTaskControlBlock$LPacket$ = TaskControlBlock$checkPriorityAdd$LTaskControlBlock$LTaskControlBlock$LPacket$;
 
 TaskControlBlock.prototype.toString = function () {
 	return "tcb { " + this.task.toString() + "@" + this.state.toString() + " }";
@@ -1080,23 +953,23 @@ function IdleTask(scheduler, v1, count) {
 
 $__jsx_extend([IdleTask], Task);
 IdleTask.prototype.run$LPacket$ = function (packet) {
-	var $this$0;
-	var $this$0$0;
+	var this$0;
+	var this$0$0;
 	var currentTcb$0;
 	this.count--;
 	if (this.count === 0) {
-		$this$0 = this.scheduler;
-		$this$0.holdCount++;
-		$this$0$0 = currentTcb$0 = $this$0.currentTcb;
-		$this$0$0.state = $this$0$0.state | 4;
+		this$0 = this.scheduler;
+		this$0.holdCount++;
+		this$0$0 = currentTcb$0 = this$0.currentTcb;
+		this$0$0.state = this$0$0.state | 4;
 		return currentTcb$0.link;
 	}
 	if ((this.v1 & 1) === 0) {
 		this.v1 = this.v1 >> 1;
-		return Scheduler$release_0$LScheduler$I(this.scheduler, 4);
+		return Scheduler$release$LScheduler$I(this.scheduler, 4);
 	} else {
 		this.v1 = this.v1 >> 1 ^ 0xD008;
-		return Scheduler$release_0$LScheduler$I(this.scheduler, 5);
+		return Scheduler$release$LScheduler$I(this.scheduler, 5);
 	}
 };
 
@@ -1114,28 +987,28 @@ function DeviceTask(scheduler) {
 $__jsx_extend([DeviceTask], Task);
 DeviceTask.prototype.run$LPacket$ = function (packet) {
 	var v;
-	var $this$0;
-	var $this$0$0;
-	var $this$1;
-	var $this$0$1;
+	var this$0;
+	var this$0$0;
+	var this$1;
+	var this$0$1;
 	var currentTcb$0;
 	var currentTcb$1;
 	if (packet == null) {
 		if (this.v1 == null) {
-			$this$0 = this.scheduler;
-			$this$0$0 = currentTcb$0 = $this$0.currentTcb;
-			$this$0$0.state = $this$0$0.state | 2;
+			this$0 = this.scheduler;
+			this$0$0 = currentTcb$0 = this$0.currentTcb;
+			this$0$0.state = this$0$0.state | 2;
 			return currentTcb$0;
 		}
 		v = this.v1;
 		this.v1 = null;
-		return Scheduler$queue_0$LScheduler$LPacket$(this.scheduler, v);
+		return Scheduler$queue$LScheduler$LPacket$(this.scheduler, v);
 	} else {
 		this.v1 = packet;
-		$this$1 = this.scheduler;
-		$this$1.holdCount++;
-		$this$0$1 = currentTcb$1 = $this$1.currentTcb;
-		$this$0$1.state = $this$0$1.state | 4;
+		this$1 = this.scheduler;
+		this$1.holdCount++;
+		this$0$1 = currentTcb$1 = this$1.currentTcb;
+		this$0$1.state = this$0$1.state | 4;
 		return currentTcb$1.link;
 	}
 };
@@ -1155,13 +1028,13 @@ function WorkerTask(scheduler, v1, v2) {
 $__jsx_extend([WorkerTask], Task);
 WorkerTask.prototype.run$LPacket$ = function (packet) {
 	var i;
-	var $this$0;
-	var $this$0$0;
+	var this$0;
+	var this$0$0;
 	var currentTcb$0;
 	if (packet == null) {
-		$this$0 = this.scheduler;
-		$this$0$0 = currentTcb$0 = $this$0.currentTcb;
-		$this$0$0.state = $this$0$0.state | 2;
+		this$0 = this.scheduler;
+		this$0$0 = currentTcb$0 = this$0.currentTcb;
+		this$0$0.state = this$0$0.state | 2;
 		return currentTcb$0;
 	} else {
 		if (this.v1 === 2) {
@@ -1178,7 +1051,7 @@ WorkerTask.prototype.run$LPacket$ = function (packet) {
 			}
 			packet.a2[i] = this.v2;
 		}
-		return Scheduler$queue_0$LScheduler$LPacket$(this.scheduler, packet);
+		return Scheduler$queue$LScheduler$LPacket$(this.scheduler, packet);
 	}
 };
 
@@ -1198,17 +1071,17 @@ $__jsx_extend([HandlerTask], Task);
 HandlerTask.prototype.run$LPacket$ = function (packet) {
 	var count;
 	var v;
-	var $this$0;
-	var $this$0$0;
+	var this$0;
+	var this$0$0;
 	var v2$0;
 	var v1$0;
 	var v1$1;
 	var currentTcb$0;
 	if (packet != null) {
 		if (packet.kind === 1) {
-			this.v1 = Packet$addTo_0$LPacket$LPacket$(packet, this.v1);
+			this.v1 = Packet$addTo$LPacket$LPacket$(packet, this.v1);
 		} else {
-			this.v2 = Packet$addTo_0$LPacket$LPacket$(packet, this.v2);
+			this.v2 = Packet$addTo$LPacket$LPacket$(packet, this.v2);
 		}
 	}
 	if (this.v1 != null) {
@@ -1219,17 +1092,17 @@ HandlerTask.prototype.run$LPacket$ = function (packet) {
 				this.v2 = v2$0.link;
 				v.a1 = (v1$0 = this.v1).a2[count];
 				v1$0.a1 = (count + 1 | 0);
-				return Scheduler$queue_0$LScheduler$LPacket$(this.scheduler, v);
+				return Scheduler$queue$LScheduler$LPacket$(this.scheduler, v);
 			}
 		} else {
 			v = v1$1 = this.v1;
 			this.v1 = v1$1.link;
-			return Scheduler$queue_0$LScheduler$LPacket$(this.scheduler, v);
+			return Scheduler$queue$LScheduler$LPacket$(this.scheduler, v);
 		}
 	}
-	$this$0 = this.scheduler;
-	$this$0$0 = currentTcb$0 = $this$0.currentTcb;
-	$this$0$0.state = $this$0$0.state | 2;
+	this$0 = this.scheduler;
+	this$0$0 = currentTcb$0 = this$0.currentTcb;
+	this$0$0.state = this$0$0.state | 2;
 	return currentTcb$0;
 };
 
@@ -1264,7 +1137,7 @@ Packet.prototype.addTo$LPacket$ = function (queue) {
 };
 
 
-function Packet$addTo_0$LPacket$LPacket$($this, queue) {
+function Packet$addTo$LPacket$LPacket$($this, queue) {
 	var peek;
 	var next;
 	$this.link = null;
@@ -1279,7 +1152,7 @@ function Packet$addTo_0$LPacket$LPacket$($this, queue) {
 	return queue;
 };
 
-Packet.addTo_0$LPacket$LPacket$ = Packet$addTo_0$LPacket$LPacket$;
+Packet.addTo$LPacket$LPacket$ = Packet$addTo$LPacket$LPacket$;
 
 Packet.prototype.toString = function () {
 	return "Packet";
@@ -1346,27 +1219,6 @@ function Strength$nextWeaker$LStrength$($this) {
 
 Strength.nextWeaker$LStrength$ = Strength$nextWeaker$LStrength$;
 
-function Strength$nextWeaker_0$LStrength$($this) {
-	switch ($this.strengthValue) {
-	case 0:
-		return Strength.WEAKEST;
-	case 1:
-		return Strength.WEAK_DEFAULT;
-	case 2:
-		return Strength.NORMAL;
-	case 3:
-		return Strength.STRONG_DEFAULT;
-	case 4:
-		return Strength.PREFERRED;
-	case 5:
-		return Strength.REQUIRED;
-	default:
-		return null;
-	}
-};
-
-Strength.nextWeaker_0$LStrength$ = Strength$nextWeaker_0$LStrength$;
-
 function Constraint(strength) {
 	this.strength = strength;
 };
@@ -1374,16 +1226,16 @@ function Constraint(strength) {
 $__jsx_extend([Constraint], Object);
 Constraint.prototype.addConstraint$ = function () {
 	this.addToGraph$();
-	Planner$incrementalAdd_0$LPlanner$LConstraint$(Main.planner, this);
+	Planner$incrementalAdd$LPlanner$LConstraint$(Main.planner, this);
 };
 
 
-function Constraint$addConstraint_0$LConstraint$($this) {
+function Constraint$addConstraint$LConstraint$($this) {
 	$this.addToGraph$();
-	Planner$incrementalAdd_0$LPlanner$LConstraint$(Main.planner, $this);
+	Planner$incrementalAdd$LPlanner$LConstraint$(Main.planner, $this);
 };
 
-Constraint.addConstraint_0$LConstraint$ = Constraint$addConstraint_0$LConstraint$;
+Constraint.addConstraint$LConstraint$ = Constraint$addConstraint$LConstraint$;
 
 Constraint.prototype.satisfy$I = function (mark) {
 	var out;
@@ -1401,14 +1253,14 @@ Constraint.prototype.satisfy$I = function (mark) {
 		overridden.markUnsatisfied$();
 	}
 	out.determinedBy = this;
-	if (! Planner$addPropagate_0$LPlanner$LConstraint$I(Main.planner, this, mark)) {
+	if (! Planner$addPropagate$LPlanner$LConstraint$I(Main.planner, this, mark)) {
 	}
 	out.mark = mark;
 	return overridden;
 };
 
 
-function Constraint$satisfy_0$LConstraint$I($this, mark) {
+function Constraint$satisfy$LConstraint$I($this, mark) {
 	var out;
 	var overridden;
 	$this.chooseMethod$I(mark);
@@ -1424,32 +1276,32 @@ function Constraint$satisfy_0$LConstraint$I($this, mark) {
 		overridden.markUnsatisfied$();
 	}
 	out.determinedBy = $this;
-	if (! Planner$addPropagate_0$LPlanner$LConstraint$I(Main.planner, $this, mark)) {
+	if (! Planner$addPropagate$LPlanner$LConstraint$I(Main.planner, $this, mark)) {
 	}
 	out.mark = mark;
 	return overridden;
 };
 
-Constraint.satisfy_0$LConstraint$I = Constraint$satisfy_0$LConstraint$I;
+Constraint.satisfy$LConstraint$I = Constraint$satisfy$LConstraint$I;
 
 Constraint.prototype.destroyConstraint$ = function () {
 	if (this.isSatisfied$()) {
-		Planner$incrementalRemove_0$LPlanner$LConstraint$(Main.planner, this);
+		Planner$incrementalRemove$LPlanner$LConstraint$(Main.planner, this);
 	} else {
 		this.removeFromGraph$();
 	}
 };
 
 
-function Constraint$destroyConstraint_0$LConstraint$($this) {
+function Constraint$destroyConstraint$LConstraint$($this) {
 	if ($this.isSatisfied$()) {
-		Planner$incrementalRemove_0$LPlanner$LConstraint$(Main.planner, $this);
+		Planner$incrementalRemove$LPlanner$LConstraint$(Main.planner, $this);
 	} else {
 		$this.removeFromGraph$();
 	}
 };
 
-Constraint.destroyConstraint_0$LConstraint$ = Constraint$destroyConstraint_0$LConstraint$;
+Constraint.destroyConstraint$LConstraint$ = Constraint$destroyConstraint$LConstraint$;
 
 Constraint.prototype.isInput$ = function () {
 	return false;
@@ -1457,31 +1309,25 @@ Constraint.prototype.isInput$ = function () {
 
 
 function UnaryConstraint(v, strength) {
-	var $this$0$0$0;
 	var myOutput$0;
 	this.strength = strength;
 	myOutput$0 = this.myOutput = v;
 	this.satisfied = false;
-	$this$0$0$0 = myOutput$0.constraints;
-	$this$0$0$0.elms.push(this);
+	myOutput$0.constraints.elms.push(this);
 	this.satisfied = false;
-	Planner$incrementalAdd_0$LPlanner$LConstraint$(Main.planner, this);
+	Planner$incrementalAdd$LPlanner$LConstraint$(Main.planner, this);
 };
 
 $__jsx_extend([UnaryConstraint], Constraint);
 UnaryConstraint.prototype.addToGraph$ = function () {
-	var $this$0;
-	var $this$0$0;
-	$this$0 = this.myOutput;
-	$this$0$0 = $this$0.constraints;
-	$this$0$0.elms.push(this);
+	this.myOutput.constraints.elms.push(this);
 	this.satisfied = false;
 };
 
 
 UnaryConstraint.prototype.chooseMethod$I = function (mark) {
 	var myOutput$0;
-	this.satisfied = (myOutput$0 = this.myOutput).mark !== mark && Strength$stronger$LStrength$LStrength$(this.strength, myOutput$0.walkStrength);
+	this.satisfied = (myOutput$0 = this.myOutput).mark !== mark && this.strength.strengthValue < myOutput$0.walkStrength.strengthValue;
 };
 
 
@@ -1521,14 +1367,20 @@ UnaryConstraint.prototype.inputsKnown$I = function (mark) {
 
 UnaryConstraint.prototype.removeFromGraph$ = function () {
 	if (this.myOutput != null) {
-		Variable$removeConstraint_0$LVariable$LConstraint$(this.myOutput, this);
+		Variable$removeConstraint$LVariable$LConstraint$(this.myOutput, this);
 	}
 	this.satisfied = false;
 };
 
 
 function StayConstraint(v, str) {
-	UnaryConstraint.call(this, v, str);
+	var myOutput$0;
+	this.strength = str;
+	myOutput$0 = this.myOutput = v;
+	this.satisfied = false;
+	myOutput$0.constraints.elms.push(this);
+	this.satisfied = false;
+	Planner$incrementalAdd$LPlanner$LConstraint$(Main.planner, this);
 };
 
 $__jsx_extend([StayConstraint], UnaryConstraint);
@@ -1537,7 +1389,13 @@ StayConstraint.prototype.execute$ = function () {
 
 
 function EditConstraint(v, str) {
-	UnaryConstraint.call(this, v, str);
+	var myOutput$0;
+	this.strength = str;
+	myOutput$0 = this.myOutput = v;
+	this.satisfied = false;
+	myOutput$0.constraints.elms.push(this);
+	this.satisfied = false;
+	Planner$incrementalAdd$LPlanner$LConstraint$(Main.planner, this);
 };
 
 $__jsx_extend([EditConstraint], UnaryConstraint);
@@ -1560,7 +1418,7 @@ function BinaryConstraint(var1, var2, strength) {
 	this.v2 = var2;
 	this.direction = 0;
 	this.addToGraph$();
-	Planner$incrementalAdd_0$LPlanner$LConstraint$(Main.planner, this);
+	Planner$incrementalAdd$LPlanner$LConstraint$(Main.planner, this);
 };
 
 function BinaryConstraint$0(strength) {
@@ -1577,32 +1435,24 @@ BinaryConstraint.prototype.chooseMethod$I = function (mark) {
 	var v2$0;
 	var v1$0;
 	if (this.v1.mark === mark) {
-		this.direction = (((v2$0 = this.v2).mark !== mark && Strength$stronger$LStrength$LStrength$(this.strength, v2$0.walkStrength) ? 1 : 0) | 0);
+		this.direction = (((v2$0 = this.v2).mark !== mark && this.strength.strengthValue < v2$0.walkStrength.strengthValue ? 1 : 0) | 0);
 	}
 	if (this.v2.mark === mark) {
-		this.direction = (((v1$0 = this.v1).mark !== mark && Strength$stronger$LStrength$LStrength$(this.strength, v1$0.walkStrength) ? -1 : 0) | 0);
+		this.direction = (((v1$0 = this.v1).mark !== mark && this.strength.strengthValue < v1$0.walkStrength.strengthValue ? -1 : 0) | 0);
 	}
 	s1$0 = this.v1.walkStrength;
 	s2$0 = this.v2.walkStrength;
 	if (s1$0.strengthValue > s2$0.strengthValue) {
-		this.direction = ((Strength$stronger$LStrength$LStrength$(this.strength, this.v1.walkStrength) ? -1 : 0) | 0);
+		this.direction = ((this.strength.strengthValue < this.v1.walkStrength.strengthValue ? -1 : 0) | 0);
 	} else {
-		this.direction = ((Strength$stronger$LStrength$LStrength$(this.strength, this.v2.walkStrength) ? 1 : -1) | 0);
+		this.direction = ((this.strength.strengthValue < this.v2.walkStrength.strengthValue ? 1 : -1) | 0);
 	}
 };
 
 
 BinaryConstraint.prototype.addToGraph$ = function () {
-	var $this$0;
-	var $this$0$0;
-	var $this$1;
-	var $this$0$1;
-	$this$0 = this.v1;
-	$this$0$0 = $this$0.constraints;
-	$this$0$0.elms.push(this);
-	$this$1 = this.v2;
-	$this$0$1 = $this$1.constraints;
-	$this$0$1.elms.push(this);
+	this.v1.constraints.elms.push(this);
+	this.v2.constraints.elms.push(this);
 	this.direction = 0;
 };
 
@@ -1613,7 +1463,7 @@ BinaryConstraint.prototype.isSatisfied$ = function () {
 
 
 BinaryConstraint.prototype.markInputs$I = function (mark) {
-	BinaryConstraint$input_0$LBinaryConstraint$(this).mark = mark;
+	(this.direction === 1 ? this.v1 : this.v2).mark = mark;
 };
 
 
@@ -1622,11 +1472,11 @@ BinaryConstraint.prototype.input$ = function () {
 };
 
 
-function BinaryConstraint$input_0$LBinaryConstraint$($this) {
+function BinaryConstraint$input$LBinaryConstraint$($this) {
 	return ($this.direction === 1 ? $this.v1 : $this.v2);
 };
 
-BinaryConstraint.input_0$LBinaryConstraint$ = BinaryConstraint$input_0$LBinaryConstraint$;
+BinaryConstraint.input$LBinaryConstraint$ = BinaryConstraint$input$LBinaryConstraint$;
 
 BinaryConstraint.prototype.output$ = function () {
 	return (this.direction === 1 ? this.v2 : this.v1);
@@ -1639,7 +1489,7 @@ BinaryConstraint.prototype.recalculate$ = function () {
 	var s1$0;
 	var s2$0;
 	var stay$0;
-	(ihn = BinaryConstraint$input_0$LBinaryConstraint$(this), out = (this.direction === 1 ? this.v2 : this.v1));
+	(ihn = (this.direction === 1 ? this.v1 : this.v2), out = (this.direction === 1 ? this.v2 : this.v1));
 	s1$0 = this.strength;
 	s2$0 = ihn.walkStrength;
 	out.walkStrength = (s1$0.strengthValue > s2$0.strengthValue ? s1$0 : s2$0);
@@ -1664,10 +1514,10 @@ BinaryConstraint.prototype.inputsKnown$I = function (mark) {
 
 BinaryConstraint.prototype.removeFromGraph$ = function () {
 	if (this.v1 != null) {
-		Variable$removeConstraint_0$LVariable$LConstraint$(this.v1, this);
+		Variable$removeConstraint$LVariable$LConstraint$(this.v1, this);
 	}
 	if (this.v2 != null) {
-		Variable$removeConstraint_0$LVariable$LConstraint$(this.v2, this);
+		Variable$removeConstraint$LVariable$LConstraint$(this.v2, this);
 	}
 	this.direction = 0;
 };
@@ -1681,32 +1531,24 @@ function ScaleConstraint(src, scale, offset, dest, strength) {
 	this.scale = scale;
 	this.offset = offset;
 	this.addToGraph$();
-	Planner$incrementalAdd_0$LPlanner$LConstraint$(Main.planner, this);
+	Planner$incrementalAdd$LPlanner$LConstraint$(Main.planner, this);
 };
 
 $__jsx_extend([ScaleConstraint], BinaryConstraint);
 ScaleConstraint.prototype.addToGraph$ = function () {
-	var $this$0;
-	var $this$0$0;
-	var $this$1;
-	var $this$0$1;
 	BinaryConstraint.prototype.addToGraph$.call(this);
-	$this$0 = this.scale;
-	$this$0$0 = $this$0.constraints;
-	$this$0$0.elms.push(this);
-	$this$1 = this.offset;
-	$this$0$1 = $this$1.constraints;
-	$this$0$1.elms.push(this);
+	this.scale.constraints.elms.push(this);
+	this.offset.constraints.elms.push(this);
 };
 
 
 ScaleConstraint.prototype.removeFromGraph$ = function () {
 	BinaryConstraint.prototype.removeFromGraph$.call(this);
 	if (this.scale != null) {
-		Variable$removeConstraint_0$LVariable$LConstraint$(this.scale, this);
+		Variable$removeConstraint$LVariable$LConstraint$(this.scale, this);
 	}
 	if (this.offset != null) {
-		Variable$removeConstraint_0$LVariable$LConstraint$(this.offset, this);
+		Variable$removeConstraint$LVariable$LConstraint$(this.offset, this);
 	}
 };
 
@@ -1732,7 +1574,7 @@ ScaleConstraint.prototype.recalculate$ = function () {
 	var s1$0;
 	var s2$0;
 	var stay$0;
-	(ihn = BinaryConstraint$input_0$LBinaryConstraint$(this), out = (this.direction === 1 ? this.v2 : this.v1));
+	(ihn = (this.direction === 1 ? this.v1 : this.v2), out = (this.direction === 1 ? this.v2 : this.v1));
 	s1$0 = this.strength;
 	s2$0 = ihn.walkStrength;
 	out.walkStrength = (s1$0.strengthValue > s2$0.strengthValue ? s1$0 : s2$0);
@@ -1749,12 +1591,12 @@ function EqualityConstraint(var1, var2, strength) {
 	this.v2 = var2;
 	this.direction = 0;
 	this.addToGraph$();
-	Planner$incrementalAdd_0$LPlanner$LConstraint$(Main.planner, this);
+	Planner$incrementalAdd$LPlanner$LConstraint$(Main.planner, this);
 };
 
 $__jsx_extend([EqualityConstraint], BinaryConstraint);
 EqualityConstraint.prototype.execute$ = function () {
-	(this.direction === 1 ? this.v2 : this.v1).value = BinaryConstraint$input_0$LBinaryConstraint$(this).value;
+	(this.direction === 1 ? this.v2 : this.v1).value = (this.direction === 1 ? this.v1 : this.v2).value;
 };
 
 
@@ -1780,38 +1622,19 @@ function Variable$0(name, initialValue) {
 
 $__jsx_extend([Variable, Variable$0], Object);
 function Variable$addConstraint$LVariable$LConstraint$($this, c) {
-	var $this$0;
-	$this$0 = $this.constraints;
-	$this$0.elms.push(c);
+	$this.constraints.elms.push(c);
 };
 
 Variable.addConstraint$LVariable$LConstraint$ = Variable$addConstraint$LVariable$LConstraint$;
 
-function Variable$addConstraint_0$LVariable$LConstraint$($this, c) {
-	var $this$0;
-	$this$0 = $this.constraints;
-	$this$0.elms.push(c);
-};
-
-Variable.addConstraint_0$LVariable$LConstraint$ = Variable$addConstraint_0$LVariable$LConstraint$;
-
 function Variable$removeConstraint$LVariable$LConstraint$($this, c) {
-	OrderedCollection$Constraint$E$remove_0$LOrderedCollection$Constraint$E$LConstraint$($this.constraints, c);
+	OrderedCollection$x2E$x3CConstraint$x3E$remove$LOrderedCollection$x2E$x3CConstraint$x3E$LConstraint$($this.constraints, c);
 	if ($this.determinedBy == c) {
 		$this.determinedBy = null;
 	}
 };
 
 Variable.removeConstraint$LVariable$LConstraint$ = Variable$removeConstraint$LVariable$LConstraint$;
-
-function Variable$removeConstraint_0$LVariable$LConstraint$($this, c) {
-	OrderedCollection$Constraint$E$remove_0$LOrderedCollection$Constraint$E$LConstraint$($this.constraints, c);
-	if ($this.determinedBy == c) {
-		$this.determinedBy = null;
-	}
-};
-
-Variable.removeConstraint_0$LVariable$LConstraint$ = Variable$removeConstraint_0$LVariable$LConstraint$;
 
 function Planner() {
 	this.currentMark = 0;
@@ -1822,25 +1645,13 @@ function Planner$incrementalAdd$LPlanner$LConstraint$($this, c) {
 	var mark;
 	var overridden;
 	mark = ++ $this.currentMark;
-	overridden = Constraint$satisfy_0$LConstraint$I(c, (mark | 0));
+	overridden = Constraint$satisfy$LConstraint$I(c, (mark | 0));
 	while (overridden != null) {
-		overridden = Constraint$satisfy_0$LConstraint$I(overridden, (mark | 0));
+		overridden = Constraint$satisfy$LConstraint$I(overridden, (mark | 0));
 	}
 };
 
 Planner.incrementalAdd$LPlanner$LConstraint$ = Planner$incrementalAdd$LPlanner$LConstraint$;
-
-function Planner$incrementalAdd_0$LPlanner$LConstraint$($this, c) {
-	var mark;
-	var overridden;
-	mark = ++ $this.currentMark;
-	overridden = Constraint$satisfy_0$LConstraint$I(c, (mark | 0));
-	while (overridden != null) {
-		overridden = Constraint$satisfy_0$LConstraint$I(overridden, (mark | 0));
-	}
-};
-
-Planner.incrementalAdd_0$LPlanner$LConstraint$ = Planner$incrementalAdd_0$LPlanner$LConstraint$;
 
 function Planner$incrementalRemove$LPlanner$LConstraint$($this, c) {
 	var out;
@@ -1851,44 +1662,20 @@ function Planner$incrementalRemove$LPlanner$LConstraint$($this, c) {
 	out = c.output$();
 	c.markUnsatisfied$();
 	c.removeFromGraph$();
-	unsatisfied = Planner$removePropagateFrom_0$LPlanner$LVariable$($this, out);
+	unsatisfied = Planner$removePropagateFrom$LPlanner$LVariable$($this, out);
 	strength = Strength.REQUIRED;
 	do {
 		for (i = 0; i < unsatisfied.elms.length; i++) {
-			u = OrderedCollection$Constraint$E$at_0$LOrderedCollection$Constraint$E$I(unsatisfied, (i | 0));
+			u = OrderedCollection$x2E$x3CConstraint$x3E$at$LOrderedCollection$x2E$x3CConstraint$x3E$I(unsatisfied, (i | 0));
 			if (u.strength == strength) {
-				Planner$incrementalAdd_0$LPlanner$LConstraint$($this, u);
+				Planner$incrementalAdd$LPlanner$LConstraint$($this, u);
 			}
 		}
-		strength = Strength$nextWeaker_0$LStrength$(strength);
+		strength = Strength$nextWeaker$LStrength$(strength);
 	} while (strength != Strength.WEAKEST);
 };
 
 Planner.incrementalRemove$LPlanner$LConstraint$ = Planner$incrementalRemove$LPlanner$LConstraint$;
-
-function Planner$incrementalRemove_0$LPlanner$LConstraint$($this, c) {
-	var out;
-	var unsatisfied;
-	var strength;
-	var i;
-	var u;
-	out = c.output$();
-	c.markUnsatisfied$();
-	c.removeFromGraph$();
-	unsatisfied = Planner$removePropagateFrom_0$LPlanner$LVariable$($this, out);
-	strength = Strength.REQUIRED;
-	do {
-		for (i = 0; i < unsatisfied.elms.length; i++) {
-			u = OrderedCollection$Constraint$E$at_0$LOrderedCollection$Constraint$E$I(unsatisfied, (i | 0));
-			if (u.strength == strength) {
-				Planner$incrementalAdd_0$LPlanner$LConstraint$($this, u);
-			}
-		}
-		strength = Strength$nextWeaker_0$LStrength$(strength);
-	} while (strength != Strength.WEAKEST);
-};
-
-Planner.incrementalRemove_0$LPlanner$LConstraint$ = Planner$incrementalRemove_0$LPlanner$LConstraint$;
 
 function Planner$newMark$LPlanner$($this) {
 	return ++ $this.currentMark;
@@ -1896,89 +1683,42 @@ function Planner$newMark$LPlanner$($this) {
 
 Planner.newMark$LPlanner$ = Planner$newMark$LPlanner$;
 
-function Planner$newMark_0$LPlanner$($this) {
-	return ++ $this.currentMark;
-};
-
-Planner.newMark_0$LPlanner$ = Planner$newMark_0$LPlanner$;
-
-function Planner$makePlan$LPlanner$LOrderedCollection$Constraint$E$($this, sources) {
+function Planner$makePlan$LPlanner$LOrderedCollection$x2E$x3CConstraint$x3E$($this, sources) {
 	var mark;
 	var plan;
 	var todo;
 	var c;
-	var $this$0$0;
 	mark = ++ $this.currentMark;
 	plan = ({v: ({elms: []})});
 	todo = sources;
 	while (todo.elms.length > 0) {
 		c = todo.elms.pop();
 		if (c.output$().mark !== mark && c.inputsKnown$I((mark | 0))) {
-			$this$0$0 = plan.v;
-			$this$0$0.elms.push(c);
+			plan.v.elms.push(c);
 			c.output$().mark = (mark | 0);
-			Planner$addConstraintsConsumingTo_0$LPlanner$LVariable$LOrderedCollection$Constraint$E$($this, c.output$(), todo);
+			Planner$addConstraintsConsumingTo$LPlanner$LVariable$LOrderedCollection$x2E$x3CConstraint$x3E$($this, c.output$(), todo);
 		}
 	}
 	return plan;
 };
 
-Planner.makePlan$LPlanner$LOrderedCollection$Constraint$E$ = Planner$makePlan$LPlanner$LOrderedCollection$Constraint$E$;
+Planner.makePlan$LPlanner$LOrderedCollection$x2E$x3CConstraint$x3E$ = Planner$makePlan$LPlanner$LOrderedCollection$x2E$x3CConstraint$x3E$;
 
-function Planner$makePlan_0$LPlanner$LOrderedCollection$Constraint$E$($this, sources) {
-	var mark;
-	var plan;
-	var todo;
-	var c;
-	var $this$0$0;
-	mark = ++ $this.currentMark;
-	plan = ({v: ({elms: []})});
-	todo = sources;
-	while (todo.elms.length > 0) {
-		c = todo.elms.pop();
-		if (c.output$().mark !== mark && c.inputsKnown$I((mark | 0))) {
-			$this$0$0 = plan.v;
-			$this$0$0.elms.push(c);
-			c.output$().mark = (mark | 0);
-			Planner$addConstraintsConsumingTo_0$LPlanner$LVariable$LOrderedCollection$Constraint$E$($this, c.output$(), todo);
-		}
-	}
-	return plan;
-};
-
-Planner.makePlan_0$LPlanner$LOrderedCollection$Constraint$E$ = Planner$makePlan_0$LPlanner$LOrderedCollection$Constraint$E$;
-
-function Planner$extractPlanFromConstraints$LPlanner$LOrderedCollection$Constraint$E$($this, constraints) {
+function Planner$extractPlanFromConstraints$LPlanner$LOrderedCollection$x2E$x3CConstraint$x3E$($this, constraints) {
 	var sources;
 	var i;
 	var c;
 	sources = ({elms: []});
 	for (i = 0; i < constraints.elms.length; i++) {
-		c = OrderedCollection$Constraint$E$at_0$LOrderedCollection$Constraint$E$I(constraints, (i | 0));
+		c = OrderedCollection$x2E$x3CConstraint$x3E$at$LOrderedCollection$x2E$x3CConstraint$x3E$I(constraints, (i | 0));
 		if (c.isInput$() && c.isSatisfied$()) {
 			sources.elms.push(c);
 		}
 	}
-	return Planner$makePlan_0$LPlanner$LOrderedCollection$Constraint$E$($this, sources);
+	return Planner$makePlan$LPlanner$LOrderedCollection$x2E$x3CConstraint$x3E$($this, sources);
 };
 
-Planner.extractPlanFromConstraints$LPlanner$LOrderedCollection$Constraint$E$ = Planner$extractPlanFromConstraints$LPlanner$LOrderedCollection$Constraint$E$;
-
-function Planner$extractPlanFromConstraints_0$LPlanner$LOrderedCollection$Constraint$E$($this, constraints) {
-	var sources;
-	var i;
-	var c;
-	sources = ({elms: []});
-	for (i = 0; i < constraints.elms.length; i++) {
-		c = OrderedCollection$Constraint$E$at_0$LOrderedCollection$Constraint$E$I(constraints, (i | 0));
-		if (c.isInput$() && c.isSatisfied$()) {
-			sources.elms.push(c);
-		}
-	}
-	return Planner$makePlan_0$LPlanner$LOrderedCollection$Constraint$E$($this, sources);
-};
-
-Planner.extractPlanFromConstraints_0$LPlanner$LOrderedCollection$Constraint$E$ = Planner$extractPlanFromConstraints_0$LPlanner$LOrderedCollection$Constraint$E$;
+Planner.extractPlanFromConstraints$LPlanner$LOrderedCollection$x2E$x3CConstraint$x3E$ = Planner$extractPlanFromConstraints$LPlanner$LOrderedCollection$x2E$x3CConstraint$x3E$;
 
 function Planner$addPropagate$LPlanner$LConstraint$I($this, c, mark) {
 	var todo;
@@ -1988,35 +1728,16 @@ function Planner$addPropagate$LPlanner$LConstraint$I($this, c, mark) {
 	while (todo.elms.length > 0) {
 		d = todo.elms.pop();
 		if (d.output$().mark === mark) {
-			Planner$incrementalRemove_0$LPlanner$LConstraint$($this, c);
+			Planner$incrementalRemove$LPlanner$LConstraint$($this, c);
 			return false;
 		}
 		d.recalculate$();
-		Planner$addConstraintsConsumingTo_0$LPlanner$LVariable$LOrderedCollection$Constraint$E$($this, d.output$(), todo);
+		Planner$addConstraintsConsumingTo$LPlanner$LVariable$LOrderedCollection$x2E$x3CConstraint$x3E$($this, d.output$(), todo);
 	}
 	return true;
 };
 
 Planner.addPropagate$LPlanner$LConstraint$I = Planner$addPropagate$LPlanner$LConstraint$I;
-
-function Planner$addPropagate_0$LPlanner$LConstraint$I($this, c, mark) {
-	var todo;
-	var d;
-	todo = ({elms: []});
-	todo.elms.push(c);
-	while (todo.elms.length > 0) {
-		d = todo.elms.pop();
-		if (d.output$().mark === mark) {
-			Planner$incrementalRemove_0$LPlanner$LConstraint$($this, c);
-			return false;
-		}
-		d.recalculate$();
-		Planner$addConstraintsConsumingTo_0$LPlanner$LVariable$LOrderedCollection$Constraint$E$($this, d.output$(), todo);
-	}
-	return true;
-};
-
-Planner.addPropagate_0$LPlanner$LConstraint$I = Planner$addPropagate_0$LPlanner$LConstraint$I;
 
 function Planner$removePropagateFrom$LPlanner$LVariable$($this, out) {
 	var unsatisfied;
@@ -2035,15 +1756,15 @@ function Planner$removePropagateFrom$LPlanner$LVariable$($this, out) {
 	todo$elms$0.push(out);
 	while (todo$elms$0.length > 0) {
 		v = todo$elms$0.pop();
-		for (i = 0; i < OrderedCollection$Constraint$E$size_0$LOrderedCollection$Constraint$E$(v.constraints); i++) {
-			c = OrderedCollection$Constraint$E$at_0$LOrderedCollection$Constraint$E$I(v.constraints, (i | 0));
+		for (i = 0; i < v.constraints.elms.length; i++) {
+			c = OrderedCollection$x2E$x3CConstraint$x3E$at$LOrderedCollection$x2E$x3CConstraint$x3E$I(v.constraints, (i | 0));
 			if (! c.isSatisfied$()) {
 				unsatisfied.elms.push(c);
 			}
 		}
 		determining = v.determinedBy;
-		for (i = 0; i < OrderedCollection$Constraint$E$size_0$LOrderedCollection$Constraint$E$(v.constraints); i++) {
-			next = OrderedCollection$Constraint$E$at_0$LOrderedCollection$Constraint$E$I(v.constraints, (i | 0));
+		for (i = 0; i < v.constraints.elms.length; i++) {
+			next = OrderedCollection$x2E$x3CConstraint$x3E$at$LOrderedCollection$x2E$x3CConstraint$x3E$I(v.constraints, (i | 0));
 			if (next != determining && next.isSatisfied$()) {
 				next.recalculate$();
 				elm$0 = next.output$();
@@ -2056,45 +1777,7 @@ function Planner$removePropagateFrom$LPlanner$LVariable$($this, out) {
 
 Planner.removePropagateFrom$LPlanner$LVariable$ = Planner$removePropagateFrom$LPlanner$LVariable$;
 
-function Planner$removePropagateFrom_0$LPlanner$LVariable$($this, out) {
-	var unsatisfied;
-	var v;
-	var i;
-	var c;
-	var determining;
-	var next;
-	var elm$0;
-	var todo$elms$0;
-	out.determinedBy = null;
-	out.walkStrength = Strength.WEAKEST;
-	out.stay = true;
-	unsatisfied = ({elms: []});
-	todo$elms$0 = [];
-	todo$elms$0.push(out);
-	while (todo$elms$0.length > 0) {
-		v = todo$elms$0.pop();
-		for (i = 0; i < OrderedCollection$Constraint$E$size_0$LOrderedCollection$Constraint$E$(v.constraints); i++) {
-			c = OrderedCollection$Constraint$E$at_0$LOrderedCollection$Constraint$E$I(v.constraints, (i | 0));
-			if (! c.isSatisfied$()) {
-				unsatisfied.elms.push(c);
-			}
-		}
-		determining = v.determinedBy;
-		for (i = 0; i < OrderedCollection$Constraint$E$size_0$LOrderedCollection$Constraint$E$(v.constraints); i++) {
-			next = OrderedCollection$Constraint$E$at_0$LOrderedCollection$Constraint$E$I(v.constraints, (i | 0));
-			if (next != determining && next.isSatisfied$()) {
-				next.recalculate$();
-				elm$0 = next.output$();
-				todo$elms$0.push(elm$0);
-			}
-		}
-	}
-	return unsatisfied;
-};
-
-Planner.removePropagateFrom_0$LPlanner$LVariable$ = Planner$removePropagateFrom_0$LPlanner$LVariable$;
-
-function Planner$addConstraintsConsumingTo$LPlanner$LVariable$LOrderedCollection$Constraint$E$($this, v, coll) {
+function Planner$addConstraintsConsumingTo$LPlanner$LVariable$LOrderedCollection$x2E$x3CConstraint$x3E$($this, v, coll) {
 	var determining;
 	var cc;
 	var i;
@@ -2102,31 +1785,14 @@ function Planner$addConstraintsConsumingTo$LPlanner$LVariable$LOrderedCollection
 	determining = v.determinedBy;
 	cc = v.constraints;
 	for (i = 0; i < cc.elms.length; i++) {
-		c = OrderedCollection$Constraint$E$at_0$LOrderedCollection$Constraint$E$I(cc, (i | 0));
+		c = OrderedCollection$x2E$x3CConstraint$x3E$at$LOrderedCollection$x2E$x3CConstraint$x3E$I(cc, (i | 0));
 		if (c != determining && c.isSatisfied$()) {
 			coll.elms.push(c);
 		}
 	}
 };
 
-Planner.addConstraintsConsumingTo$LPlanner$LVariable$LOrderedCollection$Constraint$E$ = Planner$addConstraintsConsumingTo$LPlanner$LVariable$LOrderedCollection$Constraint$E$;
-
-function Planner$addConstraintsConsumingTo_0$LPlanner$LVariable$LOrderedCollection$Constraint$E$($this, v, coll) {
-	var determining;
-	var cc;
-	var i;
-	var c;
-	determining = v.determinedBy;
-	cc = v.constraints;
-	for (i = 0; i < cc.elms.length; i++) {
-		c = OrderedCollection$Constraint$E$at_0$LOrderedCollection$Constraint$E$I(cc, (i | 0));
-		if (c != determining && c.isSatisfied$()) {
-			coll.elms.push(c);
-		}
-	}
-};
-
-Planner.addConstraintsConsumingTo_0$LPlanner$LVariable$LOrderedCollection$Constraint$E$ = Planner$addConstraintsConsumingTo_0$LPlanner$LVariable$LOrderedCollection$Constraint$E$;
+Planner.addConstraintsConsumingTo$LPlanner$LVariable$LOrderedCollection$x2E$x3CConstraint$x3E$ = Planner$addConstraintsConsumingTo$LPlanner$LVariable$LOrderedCollection$x2E$x3CConstraint$x3E$;
 
 function Plan() {
 	this.v = ({elms: []});
@@ -2134,74 +1800,33 @@ function Plan() {
 
 $__jsx_extend([Plan], Object);
 function Plan$addConstraint$LPlan$LConstraint$($this, c) {
-	var $this$0;
-	$this$0 = $this.v;
-	$this$0.elms.push(c);
+	$this.v.elms.push(c);
 };
 
 Plan.addConstraint$LPlan$LConstraint$ = Plan$addConstraint$LPlan$LConstraint$;
 
-function Plan$addConstraint_0$LPlan$LConstraint$($this, c) {
-	var $this$0;
-	$this$0 = $this.v;
-	$this$0.elms.push(c);
-};
-
-Plan.addConstraint_0$LPlan$LConstraint$ = Plan$addConstraint_0$LPlan$LConstraint$;
-
 function Plan$size$LPlan$($this) {
-	var $this$0;
-	$this$0 = $this.v;
-	return ($this$0.elms.length | 0);
+	return ($this.v.elms.length | 0);
 };
 
 Plan.size$LPlan$ = Plan$size$LPlan$;
 
-function Plan$size_0$LPlan$($this) {
-	var $this$0;
-	$this$0 = $this.v;
-	return ($this$0.elms.length | 0);
-};
-
-Plan.size_0$LPlan$ = Plan$size_0$LPlan$;
-
 function Plan$constraintAt$LPlan$I($this, index) {
-	var $this$0;
-	$this$0 = $this.v;
-	return $this$0.elms[index];
+	return $this.v.elms[index];
 };
 
 Plan.constraintAt$LPlan$I = Plan$constraintAt$LPlan$I;
 
-function Plan$constraintAt_0$LPlan$I($this, index) {
-	var $this$0;
-	$this$0 = $this.v;
-	return $this$0.elms[index];
-};
-
-Plan.constraintAt_0$LPlan$I = Plan$constraintAt_0$LPlan$I;
-
 function Plan$execute$LPlan$($this) {
 	var i;
 	var c;
-	for (i = 0; i < Plan$size_0$LPlan$($this); i++) {
-		c = Plan$constraintAt_0$LPlan$I($this, (i | 0));
+	for (i = 0; i < $this.v.elms.length; i++) {
+		c = Plan$constraintAt$LPlan$I($this, (i | 0));
 		c.execute$();
 	}
 };
 
 Plan.execute$LPlan$ = Plan$execute$LPlan$;
-
-function Plan$execute_0$LPlan$($this) {
-	var i;
-	var c;
-	for (i = 0; i < Plan$size_0$LPlan$($this); i++) {
-		c = Plan$constraintAt_0$LPlan$I($this, (i | 0));
-		c.execute$();
-	}
-};
-
-Plan.execute_0$LPlan$ = Plan$execute_0$LPlan$;
 
 function Main() {
 };
@@ -2239,10 +1864,10 @@ function Main$chainTest$I(n) {
 	edit = new EditConstraint(first, Strength.PREFERRED);
 	edits = ({elms: []});
 	edits.elms.push(edit);
-	plan = Planner$extractPlanFromConstraints_0$LPlanner$LOrderedCollection$Constraint$E$(Main.planner, edits);
+	plan = Planner$extractPlanFromConstraints$LPlanner$LOrderedCollection$x2E$x3CConstraint$x3E$(Main.planner, edits);
 	for (i = 0; i < 100; i++) {
 		first.value = i;
-		Plan$execute_0$LPlan$(plan);
+		Plan$execute$LPlan$(plan);
 		if (last.value !== i) {
 		}
 	}
@@ -2278,12 +1903,12 @@ function Main$projectionTest$I(n) {
 	}
 	Main$change$LVariable$N(scale, 5);
 	for (i = 0; i < n - 1; i++) {
-		if (OrderedCollection$Variable$E$at_0$LOrderedCollection$Variable$E$I(dests, (i | 0)).value !== i * 5 + 1000) {
+		if (OrderedCollection$x2E$x3CVariable$x3E$at$LOrderedCollection$x2E$x3CVariable$x3E$I(dests, (i | 0)).value !== i * 5 + 1000) {
 		}
 	}
 	Main$change$LVariable$N(offset, 2000);
 	for (i = 0; i < n - 1; i++) {
-		if (OrderedCollection$Variable$E$at_0$LOrderedCollection$Variable$E$I(dests, (i | 0)).value !== i * 5 + 2000) {
+		if (OrderedCollection$x2E$x3CVariable$x3E$at$LOrderedCollection$x2E$x3CVariable$x3E$I(dests, (i | 0)).value !== i * 5 + 2000) {
 		}
 	}
 };
@@ -2298,12 +1923,12 @@ function Main$change$LVariable$N(v, newValue) {
 	edit = new EditConstraint(v, Strength.PREFERRED);
 	edits = ({elms: []});
 	edits.elms.push(edit);
-	plan = Planner$extractPlanFromConstraints_0$LPlanner$LOrderedCollection$Constraint$E$(Main.planner, edits);
+	plan = Planner$extractPlanFromConstraints$LPlanner$LOrderedCollection$x2E$x3CConstraint$x3E$(Main.planner, edits);
 	for (i = 0; i < 10; i++) {
 		v.value = newValue;
-		Plan$execute_0$LPlan$(plan);
+		Plan$execute$LPlan$(plan);
 	}
-	Constraint$destroyConstraint_0$LConstraint$(edit);
+	Constraint$destroyConstraint$LConstraint$(edit);
 };
 
 Main.change$LVariable$N = Main$change$LVariable$N;
@@ -2315,60 +1940,36 @@ function Main$deltaBlue$() {
 
 Main.deltaBlue$ = Main$deltaBlue$;
 
-function OrderedCollection$Constraint$E() {
+function OrderedCollection$x2E$x3CConstraint$x3E() {
 	this.elms = [];
 };
 
-$__jsx_extend([OrderedCollection$Constraint$E], Object);
-function OrderedCollection$Constraint$E$add$LOrderedCollection$Constraint$E$LConstraint$($this, elm) {
+$__jsx_extend([OrderedCollection$x2E$x3CConstraint$x3E], Object);
+function OrderedCollection$x2E$x3CConstraint$x3E$add$LOrderedCollection$x2E$x3CConstraint$x3E$LConstraint$($this, elm) {
 	$this.elms.push(elm);
 };
 
-OrderedCollection$Constraint$E.add$LOrderedCollection$Constraint$E$LConstraint$ = OrderedCollection$Constraint$E$add$LOrderedCollection$Constraint$E$LConstraint$;
+OrderedCollection$x2E$x3CConstraint$x3E.add$LOrderedCollection$x2E$x3CConstraint$x3E$LConstraint$ = OrderedCollection$x2E$x3CConstraint$x3E$add$LOrderedCollection$x2E$x3CConstraint$x3E$LConstraint$;
 
-function OrderedCollection$Constraint$E$add_0$LOrderedCollection$Constraint$E$LConstraint$($this, elm) {
-	$this.elms.push(elm);
-};
-
-OrderedCollection$Constraint$E.add_0$LOrderedCollection$Constraint$E$LConstraint$ = OrderedCollection$Constraint$E$add_0$LOrderedCollection$Constraint$E$LConstraint$;
-
-function OrderedCollection$Constraint$E$at$LOrderedCollection$Constraint$E$I($this, index) {
+function OrderedCollection$x2E$x3CConstraint$x3E$at$LOrderedCollection$x2E$x3CConstraint$x3E$I($this, index) {
 	return $this.elms[index];
 };
 
-OrderedCollection$Constraint$E.at$LOrderedCollection$Constraint$E$I = OrderedCollection$Constraint$E$at$LOrderedCollection$Constraint$E$I;
+OrderedCollection$x2E$x3CConstraint$x3E.at$LOrderedCollection$x2E$x3CConstraint$x3E$I = OrderedCollection$x2E$x3CConstraint$x3E$at$LOrderedCollection$x2E$x3CConstraint$x3E$I;
 
-function OrderedCollection$Constraint$E$at_0$LOrderedCollection$Constraint$E$I($this, index) {
-	return $this.elms[index];
-};
-
-OrderedCollection$Constraint$E.at_0$LOrderedCollection$Constraint$E$I = OrderedCollection$Constraint$E$at_0$LOrderedCollection$Constraint$E$I;
-
-function OrderedCollection$Constraint$E$size$LOrderedCollection$Constraint$E$($this) {
+function OrderedCollection$x2E$x3CConstraint$x3E$size$LOrderedCollection$x2E$x3CConstraint$x3E$($this) {
 	return ($this.elms.length | 0);
 };
 
-OrderedCollection$Constraint$E.size$LOrderedCollection$Constraint$E$ = OrderedCollection$Constraint$E$size$LOrderedCollection$Constraint$E$;
+OrderedCollection$x2E$x3CConstraint$x3E.size$LOrderedCollection$x2E$x3CConstraint$x3E$ = OrderedCollection$x2E$x3CConstraint$x3E$size$LOrderedCollection$x2E$x3CConstraint$x3E$;
 
-function OrderedCollection$Constraint$E$size_0$LOrderedCollection$Constraint$E$($this) {
-	return ($this.elms.length | 0);
-};
-
-OrderedCollection$Constraint$E.size_0$LOrderedCollection$Constraint$E$ = OrderedCollection$Constraint$E$size_0$LOrderedCollection$Constraint$E$;
-
-function OrderedCollection$Constraint$E$removeFirst$LOrderedCollection$Constraint$E$($this) {
+function OrderedCollection$x2E$x3CConstraint$x3E$removeFirst$LOrderedCollection$x2E$x3CConstraint$x3E$($this) {
 	return $this.elms.pop();
 };
 
-OrderedCollection$Constraint$E.removeFirst$LOrderedCollection$Constraint$E$ = OrderedCollection$Constraint$E$removeFirst$LOrderedCollection$Constraint$E$;
+OrderedCollection$x2E$x3CConstraint$x3E.removeFirst$LOrderedCollection$x2E$x3CConstraint$x3E$ = OrderedCollection$x2E$x3CConstraint$x3E$removeFirst$LOrderedCollection$x2E$x3CConstraint$x3E$;
 
-function OrderedCollection$Constraint$E$removeFirst_0$LOrderedCollection$Constraint$E$($this) {
-	return $this.elms.pop();
-};
-
-OrderedCollection$Constraint$E.removeFirst_0$LOrderedCollection$Constraint$E$ = OrderedCollection$Constraint$E$removeFirst_0$LOrderedCollection$Constraint$E$;
-
-function OrderedCollection$Constraint$E$remove$LOrderedCollection$Constraint$E$LConstraint$($this, elm) {
+function OrderedCollection$x2E$x3CConstraint$x3E$remove$LOrderedCollection$x2E$x3CConstraint$x3E$LConstraint$($this, elm) {
 	var index;
 	var skipped;
 	var i;
@@ -2388,84 +1989,38 @@ function OrderedCollection$Constraint$E$remove$LOrderedCollection$Constraint$E$L
 	}
 };
 
-OrderedCollection$Constraint$E.remove$LOrderedCollection$Constraint$E$LConstraint$ = OrderedCollection$Constraint$E$remove$LOrderedCollection$Constraint$E$LConstraint$;
+OrderedCollection$x2E$x3CConstraint$x3E.remove$LOrderedCollection$x2E$x3CConstraint$x3E$LConstraint$ = OrderedCollection$x2E$x3CConstraint$x3E$remove$LOrderedCollection$x2E$x3CConstraint$x3E$LConstraint$;
 
-function OrderedCollection$Constraint$E$remove_0$LOrderedCollection$Constraint$E$LConstraint$($this, elm) {
-	var index;
-	var skipped;
-	var i;
-	var value;
-	(index = 0, skipped = 0);
-	for (i = 0; i < $this.elms.length; i++) {
-		value = $this.elms[i];
-		if (value != elm) {
-			$this.elms[index] = value;
-			index++;
-		} else {
-			skipped++;
-		}
-	}
-	for (i = 0; i < skipped; i++) {
-		$this.elms.pop();
-	}
-};
-
-OrderedCollection$Constraint$E.remove_0$LOrderedCollection$Constraint$E$LConstraint$ = OrderedCollection$Constraint$E$remove_0$LOrderedCollection$Constraint$E$LConstraint$;
-
-function OrderedCollection$Variable$E() {
+function OrderedCollection$x2E$x3CVariable$x3E() {
 	this.elms = [];
 };
 
-$__jsx_extend([OrderedCollection$Variable$E], Object);
-function OrderedCollection$Variable$E$add$LOrderedCollection$Variable$E$LVariable$($this, elm) {
+$__jsx_extend([OrderedCollection$x2E$x3CVariable$x3E], Object);
+function OrderedCollection$x2E$x3CVariable$x3E$add$LOrderedCollection$x2E$x3CVariable$x3E$LVariable$($this, elm) {
 	$this.elms.push(elm);
 };
 
-OrderedCollection$Variable$E.add$LOrderedCollection$Variable$E$LVariable$ = OrderedCollection$Variable$E$add$LOrderedCollection$Variable$E$LVariable$;
+OrderedCollection$x2E$x3CVariable$x3E.add$LOrderedCollection$x2E$x3CVariable$x3E$LVariable$ = OrderedCollection$x2E$x3CVariable$x3E$add$LOrderedCollection$x2E$x3CVariable$x3E$LVariable$;
 
-function OrderedCollection$Variable$E$add_0$LOrderedCollection$Variable$E$LVariable$($this, elm) {
-	$this.elms.push(elm);
-};
-
-OrderedCollection$Variable$E.add_0$LOrderedCollection$Variable$E$LVariable$ = OrderedCollection$Variable$E$add_0$LOrderedCollection$Variable$E$LVariable$;
-
-function OrderedCollection$Variable$E$at$LOrderedCollection$Variable$E$I($this, index) {
+function OrderedCollection$x2E$x3CVariable$x3E$at$LOrderedCollection$x2E$x3CVariable$x3E$I($this, index) {
 	return $this.elms[index];
 };
 
-OrderedCollection$Variable$E.at$LOrderedCollection$Variable$E$I = OrderedCollection$Variable$E$at$LOrderedCollection$Variable$E$I;
+OrderedCollection$x2E$x3CVariable$x3E.at$LOrderedCollection$x2E$x3CVariable$x3E$I = OrderedCollection$x2E$x3CVariable$x3E$at$LOrderedCollection$x2E$x3CVariable$x3E$I;
 
-function OrderedCollection$Variable$E$at_0$LOrderedCollection$Variable$E$I($this, index) {
-	return $this.elms[index];
-};
-
-OrderedCollection$Variable$E.at_0$LOrderedCollection$Variable$E$I = OrderedCollection$Variable$E$at_0$LOrderedCollection$Variable$E$I;
-
-function OrderedCollection$Variable$E$size$LOrderedCollection$Variable$E$($this) {
+function OrderedCollection$x2E$x3CVariable$x3E$size$LOrderedCollection$x2E$x3CVariable$x3E$($this) {
 	return ($this.elms.length | 0);
 };
 
-OrderedCollection$Variable$E.size$LOrderedCollection$Variable$E$ = OrderedCollection$Variable$E$size$LOrderedCollection$Variable$E$;
+OrderedCollection$x2E$x3CVariable$x3E.size$LOrderedCollection$x2E$x3CVariable$x3E$ = OrderedCollection$x2E$x3CVariable$x3E$size$LOrderedCollection$x2E$x3CVariable$x3E$;
 
-function OrderedCollection$Variable$E$size_0$LOrderedCollection$Variable$E$($this) {
-	return ($this.elms.length | 0);
-};
-
-OrderedCollection$Variable$E.size_0$LOrderedCollection$Variable$E$ = OrderedCollection$Variable$E$size_0$LOrderedCollection$Variable$E$;
-
-function OrderedCollection$Variable$E$removeFirst$LOrderedCollection$Variable$E$($this) {
+function OrderedCollection$x2E$x3CVariable$x3E$removeFirst$LOrderedCollection$x2E$x3CVariable$x3E$($this) {
 	return $this.elms.pop();
 };
 
-OrderedCollection$Variable$E.removeFirst$LOrderedCollection$Variable$E$ = OrderedCollection$Variable$E$removeFirst$LOrderedCollection$Variable$E$;
+OrderedCollection$x2E$x3CVariable$x3E.removeFirst$LOrderedCollection$x2E$x3CVariable$x3E$ = OrderedCollection$x2E$x3CVariable$x3E$removeFirst$LOrderedCollection$x2E$x3CVariable$x3E$;
 
-function OrderedCollection$Variable$E$removeFirst_0$LOrderedCollection$Variable$E$($this) {
-	return $this.elms.pop();
-};
-
-OrderedCollection$Variable$E.removeFirst_0$LOrderedCollection$Variable$E$ = OrderedCollection$Variable$E$removeFirst_0$LOrderedCollection$Variable$E$;
-
-function OrderedCollection$Variable$E$remove$LOrderedCollection$Variable$E$LVariable$($this, elm) {
+function OrderedCollection$x2E$x3CVariable$x3E$remove$LOrderedCollection$x2E$x3CVariable$x3E$LVariable$($this, elm) {
 	var index;
 	var skipped;
 	var i;
@@ -2485,29 +2040,7 @@ function OrderedCollection$Variable$E$remove$LOrderedCollection$Variable$E$LVari
 	}
 };
 
-OrderedCollection$Variable$E.remove$LOrderedCollection$Variable$E$LVariable$ = OrderedCollection$Variable$E$remove$LOrderedCollection$Variable$E$LVariable$;
-
-function OrderedCollection$Variable$E$remove_0$LOrderedCollection$Variable$E$LVariable$($this, elm) {
-	var index;
-	var skipped;
-	var i;
-	var value;
-	(index = 0, skipped = 0);
-	for (i = 0; i < $this.elms.length; i++) {
-		value = $this.elms[i];
-		if (value != elm) {
-			$this.elms[index] = value;
-			index++;
-		} else {
-			skipped++;
-		}
-	}
-	for (i = 0; i < skipped; i++) {
-		$this.elms.pop();
-	}
-};
-
-OrderedCollection$Variable$E.remove_0$LOrderedCollection$Variable$E$LVariable$ = OrderedCollection$Variable$E$remove_0$LOrderedCollection$Variable$E$LVariable$;
+OrderedCollection$x2E$x3CVariable$x3E.remove$LOrderedCollection$x2E$x3CVariable$x3E$LVariable$ = OrderedCollection$x2E$x3CVariable$x3E$remove$LOrderedCollection$x2E$x3CVariable$x3E$LVariable$;
 
 function Crypto() {
 	var $this = this;
@@ -2521,17 +2054,21 @@ function Crypto() {
 	function encrypt() {
 		var RSA;
 		RSA = ({n: null, e: 0, d: null, p: null, q: null, dmp1: null, dmq1: null, coeff: null});
-		RSAKey$setPublic_0$LRSAKey$USUS(RSA, "a5261939975948bb7a58dffe5ff54e65f0498f9175f5a09288810b8975871e99af3b5dd94057b0fc07535f5f97444504fa35169d461d0d30cf0192e307727c065168c788771c561a9400fb49175e9e6aa4e23fe11af69e9412dd23b0cb6684c4c2429bce139e848ab26d0829073351f4acd36074eafd036a5eb83359d2a698d3", "10001");
-		RSAKey$setPrivateEx_0$LRSAKey$USUSSSSSSS(RSA, "a5261939975948bb7a58dffe5ff54e65f0498f9175f5a09288810b8975871e99af3b5dd94057b0fc07535f5f97444504fa35169d461d0d30cf0192e307727c065168c788771c561a9400fb49175e9e6aa4e23fe11af69e9412dd23b0cb6684c4c2429bce139e848ab26d0829073351f4acd36074eafd036a5eb83359d2a698d3", "10001", "8e9912f6d3645894e8d38cb58c0db81ff516cf4c7e5a14c7f1eddb1459d2cded4d8d293fc97aee6aefb861859c8b6a3d1dfe710463e1f9ddc72048c09751971c4a580aa51eb523357a3cc48d31cfad1d4a165066ed92d4748fb6571211da5cb14bc11b6e2df7c1a559e6d5ac1cd5c94703a22891464fba23d0d965086277a161", "d090ce58a92c75233a6486cb0a9209bf3583b64f540c76f5294bb97d285eed33aec220bde14b2417951178ac152ceab6da7090905b478195498b352048f15e7d", "cab575dc652bb66df15a0359609d51d1db184750c00c6698b90ef3465c99655103edbf0d54c56aec0ce3c4d22592338092a126a0cc49f65a4a30d222b411e58f", "1a24bca8e273df2f0e47c199bbf678604e7df7215480c77c8db39f49b000ce2cf7500038acfff5433b7d582a01f1826e6f4d42e1c57f5e1fef7b12aabc59fd25", "3d06982efbbe47339e1f6d36b1216b8a741d410b0c662f54f7118b27b9a4ec9d914337eb39841d8666f3034408cf94f5b62f11c402fc994fe15a05493150d9fd", "3a3e731acd8960b7ff9eb81a7ff93bd1cfa74cbd56987db58b4594fb09c09084db1734c8143f98b602b981aaa9243ca28deb69b5b280ee8dcee0fd2625e53250");
-		encrypted = RSAKey$encrypt_0$LRSAKey$S(RSA, TEXT);
+		RSAKey$setPublic$LRSAKey$USUS(RSA, Crypto.nValue, "10001");
+		RSAKey$setPrivateEx$LRSAKey$USUSSSSSSS(RSA, Crypto.nValue, "10001", Crypto.dValue, Crypto.pValue, Crypto.qValue, Crypto.dmp1Value, Crypto.dmq1Value, Crypto.coeffValue);
+		encrypted = RSAKey$encrypt$LRSAKey$S(RSA, TEXT);
 	}
 	function decrypt() {
 		var RSA;
 		var decrypted;
+		var c$0;
+		var m$0;
 		RSA = ({n: null, e: 0, d: null, p: null, q: null, dmp1: null, dmq1: null, coeff: null});
-		RSAKey$setPublic_0$LRSAKey$USUS(RSA, "a5261939975948bb7a58dffe5ff54e65f0498f9175f5a09288810b8975871e99af3b5dd94057b0fc07535f5f97444504fa35169d461d0d30cf0192e307727c065168c788771c561a9400fb49175e9e6aa4e23fe11af69e9412dd23b0cb6684c4c2429bce139e848ab26d0829073351f4acd36074eafd036a5eb83359d2a698d3", "10001");
-		RSAKey$setPrivateEx_0$LRSAKey$USUSSSSSSS(RSA, "a5261939975948bb7a58dffe5ff54e65f0498f9175f5a09288810b8975871e99af3b5dd94057b0fc07535f5f97444504fa35169d461d0d30cf0192e307727c065168c788771c561a9400fb49175e9e6aa4e23fe11af69e9412dd23b0cb6684c4c2429bce139e848ab26d0829073351f4acd36074eafd036a5eb83359d2a698d3", "10001", "8e9912f6d3645894e8d38cb58c0db81ff516cf4c7e5a14c7f1eddb1459d2cded4d8d293fc97aee6aefb861859c8b6a3d1dfe710463e1f9ddc72048c09751971c4a580aa51eb523357a3cc48d31cfad1d4a165066ed92d4748fb6571211da5cb14bc11b6e2df7c1a559e6d5ac1cd5c94703a22891464fba23d0d965086277a161", "d090ce58a92c75233a6486cb0a9209bf3583b64f540c76f5294bb97d285eed33aec220bde14b2417951178ac152ceab6da7090905b478195498b352048f15e7d", "cab575dc652bb66df15a0359609d51d1db184750c00c6698b90ef3465c99655103edbf0d54c56aec0ce3c4d22592338092a126a0cc49f65a4a30d222b411e58f", "1a24bca8e273df2f0e47c199bbf678604e7df7215480c77c8db39f49b000ce2cf7500038acfff5433b7d582a01f1826e6f4d42e1c57f5e1fef7b12aabc59fd25", "3d06982efbbe47339e1f6d36b1216b8a741d410b0c662f54f7118b27b9a4ec9d914337eb39841d8666f3034408cf94f5b62f11c402fc994fe15a05493150d9fd", "3a3e731acd8960b7ff9eb81a7ff93bd1cfa74cbd56987db58b4594fb09c09084db1734c8143f98b602b981aaa9243ca28deb69b5b280ee8dcee0fd2625e53250");
-		decrypted = RSAKey$decrypt_0$LRSAKey$S(RSA, encrypted);
+		RSAKey$setPublic$LRSAKey$USUS(RSA, Crypto.nValue, "10001");
+		RSAKey$setPrivateEx$LRSAKey$USUSSSSSSS(RSA, Crypto.nValue, "10001", Crypto.dValue, Crypto.pValue, Crypto.qValue, Crypto.dmp1Value, Crypto.dmq1Value, Crypto.coeffValue);
+		c$0 = new BigInteger$2(encrypted, 16);
+		m$0 = RSAKey$doPrivate$LRSAKey$LBigInteger$(RSA, c$0);
+		decrypted = (m$0 == null ? null : RSAKey$pkcs1unpad2$LBigInteger$N(m$0, BigInteger$bitLength$LBigInteger$(RSA.n) + 7 >> 3));
 		if (decrypted !== TEXT) {
 			throw new Error("Crypto operation failed");
 		}
@@ -2648,21 +2185,21 @@ function BigInteger$0(a, b, c) {
 	this.s = 0;
 	this.t = 0;
 	this.array = [];
-	BigInteger$fromNumber_0$LBigInteger$NNLSecureRandom$(this, a, b, c);
+	BigInteger$fromNumber$LBigInteger$NNLSecureRandom$(this, a, b, c);
 };
 
 function BigInteger$1(a) {
 	this.s = 0;
 	this.t = 0;
 	this.array = [];
-	BigInteger$fromRadix_0$LBigInteger$ANN(this, a, 256);
+	BigInteger$fromRadix$LBigInteger$ANN(this, a, 256);
 };
 
 function BigInteger$2(a, b) {
 	this.s = 0;
 	this.t = 0;
 	this.array = [];
-	BigInteger$fromString_0$LBigInteger$SN(this, a, b);
+	BigInteger$fromString$LBigInteger$SN(this, a, b);
 };
 
 $__jsx_extend([BigInteger, BigInteger$0, BigInteger$1, BigInteger$2], Object);
@@ -2720,21 +2257,6 @@ function BigInteger$copyTo$LBigInteger$LBigInteger$($this, r) {
 
 BigInteger.copyTo$LBigInteger$LBigInteger$ = BigInteger$copyTo$LBigInteger$LBigInteger$;
 
-function BigInteger$copyTo_0$LBigInteger$LBigInteger$($this, r) {
-	var this_array;
-	var r_array;
-	var i;
-	this_array = $this.array;
-	r_array = r.array;
-	for (i = $this.t - 1; i >= 0; -- i) {
-		r_array[i] = this_array[i];
-	}
-	r.t = $this.t;
-	r.s = $this.s;
-};
-
-BigInteger.copyTo_0$LBigInteger$LBigInteger$ = BigInteger$copyTo_0$LBigInteger$LBigInteger$;
-
 function BigInteger$parseBigInt$SN(str, r) {
 	return new BigInteger$2(str, r);
 };
@@ -2759,28 +2281,10 @@ function BigInteger$fromInt$LBigInteger$N($this, x) {
 
 BigInteger.fromInt$LBigInteger$N = BigInteger$fromInt$LBigInteger$N;
 
-function BigInteger$fromInt_0$LBigInteger$N($this, x) {
-	var this_array;
-	this_array = $this.array;
-	$this.t = 1;
-	$this.s = (x < 0 ? -1 : 0);
-	if (x > 0) {
-		this_array[0] = x;
-	} else {
-		if (x < -1) {
-			this_array[0] = x + BigInteger.DV;
-		} else {
-			$this.t = 0;
-		}
-	}
-};
-
-BigInteger.fromInt_0$LBigInteger$N = BigInteger$fromInt_0$LBigInteger$N;
-
 function BigInteger$nbv$N(i) {
 	var r;
 	r = ({array: [], s: 0, t: 0});
-	BigInteger$fromInt_0$LBigInteger$N(r, i);
+	BigInteger$fromInt$LBigInteger$N(r, i);
 	return r;
 };
 
@@ -2812,7 +2316,7 @@ function BigInteger$fromString$LBigInteger$SN($this, s, b) {
 						if (b === 4) {
 							k = 2;
 						} else {
-							BigInteger$fromRadix_0$LBigInteger$SN($this, s, b);
+							BigInteger$fromRadix$LBigInteger$SN($this, s, b);
 							return;
 						}
 					}
@@ -2853,100 +2357,19 @@ function BigInteger$fromString$LBigInteger$SN($this, s, b) {
 			this_array[$this.t - 1] |= (1 << BigInteger.DB - sh) - 1 << sh;
 		}
 	}
-	BigInteger$clamp_0$LBigInteger$($this);
+	BigInteger$clamp$LBigInteger$($this);
 	if (mi) {
-		BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, $this, $this);
+		BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, $this, $this);
 	}
 };
 
 BigInteger.fromString$LBigInteger$SN = BigInteger$fromString$LBigInteger$SN;
 
-function BigInteger$fromString_0$LBigInteger$SN($this, s, b) {
-	var this_array;
-	var k;
-	var i;
-	var mi;
-	var sh;
-	var x;
-	this_array = $this.array;
-	if (b === 16) {
-		k = 4;
-	} else {
-		if (b === 8) {
-			k = 3;
-		} else {
-			if (b === 256) {
-				k = 8;
-			} else {
-				if (b === 2) {
-					k = 1;
-				} else {
-					if (b === 32) {
-						k = 5;
-					} else {
-						if (b === 4) {
-							k = 2;
-						} else {
-							BigInteger$fromRadix_0$LBigInteger$SN($this, s, b);
-							return;
-						}
-					}
-				}
-			}
-		}
-	}
-	$this.t = 0;
-	$this.s = 0;
-	(i = s.length, mi = false, sh = 0);
-	while (-- i >= 0) {
-		x = (k === 8 ? +s.charAt(i) & 0xff : BigInteger$intAt$SN(s, i));
-		if (x < 0) {
-			if (s.charAt(i) === "-") {
-				mi = true;
-			}
-			continue;
-		}
-		mi = false;
-		if (sh === 0) {
-			this_array[$this.t++] = x;
-		} else {
-			if (sh + k > BigInteger.DB) {
-				this_array[$this.t - 1] |= (x & (1 << BigInteger.DB - sh) - 1) << sh;
-				this_array[$this.t++] = x >> BigInteger.DB - sh;
-			} else {
-				this_array[$this.t - 1] |= x << sh;
-			}
-		}
-		sh += k;
-		if (sh >= BigInteger.DB) {
-			sh -= BigInteger.DB;
-		}
-	}
-	if (k === 8 && (+s.charAt(0) & 0x80) !== 0) {
-		$this.s = -1;
-		if (sh > 0) {
-			this_array[$this.t - 1] |= (1 << BigInteger.DB - sh) - 1 << sh;
-		}
-	}
-	BigInteger$clamp_0$LBigInteger$($this);
-	if (mi) {
-		BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, $this, $this);
-	}
-};
-
-BigInteger.fromString_0$LBigInteger$SN = BigInteger$fromString_0$LBigInteger$SN;
-
 function BigInteger$fromNumberArray$LBigInteger$AN($this, s) {
-	BigInteger$fromRadix_0$LBigInteger$ANN($this, s, 256);
+	BigInteger$fromRadix$LBigInteger$ANN($this, s, 256);
 };
 
 BigInteger.fromNumberArray$LBigInteger$AN = BigInteger$fromNumberArray$LBigInteger$AN;
-
-function BigInteger$fromNumberArray_0$LBigInteger$AN($this, s) {
-	BigInteger$fromRadix_0$LBigInteger$ANN($this, s, 256);
-};
-
-BigInteger.fromNumberArray_0$LBigInteger$AN = BigInteger$fromNumberArray_0$LBigInteger$AN;
 
 function BigInteger$clamp$LBigInteger$($this) {
 	var this_array;
@@ -2960,18 +2383,6 @@ function BigInteger$clamp$LBigInteger$($this) {
 
 BigInteger.clamp$LBigInteger$ = BigInteger$clamp$LBigInteger$;
 
-function BigInteger$clamp_0$LBigInteger$($this) {
-	var this_array;
-	var c;
-	this_array = $this.array;
-	c = $this.s & BigInteger.DM;
-	while ($this.t > 0 && this_array[$this.t - 1] === c) {
-		-- $this.t;
-	}
-};
-
-BigInteger.clamp_0$LBigInteger$ = BigInteger$clamp_0$LBigInteger$;
-
 function BigInteger$toString$LBigInteger$N($this, b) {
 	var this_array;
 	var k;
@@ -2983,7 +2394,7 @@ function BigInteger$toString$LBigInteger$N($this, b) {
 	var p;
 	this_array = $this.array;
 	if ($this.s < 0) {
-		return "-" + BigInteger$toString_0$LBigInteger$N(BigInteger$negate_0$LBigInteger$($this), b);
+		return "-" + BigInteger$toString$LBigInteger$N(BigInteger$negate$LBigInteger$($this), b);
 	}
 	if (b === 16) {
 		k = 4;
@@ -3000,7 +2411,7 @@ function BigInteger$toString$LBigInteger$N($this, b) {
 					if (b === 4) {
 						k = 2;
 					} else {
-						return BigInteger$toRadix_0$LBigInteger$N($this, b);
+						return BigInteger$toRadix$LBigInteger$N($this, b);
 					}
 				}
 			}
@@ -3037,100 +2448,20 @@ function BigInteger$toString$LBigInteger$N($this, b) {
 
 BigInteger.toString$LBigInteger$N = BigInteger$toString$LBigInteger$N;
 
-function BigInteger$toString_0$LBigInteger$N($this, b) {
-	var this_array;
-	var k;
-	var km;
-	var d;
-	var m;
-	var r;
-	var i;
-	var p;
-	this_array = $this.array;
-	if ($this.s < 0) {
-		return "-" + BigInteger$toString_0$LBigInteger$N(BigInteger$negate_0$LBigInteger$($this), b);
-	}
-	if (b === 16) {
-		k = 4;
-	} else {
-		if (b === 8) {
-			k = 3;
-		} else {
-			if (b === 2) {
-				k = 1;
-			} else {
-				if (b === 32) {
-					k = 5;
-				} else {
-					if (b === 4) {
-						k = 2;
-					} else {
-						return BigInteger$toRadix_0$LBigInteger$N($this, b);
-					}
-				}
-			}
-		}
-	}
-	(km = (1 << k) - 1, m = false, r = "", i = $this.t);
-	p = BigInteger.DB - i * BigInteger.DB % k;
-	if (i-- > 0) {
-		if (p < BigInteger.DB && (d = this_array[i] >> p) > 0) {
-			m = true;
-			r = "0123456789abcdefghijklmnopqrstuvwxyz".charAt(d);
-		}
-		while (i >= 0) {
-			if (p < k) {
-				d = (this_array[i] & (1 << p) - 1) << k - p;
-				d |= this_array[-- i] >> (p += BigInteger.DB - k);
-			} else {
-				d = this_array[i] >> (p -= k) & km;
-				if (p <= 0) {
-					p += BigInteger.DB;
-					-- i;
-				}
-			}
-			if (d > 0) {
-				m = true;
-			}
-			if (m) {
-				r += "0123456789abcdefghijklmnopqrstuvwxyz".charAt(d);
-			}
-		}
-	}
-	return (m ? r : "0");
-};
-
-BigInteger.toString_0$LBigInteger$N = BigInteger$toString_0$LBigInteger$N;
-
 function BigInteger$negate$LBigInteger$($this) {
 	var r;
 	r = ({array: [], s: 0, t: 0});
-	BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, $this, r);
+	BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, $this, r);
 	return r;
 };
 
 BigInteger.negate$LBigInteger$ = BigInteger$negate$LBigInteger$;
 
-function BigInteger$negate_0$LBigInteger$($this) {
-	var r;
-	r = ({array: [], s: 0, t: 0});
-	BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, $this, r);
-	return r;
-};
-
-BigInteger.negate_0$LBigInteger$ = BigInteger$negate_0$LBigInteger$;
-
 function BigInteger$abs$LBigInteger$($this) {
-	return ($this.s < 0 ? BigInteger$negate_0$LBigInteger$($this) : $this);
+	return ($this.s < 0 ? BigInteger$negate$LBigInteger$($this) : $this);
 };
 
 BigInteger.abs$LBigInteger$ = BigInteger$abs$LBigInteger$;
-
-function BigInteger$abs_0$LBigInteger$($this) {
-	return ($this.s < 0 ? BigInteger$negate_0$LBigInteger$($this) : $this);
-};
-
-BigInteger.abs_0$LBigInteger$ = BigInteger$abs_0$LBigInteger$;
 
 function BigInteger$compareTo$LBigInteger$LBigInteger$($this, a) {
 	var this_array;
@@ -3157,32 +2488,6 @@ function BigInteger$compareTo$LBigInteger$LBigInteger$($this, a) {
 };
 
 BigInteger.compareTo$LBigInteger$LBigInteger$ = BigInteger$compareTo$LBigInteger$LBigInteger$;
-
-function BigInteger$compareTo_0$LBigInteger$LBigInteger$($this, a) {
-	var this_array;
-	var a_array;
-	var r;
-	var i;
-	this_array = $this.array;
-	a_array = a.array;
-	r = $this.s - a.s;
-	if (r !== 0) {
-		return r;
-	}
-	i = $this.t;
-	r = i - a.t;
-	if (r !== 0) {
-		return r;
-	}
-	while (-- i >= 0) {
-		if ((r = this_array[i] - a_array[i]) !== 0) {
-			return r;
-		}
-	}
-	return 0;
-};
-
-BigInteger.compareTo_0$LBigInteger$LBigInteger$ = BigInteger$compareTo_0$LBigInteger$LBigInteger$;
 
 function BigInteger$nbits$N(x) {
 	var r;
@@ -3221,14 +2526,6 @@ function BigInteger$bitLength$LBigInteger$($this) {
 
 BigInteger.bitLength$LBigInteger$ = BigInteger$bitLength$LBigInteger$;
 
-function BigInteger$bitLength_0$LBigInteger$($this) {
-	var this_array;
-	this_array = $this.array;
-	return ($this.t <= 0 ? 0 : BigInteger.DB * ($this.t - 1) + BigInteger$nbits$N(this_array[$this.t - 1] ^ $this.s & BigInteger.DM));
-};
-
-BigInteger.bitLength_0$LBigInteger$ = BigInteger$bitLength_0$LBigInteger$;
-
 function BigInteger$dlShiftTo$LBigInteger$NLBigInteger$($this, n, r) {
 	var this_array;
 	var r_array;
@@ -3247,24 +2544,6 @@ function BigInteger$dlShiftTo$LBigInteger$NLBigInteger$($this, n, r) {
 
 BigInteger.dlShiftTo$LBigInteger$NLBigInteger$ = BigInteger$dlShiftTo$LBigInteger$NLBigInteger$;
 
-function BigInteger$dlShiftTo_0$LBigInteger$NLBigInteger$($this, n, r) {
-	var this_array;
-	var r_array;
-	var i;
-	this_array = $this.array;
-	r_array = r.array;
-	for (i = $this.t - 1; i >= 0; -- i) {
-		r_array[i + n] = this_array[i];
-	}
-	for (i = n - 1; i >= 0; -- i) {
-		r_array[i] = 0;
-	}
-	r.t = $this.t + n;
-	r.s = $this.s;
-};
-
-BigInteger.dlShiftTo_0$LBigInteger$NLBigInteger$ = BigInteger$dlShiftTo_0$LBigInteger$NLBigInteger$;
-
 function BigInteger$drShiftTo$LBigInteger$NLBigInteger$($this, n, r) {
 	var this_array;
 	var r_array;
@@ -3281,23 +2560,6 @@ function BigInteger$drShiftTo$LBigInteger$NLBigInteger$($this, n, r) {
 };
 
 BigInteger.drShiftTo$LBigInteger$NLBigInteger$ = BigInteger$drShiftTo$LBigInteger$NLBigInteger$;
-
-function BigInteger$drShiftTo_0$LBigInteger$NLBigInteger$($this, n, r) {
-	var this_array;
-	var r_array;
-	var i;
-	var value1$0;
-	this_array = $this.array;
-	r_array = r.array;
-	for (i = n; i < $this.t; ++ i) {
-		r_array[i - n] = this_array[i];
-	}
-	value1$0 = $this.t - n;
-	r.t = (value1$0 >= 0 ? value1$0 : 0);
-	r.s = $this.s;
-};
-
-BigInteger.drShiftTo_0$LBigInteger$NLBigInteger$ = BigInteger$drShiftTo_0$LBigInteger$NLBigInteger$;
 
 function BigInteger$lShiftTo$LBigInteger$NLBigInteger$($this, n, r) {
 	var this_array;
@@ -3324,40 +2586,10 @@ function BigInteger$lShiftTo$LBigInteger$NLBigInteger$($this, n, r) {
 	r_array[ds] = c;
 	r.t = $this.t + ds + 1;
 	r.s = $this.s;
-	BigInteger$clamp_0$LBigInteger$(r);
+	BigInteger$clamp$LBigInteger$(r);
 };
 
 BigInteger.lShiftTo$LBigInteger$NLBigInteger$ = BigInteger$lShiftTo$LBigInteger$NLBigInteger$;
-
-function BigInteger$lShiftTo_0$LBigInteger$NLBigInteger$($this, n, r) {
-	var this_array;
-	var r_array;
-	var bs;
-	var cbs;
-	var bm;
-	var ds;
-	var c;
-	var i;
-	this_array = $this.array;
-	r_array = r.array;
-	bs = n % BigInteger.DB;
-	cbs = BigInteger.DB - bs;
-	bm = (1 << cbs) - 1;
-	(ds = Math.floor(n / BigInteger.DB), c = $this.s << bs & BigInteger.DM);
-	for (i = $this.t - 1; i >= 0; -- i) {
-		r_array[i + ds + 1] = this_array[i] >> cbs | c;
-		c = (this_array[i] & bm) << bs;
-	}
-	for (i = ds - 1; i >= 0; -- i) {
-		r_array[i] = 0;
-	}
-	r_array[ds] = c;
-	r.t = $this.t + ds + 1;
-	r.s = $this.s;
-	BigInteger$clamp_0$LBigInteger$(r);
-};
-
-BigInteger.lShiftTo_0$LBigInteger$NLBigInteger$ = BigInteger$lShiftTo_0$LBigInteger$NLBigInteger$;
 
 function BigInteger$rShiftTo$LBigInteger$NLBigInteger$($this, n, r) {
 	var this_array;
@@ -3387,43 +2619,10 @@ function BigInteger$rShiftTo$LBigInteger$NLBigInteger$($this, n, r) {
 		r_array[$this.t - ds - 1] |= ($this.s & bm) << cbs;
 	}
 	r.t = $this.t - ds;
-	BigInteger$clamp_0$LBigInteger$(r);
+	BigInteger$clamp$LBigInteger$(r);
 };
 
 BigInteger.rShiftTo$LBigInteger$NLBigInteger$ = BigInteger$rShiftTo$LBigInteger$NLBigInteger$;
-
-function BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$($this, n, r) {
-	var this_array;
-	var r_array;
-	var ds;
-	var bs;
-	var cbs;
-	var bm;
-	var i;
-	this_array = $this.array;
-	r_array = r.array;
-	r.s = $this.s;
-	ds = Math.floor(n / BigInteger.DB);
-	if (ds >= $this.t) {
-		r.t = 0;
-		return;
-	}
-	bs = n % BigInteger.DB;
-	cbs = BigInteger.DB - bs;
-	bm = (1 << bs) - 1;
-	r_array[0] = this_array[ds] >> bs;
-	for (i = ds + 1; i < $this.t; ++ i) {
-		r_array[i - ds - 1] |= (this_array[i] & bm) << cbs;
-		r_array[i - ds] = this_array[i] >> bs;
-	}
-	if (bs > 0) {
-		r_array[$this.t - ds - 1] |= ($this.s & bm) << cbs;
-	}
-	r.t = $this.t - ds;
-	BigInteger$clamp_0$LBigInteger$(r);
-};
-
-BigInteger.rShiftTo_0$LBigInteger$NLBigInteger$ = BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$;
 
 function BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$($this, a, r) {
 	var this_array;
@@ -3432,10 +2631,12 @@ function BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$($this, a, r) {
 	var i;
 	var c;
 	var m;
+	var min$value1$0;
+	var min$value2$0;
 	this_array = $this.array;
 	r_array = r.array;
 	a_array = a.array;
-	(i = 0, c = 0, m = Math.min(a.t, $this.t));
+	(i = 0, c = 0, m = (min$value2$0 = $this.t, min$value1$0 = a.t, min$value1$0 <= min$value2$0 ? min$value1$0 : min$value2$0));
 	while (i < m) {
 		c += this_array[i] - a_array[i];
 		r_array[i++] = c & BigInteger.DM;
@@ -3467,57 +2668,10 @@ function BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$($this, a, r) {
 		}
 	}
 	r.t = i;
-	BigInteger$clamp_0$LBigInteger$(r);
+	BigInteger$clamp$LBigInteger$(r);
 };
 
 BigInteger.subTo$LBigInteger$LBigInteger$LBigInteger$ = BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$;
-
-function BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$($this, a, r) {
-	var this_array;
-	var r_array;
-	var a_array;
-	var i;
-	var c;
-	var m;
-	this_array = $this.array;
-	r_array = r.array;
-	a_array = a.array;
-	(i = 0, c = 0, m = Math.min(a.t, $this.t));
-	while (i < m) {
-		c += this_array[i] - a_array[i];
-		r_array[i++] = c & BigInteger.DM;
-		c >>= BigInteger.DB;
-	}
-	if (a.t < $this.t) {
-		c -= a.s;
-		while (i < $this.t) {
-			c += this_array[i];
-			r_array[i++] = c & BigInteger.DM;
-			c >>= BigInteger.DB;
-		}
-		c += $this.s;
-	} else {
-		c += $this.s;
-		while (i < a.t) {
-			c -= a_array[i];
-			r_array[i++] = c & BigInteger.DM;
-			c >>= BigInteger.DB;
-		}
-		c -= a.s;
-	}
-	r.s = (c < 0 ? -1 : 0);
-	if (c < -1) {
-		r_array[i++] = BigInteger.DV + c;
-	} else {
-		if (c > 0) {
-			r_array[i++] = c;
-		}
-	}
-	r.t = i;
-	BigInteger$clamp_0$LBigInteger$(r);
-};
-
-BigInteger.subTo_0$LBigInteger$LBigInteger$LBigInteger$ = BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$;
 
 function BigInteger$multiplyTo$LBigInteger$LBigInteger$LBigInteger$($this, a, r) {
 	var r_array;
@@ -3526,7 +2680,7 @@ function BigInteger$multiplyTo$LBigInteger$LBigInteger$LBigInteger$($this, a, r)
 	var y_array;
 	var i;
 	r_array = r.array;
-	(x = BigInteger$abs_0$LBigInteger$($this), y = (a.s < 0 ? BigInteger$negate_0$LBigInteger$(a) : a));
+	(x = ($this.s < 0 ? BigInteger$negate$LBigInteger$($this) : $this), y = (a.s < 0 ? BigInteger$negate$LBigInteger$(a) : a));
 	y_array = y.array;
 	i = x.t;
 	r.t = i + y.t;
@@ -3537,39 +2691,13 @@ function BigInteger$multiplyTo$LBigInteger$LBigInteger$LBigInteger$($this, a, r)
 		r_array[i + x.t] = BigInteger.am(x.array, 0, y_array[i], r, i, 0, x.t);
 	}
 	r.s = 0;
-	BigInteger$clamp_0$LBigInteger$(r);
+	BigInteger$clamp$LBigInteger$(r);
 	if ($this.s !== a.s) {
-		BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, r, r);
+		BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, r, r);
 	}
 };
 
 BigInteger.multiplyTo$LBigInteger$LBigInteger$LBigInteger$ = BigInteger$multiplyTo$LBigInteger$LBigInteger$LBigInteger$;
-
-function BigInteger$multiplyTo_0$LBigInteger$LBigInteger$LBigInteger$($this, a, r) {
-	var r_array;
-	var x;
-	var y;
-	var y_array;
-	var i;
-	r_array = r.array;
-	(x = ($this.s < 0 ? BigInteger$negate_0$LBigInteger$($this) : $this), y = (a.s < 0 ? BigInteger$negate_0$LBigInteger$(a) : a));
-	y_array = y.array;
-	i = x.t;
-	r.t = i + y.t;
-	while (-- i >= 0) {
-		r_array[i] = 0;
-	}
-	for (i = 0; i < y.t; ++ i) {
-		r_array[i + x.t] = BigInteger.am(x.array, 0, y_array[i], r, i, 0, x.t);
-	}
-	r.s = 0;
-	BigInteger$clamp_0$LBigInteger$(r);
-	if ($this.s !== a.s) {
-		BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, r, r);
-	}
-};
-
-BigInteger.multiplyTo_0$LBigInteger$LBigInteger$LBigInteger$ = BigInteger$multiplyTo_0$LBigInteger$LBigInteger$LBigInteger$;
 
 function BigInteger$squareTo$LBigInteger$LBigInteger$($this, r) {
 	var x;
@@ -3577,7 +2705,7 @@ function BigInteger$squareTo$LBigInteger$LBigInteger$($this, r) {
 	var r_array;
 	var i;
 	var c;
-	x = ($this.s < 0 ? BigInteger$negate_0$LBigInteger$($this) : $this);
+	x = ($this.s < 0 ? BigInteger$negate$LBigInteger$($this) : $this);
 	x_array = x.array;
 	r_array = r.array;
 	i = r.t = 2 * x.t;
@@ -3595,39 +2723,10 @@ function BigInteger$squareTo$LBigInteger$LBigInteger$($this, r) {
 		r_array[r.t - 1] += BigInteger.am(x.array, i, x_array[i], r, 2 * i, 0, 1);
 	}
 	r.s = 0;
-	BigInteger$clamp_0$LBigInteger$(r);
+	BigInteger$clamp$LBigInteger$(r);
 };
 
 BigInteger.squareTo$LBigInteger$LBigInteger$ = BigInteger$squareTo$LBigInteger$LBigInteger$;
-
-function BigInteger$squareTo_0$LBigInteger$LBigInteger$($this, r) {
-	var x;
-	var x_array;
-	var r_array;
-	var i;
-	var c;
-	x = ($this.s < 0 ? BigInteger$negate_0$LBigInteger$($this) : $this);
-	x_array = x.array;
-	r_array = r.array;
-	i = r.t = 2 * x.t;
-	while (-- i >= 0) {
-		r_array[i] = 0;
-	}
-	for (i = 0; i < x.t - 1; ++ i) {
-		c = BigInteger.am(x.array, i, x_array[i], r, 2 * i, 0, 1);
-		if ((r_array[i + x.t] += BigInteger.am(x.array, i + 1, 2 * x_array[i], r, 2 * i + 1, c, x.t - i - 1)) >= BigInteger.DV) {
-			r_array[i + x.t] -= BigInteger.DV;
-			r_array[i + x.t + 1] = 1;
-		}
-	}
-	if (r.t > 0) {
-		r_array[r.t - 1] += BigInteger.am(x.array, i, x_array[i], r, 2 * i, 0, 1);
-	}
-	r.s = 0;
-	BigInteger$clamp_0$LBigInteger$(r);
-};
-
-BigInteger.squareTo_0$LBigInteger$LBigInteger$ = BigInteger$squareTo_0$LBigInteger$LBigInteger$;
 
 function BigInteger$divRemTo$LBigInteger$LBigInteger$LBigInteger$LBigInteger$($this, m, q, r) {
 	var pm;
@@ -3649,17 +2748,17 @@ function BigInteger$divRemTo$LBigInteger$LBigInteger$LBigInteger$LBigInteger$($t
 	var t;
 	var r_array;
 	var qd;
-	pm = (m.s < 0 ? BigInteger$negate_0$LBigInteger$(m) : m);
+	pm = (m.s < 0 ? BigInteger$negate$LBigInteger$(m) : m);
 	if (pm.t <= 0) {
 		return;
 	}
-	pt = ($this.s < 0 ? BigInteger$negate_0$LBigInteger$($this) : $this);
+	pt = ($this.s < 0 ? BigInteger$negate$LBigInteger$($this) : $this);
 	if (pt.t < pm.t) {
 		if (q != null) {
-			BigInteger$fromInt_0$LBigInteger$N(q, 0);
+			BigInteger$fromInt$LBigInteger$N(q, 0);
 		}
 		if (r != null) {
-			BigInteger$copyTo_0$LBigInteger$LBigInteger$($this, r);
+			BigInteger$copyTo$LBigInteger$LBigInteger$($this, r);
 		}
 		return;
 	}
@@ -3670,11 +2769,11 @@ function BigInteger$divRemTo$LBigInteger$LBigInteger$LBigInteger$LBigInteger$($t
 	pm_array = pm.array;
 	nsh = BigInteger.DB - BigInteger$nbits$N(pm_array[pm.t - 1]);
 	if (nsh > 0) {
-		BigInteger$lShiftTo_0$LBigInteger$NLBigInteger$(pm, nsh, y);
-		BigInteger$lShiftTo_0$LBigInteger$NLBigInteger$(pt, nsh, r);
+		BigInteger$lShiftTo$LBigInteger$NLBigInteger$(pm, nsh, y);
+		BigInteger$lShiftTo$LBigInteger$NLBigInteger$(pt, nsh, r);
 	} else {
-		BigInteger$copyTo_0$LBigInteger$LBigInteger$(pm, y);
-		BigInteger$copyTo_0$LBigInteger$LBigInteger$(pt, r);
+		BigInteger$copyTo$LBigInteger$LBigInteger$(pm, y);
+		BigInteger$copyTo$LBigInteger$LBigInteger$(pt, r);
 	}
 	ys = y.t;
 	y_array = y.array;
@@ -3685,163 +2784,56 @@ function BigInteger$divRemTo$LBigInteger$LBigInteger$LBigInteger$LBigInteger$($t
 	yt = y0 * (1 << BigInteger.F1) + (ys > 1 ? y_array[ys - 2] >> BigInteger.F2 : 0);
 	(d1 = BigInteger.FV / yt, d2 = (1 << BigInteger.F1) / yt, e = 1 << BigInteger.F2);
 	(i = r.t, j = i - ys, t = (q == null ? ({array: [], s: 0, t: 0}) : q));
-	BigInteger$dlShiftTo_0$LBigInteger$NLBigInteger$(y, j, t);
+	BigInteger$dlShiftTo$LBigInteger$NLBigInteger$(y, j, t);
 	r_array = r.array;
-	if (BigInteger$compareTo_0$LBigInteger$LBigInteger$(r, t) >= 0) {
+	if (BigInteger$compareTo$LBigInteger$LBigInteger$(r, t) >= 0) {
 		r_array[r.t++] = 1;
-		BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(r, t, r);
+		BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(r, t, r);
 	}
-	BigInteger$dlShiftTo_0$LBigInteger$NLBigInteger$(BigInteger.ONE, ys, t);
-	BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(t, y, y);
+	BigInteger$dlShiftTo$LBigInteger$NLBigInteger$(BigInteger.ONE, ys, t);
+	BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(t, y, y);
 	while (y.t < ys) {
 		y_array[y.t++] = 0;
 	}
 	while (-- j >= 0) {
 		qd = (r_array[-- i] === y0 ? BigInteger.DM : Math.floor(r_array[i] * d1 + (r_array[i - 1] + e) * d2));
 		if ((r_array[i] += BigInteger.am(y.array, 0, qd, r, j, 0, ys)) < qd) {
-			BigInteger$dlShiftTo_0$LBigInteger$NLBigInteger$(y, j, t);
-			BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(r, t, r);
+			BigInteger$dlShiftTo$LBigInteger$NLBigInteger$(y, j, t);
+			BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(r, t, r);
 			while (r_array[i] < -- qd) {
-				BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(r, t, r);
+				BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(r, t, r);
 			}
 		}
 	}
 	if (q != null) {
-		BigInteger$drShiftTo_0$LBigInteger$NLBigInteger$(r, ys, q);
+		BigInteger$drShiftTo$LBigInteger$NLBigInteger$(r, ys, q);
 		if (ts !== ms) {
-			BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, q, q);
+			BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, q, q);
 		}
 	}
 	r.t = ys;
-	BigInteger$clamp_0$LBigInteger$(r);
+	BigInteger$clamp$LBigInteger$(r);
 	if (nsh > 0) {
-		BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$(r, nsh, r);
+		BigInteger$rShiftTo$LBigInteger$NLBigInteger$(r, nsh, r);
 	}
 	if (ts < 0) {
-		BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, r, r);
+		BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, r, r);
 	}
 };
 
 BigInteger.divRemTo$LBigInteger$LBigInteger$LBigInteger$LBigInteger$ = BigInteger$divRemTo$LBigInteger$LBigInteger$LBigInteger$LBigInteger$;
 
-function BigInteger$divRemTo_0$LBigInteger$LBigInteger$LBigInteger$LBigInteger$($this, m, q, r) {
-	var pm;
-	var pt;
-	var y;
-	var ts;
-	var ms;
-	var pm_array;
-	var nsh;
-	var ys;
-	var y_array;
-	var y0;
-	var yt;
-	var d1;
-	var d2;
-	var e;
-	var i;
-	var j;
-	var t;
-	var r_array;
-	var qd;
-	pm = (m.s < 0 ? BigInteger$negate_0$LBigInteger$(m) : m);
-	if (pm.t <= 0) {
-		return;
-	}
-	pt = ($this.s < 0 ? BigInteger$negate_0$LBigInteger$($this) : $this);
-	if (pt.t < pm.t) {
-		if (q != null) {
-			BigInteger$fromInt_0$LBigInteger$N(q, 0);
-		}
-		if (r != null) {
-			BigInteger$copyTo_0$LBigInteger$LBigInteger$($this, r);
-		}
-		return;
-	}
-	if (r == null) {
-		r = ({array: [], s: 0, t: 0});
-	}
-	(y = ({array: [], s: 0, t: 0}), ts = $this.s, ms = m.s);
-	pm_array = pm.array;
-	nsh = BigInteger.DB - BigInteger$nbits$N(pm_array[pm.t - 1]);
-	if (nsh > 0) {
-		BigInteger$lShiftTo_0$LBigInteger$NLBigInteger$(pm, nsh, y);
-		BigInteger$lShiftTo_0$LBigInteger$NLBigInteger$(pt, nsh, r);
-	} else {
-		BigInteger$copyTo_0$LBigInteger$LBigInteger$(pm, y);
-		BigInteger$copyTo_0$LBigInteger$LBigInteger$(pt, r);
-	}
-	ys = y.t;
-	y_array = y.array;
-	y0 = y_array[ys - 1];
-	if (y0 === 0) {
-		return;
-	}
-	yt = y0 * (1 << BigInteger.F1) + (ys > 1 ? y_array[ys - 2] >> BigInteger.F2 : 0);
-	(d1 = BigInteger.FV / yt, d2 = (1 << BigInteger.F1) / yt, e = 1 << BigInteger.F2);
-	(i = r.t, j = i - ys, t = (q == null ? ({array: [], s: 0, t: 0}) : q));
-	BigInteger$dlShiftTo_0$LBigInteger$NLBigInteger$(y, j, t);
-	r_array = r.array;
-	if (BigInteger$compareTo_0$LBigInteger$LBigInteger$(r, t) >= 0) {
-		r_array[r.t++] = 1;
-		BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(r, t, r);
-	}
-	BigInteger$dlShiftTo_0$LBigInteger$NLBigInteger$(BigInteger.ONE, ys, t);
-	BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(t, y, y);
-	while (y.t < ys) {
-		y_array[y.t++] = 0;
-	}
-	while (-- j >= 0) {
-		qd = (r_array[-- i] === y0 ? BigInteger.DM : Math.floor(r_array[i] * d1 + (r_array[i - 1] + e) * d2));
-		if ((r_array[i] += BigInteger.am(y.array, 0, qd, r, j, 0, ys)) < qd) {
-			BigInteger$dlShiftTo_0$LBigInteger$NLBigInteger$(y, j, t);
-			BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(r, t, r);
-			while (r_array[i] < -- qd) {
-				BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(r, t, r);
-			}
-		}
-	}
-	if (q != null) {
-		BigInteger$drShiftTo_0$LBigInteger$NLBigInteger$(r, ys, q);
-		if (ts !== ms) {
-			BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, q, q);
-		}
-	}
-	r.t = ys;
-	BigInteger$clamp_0$LBigInteger$(r);
-	if (nsh > 0) {
-		BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$(r, nsh, r);
-	}
-	if (ts < 0) {
-		BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, r, r);
-	}
-};
-
-BigInteger.divRemTo_0$LBigInteger$LBigInteger$LBigInteger$LBigInteger$ = BigInteger$divRemTo_0$LBigInteger$LBigInteger$LBigInteger$LBigInteger$;
-
 function BigInteger$mod$LBigInteger$LBigInteger$($this, a) {
 	var r;
 	r = ({array: [], s: 0, t: 0});
-	BigInteger$divRemTo_0$LBigInteger$LBigInteger$LBigInteger$LBigInteger$(BigInteger$abs_0$LBigInteger$($this), a, null, r);
-	if ($this.s < 0 && BigInteger$compareTo_0$LBigInteger$LBigInteger$(r, BigInteger.ZERO) > 0) {
-		BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(a, r, r);
+	BigInteger$divRemTo$LBigInteger$LBigInteger$LBigInteger$LBigInteger$($this.s < 0 ? BigInteger$negate$LBigInteger$($this) : $this, a, null, r);
+	if ($this.s < 0 && BigInteger$compareTo$LBigInteger$LBigInteger$(r, BigInteger.ZERO) > 0) {
+		BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(a, r, r);
 	}
 	return r;
 };
 
 BigInteger.mod$LBigInteger$LBigInteger$ = BigInteger$mod$LBigInteger$LBigInteger$;
-
-function BigInteger$mod_0$LBigInteger$LBigInteger$($this, a) {
-	var r;
-	r = ({array: [], s: 0, t: 0});
-	BigInteger$divRemTo_0$LBigInteger$LBigInteger$LBigInteger$LBigInteger$($this.s < 0 ? BigInteger$negate_0$LBigInteger$($this) : $this, a, null, r);
-	if ($this.s < 0 && BigInteger$compareTo_0$LBigInteger$LBigInteger$(r, BigInteger.ZERO) > 0) {
-		BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(a, r, r);
-	}
-	return r;
-};
-
-BigInteger.mod_0$LBigInteger$LBigInteger$ = BigInteger$mod_0$LBigInteger$LBigInteger$;
 
 function BigInteger$invDigit$LBigInteger$($this) {
 	var this_array;
@@ -3865,28 +2857,6 @@ function BigInteger$invDigit$LBigInteger$($this) {
 
 BigInteger.invDigit$LBigInteger$ = BigInteger$invDigit$LBigInteger$;
 
-function BigInteger$invDigit_0$LBigInteger$($this) {
-	var this_array;
-	var x;
-	var y;
-	this_array = $this.array;
-	if ($this.t < 1) {
-		return 0;
-	}
-	x = this_array[0];
-	if ((x & 1) === 0) {
-		return 0;
-	}
-	y = x & 3;
-	y = y * (2 - (x & 0xf) * y) & 0xf;
-	y = y * (2 - (x & 0xff) * y) & 0xff;
-	y = y * (2 - ((x & 0xffff) * y & 0xffff)) & 0xffff;
-	y = y * (2 - x * y % BigInteger.DV) % BigInteger.DV;
-	return (y > 0 ? BigInteger.DV - y : - y);
-};
-
-BigInteger.invDigit_0$LBigInteger$ = BigInteger$invDigit_0$LBigInteger$;
-
 function BigInteger$isEven$LBigInteger$($this) {
 	var this_array;
 	this_array = $this.array;
@@ -3894,14 +2864,6 @@ function BigInteger$isEven$LBigInteger$($this) {
 };
 
 BigInteger.isEven$LBigInteger$ = BigInteger$isEven$LBigInteger$;
-
-function BigInteger$isEven_0$LBigInteger$($this) {
-	var this_array;
-	this_array = $this.array;
-	return ($this.t > 0 ? this_array[0] & 1 : $this.s) === 0;
-};
-
-BigInteger.isEven_0$LBigInteger$ = BigInteger$isEven_0$LBigInteger$;
 
 function BigInteger$exp$LBigInteger$NLReducer$($this, e, z) {
 	var r;
@@ -3913,7 +2875,7 @@ function BigInteger$exp$LBigInteger$NLReducer$($this, e, z) {
 		return BigInteger.ONE;
 	}
 	(r = ({array: [], s: 0, t: 0}), r2 = ({array: [], s: 0, t: 0}), g = z.convert$LBigInteger$($this), i = BigInteger$nbits$N(e) - 1);
-	BigInteger$copyTo_0$LBigInteger$LBigInteger$(g, r);
+	BigInteger$copyTo$LBigInteger$LBigInteger$(g, r);
 	while (-- i >= 0) {
 		z.sqrTo$LBigInteger$LBigInteger$(r, r2);
 		if ((e & 1 << i) > 0) {
@@ -3929,73 +2891,26 @@ function BigInteger$exp$LBigInteger$NLReducer$($this, e, z) {
 
 BigInteger.exp$LBigInteger$NLReducer$ = BigInteger$exp$LBigInteger$NLReducer$;
 
-function BigInteger$exp_0$LBigInteger$NLReducer$($this, e, z) {
-	var r;
-	var r2;
-	var g;
-	var i;
-	var t;
-	if (e > 0xffffffff || e < 1) {
-		return BigInteger.ONE;
-	}
-	(r = ({array: [], s: 0, t: 0}), r2 = ({array: [], s: 0, t: 0}), g = z.convert$LBigInteger$($this), i = BigInteger$nbits$N(e) - 1);
-	BigInteger$copyTo_0$LBigInteger$LBigInteger$(g, r);
-	while (-- i >= 0) {
-		z.sqrTo$LBigInteger$LBigInteger$(r, r2);
-		if ((e & 1 << i) > 0) {
-			z.mulTo$LBigInteger$LBigInteger$LBigInteger$(r2, g, r);
-		} else {
-			t = r;
-			r = r2;
-			r2 = t;
-		}
-	}
-	return z.revert$LBigInteger$(r);
-};
-
-BigInteger.exp_0$LBigInteger$NLReducer$ = BigInteger$exp_0$LBigInteger$NLReducer$;
-
 function BigInteger$modPowInt$LBigInteger$NLBigInteger$($this, e, m) {
 	var z;
-	if (e < 256 || BigInteger$isEven_0$LBigInteger$(m)) {
+	if (e < 256 || BigInteger$isEven$LBigInteger$(m)) {
 		z = new Classic(m);
 	} else {
 		z = new Montgomery(m);
 	}
-	return BigInteger$exp_0$LBigInteger$NLReducer$($this, e, z);
+	return BigInteger$exp$LBigInteger$NLReducer$($this, e, z);
 };
 
 BigInteger.modPowInt$LBigInteger$NLBigInteger$ = BigInteger$modPowInt$LBigInteger$NLBigInteger$;
 
-function BigInteger$modPowInt_0$LBigInteger$NLBigInteger$($this, e, m) {
-	var z;
-	if (e < 256 || BigInteger$isEven_0$LBigInteger$(m)) {
-		z = new Classic(m);
-	} else {
-		z = new Montgomery(m);
-	}
-	return BigInteger$exp_0$LBigInteger$NLReducer$($this, e, z);
-};
-
-BigInteger.modPowInt_0$LBigInteger$NLBigInteger$ = BigInteger$modPowInt_0$LBigInteger$NLBigInteger$;
-
 function BigInteger$clone$LBigInteger$($this) {
 	var r;
 	r = ({array: [], s: 0, t: 0});
-	BigInteger$copyTo_0$LBigInteger$LBigInteger$($this, r);
+	BigInteger$copyTo$LBigInteger$LBigInteger$($this, r);
 	return r;
 };
 
 BigInteger.clone$LBigInteger$ = BigInteger$clone$LBigInteger$;
-
-function BigInteger$clone_0$LBigInteger$($this) {
-	var r;
-	r = ({array: [], s: 0, t: 0});
-	BigInteger$copyTo_0$LBigInteger$LBigInteger$($this, r);
-	return r;
-};
-
-BigInteger.clone_0$LBigInteger$ = BigInteger$clone_0$LBigInteger$;
 
 function BigInteger$intValue$LBigInteger$($this) {
 	var this_array;
@@ -4022,31 +2937,6 @@ function BigInteger$intValue$LBigInteger$($this) {
 
 BigInteger.intValue$LBigInteger$ = BigInteger$intValue$LBigInteger$;
 
-function BigInteger$intValue_0$LBigInteger$($this) {
-	var this_array;
-	this_array = $this.array;
-	if ($this.s < 0) {
-		if ($this.t === 1) {
-			return this_array[0] - BigInteger.DV;
-		} else {
-			if ($this.t === 0) {
-				return -1;
-			}
-		}
-	} else {
-		if ($this.t === 1) {
-			return this_array[0];
-		} else {
-			if ($this.t === 0) {
-				return 0;
-			}
-		}
-	}
-	return (this_array[1] & (1 << 32 - BigInteger.DB) - 1) << BigInteger.DB | this_array[0];
-};
-
-BigInteger.intValue_0$LBigInteger$ = BigInteger$intValue_0$LBigInteger$;
-
 function BigInteger$byteValue$LBigInteger$($this) {
 	var this_array;
 	this_array = $this.array;
@@ -4054,14 +2944,6 @@ function BigInteger$byteValue$LBigInteger$($this) {
 };
 
 BigInteger.byteValue$LBigInteger$ = BigInteger$byteValue$LBigInteger$;
-
-function BigInteger$byteValue_0$LBigInteger$($this) {
-	var this_array;
-	this_array = $this.array;
-	return ($this.t === 0 ? $this.s : this_array[0] << 24 >> 24);
-};
-
-BigInteger.byteValue_0$LBigInteger$ = BigInteger$byteValue_0$LBigInteger$;
 
 function BigInteger$shortValue$LBigInteger$($this) {
 	var this_array;
@@ -4071,25 +2953,11 @@ function BigInteger$shortValue$LBigInteger$($this) {
 
 BigInteger.shortValue$LBigInteger$ = BigInteger$shortValue$LBigInteger$;
 
-function BigInteger$shortValue_0$LBigInteger$($this) {
-	var this_array;
-	this_array = $this.array;
-	return ($this.t === 0 ? $this.s : this_array[0] << 16 >> 16);
-};
-
-BigInteger.shortValue_0$LBigInteger$ = BigInteger$shortValue_0$LBigInteger$;
-
 function BigInteger$chunkSize$LBigInteger$N($this, r) {
 	return Math.floor(0.6931471805599453 * BigInteger.DB / Math.log(r));
 };
 
 BigInteger.chunkSize$LBigInteger$N = BigInteger$chunkSize$LBigInteger$N;
-
-function BigInteger$chunkSize_0$LBigInteger$N($this, r) {
-	return Math.floor(0.6931471805599453 * BigInteger.DB / Math.log(r));
-};
-
-BigInteger.chunkSize_0$LBigInteger$N = BigInteger$chunkSize_0$LBigInteger$N;
 
 function BigInteger$signum$LBigInteger$($this) {
 	var this_array;
@@ -4099,25 +2967,11 @@ function BigInteger$signum$LBigInteger$($this) {
 
 BigInteger.signum$LBigInteger$ = BigInteger$signum$LBigInteger$;
 
-function BigInteger$signum_0$LBigInteger$($this) {
-	var this_array;
-	this_array = $this.array;
-	return ($this.s < 0 ? -1 : $this.t <= 0 || $this.t === 1 && this_array[0] <= 0 ? 0 : 1);
-};
-
-BigInteger.signum_0$LBigInteger$ = BigInteger$signum_0$LBigInteger$;
-
 function BigInteger$toRadix$LBigInteger$($this) {
-	return BigInteger$toRadix_0$LBigInteger$N($this, 10);
+	return BigInteger$toRadix$LBigInteger$N($this, 10);
 };
 
 BigInteger.toRadix$LBigInteger$ = BigInteger$toRadix$LBigInteger$;
-
-function BigInteger$toRadix_0$LBigInteger$($this) {
-	return BigInteger$toRadix_0$LBigInteger$N($this, 10);
-};
-
-BigInteger.toRadix_0$LBigInteger$ = BigInteger$toRadix_0$LBigInteger$;
 
 function BigInteger$toRadix$LBigInteger$N($this, b) {
 	var cs;
@@ -4126,56 +2980,27 @@ function BigInteger$toRadix$LBigInteger$N($this, b) {
 	var y;
 	var z;
 	var r;
-	if (BigInteger$signum_0$LBigInteger$($this) === 0 || b < 2 || b > 36) {
+	if (BigInteger$signum$LBigInteger$($this) === 0 || b < 2 || b > 36) {
 		return "0";
 	}
 	cs = Math.floor(0.6931471805599453 * BigInteger.DB / Math.log(b));
 	a = Math.pow(b, cs);
 	(d = BigInteger$nbv$N(a), y = ({array: [], s: 0, t: 0}), z = ({array: [], s: 0, t: 0}), r = "");
-	BigInteger$divRemTo_0$LBigInteger$LBigInteger$LBigInteger$LBigInteger$($this, d, y, z);
-	while (BigInteger$signum_0$LBigInteger$(y) > 0) {
-		r = (a + BigInteger$intValue_0$LBigInteger$(z)).toString(b).substring(1) + r;
-		BigInteger$divRemTo_0$LBigInteger$LBigInteger$LBigInteger$LBigInteger$(y, d, y, z);
+	BigInteger$divRemTo$LBigInteger$LBigInteger$LBigInteger$LBigInteger$($this, d, y, z);
+	while (BigInteger$signum$LBigInteger$(y) > 0) {
+		r = (a + BigInteger$intValue$LBigInteger$(z)).toString(b).substring(1) + r;
+		BigInteger$divRemTo$LBigInteger$LBigInteger$LBigInteger$LBigInteger$(y, d, y, z);
 	}
-	return BigInteger$intValue_0$LBigInteger$(z).toString(b) + r;
+	return BigInteger$intValue$LBigInteger$(z).toString(b) + r;
 };
 
 BigInteger.toRadix$LBigInteger$N = BigInteger$toRadix$LBigInteger$N;
 
-function BigInteger$toRadix_0$LBigInteger$N($this, b) {
-	var cs;
-	var a;
-	var d;
-	var y;
-	var z;
-	var r;
-	if (BigInteger$signum_0$LBigInteger$($this) === 0 || b < 2 || b > 36) {
-		return "0";
-	}
-	cs = Math.floor(0.6931471805599453 * BigInteger.DB / Math.log(b));
-	a = Math.pow(b, cs);
-	(d = BigInteger$nbv$N(a), y = ({array: [], s: 0, t: 0}), z = ({array: [], s: 0, t: 0}), r = "");
-	BigInteger$divRemTo_0$LBigInteger$LBigInteger$LBigInteger$LBigInteger$($this, d, y, z);
-	while (BigInteger$signum_0$LBigInteger$(y) > 0) {
-		r = (a + BigInteger$intValue_0$LBigInteger$(z)).toString(b).substring(1) + r;
-		BigInteger$divRemTo_0$LBigInteger$LBigInteger$LBigInteger$LBigInteger$(y, d, y, z);
-	}
-	return BigInteger$intValue_0$LBigInteger$(z).toString(b) + r;
-};
-
-BigInteger.toRadix_0$LBigInteger$N = BigInteger$toRadix_0$LBigInteger$N;
-
 function BigInteger$fromRadix$LBigInteger$S($this, s) {
-	BigInteger$fromRadix_0$LBigInteger$SN($this, s, 10);
+	BigInteger$fromRadix$LBigInteger$SN($this, s, 10);
 };
 
 BigInteger.fromRadix$LBigInteger$S = BigInteger$fromRadix$LBigInteger$S;
-
-function BigInteger$fromRadix_0$LBigInteger$S($this, s) {
-	BigInteger$fromRadix_0$LBigInteger$SN($this, s, 10);
-};
-
-BigInteger.fromRadix_0$LBigInteger$S = BigInteger$fromRadix_0$LBigInteger$S;
 
 function BigInteger$fromRadix$LBigInteger$SN($this, s, b) {
 	var cs;
@@ -4186,76 +3011,46 @@ function BigInteger$fromRadix$LBigInteger$SN($this, s, b) {
 	var i;
 	var x;
 	var c$0;
-	BigInteger$fromInt_0$LBigInteger$N($this, 0);
+	var this_array$0;
+	var n$0;
+	var this_array$1;
+	BigInteger$fromInt$LBigInteger$N($this, 0);
 	cs = Math.floor(0.6931471805599453 * BigInteger.DB / Math.log(b));
 	(d = Math.pow(b, cs), mi = false, j = 0, w = 0);
 	for (i = 0; i < s.length; ++ i) {
 		c$0 = BigInteger.RC[s.charCodeAt(i)];
 		x = (c$0 == null ? -1 : c$0);
 		if (x < 0) {
-			if (s.charAt(i) === "-" && BigInteger$signum_0$LBigInteger$($this) === 0) {
+			if (s.charAt(i) === "-" && BigInteger$signum$LBigInteger$($this) === 0) {
 				mi = true;
 			}
 			continue;
 		}
 		w = b * w + x;
 		if (++ j >= cs) {
-			BigInteger$dMultiply_0$LBigInteger$N($this, d);
-			BigInteger$dAddOffset_0$LBigInteger$NN($this, w, 0);
+			this_array$0 = $this.array;
+			this_array$0[$this.t] = BigInteger.am($this.array, 0, d - 1, $this, 0, 0, $this.t);
+			++ $this.t;
+			BigInteger$clamp$LBigInteger$($this);
+			BigInteger$dAddOffset$LBigInteger$NN($this, w, 0);
 			j = 0;
 			w = 0;
 		}
 	}
 	if (j > 0) {
-		BigInteger$dMultiply_0$LBigInteger$N($this, Math.pow(b, j));
-		BigInteger$dAddOffset_0$LBigInteger$NN($this, w, 0);
+		n$0 = Math.pow(b, j);
+		this_array$1 = $this.array;
+		this_array$1[$this.t] = BigInteger.am($this.array, 0, n$0 - 1, $this, 0, 0, $this.t);
+		++ $this.t;
+		BigInteger$clamp$LBigInteger$($this);
+		BigInteger$dAddOffset$LBigInteger$NN($this, w, 0);
 	}
 	if (mi) {
-		BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, $this, $this);
+		BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, $this, $this);
 	}
 };
 
 BigInteger.fromRadix$LBigInteger$SN = BigInteger$fromRadix$LBigInteger$SN;
-
-function BigInteger$fromRadix_0$LBigInteger$SN($this, s, b) {
-	var cs;
-	var d;
-	var mi;
-	var j;
-	var w;
-	var i;
-	var x;
-	var c$0;
-	BigInteger$fromInt_0$LBigInteger$N($this, 0);
-	cs = Math.floor(0.6931471805599453 * BigInteger.DB / Math.log(b));
-	(d = Math.pow(b, cs), mi = false, j = 0, w = 0);
-	for (i = 0; i < s.length; ++ i) {
-		c$0 = BigInteger.RC[s.charCodeAt(i)];
-		x = (c$0 == null ? -1 : c$0);
-		if (x < 0) {
-			if (s.charAt(i) === "-" && BigInteger$signum_0$LBigInteger$($this) === 0) {
-				mi = true;
-			}
-			continue;
-		}
-		w = b * w + x;
-		if (++ j >= cs) {
-			BigInteger$dMultiply_0$LBigInteger$N($this, d);
-			BigInteger$dAddOffset_0$LBigInteger$NN($this, w, 0);
-			j = 0;
-			w = 0;
-		}
-	}
-	if (j > 0) {
-		BigInteger$dMultiply_0$LBigInteger$N($this, Math.pow(b, j));
-		BigInteger$dAddOffset_0$LBigInteger$NN($this, w, 0);
-	}
-	if (mi) {
-		BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, $this, $this);
-	}
-};
-
-BigInteger.fromRadix_0$LBigInteger$SN = BigInteger$fromRadix_0$LBigInteger$SN;
 
 function BigInteger$fromRadix$LBigInteger$ANN($this, s, b) {
 	var cs;
@@ -4265,109 +3060,63 @@ function BigInteger$fromRadix$LBigInteger$ANN($this, s, b) {
 	var w;
 	var i;
 	var x;
-	BigInteger$fromInt_0$LBigInteger$N($this, 0);
+	var this_array$0;
+	var n$0;
+	var this_array$1;
+	BigInteger$fromInt$LBigInteger$N($this, 0);
 	cs = Math.floor(0.6931471805599453 * BigInteger.DB / Math.log(b));
 	(d = Math.pow(b, cs), mi = false, j = 0, w = 0);
 	for (i = 0; i < s.length; ++ i) {
 		x = s[i];
 		w = b * w + x;
 		if (++ j >= cs) {
-			BigInteger$dMultiply_0$LBigInteger$N($this, d);
-			BigInteger$dAddOffset_0$LBigInteger$NN($this, w, 0);
+			this_array$0 = $this.array;
+			this_array$0[$this.t] = BigInteger.am($this.array, 0, d - 1, $this, 0, 0, $this.t);
+			++ $this.t;
+			BigInteger$clamp$LBigInteger$($this);
+			BigInteger$dAddOffset$LBigInteger$NN($this, w, 0);
 			j = 0;
 			w = 0;
 		}
 	}
 	if (j > 0) {
-		BigInteger$dMultiply_0$LBigInteger$N($this, Math.pow(b, j));
-		BigInteger$dAddOffset_0$LBigInteger$NN($this, w, 0);
+		n$0 = Math.pow(b, j);
+		this_array$1 = $this.array;
+		this_array$1[$this.t] = BigInteger.am($this.array, 0, n$0 - 1, $this, 0, 0, $this.t);
+		++ $this.t;
+		BigInteger$clamp$LBigInteger$($this);
+		BigInteger$dAddOffset$LBigInteger$NN($this, w, 0);
 	}
 	if (mi) {
-		BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, $this, $this);
+		BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, $this, $this);
 	}
 };
 
 BigInteger.fromRadix$LBigInteger$ANN = BigInteger$fromRadix$LBigInteger$ANN;
 
-function BigInteger$fromRadix_0$LBigInteger$ANN($this, s, b) {
-	var cs;
-	var d;
-	var mi;
-	var j;
-	var w;
-	var i;
-	var x;
-	BigInteger$fromInt_0$LBigInteger$N($this, 0);
-	cs = Math.floor(0.6931471805599453 * BigInteger.DB / Math.log(b));
-	(d = Math.pow(b, cs), mi = false, j = 0, w = 0);
-	for (i = 0; i < s.length; ++ i) {
-		x = s[i];
-		w = b * w + x;
-		if (++ j >= cs) {
-			BigInteger$dMultiply_0$LBigInteger$N($this, d);
-			BigInteger$dAddOffset_0$LBigInteger$NN($this, w, 0);
-			j = 0;
-			w = 0;
-		}
-	}
-	if (j > 0) {
-		BigInteger$dMultiply_0$LBigInteger$N($this, Math.pow(b, j));
-		BigInteger$dAddOffset_0$LBigInteger$NN($this, w, 0);
-	}
-	if (mi) {
-		BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, $this, $this);
-	}
-};
-
-BigInteger.fromRadix_0$LBigInteger$ANN = BigInteger$fromRadix_0$LBigInteger$ANN;
-
 function BigInteger$fromNumber$LBigInteger$NNLSecureRandom$($this, a, b, c) {
 	var this_array$0;
 	if (a < 2) {
-		BigInteger$fromInt_0$LBigInteger$N($this, 1);
+		BigInteger$fromInt$LBigInteger$N($this, 1);
 	} else {
-		BigInteger$fromNumber_0$LBigInteger$NLSecureRandom$($this, a, c);
-		if (! BigInteger$testBit_0$LBigInteger$N($this, a - 1)) {
-			BigInteger$bitwiseTo_0$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, BigInteger$shiftLeft_0$LBigInteger$N(BigInteger.ONE, a - 1), BigInteger$op_or$NN, $this);
+		BigInteger$fromNumber$LBigInteger$NLSecureRandom$($this, a, c);
+		if (! BigInteger$testBit$LBigInteger$N($this, a - 1)) {
+			BigInteger$bitwiseTo$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, BigInteger$shiftLeft$LBigInteger$N(BigInteger.ONE, a - 1), BigInteger$op_or$NN, $this);
 		}
 		this_array$0 = $this.array;
 		if (($this.t > 0 ? this_array$0[0] & 1 : $this.s) === 0) {
-			BigInteger$dAddOffset_0$LBigInteger$NN($this, 1, 0);
+			BigInteger$dAddOffset$LBigInteger$NN($this, 1, 0);
 		}
-		while (! BigInteger$isProbablePrime_0$LBigInteger$N($this, b)) {
-			BigInteger$dAddOffset_0$LBigInteger$NN($this, 2, 0);
-			if (BigInteger$bitLength_0$LBigInteger$($this) > a) {
-				BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$($this, BigInteger$shiftLeft_0$LBigInteger$N(BigInteger.ONE, a - 1), $this);
+		while (! BigInteger$isProbablePrime$LBigInteger$N($this, b)) {
+			BigInteger$dAddOffset$LBigInteger$NN($this, 2, 0);
+			if (BigInteger$bitLength$LBigInteger$($this) > a) {
+				BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$($this, BigInteger$shiftLeft$LBigInteger$N(BigInteger.ONE, a - 1), $this);
 			}
 		}
 	}
 };
 
 BigInteger.fromNumber$LBigInteger$NNLSecureRandom$ = BigInteger$fromNumber$LBigInteger$NNLSecureRandom$;
-
-function BigInteger$fromNumber_0$LBigInteger$NNLSecureRandom$($this, a, b, c) {
-	var this_array$0;
-	if (a < 2) {
-		BigInteger$fromInt_0$LBigInteger$N($this, 1);
-	} else {
-		BigInteger$fromNumber_0$LBigInteger$NLSecureRandom$($this, a, c);
-		if (! BigInteger$testBit_0$LBigInteger$N($this, a - 1)) {
-			BigInteger$bitwiseTo_0$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, BigInteger$shiftLeft_0$LBigInteger$N(BigInteger.ONE, a - 1), BigInteger$op_or$NN, $this);
-		}
-		this_array$0 = $this.array;
-		if (($this.t > 0 ? this_array$0[0] & 1 : $this.s) === 0) {
-			BigInteger$dAddOffset_0$LBigInteger$NN($this, 1, 0);
-		}
-		while (! BigInteger$isProbablePrime_0$LBigInteger$N($this, b)) {
-			BigInteger$dAddOffset_0$LBigInteger$NN($this, 2, 0);
-			if (BigInteger$bitLength_0$LBigInteger$($this) > a) {
-				BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$($this, BigInteger$shiftLeft_0$LBigInteger$N(BigInteger.ONE, a - 1), $this);
-			}
-		}
-	}
-};
-
-BigInteger.fromNumber_0$LBigInteger$NNLSecureRandom$ = BigInteger$fromNumber_0$LBigInteger$NNLSecureRandom$;
 
 function BigInteger$fromNumber$LBigInteger$NLSecureRandom$($this, a, b) {
 	var x;
@@ -4380,26 +3129,10 @@ function BigInteger$fromNumber$LBigInteger$NLSecureRandom$($this, a, b) {
 	} else {
 		x[0] = 0;
 	}
-	BigInteger$fromRadix_0$LBigInteger$ANN($this, x, 256);
+	BigInteger$fromRadix$LBigInteger$ANN($this, x, 256);
 };
 
 BigInteger.fromNumber$LBigInteger$NLSecureRandom$ = BigInteger$fromNumber$LBigInteger$NLSecureRandom$;
-
-function BigInteger$fromNumber_0$LBigInteger$NLSecureRandom$($this, a, b) {
-	var x;
-	var t;
-	(x = [], t = a & 7);
-	x.length = (a >> 3) + 1;
-	RNG$get_bytes$AN(x);
-	if (t > 0) {
-		x[0] &= (1 << t) - 1;
-	} else {
-		x[0] = 0;
-	}
-	BigInteger$fromRadix_0$LBigInteger$ANN($this, x, 256);
-};
-
-BigInteger.fromNumber_0$LBigInteger$NLSecureRandom$ = BigInteger$fromNumber_0$LBigInteger$NLSecureRandom$;
 
 function BigInteger$toByteArray$LBigInteger$($this) {
 	var this_array;
@@ -4443,83 +3176,23 @@ function BigInteger$toByteArray$LBigInteger$($this) {
 
 BigInteger.toByteArray$LBigInteger$ = BigInteger$toByteArray$LBigInteger$;
 
-function BigInteger$toByteArray_0$LBigInteger$($this) {
-	var this_array;
-	var i;
-	var r;
-	var p;
-	var d;
-	var k;
-	this_array = $this.array;
-	(i = $this.t, r = []);
-	r[0] = $this.s;
-	(p = BigInteger.DB - i * BigInteger.DB % 8, k = 0);
-	if (i-- > 0) {
-		if (p < BigInteger.DB && (d = this_array[i] >> p) !== ($this.s & BigInteger.DM) >> p) {
-			r[k++] = d | $this.s << BigInteger.DB - p;
-		}
-		while (i >= 0) {
-			if (p < 8) {
-				d = (this_array[i] & (1 << p) - 1) << 8 - p;
-				d |= this_array[-- i] >> (p += BigInteger.DB - 8);
-			} else {
-				d = this_array[i] >> (p -= 8) & 0xff;
-				if (p <= 0) {
-					p += BigInteger.DB;
-					-- i;
-				}
-			}
-			if ((d & 0x80) !== 0) {
-				d |= -256;
-			}
-			if (k === 0 && ($this.s & 0x80) !== (d & 0x80)) {
-				++ k;
-			}
-			if (k > 0 || d !== $this.s) {
-				r[k++] = d;
-			}
-		}
-	}
-	return r;
-};
-
-BigInteger.toByteArray_0$LBigInteger$ = BigInteger$toByteArray_0$LBigInteger$;
-
 function BigInteger$equals$LBigInteger$LBigInteger$($this, a) {
-	return BigInteger$compareTo_0$LBigInteger$LBigInteger$($this, a) === 0;
+	return BigInteger$compareTo$LBigInteger$LBigInteger$($this, a) === 0;
 };
 
 BigInteger.equals$LBigInteger$LBigInteger$ = BigInteger$equals$LBigInteger$LBigInteger$;
 
-function BigInteger$equals_0$LBigInteger$LBigInteger$($this, a) {
-	return BigInteger$compareTo_0$LBigInteger$LBigInteger$($this, a) === 0;
-};
-
-BigInteger.equals_0$LBigInteger$LBigInteger$ = BigInteger$equals_0$LBigInteger$LBigInteger$;
-
 function BigInteger$min$LBigInteger$LBigInteger$($this, a) {
-	return (BigInteger$compareTo_0$LBigInteger$LBigInteger$($this, a) < 0 ? $this : a);
+	return (BigInteger$compareTo$LBigInteger$LBigInteger$($this, a) < 0 ? $this : a);
 };
 
 BigInteger.min$LBigInteger$LBigInteger$ = BigInteger$min$LBigInteger$LBigInteger$;
 
-function BigInteger$min_0$LBigInteger$LBigInteger$($this, a) {
-	return (BigInteger$compareTo_0$LBigInteger$LBigInteger$($this, a) < 0 ? $this : a);
-};
-
-BigInteger.min_0$LBigInteger$LBigInteger$ = BigInteger$min_0$LBigInteger$LBigInteger$;
-
 function BigInteger$max$LBigInteger$LBigInteger$($this, a) {
-	return (BigInteger$compareTo_0$LBigInteger$LBigInteger$($this, a) > 0 ? $this : a);
+	return (BigInteger$compareTo$LBigInteger$LBigInteger$($this, a) > 0 ? $this : a);
 };
 
 BigInteger.max$LBigInteger$LBigInteger$ = BigInteger$max$LBigInteger$LBigInteger$;
-
-function BigInteger$max_0$LBigInteger$LBigInteger$($this, a) {
-	return (BigInteger$compareTo_0$LBigInteger$LBigInteger$($this, a) > 0 ? $this : a);
-};
-
-BigInteger.max_0$LBigInteger$LBigInteger$ = BigInteger$max_0$LBigInteger$LBigInteger$;
 
 function BigInteger$bitwiseTo$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, a, op, r) {
 	var this_array;
@@ -4553,47 +3226,10 @@ function BigInteger$bitwiseTo$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, 
 		r.t = a.t;
 	}
 	r.s = op($this.s, a.s);
-	BigInteger$clamp_0$LBigInteger$(r);
+	BigInteger$clamp$LBigInteger$(r);
 };
 
 BigInteger.bitwiseTo$LBigInteger$LBigInteger$F$NNN$LBigInteger$ = BigInteger$bitwiseTo$LBigInteger$LBigInteger$F$NNN$LBigInteger$;
-
-function BigInteger$bitwiseTo_0$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, a, op, r) {
-	var this_array;
-	var a_array;
-	var r_array;
-	var i;
-	var f;
-	var m;
-	var value1$0;
-	var value2$0;
-	this_array = $this.array;
-	a_array = a.array;
-	r_array = r.array;
-	value1$0 = a.t;
-	value2$0 = $this.t;
-	m = (value1$0 <= value2$0 ? value1$0 : value2$0);
-	for (i = 0; i < m; ++ i) {
-		r_array[i] = op(this_array[i], a_array[i]);
-	}
-	if (a.t < $this.t) {
-		f = a.s & BigInteger.DM;
-		for (i = m; i < $this.t; ++ i) {
-			r_array[i] = op(this_array[i], f);
-		}
-		r.t = $this.t;
-	} else {
-		f = $this.s & BigInteger.DM;
-		for (i = m; i < a.t; ++ i) {
-			r_array[i] = op(f, a_array[i]);
-		}
-		r.t = a.t;
-	}
-	r.s = op($this.s, a.s);
-	BigInteger$clamp_0$LBigInteger$(r);
-};
-
-BigInteger.bitwiseTo_0$LBigInteger$LBigInteger$F$NNN$LBigInteger$ = BigInteger$bitwiseTo_0$LBigInteger$LBigInteger$F$NNN$LBigInteger$;
 
 function BigInteger$op_and$NN(x, y) {
 	return x & y;
@@ -4622,74 +3258,38 @@ BigInteger.op_andnot$NN = BigInteger$op_andnot$NN;
 function BigInteger$and$LBigInteger$LBigInteger$($this, a) {
 	var r;
 	r = ({array: [], s: 0, t: 0});
-	BigInteger$bitwiseTo_0$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, a, BigInteger$op_and$NN, r);
+	BigInteger$bitwiseTo$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, a, BigInteger$op_and$NN, r);
 	return r;
 };
 
 BigInteger.and$LBigInteger$LBigInteger$ = BigInteger$and$LBigInteger$LBigInteger$;
 
-function BigInteger$and_0$LBigInteger$LBigInteger$($this, a) {
-	var r;
-	r = ({array: [], s: 0, t: 0});
-	BigInteger$bitwiseTo_0$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, a, BigInteger$op_and$NN, r);
-	return r;
-};
-
-BigInteger.and_0$LBigInteger$LBigInteger$ = BigInteger$and_0$LBigInteger$LBigInteger$;
-
 function BigInteger$or$LBigInteger$LBigInteger$($this, a) {
 	var r;
 	r = ({array: [], s: 0, t: 0});
-	BigInteger$bitwiseTo_0$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, a, BigInteger$op_or$NN, r);
+	BigInteger$bitwiseTo$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, a, BigInteger$op_or$NN, r);
 	return r;
 };
 
 BigInteger.or$LBigInteger$LBigInteger$ = BigInteger$or$LBigInteger$LBigInteger$;
 
-function BigInteger$or_0$LBigInteger$LBigInteger$($this, a) {
-	var r;
-	r = ({array: [], s: 0, t: 0});
-	BigInteger$bitwiseTo_0$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, a, BigInteger$op_or$NN, r);
-	return r;
-};
-
-BigInteger.or_0$LBigInteger$LBigInteger$ = BigInteger$or_0$LBigInteger$LBigInteger$;
-
 function BigInteger$xor$LBigInteger$LBigInteger$($this, a) {
 	var r;
 	r = ({array: [], s: 0, t: 0});
-	BigInteger$bitwiseTo_0$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, a, BigInteger$op_xor$NN, r);
+	BigInteger$bitwiseTo$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, a, BigInteger$op_xor$NN, r);
 	return r;
 };
 
 BigInteger.xor$LBigInteger$LBigInteger$ = BigInteger$xor$LBigInteger$LBigInteger$;
 
-function BigInteger$xor_0$LBigInteger$LBigInteger$($this, a) {
-	var r;
-	r = ({array: [], s: 0, t: 0});
-	BigInteger$bitwiseTo_0$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, a, BigInteger$op_xor$NN, r);
-	return r;
-};
-
-BigInteger.xor_0$LBigInteger$LBigInteger$ = BigInteger$xor_0$LBigInteger$LBigInteger$;
-
 function BigInteger$andNot$LBigInteger$LBigInteger$($this, a) {
 	var r;
 	r = ({array: [], s: 0, t: 0});
-	BigInteger$bitwiseTo_0$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, a, BigInteger$op_andnot$NN, r);
+	BigInteger$bitwiseTo$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, a, BigInteger$op_andnot$NN, r);
 	return r;
 };
 
 BigInteger.andNot$LBigInteger$LBigInteger$ = BigInteger$andNot$LBigInteger$LBigInteger$;
-
-function BigInteger$andNot_0$LBigInteger$LBigInteger$($this, a) {
-	var r;
-	r = ({array: [], s: 0, t: 0});
-	BigInteger$bitwiseTo_0$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, a, BigInteger$op_andnot$NN, r);
-	return r;
-};
-
-BigInteger.andNot_0$LBigInteger$LBigInteger$ = BigInteger$andNot_0$LBigInteger$LBigInteger$;
 
 function BigInteger$not$LBigInteger$($this) {
 	var this_array;
@@ -4709,75 +3309,31 @@ function BigInteger$not$LBigInteger$($this) {
 
 BigInteger.not$LBigInteger$ = BigInteger$not$LBigInteger$;
 
-function BigInteger$not_0$LBigInteger$($this) {
-	var this_array;
-	var r;
-	var r_array;
-	var i;
-	this_array = $this.array;
-	r = ({array: [], s: 0, t: 0});
-	r_array = r.array;
-	for (i = 0; i < $this.t; ++ i) {
-		r_array[i] = BigInteger.DM & ~ this_array[i];
-	}
-	r.t = $this.t;
-	r.s = ~ $this.s;
-	return r;
-};
-
-BigInteger.not_0$LBigInteger$ = BigInteger$not_0$LBigInteger$;
-
 function BigInteger$shiftLeft$LBigInteger$N($this, n) {
 	var r;
 	r = ({array: [], s: 0, t: 0});
 	if (n < 0) {
-		BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$($this, - n, r);
+		BigInteger$rShiftTo$LBigInteger$NLBigInteger$($this, - n, r);
 	} else {
-		BigInteger$lShiftTo_0$LBigInteger$NLBigInteger$($this, n, r);
+		BigInteger$lShiftTo$LBigInteger$NLBigInteger$($this, n, r);
 	}
 	return r;
 };
 
 BigInteger.shiftLeft$LBigInteger$N = BigInteger$shiftLeft$LBigInteger$N;
 
-function BigInteger$shiftLeft_0$LBigInteger$N($this, n) {
-	var r;
-	r = ({array: [], s: 0, t: 0});
-	if (n < 0) {
-		BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$($this, - n, r);
-	} else {
-		BigInteger$lShiftTo_0$LBigInteger$NLBigInteger$($this, n, r);
-	}
-	return r;
-};
-
-BigInteger.shiftLeft_0$LBigInteger$N = BigInteger$shiftLeft_0$LBigInteger$N;
-
 function BigInteger$shiftRight$LBigInteger$N($this, n) {
 	var r;
 	r = ({array: [], s: 0, t: 0});
 	if (n < 0) {
-		BigInteger$lShiftTo_0$LBigInteger$NLBigInteger$($this, - n, r);
+		BigInteger$lShiftTo$LBigInteger$NLBigInteger$($this, - n, r);
 	} else {
-		BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$($this, n, r);
+		BigInteger$rShiftTo$LBigInteger$NLBigInteger$($this, n, r);
 	}
 	return r;
 };
 
 BigInteger.shiftRight$LBigInteger$N = BigInteger$shiftRight$LBigInteger$N;
-
-function BigInteger$shiftRight_0$LBigInteger$N($this, n) {
-	var r;
-	r = ({array: [], s: 0, t: 0});
-	if (n < 0) {
-		BigInteger$lShiftTo_0$LBigInteger$NLBigInteger$($this, - n, r);
-	} else {
-		BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$($this, n, r);
-	}
-	return r;
-};
-
-BigInteger.shiftRight_0$LBigInteger$N = BigInteger$shiftRight_0$LBigInteger$N;
 
 function BigInteger$lbit$N(x) {
 	var r;
@@ -4823,20 +3379,6 @@ function BigInteger$getLowestSetBit$LBigInteger$($this) {
 
 BigInteger.getLowestSetBit$LBigInteger$ = BigInteger$getLowestSetBit$LBigInteger$;
 
-function BigInteger$getLowestSetBit_0$LBigInteger$($this) {
-	var this_array;
-	var i;
-	this_array = $this.array;
-	for (i = 0; i < $this.t; ++ i) {
-		if (this_array[i] !== 0) {
-			return i * BigInteger.DB + BigInteger$lbit$N(this_array[i]);
-		}
-	}
-	return ($this.s < 0 ? $this.t * BigInteger.DB : -1);
-};
-
-BigInteger.getLowestSetBit_0$LBigInteger$ = BigInteger$getLowestSetBit_0$LBigInteger$;
-
 function BigInteger$cbit$N(x) {
 	var r;
 	r = 0;
@@ -4864,21 +3406,6 @@ function BigInteger$bitCount$LBigInteger$($this) {
 
 BigInteger.bitCount$LBigInteger$ = BigInteger$bitCount$LBigInteger$;
 
-function BigInteger$bitCount_0$LBigInteger$($this) {
-	var this_array;
-	var r;
-	var x;
-	var i;
-	this_array = $this.array;
-	(r = 0, x = $this.s & BigInteger.DM);
-	for (i = 0; i < $this.t; ++ i) {
-		r += BigInteger$cbit$N(this_array[i] ^ x);
-	}
-	return r;
-};
-
-BigInteger.bitCount_0$LBigInteger$ = BigInteger$bitCount_0$LBigInteger$;
-
 function BigInteger$testBit$LBigInteger$N($this, n) {
 	var this_array;
 	var j;
@@ -4889,99 +3416,47 @@ function BigInteger$testBit$LBigInteger$N($this, n) {
 
 BigInteger.testBit$LBigInteger$N = BigInteger$testBit$LBigInteger$N;
 
-function BigInteger$testBit_0$LBigInteger$N($this, n) {
-	var this_array;
-	var j;
-	this_array = $this.array;
-	j = Math.floor(n / BigInteger.DB);
-	return (j >= $this.t ? $this.s !== 0 : (this_array[j] & 1 << n % BigInteger.DB) !== 0);
-};
-
-BigInteger.testBit_0$LBigInteger$N = BigInteger$testBit_0$LBigInteger$N;
-
 function BigInteger$changeBit$LBigInteger$NF$NNN$($this, n, op) {
 	var r;
-	r = BigInteger$shiftLeft_0$LBigInteger$N(BigInteger.ONE, n);
-	BigInteger$bitwiseTo_0$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, r, op, r);
+	r = BigInteger$shiftLeft$LBigInteger$N(BigInteger.ONE, n);
+	BigInteger$bitwiseTo$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, r, op, r);
 	return r;
 };
 
 BigInteger.changeBit$LBigInteger$NF$NNN$ = BigInteger$changeBit$LBigInteger$NF$NNN$;
 
-function BigInteger$changeBit_0$LBigInteger$NF$NNN$($this, n, op) {
-	var r;
-	r = BigInteger$shiftLeft_0$LBigInteger$N(BigInteger.ONE, n);
-	BigInteger$bitwiseTo_0$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, r, op, r);
-	return r;
-};
-
-BigInteger.changeBit_0$LBigInteger$NF$NNN$ = BigInteger$changeBit_0$LBigInteger$NF$NNN$;
-
 function BigInteger$setBit$LBigInteger$N($this, n) {
 	var op$0;
 	var r$0;
 	op$0 = BigInteger$op_or$NN;
-	r$0 = BigInteger$shiftLeft_0$LBigInteger$N(BigInteger.ONE, n);
-	BigInteger$bitwiseTo_0$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, r$0, op$0, r$0);
+	r$0 = BigInteger$shiftLeft$LBigInteger$N(BigInteger.ONE, n);
+	BigInteger$bitwiseTo$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, r$0, op$0, r$0);
 	return r$0;
 };
 
 BigInteger.setBit$LBigInteger$N = BigInteger$setBit$LBigInteger$N;
 
-function BigInteger$setBit_0$LBigInteger$N($this, n) {
-	var op$0;
-	var r$0;
-	op$0 = BigInteger$op_or$NN;
-	r$0 = BigInteger$shiftLeft_0$LBigInteger$N(BigInteger.ONE, n);
-	BigInteger$bitwiseTo_0$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, r$0, op$0, r$0);
-	return r$0;
-};
-
-BigInteger.setBit_0$LBigInteger$N = BigInteger$setBit_0$LBigInteger$N;
-
 function BigInteger$clearBit$LBigInteger$N($this, n) {
 	var op$0;
 	var r$0;
 	op$0 = BigInteger$op_andnot$NN;
-	r$0 = BigInteger$shiftLeft_0$LBigInteger$N(BigInteger.ONE, n);
-	BigInteger$bitwiseTo_0$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, r$0, op$0, r$0);
+	r$0 = BigInteger$shiftLeft$LBigInteger$N(BigInteger.ONE, n);
+	BigInteger$bitwiseTo$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, r$0, op$0, r$0);
 	return r$0;
 };
 
 BigInteger.clearBit$LBigInteger$N = BigInteger$clearBit$LBigInteger$N;
 
-function BigInteger$clearBit_0$LBigInteger$N($this, n) {
-	var op$0;
-	var r$0;
-	op$0 = BigInteger$op_andnot$NN;
-	r$0 = BigInteger$shiftLeft_0$LBigInteger$N(BigInteger.ONE, n);
-	BigInteger$bitwiseTo_0$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, r$0, op$0, r$0);
-	return r$0;
-};
-
-BigInteger.clearBit_0$LBigInteger$N = BigInteger$clearBit_0$LBigInteger$N;
-
 function BigInteger$flipBit$LBigInteger$N($this, n) {
 	var op$0;
 	var r$0;
 	op$0 = BigInteger$op_xor$NN;
-	r$0 = BigInteger$shiftLeft_0$LBigInteger$N(BigInteger.ONE, n);
-	BigInteger$bitwiseTo_0$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, r$0, op$0, r$0);
+	r$0 = BigInteger$shiftLeft$LBigInteger$N(BigInteger.ONE, n);
+	BigInteger$bitwiseTo$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, r$0, op$0, r$0);
 	return r$0;
 };
 
 BigInteger.flipBit$LBigInteger$N = BigInteger$flipBit$LBigInteger$N;
-
-function BigInteger$flipBit_0$LBigInteger$N($this, n) {
-	var op$0;
-	var r$0;
-	op$0 = BigInteger$op_xor$NN;
-	r$0 = BigInteger$shiftLeft_0$LBigInteger$N(BigInteger.ONE, n);
-	BigInteger$bitwiseTo_0$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, r$0, op$0, r$0);
-	return r$0;
-};
-
-BigInteger.flipBit_0$LBigInteger$N = BigInteger$flipBit_0$LBigInteger$N;
 
 function BigInteger$addTo$LBigInteger$LBigInteger$LBigInteger$($this, a, r) {
 	var this_array;
@@ -4990,10 +3465,12 @@ function BigInteger$addTo$LBigInteger$LBigInteger$LBigInteger$($this, a, r) {
 	var i;
 	var c;
 	var m;
+	var min$value1$0;
+	var min$value2$0;
 	this_array = $this.array;
 	a_array = a.array;
 	r_array = r.array;
-	(i = 0, c = 0, m = Math.min(a.t, $this.t));
+	(i = 0, c = 0, m = (min$value2$0 = $this.t, min$value1$0 = a.t, min$value1$0 <= min$value2$0 ? min$value1$0 : min$value2$0));
 	while (i < m) {
 		c += this_array[i] + a_array[i];
 		r_array[i++] = c & BigInteger.DM;
@@ -5025,187 +3502,75 @@ function BigInteger$addTo$LBigInteger$LBigInteger$LBigInteger$($this, a, r) {
 		}
 	}
 	r.t = i;
-	BigInteger$clamp_0$LBigInteger$(r);
+	BigInteger$clamp$LBigInteger$(r);
 };
 
 BigInteger.addTo$LBigInteger$LBigInteger$LBigInteger$ = BigInteger$addTo$LBigInteger$LBigInteger$LBigInteger$;
 
-function BigInteger$addTo_0$LBigInteger$LBigInteger$LBigInteger$($this, a, r) {
-	var this_array;
-	var a_array;
-	var r_array;
-	var i;
-	var c;
-	var m;
-	this_array = $this.array;
-	a_array = a.array;
-	r_array = r.array;
-	(i = 0, c = 0, m = Math.min(a.t, $this.t));
-	while (i < m) {
-		c += this_array[i] + a_array[i];
-		r_array[i++] = c & BigInteger.DM;
-		c >>= BigInteger.DB;
-	}
-	if (a.t < $this.t) {
-		c += a.s;
-		while (i < $this.t) {
-			c += this_array[i];
-			r_array[i++] = c & BigInteger.DM;
-			c >>= BigInteger.DB;
-		}
-		c += $this.s;
-	} else {
-		c += $this.s;
-		while (i < a.t) {
-			c += a_array[i];
-			r_array[i++] = c & BigInteger.DM;
-			c >>= BigInteger.DB;
-		}
-		c += a.s;
-	}
-	r.s = (c < 0 ? -1 : 0);
-	if (c > 0) {
-		r_array[i++] = c;
-	} else {
-		if (c < -1) {
-			r_array[i++] = BigInteger.DV + c;
-		}
-	}
-	r.t = i;
-	BigInteger$clamp_0$LBigInteger$(r);
-};
-
-BigInteger.addTo_0$LBigInteger$LBigInteger$LBigInteger$ = BigInteger$addTo_0$LBigInteger$LBigInteger$LBigInteger$;
-
 function BigInteger$add$LBigInteger$LBigInteger$($this, a) {
 	var r;
 	r = ({array: [], s: 0, t: 0});
-	BigInteger$addTo_0$LBigInteger$LBigInteger$LBigInteger$($this, a, r);
+	BigInteger$addTo$LBigInteger$LBigInteger$LBigInteger$($this, a, r);
 	return r;
 };
 
 BigInteger.add$LBigInteger$LBigInteger$ = BigInteger$add$LBigInteger$LBigInteger$;
 
-function BigInteger$add_0$LBigInteger$LBigInteger$($this, a) {
-	var r;
-	r = ({array: [], s: 0, t: 0});
-	BigInteger$addTo_0$LBigInteger$LBigInteger$LBigInteger$($this, a, r);
-	return r;
-};
-
-BigInteger.add_0$LBigInteger$LBigInteger$ = BigInteger$add_0$LBigInteger$LBigInteger$;
-
 function BigInteger$subtract$LBigInteger$LBigInteger$($this, a) {
 	var r;
 	r = ({array: [], s: 0, t: 0});
-	BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$($this, a, r);
+	BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$($this, a, r);
 	return r;
 };
 
 BigInteger.subtract$LBigInteger$LBigInteger$ = BigInteger$subtract$LBigInteger$LBigInteger$;
 
-function BigInteger$subtract_0$LBigInteger$LBigInteger$($this, a) {
-	var r;
-	r = ({array: [], s: 0, t: 0});
-	BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$($this, a, r);
-	return r;
-};
-
-BigInteger.subtract_0$LBigInteger$LBigInteger$ = BigInteger$subtract_0$LBigInteger$LBigInteger$;
-
 function BigInteger$multiply$LBigInteger$LBigInteger$($this, a) {
 	var r;
 	r = ({array: [], s: 0, t: 0});
-	BigInteger$multiplyTo_0$LBigInteger$LBigInteger$LBigInteger$($this, a, r);
+	BigInteger$multiplyTo$LBigInteger$LBigInteger$LBigInteger$($this, a, r);
 	return r;
 };
 
 BigInteger.multiply$LBigInteger$LBigInteger$ = BigInteger$multiply$LBigInteger$LBigInteger$;
 
-function BigInteger$multiply_0$LBigInteger$LBigInteger$($this, a) {
-	var r;
-	r = ({array: [], s: 0, t: 0});
-	BigInteger$multiplyTo_0$LBigInteger$LBigInteger$LBigInteger$($this, a, r);
-	return r;
-};
-
-BigInteger.multiply_0$LBigInteger$LBigInteger$ = BigInteger$multiply_0$LBigInteger$LBigInteger$;
-
 function BigInteger$divide$LBigInteger$LBigInteger$($this, a) {
 	var r;
 	r = ({array: [], s: 0, t: 0});
-	BigInteger$divRemTo_0$LBigInteger$LBigInteger$LBigInteger$LBigInteger$($this, a, r, null);
+	BigInteger$divRemTo$LBigInteger$LBigInteger$LBigInteger$LBigInteger$($this, a, r, null);
 	return r;
 };
 
 BigInteger.divide$LBigInteger$LBigInteger$ = BigInteger$divide$LBigInteger$LBigInteger$;
 
-function BigInteger$divide_0$LBigInteger$LBigInteger$($this, a) {
-	var r;
-	r = ({array: [], s: 0, t: 0});
-	BigInteger$divRemTo_0$LBigInteger$LBigInteger$LBigInteger$LBigInteger$($this, a, r, null);
-	return r;
-};
-
-BigInteger.divide_0$LBigInteger$LBigInteger$ = BigInteger$divide_0$LBigInteger$LBigInteger$;
-
 function BigInteger$remainder$LBigInteger$LBigInteger$($this, a) {
 	var r;
 	r = ({array: [], s: 0, t: 0});
-	BigInteger$divRemTo_0$LBigInteger$LBigInteger$LBigInteger$LBigInteger$($this, a, null, r);
+	BigInteger$divRemTo$LBigInteger$LBigInteger$LBigInteger$LBigInteger$($this, a, null, r);
 	return r;
 };
 
 BigInteger.remainder$LBigInteger$LBigInteger$ = BigInteger$remainder$LBigInteger$LBigInteger$;
 
-function BigInteger$remainder_0$LBigInteger$LBigInteger$($this, a) {
-	var r;
-	r = ({array: [], s: 0, t: 0});
-	BigInteger$divRemTo_0$LBigInteger$LBigInteger$LBigInteger$LBigInteger$($this, a, null, r);
-	return r;
-};
-
-BigInteger.remainder_0$LBigInteger$LBigInteger$ = BigInteger$remainder_0$LBigInteger$LBigInteger$;
-
 function BigInteger$divideAndRemainder$LBigInteger$LBigInteger$($this, a) {
 	var q;
 	var r;
 	(q = ({array: [], s: 0, t: 0}), r = ({array: [], s: 0, t: 0}));
-	BigInteger$divRemTo_0$LBigInteger$LBigInteger$LBigInteger$LBigInteger$($this, a, q, r);
+	BigInteger$divRemTo$LBigInteger$LBigInteger$LBigInteger$LBigInteger$($this, a, q, r);
 	return [ q, r ];
 };
 
 BigInteger.divideAndRemainder$LBigInteger$LBigInteger$ = BigInteger$divideAndRemainder$LBigInteger$LBigInteger$;
-
-function BigInteger$divideAndRemainder_0$LBigInteger$LBigInteger$($this, a) {
-	var q;
-	var r;
-	(q = ({array: [], s: 0, t: 0}), r = ({array: [], s: 0, t: 0}));
-	BigInteger$divRemTo_0$LBigInteger$LBigInteger$LBigInteger$LBigInteger$($this, a, q, r);
-	return [ q, r ];
-};
-
-BigInteger.divideAndRemainder_0$LBigInteger$LBigInteger$ = BigInteger$divideAndRemainder_0$LBigInteger$LBigInteger$;
 
 function BigInteger$dMultiply$LBigInteger$N($this, n) {
 	var this_array;
 	this_array = $this.array;
 	this_array[$this.t] = BigInteger.am($this.array, 0, n - 1, $this, 0, 0, $this.t);
 	++ $this.t;
-	BigInteger$clamp_0$LBigInteger$($this);
+	BigInteger$clamp$LBigInteger$($this);
 };
 
 BigInteger.dMultiply$LBigInteger$N = BigInteger$dMultiply$LBigInteger$N;
-
-function BigInteger$dMultiply_0$LBigInteger$N($this, n) {
-	var this_array;
-	this_array = $this.array;
-	this_array[$this.t] = BigInteger.am($this.array, 0, n - 1, $this, 0, 0, $this.t);
-	++ $this.t;
-	BigInteger$clamp_0$LBigInteger$($this);
-};
-
-BigInteger.dMultiply_0$LBigInteger$N = BigInteger$dMultiply_0$LBigInteger$N;
 
 function BigInteger$dAddOffset$LBigInteger$NN($this, n, w) {
 	var this_array;
@@ -5225,35 +3590,11 @@ function BigInteger$dAddOffset$LBigInteger$NN($this, n, w) {
 
 BigInteger.dAddOffset$LBigInteger$NN = BigInteger$dAddOffset$LBigInteger$NN;
 
-function BigInteger$dAddOffset_0$LBigInteger$NN($this, n, w) {
-	var this_array;
-	this_array = $this.array;
-	while ($this.t <= w) {
-		this_array[$this.t++] = 0;
-	}
-	this_array[w] += n;
-	while (this_array[w] >= BigInteger.DV) {
-		this_array[w] -= BigInteger.DV;
-		if (++ w >= $this.t) {
-			this_array[$this.t++] = 0;
-		}
-		++ this_array[w];
-	}
-};
-
-BigInteger.dAddOffset_0$LBigInteger$NN = BigInteger$dAddOffset_0$LBigInteger$NN;
-
 function BigInteger$pow$LBigInteger$N($this, e) {
-	return BigInteger$exp_0$LBigInteger$NLReducer$($this, e, new NullExp());
+	return BigInteger$exp$LBigInteger$NLReducer$($this, e, new NullExp());
 };
 
 BigInteger.pow$LBigInteger$N = BigInteger$pow$LBigInteger$N;
-
-function BigInteger$pow_0$LBigInteger$N($this, e) {
-	return BigInteger$exp_0$LBigInteger$NLReducer$($this, e, new NullExp());
-};
-
-BigInteger.pow_0$LBigInteger$N = BigInteger$pow_0$LBigInteger$N;
 
 function BigInteger$multiplyLowerTo$LBigInteger$LBigInteger$NLBigInteger$($this, a, n, r) {
 	var r_array;
@@ -5261,6 +3602,7 @@ function BigInteger$multiplyLowerTo$LBigInteger$LBigInteger$NLBigInteger$($this,
 	var i;
 	var j;
 	var value1$0;
+	var min$value1$1;
 	r_array = r.array;
 	a_array = a.array;
 	value1$0 = $this.t + a.t;
@@ -5273,44 +3615,19 @@ function BigInteger$multiplyLowerTo$LBigInteger$LBigInteger$NLBigInteger$($this,
 	for (j = r.t - $this.t; i < j; ++ i) {
 		r_array[i + $this.t] = BigInteger.am($this.array, 0, a_array[i], r, i, 0, $this.t);
 	}
-	for (j = Math.min(a.t, n); i < j; ++ i) {
+	for (j = (min$value1$1 = a.t, min$value1$1 <= n ? min$value1$1 : n); i < j; ++ i) {
 		BigInteger.am($this.array, 0, a_array[i], r, i, 0, n - i);
 	}
-	BigInteger$clamp_0$LBigInteger$(r);
+	BigInteger$clamp$LBigInteger$(r);
 };
 
 BigInteger.multiplyLowerTo$LBigInteger$LBigInteger$NLBigInteger$ = BigInteger$multiplyLowerTo$LBigInteger$LBigInteger$NLBigInteger$;
-
-function BigInteger$multiplyLowerTo_0$LBigInteger$LBigInteger$NLBigInteger$($this, a, n, r) {
-	var r_array;
-	var a_array;
-	var i;
-	var j;
-	var value1$0;
-	r_array = r.array;
-	a_array = a.array;
-	value1$0 = $this.t + a.t;
-	i = (value1$0 <= n ? value1$0 : n);
-	r.s = 0;
-	r.t = i;
-	while (i > 0) {
-		r_array[-- i] = 0;
-	}
-	for (j = r.t - $this.t; i < j; ++ i) {
-		r_array[i + $this.t] = BigInteger.am($this.array, 0, a_array[i], r, i, 0, $this.t);
-	}
-	for (j = Math.min(a.t, n); i < j; ++ i) {
-		BigInteger.am($this.array, 0, a_array[i], r, i, 0, n - i);
-	}
-	BigInteger$clamp_0$LBigInteger$(r);
-};
-
-BigInteger.multiplyLowerTo_0$LBigInteger$LBigInteger$NLBigInteger$ = BigInteger$multiplyLowerTo_0$LBigInteger$LBigInteger$NLBigInteger$;
 
 function BigInteger$multiplyUpperTo$LBigInteger$LBigInteger$NLBigInteger$($this, a, n, r) {
 	var r_array;
 	var a_array;
 	var i;
+	var max$value1$0;
 	r_array = r.array;
 	a_array = a.array;
 	-- n;
@@ -5319,35 +3636,14 @@ function BigInteger$multiplyUpperTo$LBigInteger$LBigInteger$NLBigInteger$($this,
 	while (-- i >= 0) {
 		r_array[i] = 0;
 	}
-	for (i = Math.max(n - $this.t, 0); i < a.t; ++ i) {
+	for (i = (max$value1$0 = n - $this.t, max$value1$0 >= 0 ? max$value1$0 : 0); i < a.t; ++ i) {
 		r_array[$this.t + i - n] = BigInteger.am($this.array, n - i, a_array[i], r, 0, 0, $this.t + i - n);
 	}
-	BigInteger$clamp_0$LBigInteger$(r);
-	BigInteger$drShiftTo_0$LBigInteger$NLBigInteger$(r, 1, r);
+	BigInteger$clamp$LBigInteger$(r);
+	BigInteger$drShiftTo$LBigInteger$NLBigInteger$(r, 1, r);
 };
 
 BigInteger.multiplyUpperTo$LBigInteger$LBigInteger$NLBigInteger$ = BigInteger$multiplyUpperTo$LBigInteger$LBigInteger$NLBigInteger$;
-
-function BigInteger$multiplyUpperTo_0$LBigInteger$LBigInteger$NLBigInteger$($this, a, n, r) {
-	var r_array;
-	var a_array;
-	var i;
-	r_array = r.array;
-	a_array = a.array;
-	-- n;
-	i = r.t = $this.t + a.t - n;
-	r.s = 0;
-	while (-- i >= 0) {
-		r_array[i] = 0;
-	}
-	for (i = Math.max(n - $this.t, 0); i < a.t; ++ i) {
-		r_array[$this.t + i - n] = BigInteger.am($this.array, n - i, a_array[i], r, 0, 0, $this.t + i - n);
-	}
-	BigInteger$clamp_0$LBigInteger$(r);
-	BigInteger$drShiftTo_0$LBigInteger$NLBigInteger$(r, 1, r);
-};
-
-BigInteger.multiplyUpperTo_0$LBigInteger$LBigInteger$NLBigInteger$ = BigInteger$multiplyUpperTo_0$LBigInteger$LBigInteger$NLBigInteger$;
 
 function BigInteger$modPow$LBigInteger$LBigInteger$LBigInteger$($this, e, m) {
 	var e_array;
@@ -5367,7 +3663,7 @@ function BigInteger$modPow$LBigInteger$LBigInteger$LBigInteger$($this, e, m) {
 	var t;
 	var this_array$0;
 	e_array = e.array;
-	(i = BigInteger$bitLength_0$LBigInteger$(e), r = BigInteger$nbv$N(1), z = null);
+	(i = BigInteger$bitLength$LBigInteger$(e), r = BigInteger$nbv$N(1), z = null);
 	if (i <= 0) {
 		return r;
 	} else {
@@ -5431,7 +3727,7 @@ function BigInteger$modPow$LBigInteger$LBigInteger$LBigInteger$($this, e, m) {
 			-- j;
 		}
 		if (is1) {
-			BigInteger$copyTo_0$LBigInteger$LBigInteger$(g[w], r);
+			BigInteger$copyTo$LBigInteger$LBigInteger$(g[w], r);
 			is1 = false;
 		} else {
 			while (n > 1) {
@@ -5464,135 +3760,20 @@ function BigInteger$modPow$LBigInteger$LBigInteger$LBigInteger$($this, e, m) {
 
 BigInteger.modPow$LBigInteger$LBigInteger$LBigInteger$ = BigInteger$modPow$LBigInteger$LBigInteger$LBigInteger$;
 
-function BigInteger$modPow_0$LBigInteger$LBigInteger$LBigInteger$($this, e, m) {
-	var e_array;
-	var i;
-	var k;
-	var r;
-	var z;
-	var g;
-	var n;
-	var k1;
-	var km;
-	var g2;
-	var j;
-	var w;
-	var is1;
-	var r2;
-	var t;
-	var this_array$0;
-	e_array = e.array;
-	(i = BigInteger$bitLength_0$LBigInteger$(e), r = BigInteger$nbv$N(1), z = null);
-	if (i <= 0) {
-		return r;
-	} else {
-		if (i < 18) {
-			k = 1;
-		} else {
-			if (i < 48) {
-				k = 3;
-			} else {
-				if (i < 144) {
-					k = 4;
-				} else {
-					if (i < 768) {
-						k = 5;
-					} else {
-						k = 6;
-					}
-				}
-			}
-		}
-	}
-	if (i < 8) {
-		z = new Classic(m);
-	} else {
-		this_array$0 = m.array;
-		if ((m.t > 0 ? this_array$0[0] & 1 : m.s) === 0) {
-			z = new Barrett(m);
-		} else {
-			z = new Montgomery(m);
-		}
-	}
-	(g = [], n = 3, k1 = k - 1, km = (1 << k) - 1);
-	g[1] = z.convert$LBigInteger$($this);
-	if (k > 1) {
-		g2 = ({array: [], s: 0, t: 0});
-		z.sqrTo$LBigInteger$LBigInteger$(g[1], g2);
-		while (n <= km) {
-			g[n] = ({array: [], s: 0, t: 0});
-			z.mulTo$LBigInteger$LBigInteger$LBigInteger$(g2, g[n - 2], g[n]);
-			n += 2;
-		}
-	}
-	(j = e.t - 1, is1 = true, r2 = ({array: [], s: 0, t: 0}));
-	i = BigInteger$nbits$N(e_array[j]) - 1;
-	while (j >= 0) {
-		if (i >= k1) {
-			w = e_array[j] >> i - k1 & km;
-		} else {
-			w = (e_array[j] & (1 << i + 1) - 1) << k1 - i;
-			if (j > 0) {
-				w |= e_array[j - 1] >> BigInteger.DB + i - k1;
-			}
-		}
-		n = k;
-		while ((w & 1) === 0) {
-			w >>= 1;
-			-- n;
-		}
-		if ((i -= n) < 0) {
-			i += BigInteger.DB;
-			-- j;
-		}
-		if (is1) {
-			BigInteger$copyTo_0$LBigInteger$LBigInteger$(g[w], r);
-			is1 = false;
-		} else {
-			while (n > 1) {
-				z.sqrTo$LBigInteger$LBigInteger$(r, r2);
-				z.sqrTo$LBigInteger$LBigInteger$(r2, r);
-				n -= 2;
-			}
-			if (n > 0) {
-				z.sqrTo$LBigInteger$LBigInteger$(r, r2);
-			} else {
-				t = r;
-				r = r2;
-				r2 = t;
-			}
-			z.mulTo$LBigInteger$LBigInteger$LBigInteger$(r2, g[w], r);
-		}
-		while (j >= 0 && (e_array[j] & 1 << i) === 0) {
-			z.sqrTo$LBigInteger$LBigInteger$(r, r2);
-			t = r;
-			r = r2;
-			r2 = t;
-			if (-- i < 0) {
-				i = BigInteger.DB - 1;
-				-- j;
-			}
-		}
-	}
-	return z.revert$LBigInteger$(r);
-};
-
-BigInteger.modPow_0$LBigInteger$LBigInteger$LBigInteger$ = BigInteger$modPow_0$LBigInteger$LBigInteger$LBigInteger$;
-
 function BigInteger$gcd$LBigInteger$LBigInteger$($this, a) {
 	var x;
 	var y;
 	var t;
 	var i;
 	var g;
-	x = ($this.s < 0 ? BigInteger$negate_0$LBigInteger$($this) : BigInteger$clone_0$LBigInteger$($this));
-	y = (a.s < 0 ? BigInteger$negate_0$LBigInteger$(a) : BigInteger$clone_0$LBigInteger$(a));
-	if (BigInteger$compareTo_0$LBigInteger$LBigInteger$(x, y) < 0) {
+	x = ($this.s < 0 ? BigInteger$negate$LBigInteger$($this) : BigInteger$clone$LBigInteger$($this));
+	y = (a.s < 0 ? BigInteger$negate$LBigInteger$(a) : BigInteger$clone$LBigInteger$(a));
+	if (BigInteger$compareTo$LBigInteger$LBigInteger$(x, y) < 0) {
 		t = x;
 		x = y;
 		y = t;
 	}
-	(i = BigInteger$getLowestSetBit_0$LBigInteger$(x), g = BigInteger$getLowestSetBit_0$LBigInteger$(y));
+	(i = BigInteger$getLowestSetBit$LBigInteger$(x), g = BigInteger$getLowestSetBit$LBigInteger$(y));
 	if (g < 0) {
 		return x;
 	}
@@ -5600,78 +3781,31 @@ function BigInteger$gcd$LBigInteger$LBigInteger$($this, a) {
 		g = i;
 	}
 	if (g > 0) {
-		BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$(x, g, x);
-		BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$(y, g, y);
+		BigInteger$rShiftTo$LBigInteger$NLBigInteger$(x, g, x);
+		BigInteger$rShiftTo$LBigInteger$NLBigInteger$(y, g, y);
 	}
-	while (BigInteger$signum_0$LBigInteger$(x) > 0) {
-		if ((i = BigInteger$getLowestSetBit_0$LBigInteger$(x)) > 0) {
-			BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$(x, i, x);
+	while (BigInteger$signum$LBigInteger$(x) > 0) {
+		if ((i = BigInteger$getLowestSetBit$LBigInteger$(x)) > 0) {
+			BigInteger$rShiftTo$LBigInteger$NLBigInteger$(x, i, x);
 		}
-		if ((i = BigInteger$getLowestSetBit_0$LBigInteger$(y)) > 0) {
-			BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$(y, i, y);
+		if ((i = BigInteger$getLowestSetBit$LBigInteger$(y)) > 0) {
+			BigInteger$rShiftTo$LBigInteger$NLBigInteger$(y, i, y);
 		}
-		if (BigInteger$compareTo_0$LBigInteger$LBigInteger$(x, y) >= 0) {
-			BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(x, y, x);
-			BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$(x, 1, x);
+		if (BigInteger$compareTo$LBigInteger$LBigInteger$(x, y) >= 0) {
+			BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(x, y, x);
+			BigInteger$rShiftTo$LBigInteger$NLBigInteger$(x, 1, x);
 		} else {
-			BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(y, x, y);
-			BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$(y, 1, y);
+			BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(y, x, y);
+			BigInteger$rShiftTo$LBigInteger$NLBigInteger$(y, 1, y);
 		}
 	}
 	if (g > 0) {
-		BigInteger$lShiftTo_0$LBigInteger$NLBigInteger$(y, g, y);
+		BigInteger$lShiftTo$LBigInteger$NLBigInteger$(y, g, y);
 	}
 	return y;
 };
 
 BigInteger.gcd$LBigInteger$LBigInteger$ = BigInteger$gcd$LBigInteger$LBigInteger$;
-
-function BigInteger$gcd_0$LBigInteger$LBigInteger$($this, a) {
-	var x;
-	var y;
-	var t;
-	var i;
-	var g;
-	x = ($this.s < 0 ? BigInteger$negate_0$LBigInteger$($this) : BigInteger$clone_0$LBigInteger$($this));
-	y = (a.s < 0 ? BigInteger$negate_0$LBigInteger$(a) : BigInteger$clone_0$LBigInteger$(a));
-	if (BigInteger$compareTo_0$LBigInteger$LBigInteger$(x, y) < 0) {
-		t = x;
-		x = y;
-		y = t;
-	}
-	(i = BigInteger$getLowestSetBit_0$LBigInteger$(x), g = BigInteger$getLowestSetBit_0$LBigInteger$(y));
-	if (g < 0) {
-		return x;
-	}
-	if (i < g) {
-		g = i;
-	}
-	if (g > 0) {
-		BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$(x, g, x);
-		BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$(y, g, y);
-	}
-	while (BigInteger$signum_0$LBigInteger$(x) > 0) {
-		if ((i = BigInteger$getLowestSetBit_0$LBigInteger$(x)) > 0) {
-			BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$(x, i, x);
-		}
-		if ((i = BigInteger$getLowestSetBit_0$LBigInteger$(y)) > 0) {
-			BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$(y, i, y);
-		}
-		if (BigInteger$compareTo_0$LBigInteger$LBigInteger$(x, y) >= 0) {
-			BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(x, y, x);
-			BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$(x, 1, x);
-		} else {
-			BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(y, x, y);
-			BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$(y, 1, y);
-		}
-	}
-	if (g > 0) {
-		BigInteger$lShiftTo_0$LBigInteger$NLBigInteger$(y, g, y);
-	}
-	return y;
-};
-
-BigInteger.gcd_0$LBigInteger$LBigInteger$ = BigInteger$gcd_0$LBigInteger$LBigInteger$;
 
 function BigInteger$modInt$LBigInteger$N($this, n) {
 	var this_array;
@@ -5697,30 +3831,6 @@ function BigInteger$modInt$LBigInteger$N($this, n) {
 
 BigInteger.modInt$LBigInteger$N = BigInteger$modInt$LBigInteger$N;
 
-function BigInteger$modInt_0$LBigInteger$N($this, n) {
-	var this_array;
-	var d;
-	var r;
-	var i;
-	this_array = $this.array;
-	if (n <= 0) {
-		return 0;
-	}
-	(d = BigInteger.DV % n, r = ($this.s < 0 ? n - 1 : 0));
-	if ($this.t > 0) {
-		if (d === 0) {
-			r = this_array[0] % n;
-		} else {
-			for (i = $this.t - 1; i >= 0; -- i) {
-				r = (d * r + this_array[i]) % n;
-			}
-		}
-	}
-	return r;
-};
-
-BigInteger.modInt_0$LBigInteger$N = BigInteger$modInt_0$LBigInteger$N;
-
 function BigInteger$modInverse$LBigInteger$LBigInteger$($this, m) {
 	var ac;
 	var u;
@@ -5733,153 +3843,73 @@ function BigInteger$modInverse$LBigInteger$LBigInteger$($this, m) {
 	var r$0;
 	this_array$0 = m.array;
 	ac = (m.t > 0 ? this_array$0[0] & 1 : m.s) === 0;
-	if (BigInteger$isEven_0$LBigInteger$($this) && ac || BigInteger$signum_0$LBigInteger$(m) === 0) {
+	if (BigInteger$isEven$LBigInteger$($this) && ac || BigInteger$signum$LBigInteger$(m) === 0) {
 		return BigInteger.ZERO;
 	}
-	(u = BigInteger$clone_0$LBigInteger$(m), v = BigInteger$clone_0$LBigInteger$($this));
+	(u = BigInteger$clone$LBigInteger$(m), v = BigInteger$clone$LBigInteger$($this));
 	(a = BigInteger$nbv$N(1), b = BigInteger$nbv$N(0), c = BigInteger$nbv$N(0), d = BigInteger$nbv$N(1));
-	while (BigInteger$signum_0$LBigInteger$(u) !== 0) {
-		while (BigInteger$isEven_0$LBigInteger$(u)) {
-			BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$(u, 1, u);
+	while (BigInteger$signum$LBigInteger$(u) !== 0) {
+		while (BigInteger$isEven$LBigInteger$(u)) {
+			BigInteger$rShiftTo$LBigInteger$NLBigInteger$(u, 1, u);
 			if (ac) {
-				if (! BigInteger$isEven_0$LBigInteger$(a) || ! BigInteger$isEven_0$LBigInteger$(b)) {
-					BigInteger$addTo_0$LBigInteger$LBigInteger$LBigInteger$(a, $this, a);
-					BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(b, m, b);
+				if (! BigInteger$isEven$LBigInteger$(a) || ! BigInteger$isEven$LBigInteger$(b)) {
+					BigInteger$addTo$LBigInteger$LBigInteger$LBigInteger$(a, $this, a);
+					BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(b, m, b);
 				}
-				BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$(a, 1, a);
+				BigInteger$rShiftTo$LBigInteger$NLBigInteger$(a, 1, a);
 			} else {
-				if (! BigInteger$isEven_0$LBigInteger$(b)) {
-					BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(b, m, b);
+				if (! BigInteger$isEven$LBigInteger$(b)) {
+					BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(b, m, b);
 				}
 			}
-			BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$(b, 1, b);
+			BigInteger$rShiftTo$LBigInteger$NLBigInteger$(b, 1, b);
 		}
-		while (BigInteger$isEven_0$LBigInteger$(v)) {
-			BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$(v, 1, v);
+		while (BigInteger$isEven$LBigInteger$(v)) {
+			BigInteger$rShiftTo$LBigInteger$NLBigInteger$(v, 1, v);
 			if (ac) {
-				if (! BigInteger$isEven_0$LBigInteger$(c) || ! BigInteger$isEven_0$LBigInteger$(d)) {
-					BigInteger$addTo_0$LBigInteger$LBigInteger$LBigInteger$(c, $this, c);
-					BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(d, m, d);
+				if (! BigInteger$isEven$LBigInteger$(c) || ! BigInteger$isEven$LBigInteger$(d)) {
+					BigInteger$addTo$LBigInteger$LBigInteger$LBigInteger$(c, $this, c);
+					BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(d, m, d);
 				}
-				BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$(c, 1, c);
+				BigInteger$rShiftTo$LBigInteger$NLBigInteger$(c, 1, c);
 			} else {
-				if (! BigInteger$isEven_0$LBigInteger$(d)) {
-					BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(d, m, d);
+				if (! BigInteger$isEven$LBigInteger$(d)) {
+					BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(d, m, d);
 				}
 			}
-			BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$(d, 1, d);
+			BigInteger$rShiftTo$LBigInteger$NLBigInteger$(d, 1, d);
 		}
-		if (BigInteger$compareTo_0$LBigInteger$LBigInteger$(u, v) >= 0) {
-			BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(u, v, u);
+		if (BigInteger$compareTo$LBigInteger$LBigInteger$(u, v) >= 0) {
+			BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(u, v, u);
 			if (ac) {
-				BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(a, c, a);
+				BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(a, c, a);
 			}
-			BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(b, d, b);
+			BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(b, d, b);
 		} else {
-			BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(v, u, v);
+			BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(v, u, v);
 			if (ac) {
-				BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(c, a, c);
+				BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(c, a, c);
 			}
-			BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(d, b, d);
+			BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(d, b, d);
 		}
 	}
-	if (BigInteger$compareTo_0$LBigInteger$LBigInteger$(v, BigInteger.ONE) !== 0) {
+	if (BigInteger$compareTo$LBigInteger$LBigInteger$(v, BigInteger.ONE) !== 0) {
 		return BigInteger.ZERO;
 	}
-	if (BigInteger$compareTo_0$LBigInteger$LBigInteger$(d, m) >= 0) {
+	if (BigInteger$compareTo$LBigInteger$LBigInteger$(d, m) >= 0) {
 		r$0 = ({array: [], s: 0, t: 0});
-		BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(d, m, r$0);
+		BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(d, m, r$0);
 		return r$0;
 	}
-	if (BigInteger$signum_0$LBigInteger$(d) < 0) {
-		BigInteger$addTo_0$LBigInteger$LBigInteger$LBigInteger$(d, m, d);
+	if (BigInteger$signum$LBigInteger$(d) < 0) {
+		BigInteger$addTo$LBigInteger$LBigInteger$LBigInteger$(d, m, d);
 	} else {
 		return d;
 	}
-	return (BigInteger$signum_0$LBigInteger$(d) < 0 ? BigInteger$add_0$LBigInteger$LBigInteger$(d, m) : d);
+	return (BigInteger$signum$LBigInteger$(d) < 0 ? BigInteger$add$LBigInteger$LBigInteger$(d, m) : d);
 };
 
 BigInteger.modInverse$LBigInteger$LBigInteger$ = BigInteger$modInverse$LBigInteger$LBigInteger$;
-
-function BigInteger$modInverse_0$LBigInteger$LBigInteger$($this, m) {
-	var ac;
-	var u;
-	var v;
-	var a;
-	var b;
-	var c;
-	var d;
-	var this_array$0;
-	var r$0;
-	this_array$0 = m.array;
-	ac = (m.t > 0 ? this_array$0[0] & 1 : m.s) === 0;
-	if (BigInteger$isEven_0$LBigInteger$($this) && ac || BigInteger$signum_0$LBigInteger$(m) === 0) {
-		return BigInteger.ZERO;
-	}
-	(u = BigInteger$clone_0$LBigInteger$(m), v = BigInteger$clone_0$LBigInteger$($this));
-	(a = BigInteger$nbv$N(1), b = BigInteger$nbv$N(0), c = BigInteger$nbv$N(0), d = BigInteger$nbv$N(1));
-	while (BigInteger$signum_0$LBigInteger$(u) !== 0) {
-		while (BigInteger$isEven_0$LBigInteger$(u)) {
-			BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$(u, 1, u);
-			if (ac) {
-				if (! BigInteger$isEven_0$LBigInteger$(a) || ! BigInteger$isEven_0$LBigInteger$(b)) {
-					BigInteger$addTo_0$LBigInteger$LBigInteger$LBigInteger$(a, $this, a);
-					BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(b, m, b);
-				}
-				BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$(a, 1, a);
-			} else {
-				if (! BigInteger$isEven_0$LBigInteger$(b)) {
-					BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(b, m, b);
-				}
-			}
-			BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$(b, 1, b);
-		}
-		while (BigInteger$isEven_0$LBigInteger$(v)) {
-			BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$(v, 1, v);
-			if (ac) {
-				if (! BigInteger$isEven_0$LBigInteger$(c) || ! BigInteger$isEven_0$LBigInteger$(d)) {
-					BigInteger$addTo_0$LBigInteger$LBigInteger$LBigInteger$(c, $this, c);
-					BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(d, m, d);
-				}
-				BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$(c, 1, c);
-			} else {
-				if (! BigInteger$isEven_0$LBigInteger$(d)) {
-					BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(d, m, d);
-				}
-			}
-			BigInteger$rShiftTo_0$LBigInteger$NLBigInteger$(d, 1, d);
-		}
-		if (BigInteger$compareTo_0$LBigInteger$LBigInteger$(u, v) >= 0) {
-			BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(u, v, u);
-			if (ac) {
-				BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(a, c, a);
-			}
-			BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(b, d, b);
-		} else {
-			BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(v, u, v);
-			if (ac) {
-				BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(c, a, c);
-			}
-			BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(d, b, d);
-		}
-	}
-	if (BigInteger$compareTo_0$LBigInteger$LBigInteger$(v, BigInteger.ONE) !== 0) {
-		return BigInteger.ZERO;
-	}
-	if (BigInteger$compareTo_0$LBigInteger$LBigInteger$(d, m) >= 0) {
-		r$0 = ({array: [], s: 0, t: 0});
-		BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(d, m, r$0);
-		return r$0;
-	}
-	if (BigInteger$signum_0$LBigInteger$(d) < 0) {
-		BigInteger$addTo_0$LBigInteger$LBigInteger$LBigInteger$(d, m, d);
-	} else {
-		return d;
-	}
-	return (BigInteger$signum_0$LBigInteger$(d) < 0 ? BigInteger$add_0$LBigInteger$LBigInteger$(d, m) : d);
-};
-
-BigInteger.modInverse_0$LBigInteger$LBigInteger$ = BigInteger$modInverse_0$LBigInteger$LBigInteger$;
 
 function BigInteger$isProbablePrime$LBigInteger$N($this, t) {
 	var i;
@@ -5888,7 +3918,7 @@ function BigInteger$isProbablePrime$LBigInteger$N($this, t) {
 	var m;
 	var j;
 	var this_array$0;
-	x = ($this.s < 0 ? BigInteger$negate_0$LBigInteger$($this) : $this);
+	x = ($this.s < 0 ? BigInteger$negate$LBigInteger$($this) : $this);
 	x_array = x.array;
 	if (x.t === 1 && x_array[0] <= BigInteger.lowprimes[BigInteger.lowprimes.length - 1]) {
 		for (i = 0; i < BigInteger.lowprimes.length; ++ i) {
@@ -5908,56 +3938,17 @@ function BigInteger$isProbablePrime$LBigInteger$N($this, t) {
 		while (j < BigInteger.lowprimes.length && m < BigInteger.lplim) {
 			m *= BigInteger.lowprimes[j++];
 		}
-		m = BigInteger$modInt_0$LBigInteger$N(x, m);
+		m = BigInteger$modInt$LBigInteger$N(x, m);
 		while (i < j) {
 			if (m % BigInteger.lowprimes[i++] === 0) {
 				return false;
 			}
 		}
 	}
-	return BigInteger$millerRabin_0$LBigInteger$N(x, t);
+	return BigInteger$millerRabin$LBigInteger$N(x, t);
 };
 
 BigInteger.isProbablePrime$LBigInteger$N = BigInteger$isProbablePrime$LBigInteger$N;
-
-function BigInteger$isProbablePrime_0$LBigInteger$N($this, t) {
-	var i;
-	var x;
-	var x_array;
-	var m;
-	var j;
-	var this_array$0;
-	x = ($this.s < 0 ? BigInteger$negate_0$LBigInteger$($this) : $this);
-	x_array = x.array;
-	if (x.t === 1 && x_array[0] <= BigInteger.lowprimes[BigInteger.lowprimes.length - 1]) {
-		for (i = 0; i < BigInteger.lowprimes.length; ++ i) {
-			if (x_array[0] === BigInteger.lowprimes[i]) {
-				return true;
-			}
-		}
-		return false;
-	}
-	this_array$0 = x.array;
-	if ((x.t > 0 ? this_array$0[0] & 1 : x.s) === 0) {
-		return false;
-	}
-	i = 1;
-	while (i < BigInteger.lowprimes.length) {
-		(m = BigInteger.lowprimes[i], j = i + 1);
-		while (j < BigInteger.lowprimes.length && m < BigInteger.lplim) {
-			m *= BigInteger.lowprimes[j++];
-		}
-		m = BigInteger$modInt_0$LBigInteger$N(x, m);
-		while (i < j) {
-			if (m % BigInteger.lowprimes[i++] === 0) {
-				return false;
-			}
-		}
-	}
-	return BigInteger$millerRabin_0$LBigInteger$N(x, t);
-};
-
-BigInteger.isProbablePrime_0$LBigInteger$N = BigInteger$isProbablePrime_0$LBigInteger$N;
 
 function BigInteger$millerRabin$LBigInteger$N($this, t) {
 	var n1;
@@ -5971,30 +3962,30 @@ function BigInteger$millerRabin$LBigInteger$N($this, t) {
 	var r$0;
 	a$0 = BigInteger.ONE;
 	r$0 = ({array: [], s: 0, t: 0});
-	BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$($this, a$0, r$0);
+	BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$($this, a$0, r$0);
 	n1 = r$0;
-	k = BigInteger$getLowestSetBit_0$LBigInteger$(r$0);
+	k = BigInteger$getLowestSetBit$LBigInteger$(r$0);
 	if (k <= 0) {
 		return false;
 	}
-	r = BigInteger$shiftRight_0$LBigInteger$N(n1, k);
+	r = BigInteger$shiftRight$LBigInteger$N(n1, k);
 	t = t + 1 >> 1;
 	if (t > BigInteger.lowprimes.length) {
 		t = BigInteger.lowprimes.length;
 	}
 	a = ({array: [], s: 0, t: 0});
 	for (i = 0; i < t; ++ i) {
-		BigInteger$fromInt_0$LBigInteger$N(a, BigInteger.lowprimes[i]);
-		y = BigInteger$modPow_0$LBigInteger$LBigInteger$LBigInteger$(a, r, $this);
-		if (BigInteger$compareTo_0$LBigInteger$LBigInteger$(y, BigInteger.ONE) !== 0 && BigInteger$compareTo_0$LBigInteger$LBigInteger$(y, n1) !== 0) {
+		BigInteger$fromInt$LBigInteger$N(a, BigInteger.lowprimes[i]);
+		y = BigInteger$modPow$LBigInteger$LBigInteger$LBigInteger$(a, r, $this);
+		if (BigInteger$compareTo$LBigInteger$LBigInteger$(y, BigInteger.ONE) !== 0 && BigInteger$compareTo$LBigInteger$LBigInteger$(y, n1) !== 0) {
 			j = 1;
-			while (j++ < k && BigInteger$compareTo_0$LBigInteger$LBigInteger$(y, n1) !== 0) {
-				y = BigInteger$modPowInt_0$LBigInteger$NLBigInteger$(y, 2, $this);
-				if (BigInteger$compareTo_0$LBigInteger$LBigInteger$(y, BigInteger.ONE) === 0) {
+			while (j++ < k && BigInteger$compareTo$LBigInteger$LBigInteger$(y, n1) !== 0) {
+				y = BigInteger$modPowInt$LBigInteger$NLBigInteger$(y, 2, $this);
+				if (BigInteger$compareTo$LBigInteger$LBigInteger$(y, BigInteger.ONE) === 0) {
 					return false;
 				}
 			}
-			if (BigInteger$compareTo_0$LBigInteger$LBigInteger$(y, n1) !== 0) {
+			if (BigInteger$compareTo$LBigInteger$LBigInteger$(y, n1) !== 0) {
 				return false;
 			}
 		}
@@ -6003,51 +3994,6 @@ function BigInteger$millerRabin$LBigInteger$N($this, t) {
 };
 
 BigInteger.millerRabin$LBigInteger$N = BigInteger$millerRabin$LBigInteger$N;
-
-function BigInteger$millerRabin_0$LBigInteger$N($this, t) {
-	var n1;
-	var k;
-	var r;
-	var a;
-	var i;
-	var y;
-	var j;
-	var a$0;
-	var r$0;
-	a$0 = BigInteger.ONE;
-	r$0 = ({array: [], s: 0, t: 0});
-	BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$($this, a$0, r$0);
-	n1 = r$0;
-	k = BigInteger$getLowestSetBit_0$LBigInteger$(r$0);
-	if (k <= 0) {
-		return false;
-	}
-	r = BigInteger$shiftRight_0$LBigInteger$N(n1, k);
-	t = t + 1 >> 1;
-	if (t > BigInteger.lowprimes.length) {
-		t = BigInteger.lowprimes.length;
-	}
-	a = ({array: [], s: 0, t: 0});
-	for (i = 0; i < t; ++ i) {
-		BigInteger$fromInt_0$LBigInteger$N(a, BigInteger.lowprimes[i]);
-		y = BigInteger$modPow_0$LBigInteger$LBigInteger$LBigInteger$(a, r, $this);
-		if (BigInteger$compareTo_0$LBigInteger$LBigInteger$(y, BigInteger.ONE) !== 0 && BigInteger$compareTo_0$LBigInteger$LBigInteger$(y, n1) !== 0) {
-			j = 1;
-			while (j++ < k && BigInteger$compareTo_0$LBigInteger$LBigInteger$(y, n1) !== 0) {
-				y = BigInteger$modPowInt_0$LBigInteger$NLBigInteger$(y, 2, $this);
-				if (BigInteger$compareTo_0$LBigInteger$LBigInteger$(y, BigInteger.ONE) === 0) {
-					return false;
-				}
-			}
-			if (BigInteger$compareTo_0$LBigInteger$LBigInteger$(y, n1) !== 0) {
-				return false;
-			}
-		}
-	}
-	return true;
-};
-
-BigInteger.millerRabin_0$LBigInteger$N = BigInteger$millerRabin_0$LBigInteger$N;
 
 function Reducer() {
 };
@@ -6063,7 +4009,7 @@ $__jsx_extend([Classic], Object);
 $__jsx_merge_interface(Classic, Reducer);
 
 Classic.prototype.convert$LBigInteger$ = function (x) {
-	return (x.s < 0 || BigInteger$compareTo_0$LBigInteger$LBigInteger$(x, this.m) >= 0 ? BigInteger$mod_0$LBigInteger$LBigInteger$(x, this.m) : x);
+	return (x.s < 0 || BigInteger$compareTo$LBigInteger$LBigInteger$(x, this.m) >= 0 ? BigInteger$mod$LBigInteger$LBigInteger$(x, this.m) : x);
 };
 
 
@@ -6073,26 +4019,26 @@ Classic.prototype.revert$LBigInteger$ = function (x) {
 
 
 Classic.prototype.reduce$LBigInteger$ = function (x) {
-	BigInteger$divRemTo_0$LBigInteger$LBigInteger$LBigInteger$LBigInteger$(x, this.m, null, x);
+	BigInteger$divRemTo$LBigInteger$LBigInteger$LBigInteger$LBigInteger$(x, this.m, null, x);
 };
 
 
 Classic.prototype.mulTo$LBigInteger$LBigInteger$LBigInteger$ = function (x, y, r) {
-	BigInteger$multiplyTo_0$LBigInteger$LBigInteger$LBigInteger$(x, y, r);
-	BigInteger$divRemTo_0$LBigInteger$LBigInteger$LBigInteger$LBigInteger$(r, this.m, null, r);
+	BigInteger$multiplyTo$LBigInteger$LBigInteger$LBigInteger$(x, y, r);
+	BigInteger$divRemTo$LBigInteger$LBigInteger$LBigInteger$LBigInteger$(r, this.m, null, r);
 };
 
 
 Classic.prototype.sqrTo$LBigInteger$LBigInteger$ = function (x, r) {
-	BigInteger$squareTo_0$LBigInteger$LBigInteger$(x, r);
-	BigInteger$divRemTo_0$LBigInteger$LBigInteger$LBigInteger$LBigInteger$(r, this.m, null, r);
+	BigInteger$squareTo$LBigInteger$LBigInteger$(x, r);
+	BigInteger$divRemTo$LBigInteger$LBigInteger$LBigInteger$LBigInteger$(r, this.m, null, r);
 };
 
 
 function Montgomery(m) {
 	var mp$0;
 	this.m = m;
-	mp$0 = this.mp = BigInteger$invDigit_0$LBigInteger$(m);
+	mp$0 = this.mp = BigInteger$invDigit$LBigInteger$(m);
 	this.mpl = mp$0 & 0x7fff;
 	this.mph = mp$0 >> 15;
 	this.um = (1 << BigInteger.DB - 15) - 1;
@@ -6105,10 +4051,10 @@ $__jsx_merge_interface(Montgomery, Reducer);
 Montgomery.prototype.convert$LBigInteger$ = function (x) {
 	var r;
 	r = ({array: [], s: 0, t: 0});
-	BigInteger$dlShiftTo_0$LBigInteger$NLBigInteger$(x.s < 0 ? BigInteger$negate_0$LBigInteger$(x) : x, this.m.t, r);
-	BigInteger$divRemTo_0$LBigInteger$LBigInteger$LBigInteger$LBigInteger$(r, this.m, null, r);
-	if (x.s < 0 && BigInteger$compareTo_0$LBigInteger$LBigInteger$(r, BigInteger.ZERO) > 0) {
-		BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(this.m, r, r);
+	BigInteger$dlShiftTo$LBigInteger$NLBigInteger$(x.s < 0 ? BigInteger$negate$LBigInteger$(x) : x, this.m.t, r);
+	BigInteger$divRemTo$LBigInteger$LBigInteger$LBigInteger$LBigInteger$(r, this.m, null, r);
+	if (x.s < 0 && BigInteger$compareTo$LBigInteger$LBigInteger$(r, BigInteger.ZERO) > 0) {
+		BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(this.m, r, r);
 	}
 	return r;
 };
@@ -6117,7 +4063,7 @@ Montgomery.prototype.convert$LBigInteger$ = function (x) {
 Montgomery.prototype.revert$LBigInteger$ = function (x) {
 	var r;
 	r = ({array: [], s: 0, t: 0});
-	BigInteger$copyTo_0$LBigInteger$LBigInteger$(x, r);
+	BigInteger$copyTo$LBigInteger$LBigInteger$(x, r);
 	this.reduce$LBigInteger$(r);
 	return r;
 };
@@ -6143,22 +4089,22 @@ Montgomery.prototype.reduce$LBigInteger$ = function (x) {
 			x_array[++ j]++;
 		}
 	}
-	BigInteger$clamp_0$LBigInteger$(x);
-	BigInteger$drShiftTo_0$LBigInteger$NLBigInteger$(x, this.m.t, x);
-	if (BigInteger$compareTo_0$LBigInteger$LBigInteger$(x, this.m) >= 0) {
-		BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(x, this.m, x);
+	BigInteger$clamp$LBigInteger$(x);
+	BigInteger$drShiftTo$LBigInteger$NLBigInteger$(x, this.m.t, x);
+	if (BigInteger$compareTo$LBigInteger$LBigInteger$(x, this.m) >= 0) {
+		BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(x, this.m, x);
 	}
 };
 
 
 Montgomery.prototype.sqrTo$LBigInteger$LBigInteger$ = function (x, r) {
-	BigInteger$squareTo_0$LBigInteger$LBigInteger$(x, r);
+	BigInteger$squareTo$LBigInteger$LBigInteger$(x, r);
 	this.reduce$LBigInteger$(r);
 };
 
 
 Montgomery.prototype.mulTo$LBigInteger$LBigInteger$LBigInteger$ = function (x, y, r) {
-	BigInteger$multiplyTo_0$LBigInteger$LBigInteger$LBigInteger$(x, y, r);
+	BigInteger$multiplyTo$LBigInteger$LBigInteger$LBigInteger$(x, y, r);
 	this.reduce$LBigInteger$(r);
 };
 
@@ -6184,26 +4130,24 @@ NullExp.prototype.reduce$LBigInteger$ = function (x) {
 
 
 NullExp.prototype.mulTo$LBigInteger$LBigInteger$LBigInteger$ = function (x, y, r) {
-	BigInteger$multiplyTo_0$LBigInteger$LBigInteger$LBigInteger$(x, y, r);
+	BigInteger$multiplyTo$LBigInteger$LBigInteger$LBigInteger$(x, y, r);
 };
 
 
 NullExp.prototype.sqrTo$LBigInteger$LBigInteger$ = function (x, r) {
-	BigInteger$squareTo_0$LBigInteger$LBigInteger$(x, r);
+	BigInteger$squareTo$LBigInteger$LBigInteger$(x, r);
 };
 
 
 function Barrett(m) {
-	var $this$0;
 	var r$0;
 	this.mu = null;
 	this.m = null;
 	this.r2 = ({array: [], s: 0, t: 0});
 	this.q3 = ({array: [], s: 0, t: 0});
-	BigInteger$dlShiftTo_0$LBigInteger$NLBigInteger$(BigInteger.ONE, 2 * m.t, this.r2);
-	$this$0 = this.r2;
+	BigInteger$dlShiftTo$LBigInteger$NLBigInteger$(BigInteger.ONE, 2 * m.t, this.r2);
 	r$0 = ({array: [], s: 0, t: 0});
-	BigInteger$divRemTo_0$LBigInteger$LBigInteger$LBigInteger$LBigInteger$($this$0, m, r$0, null);
+	BigInteger$divRemTo$LBigInteger$LBigInteger$LBigInteger$LBigInteger$(this.r2, m, r$0, null);
 	this.mu = r$0;
 	this.m = m;
 };
@@ -6214,13 +4158,13 @@ $__jsx_merge_interface(Barrett, Reducer);
 Barrett.prototype.convert$LBigInteger$ = function (x) {
 	var r;
 	if (x.s < 0 || x.t > 2 * this.m.t) {
-		return BigInteger$mod_0$LBigInteger$LBigInteger$(x, this.m);
+		return BigInteger$mod$LBigInteger$LBigInteger$(x, this.m);
 	} else {
-		if (BigInteger$compareTo_0$LBigInteger$LBigInteger$(x, this.m) < 0) {
+		if (BigInteger$compareTo$LBigInteger$LBigInteger$(x, this.m) < 0) {
 			return x;
 		} else {
 			r = ({array: [], s: 0, t: 0});
-			BigInteger$copyTo_0$LBigInteger$LBigInteger$(x, r);
+			BigInteger$copyTo$LBigInteger$LBigInteger$(x, r);
 			this.reduce$LBigInteger$(r);
 			return r;
 		}
@@ -6235,31 +4179,31 @@ Barrett.prototype.revert$LBigInteger$ = function (x) {
 
 Barrett.prototype.reduce$LBigInteger$ = function (x) {
 	var m$0;
-	BigInteger$drShiftTo_0$LBigInteger$NLBigInteger$(x, this.m.t - 1, this.r2);
+	BigInteger$drShiftTo$LBigInteger$NLBigInteger$(x, this.m.t - 1, this.r2);
 	if (x.t > this.m.t + 1) {
 		x.t = this.m.t + 1;
-		BigInteger$clamp_0$LBigInteger$(x);
+		BigInteger$clamp$LBigInteger$(x);
 	}
-	BigInteger$multiplyUpperTo_0$LBigInteger$LBigInteger$NLBigInteger$(this.mu, this.r2, this.m.t + 1, this.q3);
-	BigInteger$multiplyLowerTo_0$LBigInteger$LBigInteger$NLBigInteger$(m$0 = this.m, this.q3, m$0.t + 1, this.r2);
-	while (BigInteger$compareTo_0$LBigInteger$LBigInteger$(x, this.r2) < 0) {
-		BigInteger$dAddOffset_0$LBigInteger$NN(x, 1, this.m.t + 1);
+	BigInteger$multiplyUpperTo$LBigInteger$LBigInteger$NLBigInteger$(this.mu, this.r2, this.m.t + 1, this.q3);
+	BigInteger$multiplyLowerTo$LBigInteger$LBigInteger$NLBigInteger$(m$0 = this.m, this.q3, m$0.t + 1, this.r2);
+	while (BigInteger$compareTo$LBigInteger$LBigInteger$(x, this.r2) < 0) {
+		BigInteger$dAddOffset$LBigInteger$NN(x, 1, this.m.t + 1);
 	}
-	BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(x, this.r2, x);
-	while (BigInteger$compareTo_0$LBigInteger$LBigInteger$(x, this.m) >= 0) {
-		BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$(x, this.m, x);
+	BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(x, this.r2, x);
+	while (BigInteger$compareTo$LBigInteger$LBigInteger$(x, this.m) >= 0) {
+		BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(x, this.m, x);
 	}
 };
 
 
 Barrett.prototype.sqrTo$LBigInteger$LBigInteger$ = function (x, r) {
-	BigInteger$squareTo_0$LBigInteger$LBigInteger$(x, r);
+	BigInteger$squareTo$LBigInteger$LBigInteger$(x, r);
 	this.reduce$LBigInteger$(r);
 };
 
 
 Barrett.prototype.mulTo$LBigInteger$LBigInteger$LBigInteger$ = function (x, y, r) {
-	BigInteger$multiplyTo_0$LBigInteger$LBigInteger$LBigInteger$(x, y, r);
+	BigInteger$multiplyTo$LBigInteger$LBigInteger$LBigInteger$(x, y, r);
 	this.reduce$LBigInteger$(r);
 };
 
@@ -6292,27 +4236,6 @@ function Arcfour$init$LArcfour$AN($this, key) {
 
 Arcfour.init$LArcfour$AN = Arcfour$init$LArcfour$AN;
 
-function Arcfour$init_0$LArcfour$AN($this, key) {
-	var i;
-	var j;
-	var t;
-	var S$0;
-	for (i = 0; i < 256; ++ i) {
-		$this.S[i] = i;
-	}
-	j = 0;
-	for (i = 0; i < 256; ++ i) {
-		j = j + (S$0 = $this.S)[i] + key[i % key.length] & 255;
-		t = S$0[i];
-		$this.S[i] = $this.S[j];
-		$this.S[j] = t;
-	}
-	$this.i = 0;
-	$this.j = 0;
-};
-
-Arcfour.init_0$LArcfour$AN = Arcfour$init_0$LArcfour$AN;
-
 function Arcfour$next$LArcfour$($this) {
 	var t;
 	var i$0;
@@ -6327,21 +4250,6 @@ function Arcfour$next$LArcfour$($this) {
 };
 
 Arcfour.next$LArcfour$ = Arcfour$next$LArcfour$;
-
-function Arcfour$next_0$LArcfour$($this) {
-	var t;
-	var i$0;
-	var S$0;
-	var S$1;
-	i$0 = $this.i = $this.i + 1 & 255;
-	$this.j = $this.j + (S$0 = $this.S)[i$0] & 255;
-	t = S$0[i$0];
-	$this.S[$this.i] = $this.S[$this.j];
-	$this.S[$this.j] = t;
-	return (S$1 = $this.S)[t + S$1[$this.i] & 255];
-};
-
-Arcfour.next_0$LArcfour$ = Arcfour$next_0$LArcfour$;
 
 function RNG() {
 };
@@ -6392,13 +4300,13 @@ function RNG$get_byte$() {
 	if (RNG.state == null) {
 		RNG$seed_int$N(1122926989487);
 		RNG.state = ({i: 0, j: 0, S: []});
-		Arcfour$init_0$LArcfour$AN(RNG.state, RNG.pool);
+		Arcfour$init$LArcfour$AN(RNG.state, RNG.pool);
 		for (RNG.pptr = 0; RNG.pptr < RNG.pool.length; ++ RNG.pptr) {
 			RNG.pool[RNG.pptr] = 0;
 		}
 		RNG.pptr = 0;
 	}
-	return Arcfour$next_0$LArcfour$(RNG.state);
+	return Arcfour$next$LArcfour$(RNG.state);
 };
 
 RNG.get_byte$ = RNG$get_byte$;
@@ -6422,11 +4330,11 @@ SecureRandom.prototype.nextBytes$AN = function (ba) {
 };
 
 
-function SecureRandom$nextBytes_0$LSecureRandom$AN($this, ba) {
+function SecureRandom$nextBytes$LSecureRandom$AN($this, ba) {
 	RNG$get_bytes$AN(ba);
 };
 
-SecureRandom.nextBytes_0$LSecureRandom$AN = SecureRandom$nextBytes_0$LSecureRandom$AN;
+SecureRandom.nextBytes$LSecureRandom$AN = SecureRandom$nextBytes$LSecureRandom$AN;
 
 function RSAKey() {
 	this.n = null;
@@ -6449,62 +4357,29 @@ function RSAKey$setPublic$LRSAKey$USUS($this, N, E) {
 
 RSAKey.setPublic$LRSAKey$USUS = RSAKey$setPublic$LRSAKey$USUS;
 
-function RSAKey$setPublic_0$LRSAKey$USUS($this, N, E) {
-	if (N != null && E != null && N.length > 0 && E.length > 0) {
-		$this.n = new BigInteger$2(N, 16);
-		$this.e = $__jsx_parseInt(E, 16);
-	}
-};
-
-RSAKey.setPublic_0$LRSAKey$USUS = RSAKey$setPublic_0$LRSAKey$USUS;
-
 function RSAKey$doPublic$LRSAKey$LBigInteger$($this, x) {
-	return BigInteger$modPowInt_0$LBigInteger$NLBigInteger$(x, $this.e, $this.n);
+	return BigInteger$modPowInt$LBigInteger$NLBigInteger$(x, $this.e, $this.n);
 };
 
 RSAKey.doPublic$LRSAKey$LBigInteger$ = RSAKey$doPublic$LRSAKey$LBigInteger$;
-
-function RSAKey$doPublic_0$LRSAKey$LBigInteger$($this, x) {
-	return BigInteger$modPowInt_0$LBigInteger$NLBigInteger$(x, $this.e, $this.n);
-};
-
-RSAKey.doPublic_0$LRSAKey$LBigInteger$ = RSAKey$doPublic_0$LRSAKey$LBigInteger$;
 
 function RSAKey$encrypt$LRSAKey$S($this, text) {
 	var m;
 	var c;
 	var h;
-	m = RSAKey$pkcs1pad2$SN(text, BigInteger$bitLength_0$LBigInteger$($this.n) + 7 >> 3);
+	m = RSAKey$pkcs1pad2$SN(text, BigInteger$bitLength$LBigInteger$($this.n) + 7 >> 3);
 	if (m == null) {
 		return null;
 	}
-	c = BigInteger$modPowInt_0$LBigInteger$NLBigInteger$(m, $this.e, $this.n);
+	c = BigInteger$modPowInt$LBigInteger$NLBigInteger$(m, $this.e, $this.n);
 	if (c == null) {
 		return null;
 	}
-	h = BigInteger$toString_0$LBigInteger$N(c, 16);
+	h = BigInteger$toString$LBigInteger$N(c, 16);
 	return ((h.length & 1) === 0 ? h : "0" + h);
 };
 
 RSAKey.encrypt$LRSAKey$S = RSAKey$encrypt$LRSAKey$S;
-
-function RSAKey$encrypt_0$LRSAKey$S($this, text) {
-	var m;
-	var c;
-	var h;
-	m = RSAKey$pkcs1pad2$SN(text, BigInteger$bitLength_0$LBigInteger$($this.n) + 7 >> 3);
-	if (m == null) {
-		return null;
-	}
-	c = BigInteger$modPowInt_0$LBigInteger$NLBigInteger$(m, $this.e, $this.n);
-	if (c == null) {
-		return null;
-	}
-	h = BigInteger$toString_0$LBigInteger$N(c, 16);
-	return ((h.length & 1) === 0 ? h : "0" + h);
-};
-
-RSAKey.encrypt_0$LRSAKey$S = RSAKey$encrypt_0$LRSAKey$S;
 
 function RSAKey$setPrivate$LRSAKey$USUSS($this, N, E, D) {
 	if (N != null && E != null && N.length > 0 && E.length > 0) {
@@ -6515,16 +4390,6 @@ function RSAKey$setPrivate$LRSAKey$USUSS($this, N, E, D) {
 };
 
 RSAKey.setPrivate$LRSAKey$USUSS = RSAKey$setPrivate$LRSAKey$USUSS;
-
-function RSAKey$setPrivate_0$LRSAKey$USUSS($this, N, E, D) {
-	if (N != null && E != null && N.length > 0 && E.length > 0) {
-		$this.n = new BigInteger$2(N, 16);
-		$this.e = $__jsx_parseInt(E, 16);
-		$this.d = new BigInteger$2(D, 16);
-	}
-};
-
-RSAKey.setPrivate_0$LRSAKey$USUSS = RSAKey$setPrivate_0$LRSAKey$USUSS;
 
 function RSAKey$setPrivateEx$LRSAKey$USUSSSSSSS($this, N, E, D, P, Q, DP, DQ, C) {
 	if (N != null && E != null && N.length > 0 && E.length > 0) {
@@ -6541,21 +4406,6 @@ function RSAKey$setPrivateEx$LRSAKey$USUSSSSSSS($this, N, E, D, P, Q, DP, DQ, C)
 
 RSAKey.setPrivateEx$LRSAKey$USUSSSSSSS = RSAKey$setPrivateEx$LRSAKey$USUSSSSSSS;
 
-function RSAKey$setPrivateEx_0$LRSAKey$USUSSSSSSS($this, N, E, D, P, Q, DP, DQ, C) {
-	if (N != null && E != null && N.length > 0 && E.length > 0) {
-		$this.n = new BigInteger$2(N, 16);
-		$this.e = $__jsx_parseInt(E, 16);
-		$this.d = new BigInteger$2(D, 16);
-		$this.p = new BigInteger$2(P, 16);
-		$this.q = new BigInteger$2(Q, 16);
-		$this.dmp1 = new BigInteger$2(DP, 16);
-		$this.dmq1 = new BigInteger$2(DQ, 16);
-		$this.coeff = new BigInteger$2(C, 16);
-	}
-};
-
-RSAKey.setPrivateEx_0$LRSAKey$USUSSSSSSS = RSAKey$setPrivateEx_0$LRSAKey$USUSSSSSSS;
-
 function RSAKey$generate$LRSAKey$NS($this, B, E) {
 	var rng;
 	var qs;
@@ -6564,14 +4414,11 @@ function RSAKey$generate$LRSAKey$NS($this, B, E) {
 	var p1;
 	var q1;
 	var phi;
-	var $this$0;
 	var a$0;
 	var r$0;
-	var $this$1;
 	var a$1;
 	var r$1;
 	var r$2;
-	var $this$2;
 	var a$2;
 	var r$3;
 	var p$0;
@@ -6584,44 +4431,41 @@ function RSAKey$generate$LRSAKey$NS($this, B, E) {
 	for (; ; ) {
 		for (; ; ) {
 			p$0 = $this.p = new BigInteger$0(B - qs, 1, rng);
-			if (BigInteger$compareTo_0$LBigInteger$LBigInteger$(BigInteger$gcd_0$LBigInteger$LBigInteger$(BigInteger$subtract_0$LBigInteger$LBigInteger$(p$0, BigInteger.ONE), ee), BigInteger.ONE) === 0 && BigInteger$isProbablePrime_0$LBigInteger$N($this.p, 10)) {
+			if (BigInteger$compareTo$LBigInteger$LBigInteger$(BigInteger$gcd$LBigInteger$LBigInteger$(BigInteger$subtract$LBigInteger$LBigInteger$(p$0, BigInteger.ONE), ee), BigInteger.ONE) === 0 && BigInteger$isProbablePrime$LBigInteger$N($this.p, 10)) {
 				break;
 			}
 		}
 		for (; ; ) {
 			q$0 = $this.q = new BigInteger$0(qs, 1, rng);
-			if (BigInteger$compareTo_0$LBigInteger$LBigInteger$(BigInteger$gcd_0$LBigInteger$LBigInteger$(BigInteger$subtract_0$LBigInteger$LBigInteger$(q$0, BigInteger.ONE), ee), BigInteger.ONE) === 0 && BigInteger$isProbablePrime_0$LBigInteger$N($this.q, 10)) {
+			if (BigInteger$compareTo$LBigInteger$LBigInteger$(BigInteger$gcd$LBigInteger$LBigInteger$(BigInteger$subtract$LBigInteger$LBigInteger$(q$0, BigInteger.ONE), ee), BigInteger.ONE) === 0 && BigInteger$isProbablePrime$LBigInteger$N($this.q, 10)) {
 				break;
 			}
 		}
-		if (BigInteger$compareTo_0$LBigInteger$LBigInteger$($this.p, $this.q) <= 0) {
+		if (BigInteger$compareTo$LBigInteger$LBigInteger$($this.p, $this.q) <= 0) {
 			t = $this.p;
 			$this.p = $this.q;
 			$this.q = t;
 		}
-		$this$0 = $this.p;
 		a$0 = BigInteger.ONE;
 		r$0 = ({array: [], s: 0, t: 0});
-		BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$($this$0, a$0, r$0);
+		BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$($this.p, a$0, r$0);
 		p1 = r$0;
-		$this$1 = $this.q;
 		a$1 = BigInteger.ONE;
 		r$1 = ({array: [], s: 0, t: 0});
-		BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$($this$1, a$1, r$1);
+		BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$($this.q, a$1, r$1);
 		q1 = r$1;
 		r$2 = ({array: [], s: 0, t: 0});
-		BigInteger$multiplyTo_0$LBigInteger$LBigInteger$LBigInteger$(p1, q1, r$2);
+		BigInteger$multiplyTo$LBigInteger$LBigInteger$LBigInteger$(p1, q1, r$2);
 		phi = r$2;
-		if (BigInteger$compareTo_0$LBigInteger$LBigInteger$(BigInteger$gcd_0$LBigInteger$LBigInteger$(r$2, ee), BigInteger.ONE) === 0) {
-			$this$2 = $this.p;
+		if (BigInteger$compareTo$LBigInteger$LBigInteger$(BigInteger$gcd$LBigInteger$LBigInteger$(r$2, ee), BigInteger.ONE) === 0) {
 			a$2 = $this.q;
 			r$3 = ({array: [], s: 0, t: 0});
-			BigInteger$multiplyTo_0$LBigInteger$LBigInteger$LBigInteger$($this$2, a$2, r$3);
+			BigInteger$multiplyTo$LBigInteger$LBigInteger$LBigInteger$($this.p, a$2, r$3);
 			$this.n = r$3;
-			d$0 = $this.d = BigInteger$modInverse_0$LBigInteger$LBigInteger$(ee, phi);
-			$this.dmp1 = BigInteger$mod_0$LBigInteger$LBigInteger$(d$0, p1);
-			$this.dmq1 = BigInteger$mod_0$LBigInteger$LBigInteger$($this.d, q1);
-			$this.coeff = BigInteger$modInverse_0$LBigInteger$LBigInteger$($this.q, $this.p);
+			d$0 = $this.d = BigInteger$modInverse$LBigInteger$LBigInteger$(ee, phi);
+			$this.dmp1 = BigInteger$mod$LBigInteger$LBigInteger$(d$0, p1);
+			$this.dmq1 = BigInteger$mod$LBigInteger$LBigInteger$($this.d, q1);
+			$this.coeff = BigInteger$modInverse$LBigInteger$LBigInteger$($this.q, $this.p);
 			break;
 		}
 	}
@@ -6629,164 +4473,48 @@ function RSAKey$generate$LRSAKey$NS($this, B, E) {
 
 RSAKey.generate$LRSAKey$NS = RSAKey$generate$LRSAKey$NS;
 
-function RSAKey$generate_0$LRSAKey$NS($this, B, E) {
-	var rng;
-	var qs;
-	var ee;
-	var t;
-	var p1;
-	var q1;
-	var phi;
-	var $this$0;
-	var a$0;
-	var r$0;
-	var $this$1;
-	var a$1;
-	var r$1;
-	var r$2;
-	var $this$2;
-	var a$2;
-	var r$3;
-	var p$0;
-	var q$0;
-	var d$0;
-	rng = new SecureRandom();
-	qs = B >> 1;
-	$this.e = $__jsx_parseInt(E, 16);
-	ee = new BigInteger$2(E, 16);
-	for (; ; ) {
-		for (; ; ) {
-			p$0 = $this.p = new BigInteger$0(B - qs, 1, rng);
-			if (BigInteger$compareTo_0$LBigInteger$LBigInteger$(BigInteger$gcd_0$LBigInteger$LBigInteger$(BigInteger$subtract_0$LBigInteger$LBigInteger$(p$0, BigInteger.ONE), ee), BigInteger.ONE) === 0 && BigInteger$isProbablePrime_0$LBigInteger$N($this.p, 10)) {
-				break;
-			}
-		}
-		for (; ; ) {
-			q$0 = $this.q = new BigInteger$0(qs, 1, rng);
-			if (BigInteger$compareTo_0$LBigInteger$LBigInteger$(BigInteger$gcd_0$LBigInteger$LBigInteger$(BigInteger$subtract_0$LBigInteger$LBigInteger$(q$0, BigInteger.ONE), ee), BigInteger.ONE) === 0 && BigInteger$isProbablePrime_0$LBigInteger$N($this.q, 10)) {
-				break;
-			}
-		}
-		if (BigInteger$compareTo_0$LBigInteger$LBigInteger$($this.p, $this.q) <= 0) {
-			t = $this.p;
-			$this.p = $this.q;
-			$this.q = t;
-		}
-		$this$0 = $this.p;
-		a$0 = BigInteger.ONE;
-		r$0 = ({array: [], s: 0, t: 0});
-		BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$($this$0, a$0, r$0);
-		p1 = r$0;
-		$this$1 = $this.q;
-		a$1 = BigInteger.ONE;
-		r$1 = ({array: [], s: 0, t: 0});
-		BigInteger$subTo_0$LBigInteger$LBigInteger$LBigInteger$($this$1, a$1, r$1);
-		q1 = r$1;
-		r$2 = ({array: [], s: 0, t: 0});
-		BigInteger$multiplyTo_0$LBigInteger$LBigInteger$LBigInteger$(p1, q1, r$2);
-		phi = r$2;
-		if (BigInteger$compareTo_0$LBigInteger$LBigInteger$(BigInteger$gcd_0$LBigInteger$LBigInteger$(r$2, ee), BigInteger.ONE) === 0) {
-			$this$2 = $this.p;
-			a$2 = $this.q;
-			r$3 = ({array: [], s: 0, t: 0});
-			BigInteger$multiplyTo_0$LBigInteger$LBigInteger$LBigInteger$($this$2, a$2, r$3);
-			$this.n = r$3;
-			d$0 = $this.d = BigInteger$modInverse_0$LBigInteger$LBigInteger$(ee, phi);
-			$this.dmp1 = BigInteger$mod_0$LBigInteger$LBigInteger$(d$0, p1);
-			$this.dmq1 = BigInteger$mod_0$LBigInteger$LBigInteger$($this.d, q1);
-			$this.coeff = BigInteger$modInverse_0$LBigInteger$LBigInteger$($this.q, $this.p);
-			break;
-		}
-	}
-};
-
-RSAKey.generate_0$LRSAKey$NS = RSAKey$generate_0$LRSAKey$NS;
-
 function RSAKey$doPrivate$LRSAKey$LBigInteger$($this, x) {
 	var xp;
 	var xq;
 	var a$0;
 	var r$0;
-	var $this$0;
+	var this$0;
 	var r$1;
-	var $this$1;
+	var this$1;
 	var a$1;
 	var r$2;
 	if ($this.p == null || $this.q == null) {
-		return BigInteger$modPow_0$LBigInteger$LBigInteger$LBigInteger$(x, $this.d, $this.n);
+		return BigInteger$modPow$LBigInteger$LBigInteger$LBigInteger$(x, $this.d, $this.n);
 	}
-	xp = BigInteger$modPow_0$LBigInteger$LBigInteger$LBigInteger$(BigInteger$mod_0$LBigInteger$LBigInteger$(x, $this.p), $this.dmp1, $this.p);
-	xq = BigInteger$modPow_0$LBigInteger$LBigInteger$LBigInteger$(BigInteger$mod_0$LBigInteger$LBigInteger$(x, $this.q), $this.dmq1, $this.q);
-	while (BigInteger$compareTo_0$LBigInteger$LBigInteger$(xp, xq) < 0) {
+	xp = BigInteger$modPow$LBigInteger$LBigInteger$LBigInteger$(BigInteger$mod$LBigInteger$LBigInteger$(x, $this.p), $this.dmp1, $this.p);
+	xq = BigInteger$modPow$LBigInteger$LBigInteger$LBigInteger$(BigInteger$mod$LBigInteger$LBigInteger$(x, $this.q), $this.dmq1, $this.q);
+	while (BigInteger$compareTo$LBigInteger$LBigInteger$(xp, xq) < 0) {
 		a$0 = $this.p;
 		r$0 = ({array: [], s: 0, t: 0});
-		BigInteger$addTo_0$LBigInteger$LBigInteger$LBigInteger$(xp, a$0, r$0);
+		BigInteger$addTo$LBigInteger$LBigInteger$LBigInteger$(xp, a$0, r$0);
 		xp = r$0;
 	}
-	$this$1 = BigInteger$mod_0$LBigInteger$LBigInteger$(BigInteger$multiply_0$LBigInteger$LBigInteger$(BigInteger$subtract_0$LBigInteger$LBigInteger$(xp, xq), $this.coeff), $this.p);
+	this$1 = BigInteger$mod$LBigInteger$LBigInteger$(BigInteger$multiply$LBigInteger$LBigInteger$(BigInteger$subtract$LBigInteger$LBigInteger$(xp, xq), $this.coeff), $this.p);
 	a$1 = $this.q;
 	r$2 = ({array: [], s: 0, t: 0});
-	BigInteger$multiplyTo_0$LBigInteger$LBigInteger$LBigInteger$($this$1, a$1, r$2);
-	$this$0 = r$2;
+	BigInteger$multiplyTo$LBigInteger$LBigInteger$LBigInteger$(this$1, a$1, r$2);
+	this$0 = r$2;
 	r$1 = ({array: [], s: 0, t: 0});
-	BigInteger$addTo_0$LBigInteger$LBigInteger$LBigInteger$($this$0, xq, r$1);
+	BigInteger$addTo$LBigInteger$LBigInteger$LBigInteger$(this$0, xq, r$1);
 	return r$1;
 };
 
 RSAKey.doPrivate$LRSAKey$LBigInteger$ = RSAKey$doPrivate$LRSAKey$LBigInteger$;
 
-function RSAKey$doPrivate_0$LRSAKey$LBigInteger$($this, x) {
-	var xp;
-	var xq;
-	var a$0;
-	var r$0;
-	var $this$0;
-	var r$1;
-	var $this$1;
-	var a$1;
-	var r$2;
-	if ($this.p == null || $this.q == null) {
-		return BigInteger$modPow_0$LBigInteger$LBigInteger$LBigInteger$(x, $this.d, $this.n);
-	}
-	xp = BigInteger$modPow_0$LBigInteger$LBigInteger$LBigInteger$(BigInteger$mod_0$LBigInteger$LBigInteger$(x, $this.p), $this.dmp1, $this.p);
-	xq = BigInteger$modPow_0$LBigInteger$LBigInteger$LBigInteger$(BigInteger$mod_0$LBigInteger$LBigInteger$(x, $this.q), $this.dmq1, $this.q);
-	while (BigInteger$compareTo_0$LBigInteger$LBigInteger$(xp, xq) < 0) {
-		a$0 = $this.p;
-		r$0 = ({array: [], s: 0, t: 0});
-		BigInteger$addTo_0$LBigInteger$LBigInteger$LBigInteger$(xp, a$0, r$0);
-		xp = r$0;
-	}
-	$this$1 = BigInteger$mod_0$LBigInteger$LBigInteger$(BigInteger$multiply_0$LBigInteger$LBigInteger$(BigInteger$subtract_0$LBigInteger$LBigInteger$(xp, xq), $this.coeff), $this.p);
-	a$1 = $this.q;
-	r$2 = ({array: [], s: 0, t: 0});
-	BigInteger$multiplyTo_0$LBigInteger$LBigInteger$LBigInteger$($this$1, a$1, r$2);
-	$this$0 = r$2;
-	r$1 = ({array: [], s: 0, t: 0});
-	BigInteger$addTo_0$LBigInteger$LBigInteger$LBigInteger$($this$0, xq, r$1);
-	return r$1;
-};
-
-RSAKey.doPrivate_0$LRSAKey$LBigInteger$ = RSAKey$doPrivate_0$LRSAKey$LBigInteger$;
-
 function RSAKey$decrypt$LRSAKey$S($this, ctext) {
 	var c;
 	var m;
 	c = new BigInteger$2(ctext, 16);
-	m = RSAKey$doPrivate_0$LRSAKey$LBigInteger$($this, c);
-	return (m == null ? null : RSAKey$pkcs1unpad2$LBigInteger$N(m, BigInteger$bitLength_0$LBigInteger$($this.n) + 7 >> 3));
+	m = RSAKey$doPrivate$LRSAKey$LBigInteger$($this, c);
+	return (m == null ? null : RSAKey$pkcs1unpad2$LBigInteger$N(m, BigInteger$bitLength$LBigInteger$($this.n) + 7 >> 3));
 };
 
 RSAKey.decrypt$LRSAKey$S = RSAKey$decrypt$LRSAKey$S;
-
-function RSAKey$decrypt_0$LRSAKey$S($this, ctext) {
-	var c;
-	var m;
-	c = new BigInteger$2(ctext, 16);
-	m = RSAKey$doPrivate_0$LRSAKey$LBigInteger$($this, c);
-	return (m == null ? null : RSAKey$pkcs1unpad2$LBigInteger$N(m, BigInteger$bitLength_0$LBigInteger$($this.n) + 7 >> 3));
-};
-
-RSAKey.decrypt_0$LRSAKey$S = RSAKey$decrypt_0$LRSAKey$S;
 
 function RSAKey$pkcs1pad2$SN(s, n) {
 	var ba;
@@ -6821,7 +4549,7 @@ function RSAKey$pkcs1unpad2$LBigInteger$N(d, n) {
 	var b;
 	var i;
 	var ret;
-	b = BigInteger$toByteArray_0$LBigInteger$(d);
+	b = BigInteger$toByteArray$LBigInteger$(d);
 	i = 0;
 	while (i < b.length && b[i] === 0) {
 		++ i;
@@ -6882,7 +4610,7 @@ function Color$addScalar$LColor$N(c1, s) {
 	result.red = c1.red + s;
 	result.green = c1.green + s;
 	result.blue = c1.blue + s;
-	Color$limit_0$LColor$(result);
+	Color$limit$LColor$(result);
 	return result;
 };
 
@@ -6939,30 +4667,34 @@ Color.prototype.limit$ = function () {
 };
 
 
-function Color$limit_0$LColor$($this) {
+function Color$limit$LColor$($this) {
 	$this.red = ($this.red > 0.0 ? $this.red > 1.0 ? 1.0 : $this.red : 0.0);
 	$this.green = ($this.green > 0.0 ? $this.green > 1.0 ? 1.0 : $this.green : 0.0);
 	$this.blue = ($this.blue > 0.0 ? $this.blue > 1.0 ? 1.0 : $this.blue : 0.0);
 };
 
-Color.limit_0$LColor$ = Color$limit_0$LColor$;
+Color.limit$LColor$ = Color$limit$LColor$;
 
 Color.prototype.distance$LColor$ = function (color) {
-	var $math_abs_t;
 	var d;
-	d = (($math_abs_t = this.red - color.red) >= 0 ? $math_abs_t : -$math_abs_t) + (($math_abs_t = this.green - color.green) >= 0 ? $math_abs_t : -$math_abs_t) + (($math_abs_t = this.blue - color.blue) >= 0 ? $math_abs_t : -$math_abs_t);
+	var abs$x$0;
+	var abs$x$1;
+	var abs$x$2;
+	d = (abs$x$0 = this.red - color.red, abs$x$0 >= 0 ? abs$x$0 : - abs$x$0) + (abs$x$1 = this.green - color.green, abs$x$1 >= 0 ? abs$x$1 : - abs$x$1) + (abs$x$2 = this.blue - color.blue, abs$x$2 >= 0 ? abs$x$2 : - abs$x$2);
 	return d;
 };
 
 
-function Color$distance_0$LColor$LColor$($this, color) {
-	var $math_abs_t;
+function Color$distance$LColor$LColor$($this, color) {
 	var d;
-	d = (($math_abs_t = $this.red - color.red) >= 0 ? $math_abs_t : -$math_abs_t) + (($math_abs_t = $this.green - color.green) >= 0 ? $math_abs_t : -$math_abs_t) + (($math_abs_t = $this.blue - color.blue) >= 0 ? $math_abs_t : -$math_abs_t);
+	var abs$x$0;
+	var abs$x$1;
+	var abs$x$2;
+	d = (abs$x$0 = $this.red - color.red, abs$x$0 >= 0 ? abs$x$0 : - abs$x$0) + (abs$x$1 = $this.green - color.green, abs$x$1 >= 0 ? abs$x$1 : - abs$x$1) + (abs$x$2 = $this.blue - color.blue, abs$x$2 >= 0 ? abs$x$2 : - abs$x$2);
 	return d;
 };
 
-Color.distance_0$LColor$LColor$ = Color$distance_0$LColor$LColor$;
+Color.distance$LColor$LColor$ = Color$distance$LColor$LColor$;
 
 function Color$blend$LColor$LColor$N(c1, c2, w) {
 	var result;
@@ -6984,7 +4716,7 @@ Color.prototype.brightness$ = function () {
 };
 
 
-function Color$brightness_0$LColor$($this) {
+function Color$brightness$LColor$($this) {
 	var r;
 	var g;
 	var b;
@@ -6994,7 +4726,7 @@ function Color$brightness_0$LColor$($this) {
 	return r * 77 + g * 150 + b * 29 >> 8;
 };
 
-Color.brightness_0$LColor$ = Color$brightness_0$LColor$;
+Color.brightness$LColor$ = Color$brightness$LColor$;
 
 Color.prototype.toString = function () {
 	var r;
@@ -7046,13 +4778,13 @@ Vector.prototype.copy$LVector$ = function (vector) {
 };
 
 
-function Vector$copy_0$LVector$LVector$($this, vector) {
+function Vector$copy$LVector$LVector$($this, vector) {
 	$this.x = vector.x;
 	$this.y = vector.y;
 	$this.z = vector.z;
 };
 
-Vector.copy_0$LVector$LVector$ = Vector$copy_0$LVector$LVector$;
+Vector.copy$LVector$LVector$ = Vector$copy$LVector$LVector$;
 
 Vector.prototype.normalize$ = function () {
 	var m;
@@ -7064,7 +4796,7 @@ Vector.prototype.normalize$ = function () {
 };
 
 
-function Vector$normalize_0$LVector$($this) {
+function Vector$normalize$LVector$($this) {
 	var m;
 	var x$0;
 	var y$0;
@@ -7073,7 +4805,7 @@ function Vector$normalize_0$LVector$($this) {
 	return new Vector$0($this.x / m, $this.y / m, $this.z / m);
 };
 
-Vector.normalize_0$LVector$ = Vector$normalize_0$LVector$;
+Vector.normalize$LVector$ = Vector$normalize$LVector$;
 
 Vector.prototype.magnitude$ = function () {
 	var x$0;
@@ -7083,14 +4815,14 @@ Vector.prototype.magnitude$ = function () {
 };
 
 
-function Vector$magnitude_0$LVector$($this) {
+function Vector$magnitude$LVector$($this) {
 	var x$0;
 	var y$0;
 	var z$0;
 	return Math.sqrt((x$0 = $this.x) * x$0 + (y$0 = $this.y) * y$0 + (z$0 = $this.z) * z$0);
 };
 
-Vector.magnitude_0$LVector$ = Vector$magnitude_0$LVector$;
+Vector.magnitude$LVector$ = Vector$magnitude$LVector$;
 
 Vector.prototype.cross$LVector$ = function (w) {
 	var z$0;
@@ -7103,7 +4835,7 @@ Vector.prototype.cross$LVector$ = function (w) {
 };
 
 
-function Vector$cross_0$LVector$LVector$($this, w) {
+function Vector$cross$LVector$LVector$($this, w) {
 	var z$0;
 	var z$1;
 	var y$0;
@@ -7113,18 +4845,18 @@ function Vector$cross_0$LVector$LVector$($this, w) {
 	return new Vector$0(- (z$0 = $this.z) * (y$1 = w.y) + (y$0 = $this.y) * (z$1 = w.z), z$0 * (x$0 = w.x) - (x$1 = $this.x) * z$1, - y$0 * x$0 + x$1 * y$1);
 };
 
-Vector.cross_0$LVector$LVector$ = Vector$cross_0$LVector$LVector$;
+Vector.cross$LVector$LVector$ = Vector$cross$LVector$LVector$;
 
 Vector.prototype.dot$LVector$ = function (w) {
 	return this.x * w.x + this.y * w.y + this.z * w.z;
 };
 
 
-function Vector$dot_0$LVector$LVector$($this, w) {
+function Vector$dot$LVector$LVector$($this, w) {
 	return $this.x * w.x + $this.y * w.y + $this.z * w.z;
 };
 
-Vector.dot_0$LVector$LVector$ = Vector$dot_0$LVector$LVector$;
+Vector.dot$LVector$LVector$ = Vector$dot$LVector$LVector$;
 
 function Vector$add$LVector$LVector$(v, w) {
 	return new Vector$0(w.x + v.x, w.y + v.y, w.z + v.z);
@@ -7165,7 +4897,9 @@ function Ray(pos, dir) {
 
 $__jsx_extend([Ray], Object);
 Ray.prototype.toString = function () {
-	return 'Ray [' + this.position.toString() + ',' + this.direction.toString() + ']';
+	var toString$this$0;
+	var toString$this$1;
+	return 'Ray [' + (toString$this$0 = this.position, 'Vector [' + (toString$this$0.x + "") + ',' + (toString$this$0.y + "") + ',' + (toString$this$0.z + "") + ']') + ',' + (toString$this$1 = this.direction, 'Vector [' + (toString$this$1.x + "") + ',' + (toString$this$1.y + "") + ',' + (toString$this$1.z + "") + ']') + ']';
 };
 
 
@@ -7198,7 +4932,7 @@ BaseMaterial.prototype.wrapUp$N = function (t) {
 };
 
 
-function BaseMaterial$wrapUp_0$LBaseMaterial$N($this, t) {
+function BaseMaterial$wrapUp$LBaseMaterial$N($this, t) {
 	t = t % 2.0;
 	if (t < -1) {
 		t += 2.0;
@@ -7209,7 +4943,7 @@ function BaseMaterial$wrapUp_0$LBaseMaterial$N($this, t) {
 	return t;
 };
 
-BaseMaterial.wrapUp_0$LBaseMaterial$N = BaseMaterial$wrapUp_0$LBaseMaterial$N;
+BaseMaterial.wrapUp$LBaseMaterial$N = BaseMaterial$wrapUp$LBaseMaterial$N;
 
 BaseMaterial.prototype.toString = function () {
 	return 'Material [gloss=' + (this.gloss + "") + ', transparency=' + (this.transparency + "") + ', hasTexture=' + (this.hasTexture + "") + ']';
@@ -7250,7 +4984,7 @@ function Chessboard(colorEven, colorOdd, reflection, transparency, gloss, densit
 $__jsx_extend([Chessboard], BaseMaterial);
 Chessboard.prototype.getColor$NN = function (u, v) {
 	var t;
-	t = BaseMaterial$wrapUp_0$LBaseMaterial$N(this, u * this.density) * BaseMaterial$wrapUp_0$LBaseMaterial$N(this, v * this.density);
+	t = BaseMaterial$wrapUp$LBaseMaterial$N(this, u * this.density) * BaseMaterial$wrapUp$LBaseMaterial$N(this, v * this.density);
 	return (t < 0.0 ? this.colorEven : this.colorOdd);
 };
 
@@ -7309,7 +5043,7 @@ Sphere.prototype.intersect$LRay$ = function (ray) {
 		w$1$y$0 = v$1.y * w$2;
 		w$1$z$0 = v$1.z * w$2;
 		position$0 = info.position = new Vector$0(w$1$x$0 + v$0.x, w$1$y$0 + v$0.y, w$1$z$0 + v$0.z);
-		info.normal = Vector$normalize_0$LVector$(Vector$subtract$LVector$LVector$(position$0, this.position));
+		info.normal = Vector$normalize$LVector$(Vector$subtract$LVector$LVector$(position$0, this.position));
 		info.color = this.material.getColor$NN(0, 0);
 	} else {
 		info.isHit = false;
@@ -7319,7 +5053,8 @@ Sphere.prototype.intersect$LRay$ = function (ray) {
 
 
 Sphere.prototype.toString = function () {
-	return 'Sphere [position=' + this.position.toString() + ', radius=' + (this.radius + "") + ']';
+	var toString$this$0;
+	return 'Sphere [position=' + (toString$this$0 = this.position, 'Vector [' + (toString$this$0.x + "") + ',' + (toString$this$0.y + "") + ',' + (toString$this$0.z + "") + ']') + ', radius=' + (this.radius + "") + ']';
 };
 
 
@@ -7338,10 +5073,12 @@ Plane.prototype.intersect$LRay$ = function (ray) {
 	var vV;
 	var u;
 	var v;
-	var $this$0;
+	var this$0;
 	var w$0;
+	var dot$w$1;
+	var dot$this$1;
 	var v$0;
-	var $this$1;
+	var this$1;
 	var v$1;
 	var w$1$x$0;
 	var w$1$y$0;
@@ -7349,13 +5086,13 @@ Plane.prototype.intersect$LRay$ = function (ray) {
 	var position$0;
 	var position$1;
 	info = new IntersectionInfo();
-	$this$0 = this.position;
+	this$0 = this.position;
 	w$0 = ray.direction;
-	Vd = $this$0.x * w$0.x + $this$0.y * w$0.y + $this$0.z * w$0.z;
+	Vd = this$0.x * w$0.x + this$0.y * w$0.y + this$0.z * w$0.z;
 	if (Vd === 0) {
 		return info;
 	}
-	t = - (Vector$dot_0$LVector$LVector$(this.position, ray.position) + this.d) / Vd;
+	t = - ((dot$this$1 = this.position, dot$w$1 = ray.position, dot$this$1.x * dot$w$1.x + dot$this$1.y * dot$w$1.y + dot$this$1.z * dot$w$1.z) + this.d) / Vd;
 	if (t <= 0) {
 		return info;
 	}
@@ -7371,9 +5108,9 @@ Plane.prototype.intersect$LRay$ = function (ray) {
 	info.distance = t;
 	if (this.material.hasTexture) {
 		vU = new Vector$0((position$0 = this.position).y, position$0.z, - position$0.x);
-		vV = Vector$cross_0$LVector$LVector$(vU, this.position);
-		$this$1 = position$1 = info.position;
-		u = $this$1.x * vU.x + $this$1.y * vU.y + $this$1.z * vU.z;
+		vV = Vector$cross$LVector$LVector$(vU, this.position);
+		this$1 = position$1 = info.position;
+		u = this$1.x * vU.x + this$1.y * vU.y + this$1.z * vU.z;
 		v = position$1.x * vV.x + position$1.y * vV.y + position$1.z * vV.z;
 		info.color = this.material.getColor$NN(u, v);
 	} else {
@@ -7384,7 +5121,8 @@ Plane.prototype.intersect$LRay$ = function (ray) {
 
 
 Plane.prototype.toString = function () {
-	return 'Plane [' + this.position.toString() + ', d=' + (this.d + "") + ']';
+	var toString$this$0;
+	return 'Plane [' + (toString$this$0 = this.position, 'Vector [' + (toString$this$0.x + "") + ',' + (toString$this$0.y + "") + ',' + (toString$this$0.z + "") + ']') + ', d=' + (this.d + "") + ']';
 };
 
 
@@ -7400,7 +5138,8 @@ function IntersectionInfo() {
 
 $__jsx_extend([IntersectionInfo], Object);
 IntersectionInfo.prototype.toString = function () {
-	return 'Intersection [' + this.position.toString() + ']';
+	var toString$this$0;
+	return 'Intersection [' + (toString$this$0 = this.position, 'Vector [' + (toString$this$0.x + "") + ',' + (toString$this$0.y + "") + ',' + (toString$this$0.z + "") + ']') + ']';
 };
 
 
@@ -7410,7 +5149,7 @@ function Camera(pos, lookAt, up) {
 	this.position = pos;
 	this.lookAt = lookAt;
 	this.up = up;
-	this.equator = Vector$cross_0$LVector$LVector$(Vector$normalize_0$LVector$(lookAt), this.up);
+	this.equator = Vector$cross$LVector$LVector$(Vector$normalize$LVector$(lookAt), this.up);
 	v$0 = this.position;
 	w$0 = this.lookAt;
 	this.screen = new Vector$0(w$0.x + v$0.x, w$0.y + v$0.y, w$0.z + v$0.z);
@@ -7421,26 +5160,30 @@ Camera.prototype.getRay$NN = function (vx, vy) {
 	var pos;
 	var dir;
 	var ray;
-	pos = Vector$subtract$LVector$LVector$(this.screen, Vector$subtract$LVector$LVector$(Vector$multiplyScalar$LVector$N(this.equator, vx), Vector$multiplyScalar$LVector$N(this.up, vy)));
+	var multiplyScalar$v$0;
+	var multiplyScalar$v$1;
+	pos = Vector$subtract$LVector$LVector$(this.screen, Vector$subtract$LVector$LVector$((multiplyScalar$v$0 = this.equator, new Vector$0(multiplyScalar$v$0.x * vx, multiplyScalar$v$0.y * vx, multiplyScalar$v$0.z * vx)), (multiplyScalar$v$1 = this.up, new Vector$0(multiplyScalar$v$1.x * vy, multiplyScalar$v$1.y * vy, multiplyScalar$v$1.z * vy))));
 	pos.y = pos.y * -1;
 	dir = Vector$subtract$LVector$LVector$(pos, this.position);
-	ray = new Ray(pos, Vector$normalize_0$LVector$(dir));
+	ray = new Ray(pos, Vector$normalize$LVector$(dir));
 	return ray;
 };
 
 
-function Camera$getRay_0$LCamera$NN($this, vx, vy) {
+function Camera$getRay$LCamera$NN($this, vx, vy) {
 	var pos;
 	var dir;
 	var ray;
-	pos = Vector$subtract$LVector$LVector$($this.screen, Vector$subtract$LVector$LVector$(Vector$multiplyScalar$LVector$N($this.equator, vx), Vector$multiplyScalar$LVector$N($this.up, vy)));
+	var multiplyScalar$v$0;
+	var multiplyScalar$v$1;
+	pos = Vector$subtract$LVector$LVector$($this.screen, Vector$subtract$LVector$LVector$((multiplyScalar$v$0 = $this.equator, new Vector$0(multiplyScalar$v$0.x * vx, multiplyScalar$v$0.y * vx, multiplyScalar$v$0.z * vx)), (multiplyScalar$v$1 = $this.up, new Vector$0(multiplyScalar$v$1.x * vy, multiplyScalar$v$1.y * vy, multiplyScalar$v$1.z * vy))));
 	pos.y = pos.y * -1;
 	dir = Vector$subtract$LVector$LVector$(pos, $this.position);
-	ray = new Ray(pos, Vector$normalize_0$LVector$(dir));
+	ray = new Ray(pos, Vector$normalize$LVector$(dir));
 	return ray;
 };
 
-Camera.getRay_0$LCamera$NN = Camera$getRay_0$LCamera$NN;
+Camera.getRay$LCamera$NN = Camera$getRay$LCamera$NN;
 
 Camera.prototype.toString = function () {
 	return 'Ray []';
@@ -7486,13 +5229,13 @@ Engine.prototype.setPixel$NNLColor$ = function (x, y, color) {
 		this.canvas.fillRect(x * pxW, y * pxH, pxW, pxH);
 	} else {
 		if (x === y) {
-			Main$0.checkNumber += Color$brightness_0$LColor$(color);
+			Main$0.checkNumber += Color$brightness$LColor$(color);
 		}
 	}
 };
 
 
-function Engine$setPixel_0$LEngine$NNLColor$($this, x, y, color) {
+function Engine$setPixel$LEngine$NNLColor$($this, x, y, color) {
 	var pxW;
 	var pxH;
 	var options$0;
@@ -7503,12 +5246,12 @@ function Engine$setPixel_0$LEngine$NNLColor$($this, x, y, color) {
 		$this.canvas.fillRect(x * pxW, y * pxH, pxW, pxH);
 	} else {
 		if (x === y) {
-			Main$0.checkNumber += Color$brightness_0$LColor$(color);
+			Main$0.checkNumber += Color$brightness$LColor$(color);
 		}
 	}
 };
 
-Engine.setPixel_0$LEngine$NNLColor$ = Engine$setPixel_0$LEngine$NNLColor$;
+Engine.setPixel$LEngine$NNLColor$ = Engine$setPixel$LEngine$NNLColor$;
 
 Engine.prototype.renderScene$LScene$LHTMLCanvasElement$ = function (scene, canvas) {
 	var canvasHeight;
@@ -7532,9 +5275,9 @@ Engine.prototype.renderScene$LScene$LHTMLCanvasElement$ = function (scene, canva
 		for (x = 0; x < canvasWidth; x++) {
 			yp = y / canvasHeight * 2 - 1;
 			xp = x / canvasWidth * 2 - 1;
-			ray = Camera$getRay_0$LCamera$NN(scene.camera, xp, yp);
-			color = Engine$getPixelColor_0$LEngine$LRay$LScene$(this, ray, scene);
-			Engine$setPixel_0$LEngine$NNLColor$(this, x, y, color);
+			ray = Camera$getRay$LCamera$NN(scene.camera, xp, yp);
+			color = Engine$getPixelColor$LEngine$LRay$LScene$(this, ray, scene);
+			Engine$setPixel$LEngine$NNLColor$(this, x, y, color);
 		}
 	}
 	if (Main$0.checkNumber !== 2321) {
@@ -7543,7 +5286,7 @@ Engine.prototype.renderScene$LScene$LHTMLCanvasElement$ = function (scene, canva
 };
 
 
-function Engine$renderScene_0$LEngine$LScene$LHTMLCanvasElement$($this, scene, canvas) {
+function Engine$renderScene$LEngine$LScene$LHTMLCanvasElement$($this, scene, canvas) {
 	var canvasHeight;
 	var canvasWidth;
 	var y;
@@ -7565,9 +5308,9 @@ function Engine$renderScene_0$LEngine$LScene$LHTMLCanvasElement$($this, scene, c
 		for (x = 0; x < canvasWidth; x++) {
 			yp = y / canvasHeight * 2 - 1;
 			xp = x / canvasWidth * 2 - 1;
-			ray = Camera$getRay_0$LCamera$NN(scene.camera, xp, yp);
-			color = Engine$getPixelColor_0$LEngine$LRay$LScene$($this, ray, scene);
-			Engine$setPixel_0$LEngine$NNLColor$($this, x, y, color);
+			ray = Camera$getRay$LCamera$NN(scene.camera, xp, yp);
+			color = Engine$getPixelColor$LEngine$LRay$LScene$($this, ray, scene);
+			Engine$setPixel$LEngine$NNLColor$($this, x, y, color);
 		}
 	}
 	if (Main$0.checkNumber !== 2321) {
@@ -7575,32 +5318,32 @@ function Engine$renderScene_0$LEngine$LScene$LHTMLCanvasElement$($this, scene, c
 	}
 };
 
-Engine.renderScene_0$LEngine$LScene$LHTMLCanvasElement$ = Engine$renderScene_0$LEngine$LScene$LHTMLCanvasElement$;
+Engine.renderScene$LEngine$LScene$LHTMLCanvasElement$ = Engine$renderScene$LEngine$LScene$LHTMLCanvasElement$;
 
 Engine.prototype.getPixelColor$LRay$LScene$ = function (ray, scene) {
 	var info;
 	var color;
-	info = Engine$testIntersection_0$LEngine$LRay$LScene$LShape$(this, ray, scene, null);
+	info = Engine$testIntersection$LEngine$LRay$LScene$LShape$(this, ray, scene, null);
 	if (info.isHit) {
-		color = Engine$rayTrace_0$LEngine$LIntersectionInfo$LRay$LScene$N(this, info, ray, scene, 0);
+		color = Engine$rayTrace$LEngine$LIntersectionInfo$LRay$LScene$N(this, info, ray, scene, 0);
 		return color;
 	}
 	return scene.background.color;
 };
 
 
-function Engine$getPixelColor_0$LEngine$LRay$LScene$($this, ray, scene) {
+function Engine$getPixelColor$LEngine$LRay$LScene$($this, ray, scene) {
 	var info;
 	var color;
-	info = Engine$testIntersection_0$LEngine$LRay$LScene$LShape$($this, ray, scene, null);
+	info = Engine$testIntersection$LEngine$LRay$LScene$LShape$($this, ray, scene, null);
 	if (info.isHit) {
-		color = Engine$rayTrace_0$LEngine$LIntersectionInfo$LRay$LScene$N($this, info, ray, scene, 0);
+		color = Engine$rayTrace$LEngine$LIntersectionInfo$LRay$LScene$N($this, info, ray, scene, 0);
 		return color;
 	}
 	return scene.background.color;
 };
 
-Engine.getPixelColor_0$LEngine$LRay$LScene$ = Engine$getPixelColor_0$LEngine$LRay$LScene$;
+Engine.getPixelColor$LEngine$LRay$LScene$ = Engine$getPixelColor$LEngine$LRay$LScene$;
 
 Engine.prototype.testIntersection$LRay$LScene$LShape$ = function (ray, scene, exclude) {
 	var hits;
@@ -7627,7 +5370,7 @@ Engine.prototype.testIntersection$LRay$LScene$LShape$ = function (ray, scene, ex
 };
 
 
-function Engine$testIntersection_0$LEngine$LRay$LScene$LShape$($this, ray, scene, exclude) {
+function Engine$testIntersection$LEngine$LRay$LScene$LShape$($this, ray, scene, exclude) {
 	var hits;
 	var best;
 	var i;
@@ -7651,7 +5394,7 @@ function Engine$testIntersection_0$LEngine$LRay$LScene$LShape$($this, ray, scene
 	return best;
 };
 
-Engine.testIntersection_0$LEngine$LRay$LScene$LShape$ = Engine$testIntersection_0$LEngine$LRay$LScene$LShape$;
+Engine.testIntersection$LEngine$LRay$LScene$LShape$ = Engine$testIntersection$LEngine$LRay$LScene$LShape$;
 
 Engine.prototype.getReflectionRay$LVector$LVector$LVector$ = function (P, N, V) {
 	var c1;
@@ -7676,7 +5419,7 @@ Engine.prototype.getReflectionRay$LVector$LVector$LVector$ = function (P, N, V) 
 };
 
 
-function Engine$getReflectionRay_0$LEngine$LVector$LVector$LVector$($this, P, N, V) {
+function Engine$getReflectionRay$LEngine$LVector$LVector$LVector$($this, P, N, V) {
 	var c1;
 	var R1;
 	var w$0;
@@ -7698,7 +5441,7 @@ function Engine$getReflectionRay_0$LEngine$LVector$LVector$LVector$($this, P, N,
 	return new Ray(P, R1);
 };
 
-Engine.getReflectionRay_0$LEngine$LVector$LVector$LVector$ = Engine$getReflectionRay_0$LEngine$LVector$LVector$LVector$;
+Engine.getReflectionRay$LEngine$LVector$LVector$LVector$ = Engine$getReflectionRay$LEngine$LVector$LVector$LVector$;
 
 Engine.prototype.rayTrace$LIntersectionInfo$LRay$LScene$N = function (info, ray, scene, depth) {
 	var color;
@@ -7724,6 +5467,8 @@ Engine.prototype.rayTrace$LIntersectionInfo$LRay$LScene$N = function (info, ray,
 	var w$1;
 	var result$1;
 	var result$2;
+	var dot$this$0;
+	var max$value1$0;
 	c1$0 = info.color;
 	f$0 = scene.background.ambience;
 	result$0 = new Color$0(0, 0, 0);
@@ -7734,7 +5479,7 @@ Engine.prototype.rayTrace$LIntersectionInfo$LRay$LScene$N = function (info, ray,
 	shininess = Math.pow(10, info.shape.material.gloss + 1);
 	for (i = 0; i < scene.lights.length; i++) {
 		light = scene.lights[i];
-		v = Vector$normalize_0$LVector$(Vector$subtract$LVector$LVector$(light.position, info.position));
+		v = Vector$normalize$LVector$(Vector$subtract$LVector$LVector$(light.position, info.position));
 		if (this.options.renderDiffuse) {
 			w$0 = info.normal;
 			L = v.x * w$0.x + v.y * w$0.y + v.z * w$0.z;
@@ -7744,10 +5489,10 @@ Engine.prototype.rayTrace$LIntersectionInfo$LRay$LScene$N = function (info, ray,
 		}
 		if (depth <= this.options.rayDepth) {
 			if (this.options.renderReflections && info.shape.material.reflection > 0) {
-				reflectionRay = Engine$getReflectionRay_0$LEngine$LVector$LVector$LVector$(this, info.position, info.normal, ray.direction);
-				refl = Engine$testIntersection_0$LEngine$LRay$LScene$LShape$(this, reflectionRay, scene, info.shape);
+				reflectionRay = Engine$getReflectionRay$LEngine$LVector$LVector$LVector$(this, info.position, info.normal, ray.direction);
+				refl = Engine$testIntersection$LEngine$LRay$LScene$LShape$(this, reflectionRay, scene, info.shape);
 				if (refl.isHit && refl.distance > 0) {
-					refl.color = Engine$rayTrace_0$LEngine$LIntersectionInfo$LRay$LScene$N(this, refl, reflectionRay, scene, depth + 1);
+					refl.color = Engine$rayTrace$LEngine$LIntersectionInfo$LRay$LScene$N(this, refl, reflectionRay, scene, depth + 1);
 				} else {
 					refl.color = scene.background.color;
 				}
@@ -7761,7 +5506,7 @@ Engine.prototype.rayTrace$LIntersectionInfo$LRay$LScene$N = function (info, ray,
 		shadowInfo = new IntersectionInfo();
 		if (this.options.renderShadows) {
 			shadowRay = new Ray(info.position, v);
-			shadowInfo = Engine$testIntersection_0$LEngine$LRay$LScene$LShape$(this, shadowRay, scene, info.shape);
+			shadowInfo = Engine$testIntersection$LEngine$LRay$LScene$LShape$(this, shadowRay, scene, info.shape);
 			if (shadowInfo.isHit && shadowInfo.shape != info.shape) {
 				result$2 = new Color$0(0, 0, 0);
 				result$2.red = color.red * 0.5;
@@ -7772,19 +5517,19 @@ Engine.prototype.rayTrace$LIntersectionInfo$LRay$LScene$N = function (info, ray,
 			}
 		}
 		if (this.options.renderHighlights && ! shadowInfo.isHit && info.shape.material.gloss > 0) {
-			Lv = Vector$normalize_0$LVector$(Vector$subtract$LVector$LVector$(info.shape.position, light.position));
-			E = Vector$normalize_0$LVector$(Vector$subtract$LVector$LVector$(scene.camera.position, info.shape.position));
-			H = Vector$normalize_0$LVector$(Vector$subtract$LVector$LVector$(E, Lv));
-			glossWeight = Math.pow(Math.max(Vector$dot_0$LVector$LVector$(info.normal, H), 0), shininess);
+			Lv = Vector$normalize$LVector$(Vector$subtract$LVector$LVector$(info.shape.position, light.position));
+			E = Vector$normalize$LVector$(Vector$subtract$LVector$LVector$(scene.camera.position, info.shape.position));
+			H = Vector$normalize$LVector$(Vector$subtract$LVector$LVector$(E, Lv));
+			glossWeight = Math.pow((max$value1$0 = (dot$this$0 = info.normal, dot$this$0.x * H.x + dot$this$0.y * H.y + dot$this$0.z * H.z), max$value1$0 >= 0 ? max$value1$0 : 0), shininess);
 			color = Color$add$LColor$LColor$(Color$multiplyScalar$LColor$N(light.color, glossWeight), color);
 		}
 	}
-	Color$limit_0$LColor$(color);
+	Color$limit$LColor$(color);
 	return color;
 };
 
 
-function Engine$rayTrace_0$LEngine$LIntersectionInfo$LRay$LScene$N($this, info, ray, scene, depth) {
+function Engine$rayTrace$LEngine$LIntersectionInfo$LRay$LScene$N($this, info, ray, scene, depth) {
 	var color;
 	var shininess;
 	var i;
@@ -7808,6 +5553,8 @@ function Engine$rayTrace_0$LEngine$LIntersectionInfo$LRay$LScene$N($this, info, 
 	var w$1;
 	var result$1;
 	var result$2;
+	var dot$this$0;
+	var max$value1$0;
 	c1$0 = info.color;
 	f$0 = scene.background.ambience;
 	result$0 = new Color$0(0, 0, 0);
@@ -7818,7 +5565,7 @@ function Engine$rayTrace_0$LEngine$LIntersectionInfo$LRay$LScene$N($this, info, 
 	shininess = Math.pow(10, info.shape.material.gloss + 1);
 	for (i = 0; i < scene.lights.length; i++) {
 		light = scene.lights[i];
-		v = Vector$normalize_0$LVector$(Vector$subtract$LVector$LVector$(light.position, info.position));
+		v = Vector$normalize$LVector$(Vector$subtract$LVector$LVector$(light.position, info.position));
 		if ($this.options.renderDiffuse) {
 			w$0 = info.normal;
 			L = v.x * w$0.x + v.y * w$0.y + v.z * w$0.z;
@@ -7828,10 +5575,10 @@ function Engine$rayTrace_0$LEngine$LIntersectionInfo$LRay$LScene$N($this, info, 
 		}
 		if (depth <= $this.options.rayDepth) {
 			if ($this.options.renderReflections && info.shape.material.reflection > 0) {
-				reflectionRay = Engine$getReflectionRay_0$LEngine$LVector$LVector$LVector$($this, info.position, info.normal, ray.direction);
-				refl = Engine$testIntersection_0$LEngine$LRay$LScene$LShape$($this, reflectionRay, scene, info.shape);
+				reflectionRay = Engine$getReflectionRay$LEngine$LVector$LVector$LVector$($this, info.position, info.normal, ray.direction);
+				refl = Engine$testIntersection$LEngine$LRay$LScene$LShape$($this, reflectionRay, scene, info.shape);
 				if (refl.isHit && refl.distance > 0) {
-					refl.color = Engine$rayTrace_0$LEngine$LIntersectionInfo$LRay$LScene$N($this, refl, reflectionRay, scene, depth + 1);
+					refl.color = Engine$rayTrace$LEngine$LIntersectionInfo$LRay$LScene$N($this, refl, reflectionRay, scene, depth + 1);
 				} else {
 					refl.color = scene.background.color;
 				}
@@ -7845,7 +5592,7 @@ function Engine$rayTrace_0$LEngine$LIntersectionInfo$LRay$LScene$N($this, info, 
 		shadowInfo = new IntersectionInfo();
 		if ($this.options.renderShadows) {
 			shadowRay = new Ray(info.position, v);
-			shadowInfo = Engine$testIntersection_0$LEngine$LRay$LScene$LShape$($this, shadowRay, scene, info.shape);
+			shadowInfo = Engine$testIntersection$LEngine$LRay$LScene$LShape$($this, shadowRay, scene, info.shape);
 			if (shadowInfo.isHit && shadowInfo.shape != info.shape) {
 				result$2 = new Color$0(0, 0, 0);
 				result$2.red = color.red * 0.5;
@@ -7856,18 +5603,18 @@ function Engine$rayTrace_0$LEngine$LIntersectionInfo$LRay$LScene$N($this, info, 
 			}
 		}
 		if ($this.options.renderHighlights && ! shadowInfo.isHit && info.shape.material.gloss > 0) {
-			Lv = Vector$normalize_0$LVector$(Vector$subtract$LVector$LVector$(info.shape.position, light.position));
-			E = Vector$normalize_0$LVector$(Vector$subtract$LVector$LVector$(scene.camera.position, info.shape.position));
-			H = Vector$normalize_0$LVector$(Vector$subtract$LVector$LVector$(E, Lv));
-			glossWeight = Math.pow(Math.max(Vector$dot_0$LVector$LVector$(info.normal, H), 0), shininess);
+			Lv = Vector$normalize$LVector$(Vector$subtract$LVector$LVector$(info.shape.position, light.position));
+			E = Vector$normalize$LVector$(Vector$subtract$LVector$LVector$(scene.camera.position, info.shape.position));
+			H = Vector$normalize$LVector$(Vector$subtract$LVector$LVector$(E, Lv));
+			glossWeight = Math.pow((max$value1$0 = (dot$this$0 = info.normal, dot$this$0.x * H.x + dot$this$0.y * H.y + dot$this$0.z * H.z), max$value1$0 >= 0 ? max$value1$0 : 0), shininess);
 			color = Color$add$LColor$LColor$(Color$multiplyScalar$LColor$N(light.color, glossWeight), color);
 		}
 	}
-	Color$limit_0$LColor$(color);
+	Color$limit$LColor$(color);
 	return color;
 };
 
-Engine.rayTrace_0$LEngine$LIntersectionInfo$LRay$LScene$N = Engine$rayTrace_0$LEngine$LIntersectionInfo$LRay$LScene$N;
+Engine.rayTrace$LEngine$LIntersectionInfo$LRay$LScene$N = Engine$rayTrace$LEngine$LIntersectionInfo$LRay$LScene$N;
 
 function Main$0() {
 };
@@ -7895,7 +5642,7 @@ function Main$0$renderScene$() {
 	scene.background = ({color: new Color$0(0.5, 0.5, 0.5), ambience: 0.4});
 	sphere = new Sphere(new Vector$0(-1.5, 1.5, 2), 1.5, new Solid(new Color$0(0, 0.5, 0.5), 0.3, 0.0, 0.0, 2.0));
 	sphere1 = new Sphere(new Vector$0(1, 0.25, 1), 0.5, new Solid(new Color$0(0.9, 0.9, 0.9), 0.1, 0.0, 0.0, 1.5));
-	plane = new Plane(Vector$normalize_0$LVector$(new Vector$0(0.1, 0.9, -0.5)), 1.2, new Chessboard(new Color$0(1, 1, 1), new Color$0(0, 0, 0), 0.2, 0.0, 1.0, 0.7));
+	plane = new Plane(Vector$normalize$LVector$(new Vector$0(0.1, 0.9, -0.5)), 1.2, new Chessboard(new Color$0(1, 1, 1), new Color$0(0, 0, 0), 0.2, 0.0, 1.0, 0.7));
 	scene.shapes.push(plane);
 	scene.shapes.push(sphere);
 	scene.shapes.push(sphere1);
@@ -7922,7 +5669,7 @@ function Main$0$renderScene$() {
 	options.renderReflections = renderReflections;
 	options.rayDepth = rayDepth;
 	raytracer = new Engine(options);
-	Engine$renderScene_0$LEngine$LScene$LHTMLCanvasElement$(raytracer, scene, null);
+	Engine$renderScene$LEngine$LScene$LHTMLCanvasElement$(raytracer, scene, null);
 };
 
 Main$0.renderScene$ = Main$0$renderScene$;
@@ -7935,7 +5682,7 @@ function RegExpTest() {
 	var RegExpTearDown;
 	regExpBenchmark = null;
 	function RegExpRun() {
-		RegExpBenchmark$run_0$LRegExpBenchmark$(regExpBenchmark);
+		RegExpBenchmark$run$LRegExpBenchmark$(regExpBenchmark);
 	}
 	function RegExpSetup() {
 		regExpBenchmark = new RegExpBenchmark();
@@ -9951,7 +7698,7 @@ RegExpBenchmark.prototype.run$ = function () {
 };
 
 
-function RegExpBenchmark$run_0$LRegExpBenchmark$($this) {
+function RegExpBenchmark$run$LRegExpBenchmark$($this) {
 	var i;
 	for (i = 0; i < 5; i++) {
 		$this.runBlock0();
@@ -9969,7 +7716,7 @@ function RegExpBenchmark$run_0$LRegExpBenchmark$($this) {
 	}
 };
 
-RegExpBenchmark.run_0$LRegExpBenchmark$ = RegExpBenchmark$run_0$LRegExpBenchmark$;
+RegExpBenchmark.run$LRegExpBenchmark$ = RegExpBenchmark$run$LRegExpBenchmark$;
 
 function Splay() {
 	var $this = this;
@@ -9992,9 +7739,9 @@ function Splay() {
 		var payload;
 		do {
 			key = GenerateKey();
-		} while (SplayTree$find_0$LSplayTree$N(splayTree, key) != null);
+		} while (SplayTree$find$LSplayTree$N(splayTree, key) != null);
 		payload = GeneratePayloadTree(5, key);
-		SplayTree$insert_0$LSplayTree$NX(splayTree, key, payload);
+		SplayTree$insert$LSplayTree$NX(splayTree, key, payload);
 		return key;
 	}
 	function SplaySetup() {
@@ -10008,7 +7755,7 @@ function Splay() {
 		var keys;
 		var length;
 		var i;
-		keys = SplayTree$exportKeys_0$LSplayTree$(splayTree);
+		keys = SplayTree$exportKeys$LSplayTree$(splayTree);
 		splayTree = null;
 		length = keys.length;
 		if (length !== 8000) {
@@ -10026,11 +7773,11 @@ function Splay() {
 		var greatest;
 		for (i = 0; i < 80; i++) {
 			key = InsertNewNode();
-			greatest = SplayTree$findGreatestLessThan_0$LSplayTree$N(splayTree, key);
+			greatest = SplayTree$findGreatestLessThan$LSplayTree$N(splayTree, key);
 			if (greatest == null) {
-				SplayTree$remove_0$LSplayTree$N(splayTree, key);
+				SplayTree$remove$LSplayTree$N(splayTree, key);
 			} else {
-				SplayTree$remove_0$LSplayTree$N(splayTree, greatest.key);
+				SplayTree$remove$LSplayTree$N(splayTree, greatest.key);
 			}
 		}
 	}
@@ -10049,12 +7796,6 @@ function SplayTree$isEmpty$LSplayTree$($this) {
 
 SplayTree.isEmpty$LSplayTree$ = SplayTree$isEmpty$LSplayTree$;
 
-function SplayTree$isEmpty_0$LSplayTree$($this) {
-	return ! $this.root_;
-};
-
-SplayTree.isEmpty_0$LSplayTree$ = SplayTree$isEmpty_0$LSplayTree$;
-
 function SplayTree$insert$LSplayTree$NX($this, key, value) {
 	var node;
 	var root_$0;
@@ -10063,7 +7804,7 @@ function SplayTree$insert$LSplayTree$NX($this, key, value) {
 		$this.root_ = ({key: key, value: value, left: null, right: null});
 		return;
 	}
-	SplayTree$splay__0$LSplayTree$N($this, key);
+	SplayTree$splay_$LSplayTree$N($this, key);
 	if ($this.root_.key === key) {
 		return;
 	}
@@ -10082,33 +7823,6 @@ function SplayTree$insert$LSplayTree$NX($this, key, value) {
 
 SplayTree.insert$LSplayTree$NX = SplayTree$insert$LSplayTree$NX;
 
-function SplayTree$insert_0$LSplayTree$NX($this, key, value) {
-	var node;
-	var root_$0;
-	var root_$1;
-	if (! $this.root_) {
-		$this.root_ = ({key: key, value: value, left: null, right: null});
-		return;
-	}
-	SplayTree$splay__0$LSplayTree$N($this, key);
-	if ($this.root_.key === key) {
-		return;
-	}
-	node = ({key: key, value: value, left: null, right: null});
-	if (key > $this.root_.key) {
-		node.left = root_$0 = $this.root_;
-		node.right = root_$0.right;
-		root_$0.right = null;
-	} else {
-		node.right = root_$1 = $this.root_;
-		node.left = root_$1.left;
-		root_$1.left = null;
-	}
-	$this.root_ = node;
-};
-
-SplayTree.insert_0$LSplayTree$NX = SplayTree$insert_0$LSplayTree$NX;
-
 function SplayTree$remove$LSplayTree$N($this, key) {
 	var removed;
 	var right;
@@ -10117,7 +7831,7 @@ function SplayTree$remove$LSplayTree$N($this, key) {
 	if (! $this.root_) {
 		throw new Error('Key not found: ' + (key + ""));
 	}
-	SplayTree$splay__0$LSplayTree$N($this, key);
+	SplayTree$splay_$LSplayTree$N($this, key);
 	if ($this.root_.key !== key) {
 		throw new Error('Key not found: ' + (key + ""));
 	}
@@ -10127,7 +7841,7 @@ function SplayTree$remove$LSplayTree$N($this, key) {
 	} else {
 		right = (root_$0 = $this.root_).right;
 		$this.root_ = root_$0.left;
-		SplayTree$splay__0$LSplayTree$N($this, key);
+		SplayTree$splay_$LSplayTree$N($this, key);
 		$this.root_.right = right;
 	}
 	return removed;
@@ -10135,51 +7849,15 @@ function SplayTree$remove$LSplayTree$N($this, key) {
 
 SplayTree.remove$LSplayTree$N = SplayTree$remove$LSplayTree$N;
 
-function SplayTree$remove_0$LSplayTree$N($this, key) {
-	var removed;
-	var right;
-	var root_$0;
-	var root_$1;
-	if (! $this.root_) {
-		throw new Error('Key not found: ' + (key + ""));
-	}
-	SplayTree$splay__0$LSplayTree$N($this, key);
-	if ($this.root_.key !== key) {
-		throw new Error('Key not found: ' + (key + ""));
-	}
-	removed = root_$1 = $this.root_;
-	if (! root_$1.left) {
-		$this.root_ = $this.root_.right;
-	} else {
-		right = (root_$0 = $this.root_).right;
-		$this.root_ = root_$0.left;
-		SplayTree$splay__0$LSplayTree$N($this, key);
-		$this.root_.right = right;
-	}
-	return removed;
-};
-
-SplayTree.remove_0$LSplayTree$N = SplayTree$remove_0$LSplayTree$N;
-
 function SplayTree$find$LSplayTree$N($this, key) {
 	if (! $this.root_) {
 		return null;
 	}
-	SplayTree$splay__0$LSplayTree$N($this, key);
+	SplayTree$splay_$LSplayTree$N($this, key);
 	return ($this.root_.key === key ? $this.root_ : null);
 };
 
 SplayTree.find$LSplayTree$N = SplayTree$find$LSplayTree$N;
-
-function SplayTree$find_0$LSplayTree$N($this, key) {
-	if (! $this.root_) {
-		return null;
-	}
-	SplayTree$splay__0$LSplayTree$N($this, key);
-	return ($this.root_.key === key ? $this.root_ : null);
-};
-
-SplayTree.find_0$LSplayTree$N = SplayTree$find_0$LSplayTree$N;
 
 function SplayTree$findMax$LSplayTree$LSplayTreeNode$($this, opt_startNode) {
 	var current;
@@ -10195,45 +7873,21 @@ function SplayTree$findMax$LSplayTree$LSplayTreeNode$($this, opt_startNode) {
 
 SplayTree.findMax$LSplayTree$LSplayTreeNode$ = SplayTree$findMax$LSplayTree$LSplayTreeNode$;
 
-function SplayTree$findMax_0$LSplayTree$LSplayTreeNode$($this, opt_startNode) {
-	var current;
-	if (! $this.root_) {
-		return null;
-	}
-	current = (opt_startNode == null ? $this.root_ : opt_startNode);
-	while (current.right) {
-		current = current.right;
-	}
-	return current;
-};
-
-SplayTree.findMax_0$LSplayTree$LSplayTreeNode$ = SplayTree$findMax_0$LSplayTree$LSplayTreeNode$;
-
 function SplayTree$findGreatestLessThan$LSplayTree$N($this, key) {
 	if (! $this.root_) {
 		return null;
 	}
-	SplayTree$splay__0$LSplayTree$N($this, key);
-	return ($this.root_.key < key ? $this.root_ : $this.root_.left ? SplayTree$findMax_0$LSplayTree$LSplayTreeNode$($this, $this.root_.left) : null);
+	SplayTree$splay_$LSplayTree$N($this, key);
+	return ($this.root_.key < key ? $this.root_ : $this.root_.left ? SplayTree$findMax$LSplayTree$LSplayTreeNode$($this, $this.root_.left) : null);
 };
 
 SplayTree.findGreatestLessThan$LSplayTree$N = SplayTree$findGreatestLessThan$LSplayTree$N;
 
-function SplayTree$findGreatestLessThan_0$LSplayTree$N($this, key) {
-	if (! $this.root_) {
-		return null;
-	}
-	SplayTree$splay__0$LSplayTree$N($this, key);
-	return ($this.root_.key < key ? $this.root_ : $this.root_.left ? SplayTree$findMax_0$LSplayTree$LSplayTreeNode$($this, $this.root_.left) : null);
-};
-
-SplayTree.findGreatestLessThan_0$LSplayTree$N = SplayTree$findGreatestLessThan_0$LSplayTree$N;
-
 function SplayTree$exportKeys$LSplayTree$($this) {
 	var result;
 	result = [  ];
-	if (! SplayTree$isEmpty_0$LSplayTree$($this)) {
-		SplayTreeNode$traverse__0$LSplayTreeNode$F$LSplayTreeNode$V$($this.root_, (function (node) {
+	if (! ! $this.root_) {
+		SplayTreeNode$traverse_$LSplayTreeNode$F$LSplayTreeNode$V$($this.root_, (function (node) {
 			result.push(node.key);
 		}));
 	}
@@ -10241,19 +7895,6 @@ function SplayTree$exportKeys$LSplayTree$($this) {
 };
 
 SplayTree.exportKeys$LSplayTree$ = SplayTree$exportKeys$LSplayTree$;
-
-function SplayTree$exportKeys_0$LSplayTree$($this) {
-	var result;
-	result = [  ];
-	if (! ! $this.root_) {
-		SplayTreeNode$traverse__0$LSplayTreeNode$F$LSplayTreeNode$V$($this.root_, (function (node) {
-			result.push(node.key);
-		}));
-	}
-	return result;
-};
-
-SplayTree.exportKeys_0$LSplayTree$ = SplayTree$exportKeys_0$LSplayTree$;
 
 function SplayTree$splay_$LSplayTree$N($this, key) {
 	var dummy;
@@ -10314,65 +7955,6 @@ function SplayTree$splay_$LSplayTree$N($this, key) {
 
 SplayTree.splay_$LSplayTree$N = SplayTree$splay_$LSplayTree$N;
 
-function SplayTree$splay__0$LSplayTree$N($this, key) {
-	var dummy;
-	var left;
-	var right;
-	var current;
-	var tmp;
-	if (! $this.root_) {
-		return;
-	}
-	dummy = left = right = ({key: NaN, value: null, left: null, right: null});
-	current = $this.root_;
-	while (true) {
-		if (key < current.key) {
-			if (! current.left) {
-				break;
-			}
-			if (key < current.left.key) {
-				tmp = current.left;
-				current.left = tmp.right;
-				tmp.right = current;
-				current = tmp;
-				if (! tmp.left) {
-					break;
-				}
-			}
-			right.left = current;
-			right = current;
-			current = current.left;
-		} else {
-			if (key > current.key) {
-				if (! current.right) {
-					break;
-				}
-				if (key > current.right.key) {
-					tmp = current.right;
-					current.right = tmp.left;
-					tmp.left = current;
-					current = tmp;
-					if (! tmp.right) {
-						break;
-					}
-				}
-				left.right = current;
-				left = current;
-				current = current.right;
-			} else {
-				break;
-			}
-		}
-	}
-	left.right = current.left;
-	right.left = current.right;
-	current.left = dummy.right;
-	current.right = dummy.left;
-	$this.root_ = current;
-};
-
-SplayTree.splay__0$LSplayTree$N = SplayTree$splay__0$LSplayTree$N;
-
 function SplayTreeNode(key, value) {
 	this.left = null;
 	this.right = null;
@@ -10388,7 +7970,7 @@ function SplayTreeNode$traverse_$LSplayTreeNode$F$LSplayTreeNode$V$($this, f) {
 	while (current) {
 		left = current.left;
 		if (left) {
-			SplayTreeNode$traverse__0$LSplayTreeNode$F$LSplayTreeNode$V$(left, f);
+			SplayTreeNode$traverse_$LSplayTreeNode$F$LSplayTreeNode$V$(left, f);
 		}
 		f(current);
 		current = current.right;
@@ -10396,22 +7978,6 @@ function SplayTreeNode$traverse_$LSplayTreeNode$F$LSplayTreeNode$V$($this, f) {
 };
 
 SplayTreeNode.traverse_$LSplayTreeNode$F$LSplayTreeNode$V$ = SplayTreeNode$traverse_$LSplayTreeNode$F$LSplayTreeNode$V$;
-
-function SplayTreeNode$traverse__0$LSplayTreeNode$F$LSplayTreeNode$V$($this, f) {
-	var current;
-	var left;
-	current = $this;
-	while (current) {
-		left = current.left;
-		if (left) {
-			SplayTreeNode$traverse__0$LSplayTreeNode$F$LSplayTreeNode$V$(left, f);
-		}
-		f(current);
-		current = current.right;
-	}
-};
-
-SplayTreeNode.traverse__0$LSplayTreeNode$F$LSplayTreeNode$V$ = SplayTreeNode$traverse__0$LSplayTreeNode$F$LSplayTreeNode$V$;
 
 function NavierStokes() {
 	var $this = this;
@@ -10432,12 +7998,12 @@ function NavierStokes() {
 		var y$1;
 		n = 64;
 		for (i = 1; i <= n; i++) {
-			Field$setVelocity_0$LField$NNNN(field, i, i, n, n);
+			Field$setVelocity$LField$NNNN(field, i, i, n, n);
 			field.dens[i + 1 + (i + 1) * field.fluid._rowSize] = 5;
-			Field$setVelocity_0$LField$NNNN(field, i, n - i, - n, - n);
+			Field$setVelocity$LField$NNNN(field, i, n - i, - n, - n);
 			y$0 = n - i;
 			field.dens[i + 1 + (y$0 + 1) * field.fluid._rowSize] = 20;
-			Field$setVelocity_0$LField$NNNN(field, 128 - i, n + i, - n, - n);
+			Field$setVelocity$LField$NNNN(field, 128 - i, n + i, - n, - n);
 			x$0 = 128 - i;
 			y$1 = n + i;
 			field.dens[x$0 + 1 + (y$1 + 1) * field.fluid._rowSize] = 30;
@@ -10455,16 +8021,16 @@ function NavierStokes() {
 		}
 	}
 	function runNavierStokes() {
-		FluidField$update_0$LFluidField$(solver);
+		FluidField$update$LFluidField$(solver);
 	}
 	function setupNavierStokes() {
 		solver = new FluidField();
-		FluidField$setResolution_0$LFluidField$NN(solver, 128, 128);
-		FluidField$setIterations_0$LFluidField$N(solver, 20);
+		FluidField$setResolution$LFluidField$NN(solver, 128, 128);
+		FluidField$setIterations$LFluidField$N(solver, 20);
 		solver._displayFunc = (function (f) {
 		});
 		solver._uiCallback = prepareFrame;
-		FluidField$reset_0$LFluidField$(solver);
+		FluidField$reset$LFluidField$(solver);
 	}
 	function tearDownNavierStokes() {
 		solver = null;
@@ -10490,7 +8056,7 @@ function FluidField() {
 	this._v = null;
 	this._v_prev = null;
 	this._size = -1;
-	FluidField$setResolution_0$LFluidField$NN(this, 64, 64);
+	FluidField$setResolution$LFluidField$NN(this, 64, 64);
 };
 
 $__jsx_extend([FluidField], Object);
@@ -10502,14 +8068,14 @@ FluidField.prototype._add_fields$ANANN = function (x, s, dt) {
 };
 
 
-function FluidField$_add_fields_0$LFluidField$ANANN($this, x, s, dt) {
+function FluidField$_add_fields$LFluidField$ANANN($this, x, s, dt) {
 	var i;
 	for (i = 0; i < $this._size; i++) {
 		x[i] += dt * s[i];
 	}
 };
 
-FluidField._add_fields_0$LFluidField$ANANN = FluidField$_add_fields_0$LFluidField$ANANN;
+FluidField._add_fields$LFluidField$ANANN = FluidField$_add_fields$LFluidField$ANANN;
 
 FluidField.prototype._set_bnd$NAN = function (b, x) {
 	var i;
@@ -10553,7 +8119,7 @@ FluidField.prototype._set_bnd$NAN = function (b, x) {
 };
 
 
-function FluidField$_set_bnd_0$LFluidField$NAN($this, b, x) {
+function FluidField$_set_bnd$LFluidField$NAN($this, b, x) {
 	var i;
 	var j;
 	var maxEdge;
@@ -10594,7 +8160,7 @@ function FluidField$_set_bnd_0$LFluidField$NAN($this, b, x) {
 	x[$this._width + 1 + maxEdge] = 0.5 * (x[$this._width + maxEdge] + x[$this._width + 1 + $this._height * $this._rowSize]);
 };
 
-FluidField._set_bnd_0$LFluidField$NAN = FluidField$_set_bnd_0$LFluidField$NAN;
+FluidField._set_bnd$LFluidField$NAN = FluidField$_set_bnd$LFluidField$NAN;
 
 FluidField.prototype._lin_solve$NANANNN = function (b, x, x0, a, c) {
 	var j;
@@ -10615,7 +8181,7 @@ FluidField.prototype._lin_solve$NANANNN = function (b, x, x0, a, c) {
 				++ currentRow;
 			}
 		}
-		FluidField$_set_bnd_0$LFluidField$NAN(this, b, x);
+		FluidField$_set_bnd$LFluidField$NAN(this, b, x);
 	} else {
 		invC = 1 / c;
 		for (k = 0; k < this._iterations; k++) {
@@ -10629,13 +8195,13 @@ FluidField.prototype._lin_solve$NANANNN = function (b, x, x0, a, c) {
 					lastX = x[currentRow] = (x0[currentRow] + a * (lastX + x[++ currentRow] + x[++ lastRow] + x[++ nextRow])) * invC;
 				}
 			}
-			FluidField$_set_bnd_0$LFluidField$NAN(this, b, x);
+			FluidField$_set_bnd$LFluidField$NAN(this, b, x);
 		}
 	}
 };
 
 
-function FluidField$_lin_solve_0$LFluidField$NANANNN($this, b, x, x0, a, c) {
+function FluidField$_lin_solve$LFluidField$NANANNN($this, b, x, x0, a, c) {
 	var j;
 	var currentRow;
 	var i;
@@ -10654,7 +8220,7 @@ function FluidField$_lin_solve_0$LFluidField$NANANNN($this, b, x, x0, a, c) {
 				++ currentRow;
 			}
 		}
-		FluidField$_set_bnd_0$LFluidField$NAN($this, b, x);
+		FluidField$_set_bnd$LFluidField$NAN($this, b, x);
 	} else {
 		invC = 1 / c;
 		for (k = 0; k < $this._iterations; k++) {
@@ -10668,23 +8234,23 @@ function FluidField$_lin_solve_0$LFluidField$NANANNN($this, b, x, x0, a, c) {
 					lastX = x[currentRow] = (x0[currentRow] + a * (lastX + x[++ currentRow] + x[++ lastRow] + x[++ nextRow])) * invC;
 				}
 			}
-			FluidField$_set_bnd_0$LFluidField$NAN($this, b, x);
+			FluidField$_set_bnd$LFluidField$NAN($this, b, x);
 		}
 	}
 };
 
-FluidField._lin_solve_0$LFluidField$NANANNN = FluidField$_lin_solve_0$LFluidField$NANANNN;
+FluidField._lin_solve$LFluidField$NANANNN = FluidField$_lin_solve$LFluidField$NANANNN;
 
 FluidField.prototype._diffuse$NANANN = function (b, x, x0, dt) {
-	FluidField$_lin_solve_0$LFluidField$NANANNN(this, b, x, x0, 0, 1);
+	FluidField$_lin_solve$LFluidField$NANANNN(this, b, x, x0, 0, 1);
 };
 
 
-function FluidField$_diffuse_0$LFluidField$NANANN($this, b, x, x0, dt) {
-	FluidField$_lin_solve_0$LFluidField$NANANNN($this, b, x, x0, 0, 1);
+function FluidField$_diffuse$LFluidField$NANANN($this, b, x, x0, dt) {
+	FluidField$_lin_solve$LFluidField$NANANNN($this, b, x, x0, 0, 1);
 };
 
-FluidField._diffuse_0$LFluidField$NANANN = FluidField$_diffuse_0$LFluidField$NANANN;
+FluidField._diffuse$LFluidField$NANANN = FluidField$_diffuse$LFluidField$NANANN;
 
 FluidField.prototype._lin_solve2$ANANANANNN = function (x, x0, y, y0, a, c) {
 	var j;
@@ -10707,8 +8273,8 @@ FluidField.prototype._lin_solve2$ANANANANNN = function (x, x0, y, y0, a, c) {
 				++ currentRow;
 			}
 		}
-		FluidField$_set_bnd_0$LFluidField$NAN(this, 1, x);
-		FluidField$_set_bnd_0$LFluidField$NAN(this, 2, y);
+		FluidField$_set_bnd$LFluidField$NAN(this, 1, x);
+		FluidField$_set_bnd$LFluidField$NAN(this, 2, y);
 	} else {
 		invC = 1 / c;
 		for (k = 0; k < this._iterations; k++) {
@@ -10724,14 +8290,14 @@ FluidField.prototype._lin_solve2$ANANANANNN = function (x, x0, y, y0, a, c) {
 					lastY = y[currentRow] = (y0[currentRow] + a * (lastY + y[++ currentRow] + y[++ lastRow] + y[++ nextRow])) * invC;
 				}
 			}
-			FluidField$_set_bnd_0$LFluidField$NAN(this, 1, x);
-			FluidField$_set_bnd_0$LFluidField$NAN(this, 2, y);
+			FluidField$_set_bnd$LFluidField$NAN(this, 1, x);
+			FluidField$_set_bnd$LFluidField$NAN(this, 2, y);
 		}
 	}
 };
 
 
-function FluidField$_lin_solve2_0$LFluidField$ANANANANNN($this, x, x0, y, y0, a, c) {
+function FluidField$_lin_solve2$LFluidField$ANANANANNN($this, x, x0, y, y0, a, c) {
 	var j;
 	var currentRow;
 	var i;
@@ -10752,8 +8318,8 @@ function FluidField$_lin_solve2_0$LFluidField$ANANANANNN($this, x, x0, y, y0, a,
 				++ currentRow;
 			}
 		}
-		FluidField$_set_bnd_0$LFluidField$NAN($this, 1, x);
-		FluidField$_set_bnd_0$LFluidField$NAN($this, 2, y);
+		FluidField$_set_bnd$LFluidField$NAN($this, 1, x);
+		FluidField$_set_bnd$LFluidField$NAN($this, 2, y);
 	} else {
 		invC = 1 / c;
 		for (k = 0; k < $this._iterations; k++) {
@@ -10769,24 +8335,24 @@ function FluidField$_lin_solve2_0$LFluidField$ANANANANNN($this, x, x0, y, y0, a,
 					lastY = y[currentRow] = (y0[currentRow] + a * (lastY + y[++ currentRow] + y[++ lastRow] + y[++ nextRow])) * invC;
 				}
 			}
-			FluidField$_set_bnd_0$LFluidField$NAN($this, 1, x);
-			FluidField$_set_bnd_0$LFluidField$NAN($this, 2, y);
+			FluidField$_set_bnd$LFluidField$NAN($this, 1, x);
+			FluidField$_set_bnd$LFluidField$NAN($this, 2, y);
 		}
 	}
 };
 
-FluidField._lin_solve2_0$LFluidField$ANANANANNN = FluidField$_lin_solve2_0$LFluidField$ANANANANNN;
+FluidField._lin_solve2$LFluidField$ANANANANNN = FluidField$_lin_solve2$LFluidField$ANANANANNN;
 
 FluidField.prototype._diffuse2$ANANANANN = function (x, x0, y, y0, dt) {
-	FluidField$_lin_solve2_0$LFluidField$ANANANANNN(this, x, x0, y, y0, 0, 1);
+	FluidField$_lin_solve2$LFluidField$ANANANANNN(this, x, x0, y, y0, 0, 1);
 };
 
 
-function FluidField$_diffuse2_0$LFluidField$ANANANANN($this, x, x0, y, y0, dt) {
-	FluidField$_lin_solve2_0$LFluidField$ANANANANNN($this, x, x0, y, y0, 0, 1);
+function FluidField$_diffuse2$LFluidField$ANANANANN($this, x, x0, y, y0, dt) {
+	FluidField$_lin_solve2$LFluidField$ANANANANNN($this, x, x0, y, y0, 0, 1);
 };
 
-FluidField._diffuse2_0$LFluidField$ANANANANN = FluidField$_diffuse2_0$LFluidField$ANANANANN;
+FluidField._diffuse2$LFluidField$ANANANANN = FluidField$_diffuse2$LFluidField$ANANANANN;
 
 FluidField.prototype._advect$NANANANANN = function (b, d, d0, u, v, dt) {
 	var Wdt0;
@@ -10847,11 +8413,11 @@ FluidField.prototype._advect$NANANANANN = function (b, d, d0, u, v, dt) {
 			d[pos] = s0 * (t0 * d0[i0 + row1] + t1 * d0[i0 + row2]) + s1 * (t0 * d0[i1 + row1] + t1 * d0[i1 + row2]);
 		}
 	}
-	FluidField$_set_bnd_0$LFluidField$NAN(this, b, d);
+	FluidField$_set_bnd$LFluidField$NAN(this, b, d);
 };
 
 
-function FluidField$_advect_0$LFluidField$NANANANANN($this, b, d, d0, u, v, dt) {
+function FluidField$_advect$LFluidField$NANANANANN($this, b, d, d0, u, v, dt) {
 	var Wdt0;
 	var Hdt0;
 	var Wp5;
@@ -10910,10 +8476,10 @@ function FluidField$_advect_0$LFluidField$NANANANANN($this, b, d, d0, u, v, dt) 
 			d[pos] = s0 * (t0 * d0[i0 + row1] + t1 * d0[i0 + row2]) + s1 * (t0 * d0[i1 + row1] + t1 * d0[i1 + row2]);
 		}
 	}
-	FluidField$_set_bnd_0$LFluidField$NAN($this, b, d);
+	FluidField$_set_bnd$LFluidField$NAN($this, b, d);
 };
 
-FluidField._advect_0$LFluidField$NANANANANN = FluidField$_advect_0$LFluidField$NANANANANN;
+FluidField._advect$LFluidField$NANANANANN = FluidField$_advect$LFluidField$NANANANANN;
 
 FluidField.prototype._project$ANANANAN = function (u, v, p, div) {
 	var h;
@@ -10946,9 +8512,9 @@ FluidField.prototype._project$ANANANAN = function (u, v, p, div) {
 			p[currentRow] = 0;
 		}
 	}
-	FluidField$_set_bnd_0$LFluidField$NAN(this, 0, div);
-	FluidField$_set_bnd_0$LFluidField$NAN(this, 0, p);
-	FluidField$_lin_solve_0$LFluidField$NANANNN(this, 0, p, div, 1, 4);
+	FluidField$_set_bnd$LFluidField$NAN(this, 0, div);
+	FluidField$_set_bnd$LFluidField$NAN(this, 0, p);
+	FluidField$_lin_solve$LFluidField$NANANNN(this, 0, p, div, 1, 4);
 	wScale = 0.5 * this._width;
 	hScale = 0.5 * this._height;
 	for (j = 1; j <= this._height; j++) {
@@ -10963,12 +8529,12 @@ FluidField.prototype._project$ANANANAN = function (u, v, p, div) {
 			v[currentPos] -= hScale * (p[++ nextRow] - p[++ prevRow]);
 		}
 	}
-	FluidField$_set_bnd_0$LFluidField$NAN(this, 1, u);
-	FluidField$_set_bnd_0$LFluidField$NAN(this, 2, v);
+	FluidField$_set_bnd$LFluidField$NAN(this, 1, u);
+	FluidField$_set_bnd$LFluidField$NAN(this, 2, v);
 };
 
 
-function FluidField$_project_0$LFluidField$ANANANAN($this, u, v, p, div) {
+function FluidField$_project$LFluidField$ANANANAN($this, u, v, p, div) {
 	var h;
 	var j;
 	var row;
@@ -10999,9 +8565,9 @@ function FluidField$_project_0$LFluidField$ANANANAN($this, u, v, p, div) {
 			p[currentRow] = 0;
 		}
 	}
-	FluidField$_set_bnd_0$LFluidField$NAN($this, 0, div);
-	FluidField$_set_bnd_0$LFluidField$NAN($this, 0, p);
-	FluidField$_lin_solve_0$LFluidField$NANANNN($this, 0, p, div, 1, 4);
+	FluidField$_set_bnd$LFluidField$NAN($this, 0, div);
+	FluidField$_set_bnd$LFluidField$NAN($this, 0, p);
+	FluidField$_lin_solve$LFluidField$NANANNN($this, 0, p, div, 1, 4);
 	wScale = 0.5 * $this._width;
 	hScale = 0.5 * $this._height;
 	for (j = 1; j <= $this._height; j++) {
@@ -11016,103 +8582,103 @@ function FluidField$_project_0$LFluidField$ANANANAN($this, u, v, p, div) {
 			v[currentPos] -= hScale * (p[++ nextRow] - p[++ prevRow]);
 		}
 	}
-	FluidField$_set_bnd_0$LFluidField$NAN($this, 1, u);
-	FluidField$_set_bnd_0$LFluidField$NAN($this, 2, v);
+	FluidField$_set_bnd$LFluidField$NAN($this, 1, u);
+	FluidField$_set_bnd$LFluidField$NAN($this, 2, v);
 };
 
-FluidField._project_0$LFluidField$ANANANAN = FluidField$_project_0$LFluidField$ANANANAN;
+FluidField._project$LFluidField$ANANANAN = FluidField$_project$LFluidField$ANANANAN;
 
 FluidField.prototype._dens_step$ANANANANN = function (x, x0, u, v, dt) {
-	FluidField$_add_fields_0$LFluidField$ANANN(this, x, x0, dt);
-	FluidField$_lin_solve_0$LFluidField$NANANNN(this, 0, x0, x, 0, 1);
-	FluidField$_advect_0$LFluidField$NANANANANN(this, 0, x, x0, u, v, dt);
+	FluidField$_add_fields$LFluidField$ANANN(this, x, x0, dt);
+	FluidField$_lin_solve$LFluidField$NANANNN(this, 0, x0, x, 0, 1);
+	FluidField$_advect$LFluidField$NANANANANN(this, 0, x, x0, u, v, dt);
 };
 
 
-function FluidField$_dens_step_0$LFluidField$ANANANANN($this, x, x0, u, v, dt) {
-	FluidField$_add_fields_0$LFluidField$ANANN($this, x, x0, dt);
-	FluidField$_lin_solve_0$LFluidField$NANANNN($this, 0, x0, x, 0, 1);
-	FluidField$_advect_0$LFluidField$NANANANANN($this, 0, x, x0, u, v, dt);
+function FluidField$_dens_step$LFluidField$ANANANANN($this, x, x0, u, v, dt) {
+	FluidField$_add_fields$LFluidField$ANANN($this, x, x0, dt);
+	FluidField$_lin_solve$LFluidField$NANANNN($this, 0, x0, x, 0, 1);
+	FluidField$_advect$LFluidField$NANANANANN($this, 0, x, x0, u, v, dt);
 };
 
-FluidField._dens_step_0$LFluidField$ANANANANN = FluidField$_dens_step_0$LFluidField$ANANANANN;
+FluidField._dens_step$LFluidField$ANANANANN = FluidField$_dens_step$LFluidField$ANANANANN;
 
 FluidField.prototype._vel_step$ANANANANN = function (u, v, u0, v0, dt) {
 	var temp;
-	FluidField$_add_fields_0$LFluidField$ANANN(this, u, u0, dt);
-	FluidField$_add_fields_0$LFluidField$ANANN(this, v, v0, dt);
+	FluidField$_add_fields$LFluidField$ANANN(this, u, u0, dt);
+	FluidField$_add_fields$LFluidField$ANANN(this, v, v0, dt);
 	temp = u0;
 	u0 = u;
 	u = temp;
 	temp = v0;
 	v0 = v;
 	v = temp;
-	FluidField$_lin_solve2_0$LFluidField$ANANANANNN(this, u, u0, temp, v0, 0, 1);
-	FluidField$_project_0$LFluidField$ANANANAN(this, u, temp, u0, v0);
+	FluidField$_lin_solve2$LFluidField$ANANANANNN(this, u, u0, temp, v0, 0, 1);
+	FluidField$_project$LFluidField$ANANANAN(this, u, temp, u0, v0);
 	temp = u0;
 	u0 = u;
 	u = temp;
 	temp = v0;
 	v0 = v;
 	v = temp;
-	FluidField$_advect_0$LFluidField$NANANANANN(this, 1, u, u0, u0, v0, dt);
-	FluidField$_advect_0$LFluidField$NANANANANN(this, 2, temp, v0, u0, v0, dt);
-	FluidField$_project_0$LFluidField$ANANANAN(this, u, temp, u0, v0);
+	FluidField$_advect$LFluidField$NANANANANN(this, 1, u, u0, u0, v0, dt);
+	FluidField$_advect$LFluidField$NANANANANN(this, 2, temp, v0, u0, v0, dt);
+	FluidField$_project$LFluidField$ANANANAN(this, u, temp, u0, v0);
 };
 
 
-function FluidField$_vel_step_0$LFluidField$ANANANANN($this, u, v, u0, v0, dt) {
+function FluidField$_vel_step$LFluidField$ANANANANN($this, u, v, u0, v0, dt) {
 	var temp;
-	FluidField$_add_fields_0$LFluidField$ANANN($this, u, u0, dt);
-	FluidField$_add_fields_0$LFluidField$ANANN($this, v, v0, dt);
+	FluidField$_add_fields$LFluidField$ANANN($this, u, u0, dt);
+	FluidField$_add_fields$LFluidField$ANANN($this, v, v0, dt);
 	temp = u0;
 	u0 = u;
 	u = temp;
 	temp = v0;
 	v0 = v;
 	v = temp;
-	FluidField$_lin_solve2_0$LFluidField$ANANANANNN($this, u, u0, temp, v0, 0, 1);
-	FluidField$_project_0$LFluidField$ANANANAN($this, u, temp, u0, v0);
+	FluidField$_lin_solve2$LFluidField$ANANANANNN($this, u, u0, temp, v0, 0, 1);
+	FluidField$_project$LFluidField$ANANANAN($this, u, temp, u0, v0);
 	temp = u0;
 	u0 = u;
 	u = temp;
 	temp = v0;
 	v0 = v;
 	v = temp;
-	FluidField$_advect_0$LFluidField$NANANANANN($this, 1, u, u0, u0, v0, dt);
-	FluidField$_advect_0$LFluidField$NANANANANN($this, 2, temp, v0, u0, v0, dt);
-	FluidField$_project_0$LFluidField$ANANANAN($this, u, temp, u0, v0);
+	FluidField$_advect$LFluidField$NANANANANN($this, 1, u, u0, u0, v0, dt);
+	FluidField$_advect$LFluidField$NANANANANN($this, 2, temp, v0, u0, v0, dt);
+	FluidField$_project$LFluidField$ANANANAN($this, u, temp, u0, v0);
 };
 
-FluidField._vel_step_0$LFluidField$ANANANANN = FluidField$_vel_step_0$LFluidField$ANANANANN;
+FluidField._vel_step$LFluidField$ANANANANN = FluidField$_vel_step$LFluidField$ANANANANN;
 
 FluidField.prototype.update$ = function () {
-	FluidField$queryUI_0$LFluidField$ANANAN(this, this._dens_prev, this._u_prev, this._v_prev);
-	FluidField$_vel_step_0$LFluidField$ANANANANN(this, this._u, this._v, this._u_prev, this._v_prev, this._dt);
-	FluidField$_dens_step_0$LFluidField$ANANANANN(this, this._dens, this._dens_prev, this._u, this._v, this._dt);
+	FluidField$queryUI$LFluidField$ANANAN(this, this._dens_prev, this._u_prev, this._v_prev);
+	FluidField$_vel_step$LFluidField$ANANANANN(this, this._u, this._v, this._u_prev, this._v_prev, this._dt);
+	FluidField$_dens_step$LFluidField$ANANANANN(this, this._dens, this._dens_prev, this._u, this._v, this._dt);
 	this._displayFunc(({fluid: this, dens: this._dens, u: this._u, v: this._v}));
 };
 
 
-function FluidField$update_0$LFluidField$($this) {
-	FluidField$queryUI_0$LFluidField$ANANAN($this, $this._dens_prev, $this._u_prev, $this._v_prev);
-	FluidField$_vel_step_0$LFluidField$ANANANANN($this, $this._u, $this._v, $this._u_prev, $this._v_prev, $this._dt);
-	FluidField$_dens_step_0$LFluidField$ANANANANN($this, $this._dens, $this._dens_prev, $this._u, $this._v, $this._dt);
+function FluidField$update$LFluidField$($this) {
+	FluidField$queryUI$LFluidField$ANANAN($this, $this._dens_prev, $this._u_prev, $this._v_prev);
+	FluidField$_vel_step$LFluidField$ANANANANN($this, $this._u, $this._v, $this._u_prev, $this._v_prev, $this._dt);
+	FluidField$_dens_step$LFluidField$ANANANANN($this, $this._dens, $this._dens_prev, $this._u, $this._v, $this._dt);
 	$this._displayFunc(({fluid: $this, dens: $this._dens, u: $this._u, v: $this._v}));
 };
 
-FluidField.update_0$LFluidField$ = FluidField$update_0$LFluidField$;
+FluidField.update$LFluidField$ = FluidField$update$LFluidField$;
 
 FluidField.prototype.iterations$ = function () {
 	return this._iterations;
 };
 
 
-function FluidField$iterations_0$LFluidField$($this) {
+function FluidField$iterations$LFluidField$($this) {
 	return $this._iterations;
 };
 
-FluidField.iterations_0$LFluidField$ = FluidField$iterations_0$LFluidField$;
+FluidField.iterations$LFluidField$ = FluidField$iterations$LFluidField$;
 
 FluidField.prototype.setIterations$N = function (iters) {
 	if (iters > 0 && iters <= 100) {
@@ -11121,13 +8687,13 @@ FluidField.prototype.setIterations$N = function (iters) {
 };
 
 
-function FluidField$setIterations_0$LFluidField$N($this, iters) {
+function FluidField$setIterations$LFluidField$N($this, iters) {
 	if (iters > 0 && iters <= 100) {
 		$this._iterations = iters;
 	}
 };
 
-FluidField.setIterations_0$LFluidField$N = FluidField$setIterations_0$LFluidField$N;
+FluidField.setIterations$LFluidField$N = FluidField$setIterations$LFluidField$N;
 
 FluidField.prototype.queryUI$ANANAN = function (d, u, v) {
 	var i;
@@ -11138,7 +8704,7 @@ FluidField.prototype.queryUI$ANANAN = function (d, u, v) {
 };
 
 
-function FluidField$queryUI_0$LFluidField$ANANAN($this, d, u, v) {
+function FluidField$queryUI$LFluidField$ANANAN($this, d, u, v) {
 	var i;
 	for (i = 0; i < $this._size; i++) {
 		u[i] = v[i] = d[i] = 0.0;
@@ -11146,29 +8712,29 @@ function FluidField$queryUI_0$LFluidField$ANANAN($this, d, u, v) {
 	$this._uiCallback(({fluid: $this, dens: d, u: u, v: v}));
 };
 
-FluidField.queryUI_0$LFluidField$ANANAN = FluidField$queryUI_0$LFluidField$ANANAN;
+FluidField.queryUI$LFluidField$ANANAN = FluidField$queryUI$LFluidField$ANANAN;
 
 FluidField.prototype.setUICallback$F$LField$V$ = function (callback) {
 	this._uiCallback = callback;
 };
 
 
-function FluidField$setUICallback_0$LFluidField$F$LField$V$($this, callback) {
+function FluidField$setUICallback$LFluidField$F$LField$V$($this, callback) {
 	$this._uiCallback = callback;
 };
 
-FluidField.setUICallback_0$LFluidField$F$LField$V$ = FluidField$setUICallback_0$LFluidField$F$LField$V$;
+FluidField.setUICallback$LFluidField$F$LField$V$ = FluidField$setUICallback$LFluidField$F$LField$V$;
 
 FluidField.prototype.setDisplayFunction$F$LField$V$ = function (func) {
 	this._displayFunc = func;
 };
 
 
-function FluidField$setDisplayFunction_0$LFluidField$F$LField$V$($this, func) {
+function FluidField$setDisplayFunction$LFluidField$F$LField$V$($this, func) {
 	$this._displayFunc = func;
 };
 
-FluidField.setDisplayFunction_0$LFluidField$F$LField$V$ = FluidField$setDisplayFunction_0$LFluidField$F$LField$V$;
+FluidField.setDisplayFunction$LFluidField$F$LField$V$ = FluidField$setDisplayFunction$LFluidField$F$LField$V$;
 
 FluidField.prototype.reset$ = function () {
 	var i;
@@ -11188,7 +8754,7 @@ FluidField.prototype.reset$ = function () {
 };
 
 
-function FluidField$reset_0$LFluidField$($this) {
+function FluidField$reset$LFluidField$($this) {
 	var i;
 	var _width$0;
 	var _size$0;
@@ -11205,7 +8771,7 @@ function FluidField$reset_0$LFluidField$($this) {
 	}
 };
 
-FluidField.reset_0$LFluidField$ = FluidField$reset_0$LFluidField$;
+FluidField.reset$LFluidField$ = FluidField$reset$LFluidField$;
 
 FluidField.prototype.setResolution$NN = function (hRes, wRes) {
 	var res;
@@ -11213,26 +8779,26 @@ FluidField.prototype.setResolution$NN = function (hRes, wRes) {
 	if (res > 0 && res < 1000000 && (wRes !== this._width || hRes !== this._height)) {
 		this._width = wRes;
 		this._height = hRes;
-		FluidField$reset_0$LFluidField$(this);
+		FluidField$reset$LFluidField$(this);
 		return true;
 	}
 	return false;
 };
 
 
-function FluidField$setResolution_0$LFluidField$NN($this, hRes, wRes) {
+function FluidField$setResolution$LFluidField$NN($this, hRes, wRes) {
 	var res;
 	res = wRes * hRes;
 	if (res > 0 && res < 1000000 && (wRes !== $this._width || hRes !== $this._height)) {
 		$this._width = wRes;
 		$this._height = hRes;
-		FluidField$reset_0$LFluidField$($this);
+		FluidField$reset$LFluidField$($this);
 		return true;
 	}
 	return false;
 };
 
-FluidField.setResolution_0$LFluidField$NN = FluidField$setResolution_0$LFluidField$NN;
+FluidField.setResolution$LFluidField$NN = FluidField$setResolution$LFluidField$NN;
 
 function Field(fluid, dens, u, v) {
 	this.fluid = fluid;
@@ -11248,23 +8814,11 @@ function Field$setDensity$LField$NNN($this, x, y, d) {
 
 Field.setDensity$LField$NNN = Field$setDensity$LField$NNN;
 
-function Field$setDensity_0$LField$NNN($this, x, y, d) {
-	$this.dens[x + 1 + (y + 1) * $this.fluid._rowSize] = d;
-};
-
-Field.setDensity_0$LField$NNN = Field$setDensity_0$LField$NNN;
-
 function Field$getDensity$LField$NN($this, x, y) {
 	return $this.dens[x + 1 + (y + 1) * $this.fluid._rowSize];
 };
 
 Field.getDensity$LField$NN = Field$getDensity$LField$NN;
-
-function Field$getDensity_0$LField$NN($this, x, y) {
-	return $this.dens[x + 1 + (y + 1) * $this.fluid._rowSize];
-};
-
-Field.getDensity_0$LField$NN = Field$getDensity_0$LField$NN;
 
 function Field$setVelocity$LField$NNNN($this, x, y, xv, yv) {
 	$this.u[x + 1 + (y + 1) * $this.fluid._rowSize] = xv;
@@ -11273,24 +8827,11 @@ function Field$setVelocity$LField$NNNN($this, x, y, xv, yv) {
 
 Field.setVelocity$LField$NNNN = Field$setVelocity$LField$NNNN;
 
-function Field$setVelocity_0$LField$NNNN($this, x, y, xv, yv) {
-	$this.u[x + 1 + (y + 1) * $this.fluid._rowSize] = xv;
-	$this.v[x + 1 + (y + 1) * $this.fluid._rowSize] = yv;
-};
-
-Field.setVelocity_0$LField$NNNN = Field$setVelocity_0$LField$NNNN;
-
 function Field$getXVelocity$LField$NN($this, x, y) {
 	return $this.u[x + 1 + (y + 1) * $this.fluid._rowSize];
 };
 
 Field.getXVelocity$LField$NN = Field$getXVelocity$LField$NN;
-
-function Field$getXVelocity_0$LField$NN($this, x, y) {
-	return $this.u[x + 1 + (y + 1) * $this.fluid._rowSize];
-};
-
-Field.getXVelocity_0$LField$NN = Field$getXVelocity_0$LField$NN;
 
 function Field$getYVelocity$LField$NN($this, x, y) {
 	return $this.v[x + 1 + (y + 1) * $this.fluid._rowSize];
@@ -11298,35 +8839,17 @@ function Field$getYVelocity$LField$NN($this, x, y) {
 
 Field.getYVelocity$LField$NN = Field$getYVelocity$LField$NN;
 
-function Field$getYVelocity_0$LField$NN($this, x, y) {
-	return $this.v[x + 1 + (y + 1) * $this.fluid._rowSize];
-};
-
-Field.getYVelocity_0$LField$NN = Field$getYVelocity_0$LField$NN;
-
 function Field$width$LField$($this) {
 	return $this.fluid._width;
 };
 
 Field.width$LField$ = Field$width$LField$;
 
-function Field$width_0$LField$($this) {
-	return $this.fluid._width;
-};
-
-Field.width_0$LField$ = Field$width_0$LField$;
-
 function Field$height$LField$($this) {
 	return $this.fluid._height;
 };
 
 Field.height$LField$ = Field$height$LField$;
-
-function Field$height_0$LField$($this) {
-	return $this.fluid._height;
-};
-
-Field.height_0$LField$ = Field$height_0$LField$;
 
 function dom() {
 };
@@ -11736,9 +9259,7 @@ TaskControlBlock.STATE_RUNNABLE = 1;
 TaskControlBlock.STATE_SUSPENDED = 2;
 TaskControlBlock.STATE_HELD = 4;
 TaskControlBlock.STATE_SUSPENDED_RUNNABLE = 3;
-$__jsx_lazy_init(TaskControlBlock, "STATE_NOT_HELD", function () {
-	return ~ 4;
-});
+TaskControlBlock.STATE_NOT_HELD = -5;
 Packet.DATA_SIZE = 4;
 $__jsx_lazy_init(Strength, "REQUIRED", function () {
 	return ({strengthValue: 0, name: "required"});
