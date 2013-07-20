@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// generatedy by JSX compiler 0.9.56 (2013-07-17 21:18:01 -0700; 6acc52a3f509ed30c9e04715405d1181adc00070)
+// generatedy by JSX compiler 0.9.57 (2013-07-24 14:56:33 -0700; b9c1243628afba5501738b6e8e775e81eda5ce8e)
 var JSX = {};
 (function (JSX) {
 /**
@@ -102,11 +102,11 @@ JSX.resetProfileResults = function () {
 	return $__jsx_profiler.resetResults();
 };
 JSX.DEBUG = false;
-function g_StopIteration() {
+function StopIteration() {
 	Error.call(this);
 };
 
-$__jsx_extend([g_StopIteration], Error);
+$__jsx_extend([StopIteration], Error);
 function _Main() {
 };
 
@@ -321,10 +321,11 @@ BenchmarkSuite.GeometricMean$AN = BenchmarkSuite$GeometricMean$AN;
 function BenchmarkSuite$GeometricMean$ALBenchmarkResult$(numbers) {
 	var loga;
 	var i;
+	var this$0;
 	var numbers$len$0;
 	loga = 0;
 	for ((i = 0, numbers$len$0 = numbers.length); i < numbers$len$0; i++) {
-		loga += Math.log(numbers[i].time);
+		loga += Math.log((this$0 = numbers[i], this$0.time));
 	}
 	return Math.pow(2.718281828459045, loga / numbers.length);
 };
@@ -658,13 +659,7 @@ function Scheduler() {
 
 $__jsx_extend([Scheduler], Object);
 function Scheduler$addIdleTask$LScheduler$IILPacket$I($this, id, priority, queue, count) {
-	var task$0;
-	var currentTcb$0;
-	task$0 = new IdleTask($this, 1, count);
-	currentTcb$0 = $this.currentTcb = new TaskControlBlock($this.list, id, priority, queue, task$0);
-	$this.list = currentTcb$0;
-	$this.blocks[id] = $this.currentTcb;
-	$this.currentTcb.state = 0;
+	Scheduler$addRunningTask$LScheduler$IILPacket$LTask$($this, id, priority, queue, new IdleTask($this, 1, count));
 };
 
 Scheduler.addIdleTask$LScheduler$IILPacket$I = Scheduler$addIdleTask$LScheduler$IILPacket$I;
@@ -703,11 +698,13 @@ function Scheduler$addDeviceTask$LScheduler$IILPacket$($this, id, priority, queu
 Scheduler.addDeviceTask$LScheduler$IILPacket$ = Scheduler$addDeviceTask$LScheduler$IILPacket$;
 
 function Scheduler$addRunningTask$LScheduler$IILPacket$LTask$($this, id, priority, queue, task) {
+	var this$0;
 	var currentTcb$0;
 	currentTcb$0 = $this.currentTcb = new TaskControlBlock($this.list, id, priority, queue, task);
 	$this.list = currentTcb$0;
 	$this.blocks[id] = $this.currentTcb;
-	$this.currentTcb.state = 0;
+	this$0 = $this.currentTcb;
+	this$0.state = 0;
 };
 
 Scheduler.addRunningTask$LScheduler$IILPacket$LTask$ = Scheduler$addRunningTask$LScheduler$IILPacket$LTask$;
@@ -989,8 +986,8 @@ DeviceTask.prototype.run$LPacket$ = function (packet) {
 	var v;
 	var this$0;
 	var this$0$0;
-	var this$1;
-	var this$0$1;
+	var this$2;
+	var this$0$2;
 	var currentTcb$0;
 	var currentTcb$1;
 	if (packet == null) {
@@ -1005,10 +1002,10 @@ DeviceTask.prototype.run$LPacket$ = function (packet) {
 		return Scheduler$queue$LScheduler$LPacket$(this.scheduler, v);
 	} else {
 		this.v1 = packet;
-		this$1 = this.scheduler;
-		this$1.holdCount++;
-		this$0$1 = currentTcb$1 = this$1.currentTcb;
-		this$0$1.state = this$0$1.state | 4;
+		this$2 = this.scheduler;
+		this$2.holdCount++;
+		this$0$2 = currentTcb$1 = this$2.currentTcb;
+		this$0$2.state = this$0$2.state | 4;
 		return currentTcb$1.link;
 	}
 };
@@ -1225,14 +1222,30 @@ function Constraint(strength) {
 
 $__jsx_extend([Constraint], Object);
 Constraint.prototype.addConstraint$ = function () {
+	var this$0;
+	var mark$0;
+	var overridden$0;
 	this.addToGraph$();
-	Planner$incrementalAdd$LPlanner$LConstraint$(Main.planner, this);
+	this$0 = Main.planner;
+	mark$0 = ++ this$0.currentMark;
+	overridden$0 = Constraint$satisfy$LConstraint$I(this, (mark$0 | 0));
+	while (overridden$0 != null) {
+		overridden$0 = Constraint$satisfy$LConstraint$I(overridden$0, (mark$0 | 0));
+	}
 };
 
 
 function Constraint$addConstraint$LConstraint$($this) {
+	var this$0;
+	var mark$0;
+	var overridden$0;
 	$this.addToGraph$();
-	Planner$incrementalAdd$LPlanner$LConstraint$(Main.planner, $this);
+	this$0 = Main.planner;
+	mark$0 = ++ this$0.currentMark;
+	overridden$0 = Constraint$satisfy$LConstraint$I($this, (mark$0 | 0));
+	while (overridden$0 != null) {
+		overridden$0 = Constraint$satisfy$LConstraint$I(overridden$0, (mark$0 | 0));
+	}
 };
 
 Constraint.addConstraint$LConstraint$ = Constraint$addConstraint$LConstraint$;
@@ -1309,25 +1322,41 @@ Constraint.prototype.isInput$ = function () {
 
 
 function UnaryConstraint(v, strength) {
+	var this$0$0;
+	var mark$0$0;
+	var overridden$0$0;
+	var this$0$0$0;
 	var myOutput$0;
 	this.strength = strength;
 	myOutput$0 = this.myOutput = v;
 	this.satisfied = false;
-	myOutput$0.constraints.elms.push(this);
+	this$0$0$0 = myOutput$0.constraints;
+	this$0$0$0.elms.push(this);
 	this.satisfied = false;
-	Planner$incrementalAdd$LPlanner$LConstraint$(Main.planner, this);
+	this$0$0 = Main.planner;
+	mark$0$0 = ++ this$0$0.currentMark;
+	overridden$0$0 = Constraint$satisfy$LConstraint$I(this, (mark$0$0 | 0));
+	while (overridden$0$0 != null) {
+		overridden$0$0 = Constraint$satisfy$LConstraint$I(overridden$0$0, (mark$0$0 | 0));
+	}
 };
 
 $__jsx_extend([UnaryConstraint], Constraint);
 UnaryConstraint.prototype.addToGraph$ = function () {
-	this.myOutput.constraints.elms.push(this);
+	var this$0;
+	var this$0$0;
+	this$0 = this.myOutput;
+	this$0$0 = this$0.constraints;
+	this$0$0.elms.push(this);
 	this.satisfied = false;
 };
 
 
 UnaryConstraint.prototype.chooseMethod$I = function (mark) {
+	var s1$0;
+	var s2$0;
 	var myOutput$0;
-	this.satisfied = (myOutput$0 = this.myOutput).mark !== mark && this.strength.strengthValue < myOutput$0.walkStrength.strengthValue;
+	this.satisfied = (myOutput$0 = this.myOutput).mark !== mark && (s1$0 = this.strength, s2$0 = myOutput$0.walkStrength, s1$0.strengthValue < s2$0.strengthValue);
 };
 
 
@@ -1366,21 +1395,20 @@ UnaryConstraint.prototype.inputsKnown$I = function (mark) {
 
 
 UnaryConstraint.prototype.removeFromGraph$ = function () {
+	var this$0;
 	if (this.myOutput != null) {
-		Variable$removeConstraint$LVariable$LConstraint$(this.myOutput, this);
+		this$0 = this.myOutput;
+		OrderedCollection$x2E$x3CConstraint$x3E$remove$LOrderedCollection$x2E$x3CConstraint$x3E$LConstraint$(this$0.constraints, this);
+		if (this$0.determinedBy == this) {
+			this$0.determinedBy = null;
+		}
 	}
 	this.satisfied = false;
 };
 
 
 function StayConstraint(v, str) {
-	var myOutput$0;
-	this.strength = str;
-	myOutput$0 = this.myOutput = v;
-	this.satisfied = false;
-	myOutput$0.constraints.elms.push(this);
-	this.satisfied = false;
-	Planner$incrementalAdd$LPlanner$LConstraint$(Main.planner, this);
+	UnaryConstraint.call(this, v, str);
 };
 
 $__jsx_extend([StayConstraint], UnaryConstraint);
@@ -1389,13 +1417,7 @@ StayConstraint.prototype.execute$ = function () {
 
 
 function EditConstraint(v, str) {
-	var myOutput$0;
-	this.strength = str;
-	myOutput$0 = this.myOutput = v;
-	this.satisfied = false;
-	myOutput$0.constraints.elms.push(this);
-	this.satisfied = false;
-	Planner$incrementalAdd$LPlanner$LConstraint$(Main.planner, this);
+	UnaryConstraint.call(this, v, str);
 };
 
 $__jsx_extend([EditConstraint], UnaryConstraint);
@@ -1413,12 +1435,20 @@ function Direction() {
 
 $__jsx_extend([Direction], Object);
 function BinaryConstraint(var1, var2, strength) {
+	var this$0$0;
+	var mark$0$0;
+	var overridden$0$0;
 	this.strength = strength;
 	this.v1 = var1;
 	this.v2 = var2;
 	this.direction = 0;
 	this.addToGraph$();
-	Planner$incrementalAdd$LPlanner$LConstraint$(Main.planner, this);
+	this$0$0 = Main.planner;
+	mark$0$0 = ++ this$0$0.currentMark;
+	overridden$0$0 = Constraint$satisfy$LConstraint$I(this, (mark$0$0 | 0));
+	while (overridden$0$0 != null) {
+		overridden$0$0 = Constraint$satisfy$LConstraint$I(overridden$0$0, (mark$0$0 | 0));
+	}
 };
 
 function BinaryConstraint$0(strength) {
@@ -1432,27 +1462,43 @@ $__jsx_extend([BinaryConstraint, BinaryConstraint$0], Constraint);
 BinaryConstraint.prototype.chooseMethod$I = function (mark) {
 	var s1$0;
 	var s2$0;
+	var s1$1;
+	var s2$1;
+	var s1$2;
+	var s2$2;
+	var s1$3;
+	var s2$3;
+	var s1$4;
+	var s2$4;
 	var v2$0;
 	var v1$0;
 	if (this.v1.mark === mark) {
-		this.direction = (((v2$0 = this.v2).mark !== mark && this.strength.strengthValue < v2$0.walkStrength.strengthValue ? 1 : 0) | 0);
+		this.direction = (((v2$0 = this.v2).mark !== mark && (s1$0 = this.strength, s2$0 = v2$0.walkStrength, s1$0.strengthValue < s2$0.strengthValue) ? 1 : 0) | 0);
 	}
 	if (this.v2.mark === mark) {
-		this.direction = (((v1$0 = this.v1).mark !== mark && this.strength.strengthValue < v1$0.walkStrength.strengthValue ? -1 : 0) | 0);
+		this.direction = (((v1$0 = this.v1).mark !== mark && (s1$1 = this.strength, s2$1 = v1$0.walkStrength, s1$1.strengthValue < s2$1.strengthValue) ? -1 : 0) | 0);
 	}
-	s1$0 = this.v1.walkStrength;
-	s2$0 = this.v2.walkStrength;
-	if (s1$0.strengthValue > s2$0.strengthValue) {
-		this.direction = ((this.strength.strengthValue < this.v1.walkStrength.strengthValue ? -1 : 0) | 0);
+	s1$2 = this.v1.walkStrength;
+	s2$2 = this.v2.walkStrength;
+	if (s1$2.strengthValue > s2$2.strengthValue) {
+		this.direction = (((s1$3 = this.strength, s2$3 = this.v1.walkStrength, s1$3.strengthValue < s2$3.strengthValue) ? -1 : 0) | 0);
 	} else {
-		this.direction = ((this.strength.strengthValue < this.v2.walkStrength.strengthValue ? 1 : -1) | 0);
+		this.direction = (((s1$4 = this.strength, s2$4 = this.v2.walkStrength, s1$4.strengthValue < s2$4.strengthValue) ? 1 : -1) | 0);
 	}
 };
 
 
 BinaryConstraint.prototype.addToGraph$ = function () {
-	this.v1.constraints.elms.push(this);
-	this.v2.constraints.elms.push(this);
+	var this$0;
+	var this$0$0;
+	var this$2;
+	var this$0$2;
+	this$0 = this.v1;
+	this$0$0 = this$0.constraints;
+	this$0$0.elms.push(this);
+	this$2 = this.v2;
+	this$0$2 = this$2.constraints;
+	this$0$2.elms.push(this);
 	this.direction = 0;
 };
 
@@ -1513,17 +1559,30 @@ BinaryConstraint.prototype.inputsKnown$I = function (mark) {
 
 
 BinaryConstraint.prototype.removeFromGraph$ = function () {
+	var this$0;
+	var this$1;
 	if (this.v1 != null) {
-		Variable$removeConstraint$LVariable$LConstraint$(this.v1, this);
+		this$0 = this.v1;
+		OrderedCollection$x2E$x3CConstraint$x3E$remove$LOrderedCollection$x2E$x3CConstraint$x3E$LConstraint$(this$0.constraints, this);
+		if (this$0.determinedBy == this) {
+			this$0.determinedBy = null;
+		}
 	}
 	if (this.v2 != null) {
-		Variable$removeConstraint$LVariable$LConstraint$(this.v2, this);
+		this$1 = this.v2;
+		OrderedCollection$x2E$x3CConstraint$x3E$remove$LOrderedCollection$x2E$x3CConstraint$x3E$LConstraint$(this$1.constraints, this);
+		if (this$1.determinedBy == this) {
+			this$1.determinedBy = null;
+		}
 	}
 	this.direction = 0;
 };
 
 
 function ScaleConstraint(src, scale, offset, dest, strength) {
+	var this$0$0;
+	var mark$0$0;
+	var overridden$0$0;
 	this.strength = strength;
 	this.v1 = src;
 	this.v2 = dest;
@@ -1531,24 +1590,47 @@ function ScaleConstraint(src, scale, offset, dest, strength) {
 	this.scale = scale;
 	this.offset = offset;
 	this.addToGraph$();
-	Planner$incrementalAdd$LPlanner$LConstraint$(Main.planner, this);
+	this$0$0 = Main.planner;
+	mark$0$0 = ++ this$0$0.currentMark;
+	overridden$0$0 = Constraint$satisfy$LConstraint$I(this, (mark$0$0 | 0));
+	while (overridden$0$0 != null) {
+		overridden$0$0 = Constraint$satisfy$LConstraint$I(overridden$0$0, (mark$0$0 | 0));
+	}
 };
 
 $__jsx_extend([ScaleConstraint], BinaryConstraint);
 ScaleConstraint.prototype.addToGraph$ = function () {
+	var this$0;
+	var this$0$0;
+	var this$2;
+	var this$0$2;
 	BinaryConstraint.prototype.addToGraph$.call(this);
-	this.scale.constraints.elms.push(this);
-	this.offset.constraints.elms.push(this);
+	this$0 = this.scale;
+	this$0$0 = this$0.constraints;
+	this$0$0.elms.push(this);
+	this$2 = this.offset;
+	this$0$2 = this$2.constraints;
+	this$0$2.elms.push(this);
 };
 
 
 ScaleConstraint.prototype.removeFromGraph$ = function () {
+	var this$0;
+	var this$1;
 	BinaryConstraint.prototype.removeFromGraph$.call(this);
 	if (this.scale != null) {
-		Variable$removeConstraint$LVariable$LConstraint$(this.scale, this);
+		this$0 = this.scale;
+		OrderedCollection$x2E$x3CConstraint$x3E$remove$LOrderedCollection$x2E$x3CConstraint$x3E$LConstraint$(this$0.constraints, this);
+		if (this$0.determinedBy == this) {
+			this$0.determinedBy = null;
+		}
 	}
 	if (this.offset != null) {
-		Variable$removeConstraint$LVariable$LConstraint$(this.offset, this);
+		this$1 = this.offset;
+		OrderedCollection$x2E$x3CConstraint$x3E$remove$LOrderedCollection$x2E$x3CConstraint$x3E$LConstraint$(this$1.constraints, this);
+		if (this$1.determinedBy == this) {
+			this$1.determinedBy = null;
+		}
 	}
 };
 
@@ -1586,12 +1668,7 @@ ScaleConstraint.prototype.recalculate$ = function () {
 
 
 function EqualityConstraint(var1, var2, strength) {
-	this.strength = strength;
-	this.v1 = var1;
-	this.v2 = var2;
-	this.direction = 0;
-	this.addToGraph$();
-	Planner$incrementalAdd$LPlanner$LConstraint$(Main.planner, this);
+	BinaryConstraint.call(this, var1, var2, strength);
 };
 
 $__jsx_extend([EqualityConstraint], BinaryConstraint);
@@ -1622,7 +1699,9 @@ function Variable$0(name, initialValue) {
 
 $__jsx_extend([Variable, Variable$0], Object);
 function Variable$addConstraint$LVariable$LConstraint$($this, c) {
-	$this.constraints.elms.push(c);
+	var this$0;
+	this$0 = $this.constraints;
+	this$0.elms.push(c);
 };
 
 Variable.addConstraint$LVariable$LConstraint$ = Variable$addConstraint$LVariable$LConstraint$;
@@ -1659,6 +1738,8 @@ function Planner$incrementalRemove$LPlanner$LConstraint$($this, c) {
 	var strength;
 	var i;
 	var u;
+	var mark$0;
+	var overridden$0;
 	out = c.output$();
 	c.markUnsatisfied$();
 	c.removeFromGraph$();
@@ -1668,7 +1749,11 @@ function Planner$incrementalRemove$LPlanner$LConstraint$($this, c) {
 		for (i = 0; i < unsatisfied.elms.length; i++) {
 			u = OrderedCollection$x2E$x3CConstraint$x3E$at$LOrderedCollection$x2E$x3CConstraint$x3E$I(unsatisfied, (i | 0));
 			if (u.strength == strength) {
-				Planner$incrementalAdd$LPlanner$LConstraint$($this, u);
+				mark$0 = ++ $this.currentMark;
+				overridden$0 = Constraint$satisfy$LConstraint$I(u, (mark$0 | 0));
+				while (overridden$0 != null) {
+					overridden$0 = Constraint$satisfy$LConstraint$I(overridden$0, (mark$0 | 0));
+				}
 			}
 		}
 		strength = Strength$nextWeaker$LStrength$(strength);
@@ -1688,13 +1773,15 @@ function Planner$makePlan$LPlanner$LOrderedCollection$x2E$x3CConstraint$x3E$($th
 	var plan;
 	var todo;
 	var c;
+	var this$0$0;
 	mark = ++ $this.currentMark;
 	plan = ({v: ({elms: []})});
 	todo = sources;
 	while (todo.elms.length > 0) {
 		c = todo.elms.pop();
 		if (c.output$().mark !== mark && c.inputsKnown$I((mark | 0))) {
-			plan.v.elms.push(c);
+			this$0$0 = plan.v;
+			this$0$0.elms.push(c);
 			c.output$().mark = (mark | 0);
 			Planner$addConstraintsConsumingTo$LPlanner$LVariable$LOrderedCollection$x2E$x3CConstraint$x3E$($this, c.output$(), todo);
 		}
@@ -1746,7 +1833,9 @@ function Planner$removePropagateFrom$LPlanner$LVariable$($this, out) {
 	var c;
 	var determining;
 	var next;
+	var this$0;
 	var elm$0;
+	var this$1;
 	var todo$elms$0;
 	out.determinedBy = null;
 	out.walkStrength = Strength.WEAKEST;
@@ -1756,14 +1845,14 @@ function Planner$removePropagateFrom$LPlanner$LVariable$($this, out) {
 	todo$elms$0.push(out);
 	while (todo$elms$0.length > 0) {
 		v = todo$elms$0.pop();
-		for (i = 0; i < v.constraints.elms.length; i++) {
+		for (i = 0; i < (this$0 = v.constraints, this$0.elms.length); i++) {
 			c = OrderedCollection$x2E$x3CConstraint$x3E$at$LOrderedCollection$x2E$x3CConstraint$x3E$I(v.constraints, (i | 0));
 			if (! c.isSatisfied$()) {
 				unsatisfied.elms.push(c);
 			}
 		}
 		determining = v.determinedBy;
-		for (i = 0; i < v.constraints.elms.length; i++) {
+		for (i = 0; i < (this$1 = v.constraints, this$1.elms.length); i++) {
 			next = OrderedCollection$x2E$x3CConstraint$x3E$at$LOrderedCollection$x2E$x3CConstraint$x3E$I(v.constraints, (i | 0));
 			if (next != determining && next.isSatisfied$()) {
 				next.recalculate$();
@@ -1800,19 +1889,25 @@ function Plan() {
 
 $__jsx_extend([Plan], Object);
 function Plan$addConstraint$LPlan$LConstraint$($this, c) {
-	$this.v.elms.push(c);
+	var this$0;
+	this$0 = $this.v;
+	this$0.elms.push(c);
 };
 
 Plan.addConstraint$LPlan$LConstraint$ = Plan$addConstraint$LPlan$LConstraint$;
 
 function Plan$size$LPlan$($this) {
-	return ($this.v.elms.length | 0);
+	var this$0;
+	this$0 = $this.v;
+	return (this$0.elms.length | 0);
 };
 
 Plan.size$LPlan$ = Plan$size$LPlan$;
 
 function Plan$constraintAt$LPlan$I($this, index) {
-	return $this.v.elms[index];
+	var this$0;
+	this$0 = $this.v;
+	return this$0.elms[index];
 };
 
 Plan.constraintAt$LPlan$I = Plan$constraintAt$LPlan$I;
@@ -1820,7 +1915,8 @@ Plan.constraintAt$LPlan$I = Plan$constraintAt$LPlan$I;
 function Plan$execute$LPlan$($this) {
 	var i;
 	var c;
-	for (i = 0; i < $this.v.elms.length; i++) {
+	var this$0$0;
+	for (i = 0; i < (this$0$0 = $this.v, this$0$0.elms.length); i++) {
 		c = Plan$constraintAt$LPlan$I($this, (i | 0));
 		c.execute$();
 	}
@@ -1842,6 +1938,9 @@ function Main$chainTest$I(n) {
 	var edit;
 	var edits;
 	var plan;
+	var i$0;
+	var c$0;
+	var this$0$0$0;
 	Main.planner = ({currentMark: 0});
 	prev = null;
 	first = null;
@@ -1867,7 +1966,10 @@ function Main$chainTest$I(n) {
 	plan = Planner$extractPlanFromConstraints$LPlanner$LOrderedCollection$x2E$x3CConstraint$x3E$(Main.planner, edits);
 	for (i = 0; i < 100; i++) {
 		first.value = i;
-		Plan$execute$LPlan$(plan);
+		for (i$0 = 0; i$0 < (this$0$0$0 = plan.v, this$0$0$0.elms.length); i$0++) {
+			c$0 = Plan$constraintAt$LPlan$I(plan, (i$0 | 0));
+			c$0.execute$();
+		}
 		if (last.value !== i) {
 		}
 	}
@@ -1920,15 +2022,33 @@ function Main$change$LVariable$N(v, newValue) {
 	var edits;
 	var plan;
 	var i;
+	var i$0;
+	var c$0;
+	var this$0$0$0;
+	var this$0$0;
 	edit = new EditConstraint(v, Strength.PREFERRED);
 	edits = ({elms: []});
 	edits.elms.push(edit);
 	plan = Planner$extractPlanFromConstraints$LPlanner$LOrderedCollection$x2E$x3CConstraint$x3E$(Main.planner, edits);
 	for (i = 0; i < 10; i++) {
 		v.value = newValue;
-		Plan$execute$LPlan$(plan);
+		for (i$0 = 0; i$0 < (this$0$0$0 = plan.v, this$0$0$0.elms.length); i$0++) {
+			c$0 = Plan$constraintAt$LPlan$I(plan, (i$0 | 0));
+			c$0.execute$();
+		}
 	}
-	Constraint$destroyConstraint$LConstraint$(edit);
+	if (edit.satisfied) {
+		Planner$incrementalRemove$LPlanner$LConstraint$(Main.planner, edit);
+	} else {
+		if (edit.myOutput != null) {
+			this$0$0 = edit.myOutput;
+			OrderedCollection$x2E$x3CConstraint$x3E$remove$LOrderedCollection$x2E$x3CConstraint$x3E$LConstraint$(this$0$0.constraints, edit);
+			if (this$0$0.determinedBy == edit) {
+				this$0$0.determinedBy = null;
+			}
+		}
+		edit.satisfied = false;
+	}
 };
 
 Main.change$LVariable$N = Main$change$LVariable$N;
@@ -2297,6 +2417,9 @@ function BigInteger$fromString$LBigInteger$SN($this, s, b) {
 	var mi;
 	var sh;
 	var x;
+	var c$0;
+	var this_array$0;
+	var c$1;
 	this_array = $this.array;
 	if (b === 16) {
 		k = 4;
@@ -2328,7 +2451,7 @@ function BigInteger$fromString$LBigInteger$SN($this, s, b) {
 	$this.s = 0;
 	(i = s.length, mi = false, sh = 0);
 	while (-- i >= 0) {
-		x = (k === 8 ? +s.charAt(i) & 0xff : BigInteger$intAt$SN(s, i));
+		x = (k === 8 ? +s.charAt(i) & 0xff : (c$0 = BigInteger.RC[s.charCodeAt(i)], c$0 == null ? -1 : c$0));
 		if (x < 0) {
 			if (s.charAt(i) === "-") {
 				mi = true;
@@ -2357,7 +2480,11 @@ function BigInteger$fromString$LBigInteger$SN($this, s, b) {
 			this_array[$this.t - 1] |= (1 << BigInteger.DB - sh) - 1 << sh;
 		}
 	}
-	BigInteger$clamp$LBigInteger$($this);
+	this_array$0 = $this.array;
+	c$1 = $this.s & BigInteger.DM;
+	while ($this.t > 0 && this_array$0[$this.t - 1] === c$1) {
+		-- $this.t;
+	}
 	if (mi) {
 		BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, $this, $this);
 	}
@@ -2392,9 +2519,10 @@ function BigInteger$toString$LBigInteger$N($this, b) {
 	var r;
 	var i;
 	var p;
+	var r$0;
 	this_array = $this.array;
 	if ($this.s < 0) {
-		return "-" + BigInteger$toString$LBigInteger$N(BigInteger$negate$LBigInteger$($this), b);
+		return "-" + BigInteger$toString$LBigInteger$N((r$0 = ({array: [], s: 0, t: 0}), BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, $this, r$0), r$0), b);
 	}
 	if (b === 16) {
 		k = 4;
@@ -2458,7 +2586,8 @@ function BigInteger$negate$LBigInteger$($this) {
 BigInteger.negate$LBigInteger$ = BigInteger$negate$LBigInteger$;
 
 function BigInteger$abs$LBigInteger$($this) {
-	return ($this.s < 0 ? BigInteger$negate$LBigInteger$($this) : $this);
+	var r$0;
+	return ($this.s < 0 ? (r$0 = ({array: [], s: 0, t: 0}), BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, $this, r$0), r$0) : $this);
 };
 
 BigInteger.abs$LBigInteger$ = BigInteger$abs$LBigInteger$;
@@ -2570,6 +2699,9 @@ function BigInteger$lShiftTo$LBigInteger$NLBigInteger$($this, n, r) {
 	var ds;
 	var c;
 	var i;
+	var this_array$0;
+	var c$0;
+	var s$0;
 	this_array = $this.array;
 	r_array = r.array;
 	bs = n % BigInteger.DB;
@@ -2585,8 +2717,12 @@ function BigInteger$lShiftTo$LBigInteger$NLBigInteger$($this, n, r) {
 	}
 	r_array[ds] = c;
 	r.t = $this.t + ds + 1;
-	r.s = $this.s;
-	BigInteger$clamp$LBigInteger$(r);
+	s$0 = r.s = $this.s;
+	this_array$0 = r.array;
+	c$0 = s$0 & BigInteger.DM;
+	while (r.t > 0 && this_array$0[r.t - 1] === c$0) {
+		-- r.t;
+	}
 };
 
 BigInteger.lShiftTo$LBigInteger$NLBigInteger$ = BigInteger$lShiftTo$LBigInteger$NLBigInteger$;
@@ -2599,6 +2735,8 @@ function BigInteger$rShiftTo$LBigInteger$NLBigInteger$($this, n, r) {
 	var cbs;
 	var bm;
 	var i;
+	var this_array$0;
+	var c$0;
 	this_array = $this.array;
 	r_array = r.array;
 	r.s = $this.s;
@@ -2619,7 +2757,11 @@ function BigInteger$rShiftTo$LBigInteger$NLBigInteger$($this, n, r) {
 		r_array[$this.t - ds - 1] |= ($this.s & bm) << cbs;
 	}
 	r.t = $this.t - ds;
-	BigInteger$clamp$LBigInteger$(r);
+	this_array$0 = r.array;
+	c$0 = r.s & BigInteger.DM;
+	while (r.t > 0 && this_array$0[r.t - 1] === c$0) {
+		-- r.t;
+	}
 };
 
 BigInteger.rShiftTo$LBigInteger$NLBigInteger$ = BigInteger$rShiftTo$LBigInteger$NLBigInteger$;
@@ -2631,12 +2773,14 @@ function BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$($this, a, r) {
 	var i;
 	var c;
 	var m;
-	var min$value1$0;
-	var min$value2$0;
+	var value1$0;
+	var value2$0;
+	var this_array$0;
+	var c$0;
 	this_array = $this.array;
 	r_array = r.array;
 	a_array = a.array;
-	(i = 0, c = 0, m = (min$value2$0 = $this.t, min$value1$0 = a.t, min$value1$0 <= min$value2$0 ? min$value1$0 : min$value2$0));
+	(i = 0, c = 0, m = (value1$0 = a.t, value2$0 = $this.t, value1$0 <= value2$0 ? value1$0 : value2$0));
 	while (i < m) {
 		c += this_array[i] - a_array[i];
 		r_array[i++] = c & BigInteger.DM;
@@ -2668,7 +2812,11 @@ function BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$($this, a, r) {
 		}
 	}
 	r.t = i;
-	BigInteger$clamp$LBigInteger$(r);
+	this_array$0 = r.array;
+	c$0 = r.s & BigInteger.DM;
+	while (r.t > 0 && this_array$0[r.t - 1] === c$0) {
+		-- r.t;
+	}
 };
 
 BigInteger.subTo$LBigInteger$LBigInteger$LBigInteger$ = BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$;
@@ -2679,8 +2827,13 @@ function BigInteger$multiplyTo$LBigInteger$LBigInteger$LBigInteger$($this, a, r)
 	var y;
 	var y_array;
 	var i;
+	var r$0$0;
+	var r$0$1;
+	var this_array$0;
+	var c$0;
+	var s$0;
 	r_array = r.array;
-	(x = ($this.s < 0 ? BigInteger$negate$LBigInteger$($this) : $this), y = (a.s < 0 ? BigInteger$negate$LBigInteger$(a) : a));
+	(x = ($this.s < 0 ? (r$0$0 = ({array: [], s: 0, t: 0}), BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, $this, r$0$0), r$0$0) : $this), y = (a.s < 0 ? (r$0$1 = ({array: [], s: 0, t: 0}), BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, a, r$0$1), r$0$1) : a));
 	y_array = y.array;
 	i = x.t;
 	r.t = i + y.t;
@@ -2690,8 +2843,12 @@ function BigInteger$multiplyTo$LBigInteger$LBigInteger$LBigInteger$($this, a, r)
 	for (i = 0; i < y.t; ++ i) {
 		r_array[i + x.t] = BigInteger.am(x.array, 0, y_array[i], r, i, 0, x.t);
 	}
-	r.s = 0;
-	BigInteger$clamp$LBigInteger$(r);
+	s$0 = r.s = 0;
+	this_array$0 = r.array;
+	c$0 = s$0 & BigInteger.DM;
+	while (r.t > 0 && this_array$0[r.t - 1] === c$0) {
+		-- r.t;
+	}
 	if ($this.s !== a.s) {
 		BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, r, r);
 	}
@@ -2705,7 +2862,11 @@ function BigInteger$squareTo$LBigInteger$LBigInteger$($this, r) {
 	var r_array;
 	var i;
 	var c;
-	x = ($this.s < 0 ? BigInteger$negate$LBigInteger$($this) : $this);
+	var r$0$0;
+	var this_array$0;
+	var c$0;
+	var s$0;
+	x = ($this.s < 0 ? (r$0$0 = ({array: [], s: 0, t: 0}), BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, $this, r$0$0), r$0$0) : $this);
 	x_array = x.array;
 	r_array = r.array;
 	i = r.t = 2 * x.t;
@@ -2722,8 +2883,12 @@ function BigInteger$squareTo$LBigInteger$LBigInteger$($this, r) {
 	if (r.t > 0) {
 		r_array[r.t - 1] += BigInteger.am(x.array, i, x_array[i], r, 2 * i, 0, 1);
 	}
-	r.s = 0;
-	BigInteger$clamp$LBigInteger$(r);
+	s$0 = r.s = 0;
+	this_array$0 = r.array;
+	c$0 = s$0 & BigInteger.DM;
+	while (r.t > 0 && this_array$0[r.t - 1] === c$0) {
+		-- r.t;
+	}
 };
 
 BigInteger.squareTo$LBigInteger$LBigInteger$ = BigInteger$squareTo$LBigInteger$LBigInteger$;
@@ -2748,11 +2913,15 @@ function BigInteger$divRemTo$LBigInteger$LBigInteger$LBigInteger$LBigInteger$($t
 	var t;
 	var r_array;
 	var qd;
-	pm = (m.s < 0 ? BigInteger$negate$LBigInteger$(m) : m);
+	var r$0$0;
+	var r$0$2;
+	var this_array$0;
+	var c$0;
+	pm = (m.s < 0 ? (r$0$0 = ({array: [], s: 0, t: 0}), BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, m, r$0$0), r$0$0) : m);
 	if (pm.t <= 0) {
 		return;
 	}
-	pt = ($this.s < 0 ? BigInteger$negate$LBigInteger$($this) : $this);
+	pt = ($this.s < 0 ? (r$0$2 = ({array: [], s: 0, t: 0}), BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, $this, r$0$2), r$0$2) : $this);
 	if (pt.t < pm.t) {
 		if (q != null) {
 			BigInteger$fromInt$LBigInteger$N(q, 0);
@@ -2812,7 +2981,11 @@ function BigInteger$divRemTo$LBigInteger$LBigInteger$LBigInteger$LBigInteger$($t
 		}
 	}
 	r.t = ys;
-	BigInteger$clamp$LBigInteger$(r);
+	this_array$0 = r.array;
+	c$0 = r.s & BigInteger.DM;
+	while (r.t > 0 && this_array$0[r.t - 1] === c$0) {
+		-- r.t;
+	}
 	if (nsh > 0) {
 		BigInteger$rShiftTo$LBigInteger$NLBigInteger$(r, nsh, r);
 	}
@@ -2825,8 +2998,9 @@ BigInteger.divRemTo$LBigInteger$LBigInteger$LBigInteger$LBigInteger$ = BigIntege
 
 function BigInteger$mod$LBigInteger$LBigInteger$($this, a) {
 	var r;
+	var r$0$0;
 	r = ({array: [], s: 0, t: 0});
-	BigInteger$divRemTo$LBigInteger$LBigInteger$LBigInteger$LBigInteger$($this.s < 0 ? BigInteger$negate$LBigInteger$($this) : $this, a, null, r);
+	BigInteger$divRemTo$LBigInteger$LBigInteger$LBigInteger$LBigInteger$($this.s < 0 ? (r$0$0 = ({array: [], s: 0, t: 0}), BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, $this, r$0$0), r$0$0) : $this, a, null, r);
 	if ($this.s < 0 && BigInteger$compareTo$LBigInteger$LBigInteger$(r, BigInteger.ZERO) > 0) {
 		BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(a, r, r);
 	}
@@ -2893,7 +3067,8 @@ BigInteger.exp$LBigInteger$NLReducer$ = BigInteger$exp$LBigInteger$NLReducer$;
 
 function BigInteger$modPowInt$LBigInteger$NLBigInteger$($this, e, m) {
 	var z;
-	if (e < 256 || BigInteger$isEven$LBigInteger$(m)) {
+	var this_array$0;
+	if (e < 256 || (this_array$0 = m.array, (m.t > 0 ? this_array$0[0] & 1 : m.s) === 0)) {
 		z = new Classic(m);
 	} else {
 		z = new Montgomery(m);
@@ -2980,14 +3155,17 @@ function BigInteger$toRadix$LBigInteger$N($this, b) {
 	var y;
 	var z;
 	var r;
-	if (BigInteger$signum$LBigInteger$($this) === 0 || b < 2 || b > 36) {
+	var this_array$0;
+	var r$0;
+	var this_array$1;
+	if ((this_array$0 = $this.array, $this.s < 0 ? -1 : $this.t <= 0 || $this.t === 1 && this_array$0[0] <= 0 ? 0 : 1) === 0 || b < 2 || b > 36) {
 		return "0";
 	}
 	cs = Math.floor(0.6931471805599453 * BigInteger.DB / Math.log(b));
 	a = Math.pow(b, cs);
-	(d = BigInteger$nbv$N(a), y = ({array: [], s: 0, t: 0}), z = ({array: [], s: 0, t: 0}), r = "");
+	(d = (r$0 = ({array: [], s: 0, t: 0}), BigInteger$fromInt$LBigInteger$N(r$0, a), r$0), y = ({array: [], s: 0, t: 0}), z = ({array: [], s: 0, t: 0}), r = "");
 	BigInteger$divRemTo$LBigInteger$LBigInteger$LBigInteger$LBigInteger$($this, d, y, z);
-	while (BigInteger$signum$LBigInteger$(y) > 0) {
+	while ((this_array$1 = y.array, y.s < 0 ? -1 : y.t <= 0 || y.t === 1 && this_array$1[0] <= 0 ? 0 : 1) > 0) {
 		r = (a + BigInteger$intValue$LBigInteger$(z)).toString(b).substring(1) + r;
 		BigInteger$divRemTo$LBigInteger$LBigInteger$LBigInteger$LBigInteger$(y, d, y, z);
 	}
@@ -3012,8 +3190,6 @@ function BigInteger$fromRadix$LBigInteger$SN($this, s, b) {
 	var x;
 	var c$0;
 	var this_array$0;
-	var n$0;
-	var this_array$1;
 	BigInteger$fromInt$LBigInteger$N($this, 0);
 	cs = Math.floor(0.6931471805599453 * BigInteger.DB / Math.log(b));
 	(d = Math.pow(b, cs), mi = false, j = 0, w = 0);
@@ -3021,28 +3197,21 @@ function BigInteger$fromRadix$LBigInteger$SN($this, s, b) {
 		c$0 = BigInteger.RC[s.charCodeAt(i)];
 		x = (c$0 == null ? -1 : c$0);
 		if (x < 0) {
-			if (s.charAt(i) === "-" && BigInteger$signum$LBigInteger$($this) === 0) {
+			if (s.charAt(i) === "-" && (this_array$0 = $this.array, $this.s < 0 ? -1 : $this.t <= 0 || $this.t === 1 && this_array$0[0] <= 0 ? 0 : 1) === 0) {
 				mi = true;
 			}
 			continue;
 		}
 		w = b * w + x;
 		if (++ j >= cs) {
-			this_array$0 = $this.array;
-			this_array$0[$this.t] = BigInteger.am($this.array, 0, d - 1, $this, 0, 0, $this.t);
-			++ $this.t;
-			BigInteger$clamp$LBigInteger$($this);
+			BigInteger$dMultiply$LBigInteger$N($this, d);
 			BigInteger$dAddOffset$LBigInteger$NN($this, w, 0);
 			j = 0;
 			w = 0;
 		}
 	}
 	if (j > 0) {
-		n$0 = Math.pow(b, j);
-		this_array$1 = $this.array;
-		this_array$1[$this.t] = BigInteger.am($this.array, 0, n$0 - 1, $this, 0, 0, $this.t);
-		++ $this.t;
-		BigInteger$clamp$LBigInteger$($this);
+		BigInteger$dMultiply$LBigInteger$N($this, Math.pow(b, j));
 		BigInteger$dAddOffset$LBigInteger$NN($this, w, 0);
 	}
 	if (mi) {
@@ -3060,9 +3229,6 @@ function BigInteger$fromRadix$LBigInteger$ANN($this, s, b) {
 	var w;
 	var i;
 	var x;
-	var this_array$0;
-	var n$0;
-	var this_array$1;
 	BigInteger$fromInt$LBigInteger$N($this, 0);
 	cs = Math.floor(0.6931471805599453 * BigInteger.DB / Math.log(b));
 	(d = Math.pow(b, cs), mi = false, j = 0, w = 0);
@@ -3070,21 +3236,14 @@ function BigInteger$fromRadix$LBigInteger$ANN($this, s, b) {
 		x = s[i];
 		w = b * w + x;
 		if (++ j >= cs) {
-			this_array$0 = $this.array;
-			this_array$0[$this.t] = BigInteger.am($this.array, 0, d - 1, $this, 0, 0, $this.t);
-			++ $this.t;
-			BigInteger$clamp$LBigInteger$($this);
+			BigInteger$dMultiply$LBigInteger$N($this, d);
 			BigInteger$dAddOffset$LBigInteger$NN($this, w, 0);
 			j = 0;
 			w = 0;
 		}
 	}
 	if (j > 0) {
-		n$0 = Math.pow(b, j);
-		this_array$1 = $this.array;
-		this_array$1[$this.t] = BigInteger.am($this.array, 0, n$0 - 1, $this, 0, 0, $this.t);
-		++ $this.t;
-		BigInteger$clamp$LBigInteger$($this);
+		BigInteger$dMultiply$LBigInteger$N($this, Math.pow(b, j));
 		BigInteger$dAddOffset$LBigInteger$NN($this, w, 0);
 	}
 	if (mi) {
@@ -3121,9 +3280,12 @@ BigInteger.fromNumber$LBigInteger$NNLSecureRandom$ = BigInteger$fromNumber$LBigI
 function BigInteger$fromNumber$LBigInteger$NLSecureRandom$($this, a, b) {
 	var x;
 	var t;
+	var i$0$0;
 	(x = [], t = a & 7);
 	x.length = (a >> 3) + 1;
-	RNG$get_bytes$AN(x);
+	for (i$0$0 = 0; i$0$0 < x.length; ++ i$0$0) {
+		x[i$0$0] = RNG$get_byte$();
+	}
 	if (t > 0) {
 		x[0] &= (1 << t) - 1;
 	} else {
@@ -3203,6 +3365,9 @@ function BigInteger$bitwiseTo$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, 
 	var m;
 	var value1$0;
 	var value2$0;
+	var this_array$0;
+	var c$0;
+	var s$0;
 	this_array = $this.array;
 	a_array = a.array;
 	r_array = r.array;
@@ -3225,8 +3390,12 @@ function BigInteger$bitwiseTo$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, 
 		}
 		r.t = a.t;
 	}
-	r.s = op($this.s, a.s);
-	BigInteger$clamp$LBigInteger$(r);
+	s$0 = r.s = op($this.s, a.s);
+	this_array$0 = r.array;
+	c$0 = s$0 & BigInteger.DM;
+	while (r.t > 0 && this_array$0[r.t - 1] === c$0) {
+		-- r.t;
+	}
 };
 
 BigInteger.bitwiseTo$LBigInteger$LBigInteger$F$NNN$LBigInteger$ = BigInteger$bitwiseTo$LBigInteger$LBigInteger$F$NNN$LBigInteger$;
@@ -3417,43 +3586,35 @@ function BigInteger$testBit$LBigInteger$N($this, n) {
 BigInteger.testBit$LBigInteger$N = BigInteger$testBit$LBigInteger$N;
 
 function BigInteger$changeBit$LBigInteger$NF$NNN$($this, n, op) {
-	var r;
-	r = BigInteger$shiftLeft$LBigInteger$N(BigInteger.ONE, n);
-	BigInteger$bitwiseTo$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, r, op, r);
-	return r;
+	var this$0;
+	var r$0;
+	this$0 = BigInteger.ONE;
+	r$0 = ({array: [], s: 0, t: 0});
+	if (n < 0) {
+		BigInteger$rShiftTo$LBigInteger$NLBigInteger$(this$0, - n, r$0);
+	} else {
+		BigInteger$lShiftTo$LBigInteger$NLBigInteger$(this$0, n, r$0);
+	}
+	BigInteger$bitwiseTo$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, r$0, op, r$0);
+	return r$0;
 };
 
 BigInteger.changeBit$LBigInteger$NF$NNN$ = BigInteger$changeBit$LBigInteger$NF$NNN$;
 
 function BigInteger$setBit$LBigInteger$N($this, n) {
-	var op$0;
-	var r$0;
-	op$0 = BigInteger$op_or$NN;
-	r$0 = BigInteger$shiftLeft$LBigInteger$N(BigInteger.ONE, n);
-	BigInteger$bitwiseTo$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, r$0, op$0, r$0);
-	return r$0;
+	return BigInteger$changeBit$LBigInteger$NF$NNN$($this, n, BigInteger$op_or$NN);
 };
 
 BigInteger.setBit$LBigInteger$N = BigInteger$setBit$LBigInteger$N;
 
 function BigInteger$clearBit$LBigInteger$N($this, n) {
-	var op$0;
-	var r$0;
-	op$0 = BigInteger$op_andnot$NN;
-	r$0 = BigInteger$shiftLeft$LBigInteger$N(BigInteger.ONE, n);
-	BigInteger$bitwiseTo$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, r$0, op$0, r$0);
-	return r$0;
+	return BigInteger$changeBit$LBigInteger$NF$NNN$($this, n, BigInteger$op_andnot$NN);
 };
 
 BigInteger.clearBit$LBigInteger$N = BigInteger$clearBit$LBigInteger$N;
 
 function BigInteger$flipBit$LBigInteger$N($this, n) {
-	var op$0;
-	var r$0;
-	op$0 = BigInteger$op_xor$NN;
-	r$0 = BigInteger$shiftLeft$LBigInteger$N(BigInteger.ONE, n);
-	BigInteger$bitwiseTo$LBigInteger$LBigInteger$F$NNN$LBigInteger$($this, r$0, op$0, r$0);
-	return r$0;
+	return BigInteger$changeBit$LBigInteger$NF$NNN$($this, n, BigInteger$op_xor$NN);
 };
 
 BigInteger.flipBit$LBigInteger$N = BigInteger$flipBit$LBigInteger$N;
@@ -3465,12 +3626,14 @@ function BigInteger$addTo$LBigInteger$LBigInteger$LBigInteger$($this, a, r) {
 	var i;
 	var c;
 	var m;
-	var min$value1$0;
-	var min$value2$0;
+	var value1$0;
+	var value2$0;
+	var this_array$0;
+	var c$0;
 	this_array = $this.array;
 	a_array = a.array;
 	r_array = r.array;
-	(i = 0, c = 0, m = (min$value2$0 = $this.t, min$value1$0 = a.t, min$value1$0 <= min$value2$0 ? min$value1$0 : min$value2$0));
+	(i = 0, c = 0, m = (value1$0 = a.t, value2$0 = $this.t, value1$0 <= value2$0 ? value1$0 : value2$0));
 	while (i < m) {
 		c += this_array[i] + a_array[i];
 		r_array[i++] = c & BigInteger.DM;
@@ -3502,7 +3665,11 @@ function BigInteger$addTo$LBigInteger$LBigInteger$LBigInteger$($this, a, r) {
 		}
 	}
 	r.t = i;
-	BigInteger$clamp$LBigInteger$(r);
+	this_array$0 = r.array;
+	c$0 = r.s & BigInteger.DM;
+	while (r.t > 0 && this_array$0[r.t - 1] === c$0) {
+		-- r.t;
+	}
 };
 
 BigInteger.addTo$LBigInteger$LBigInteger$LBigInteger$ = BigInteger$addTo$LBigInteger$LBigInteger$LBigInteger$;
@@ -3564,10 +3731,16 @@ BigInteger.divideAndRemainder$LBigInteger$LBigInteger$ = BigInteger$divideAndRem
 
 function BigInteger$dMultiply$LBigInteger$N($this, n) {
 	var this_array;
+	var this_array$0;
+	var c$0;
 	this_array = $this.array;
 	this_array[$this.t] = BigInteger.am($this.array, 0, n - 1, $this, 0, 0, $this.t);
 	++ $this.t;
-	BigInteger$clamp$LBigInteger$($this);
+	this_array$0 = $this.array;
+	c$0 = $this.s & BigInteger.DM;
+	while ($this.t > 0 && this_array$0[$this.t - 1] === c$0) {
+		-- $this.t;
+	}
 };
 
 BigInteger.dMultiply$LBigInteger$N = BigInteger$dMultiply$LBigInteger$N;
@@ -3602,7 +3775,9 @@ function BigInteger$multiplyLowerTo$LBigInteger$LBigInteger$NLBigInteger$($this,
 	var i;
 	var j;
 	var value1$0;
-	var min$value1$1;
+	var value1$2;
+	var this_array$0;
+	var c$0;
 	r_array = r.array;
 	a_array = a.array;
 	value1$0 = $this.t + a.t;
@@ -3615,10 +3790,14 @@ function BigInteger$multiplyLowerTo$LBigInteger$LBigInteger$NLBigInteger$($this,
 	for (j = r.t - $this.t; i < j; ++ i) {
 		r_array[i + $this.t] = BigInteger.am($this.array, 0, a_array[i], r, i, 0, $this.t);
 	}
-	for (j = (min$value1$1 = a.t, min$value1$1 <= n ? min$value1$1 : n); i < j; ++ i) {
+	for (j = (value1$2 = a.t, value1$2 <= n ? value1$2 : n); i < j; ++ i) {
 		BigInteger.am($this.array, 0, a_array[i], r, i, 0, n - i);
 	}
-	BigInteger$clamp$LBigInteger$(r);
+	this_array$0 = r.array;
+	c$0 = r.s & BigInteger.DM;
+	while (r.t > 0 && this_array$0[r.t - 1] === c$0) {
+		-- r.t;
+	}
 };
 
 BigInteger.multiplyLowerTo$LBigInteger$LBigInteger$NLBigInteger$ = BigInteger$multiplyLowerTo$LBigInteger$LBigInteger$NLBigInteger$;
@@ -3627,7 +3806,9 @@ function BigInteger$multiplyUpperTo$LBigInteger$LBigInteger$NLBigInteger$($this,
 	var r_array;
 	var a_array;
 	var i;
-	var max$value1$0;
+	var value1$0;
+	var this_array$0;
+	var c$0;
 	r_array = r.array;
 	a_array = a.array;
 	-- n;
@@ -3636,10 +3817,14 @@ function BigInteger$multiplyUpperTo$LBigInteger$LBigInteger$NLBigInteger$($this,
 	while (-- i >= 0) {
 		r_array[i] = 0;
 	}
-	for (i = (max$value1$0 = n - $this.t, max$value1$0 >= 0 ? max$value1$0 : 0); i < a.t; ++ i) {
+	for (i = (value1$0 = n - $this.t, value1$0 >= 0 ? value1$0 : 0); i < a.t; ++ i) {
 		r_array[$this.t + i - n] = BigInteger.am($this.array, n - i, a_array[i], r, 0, 0, $this.t + i - n);
 	}
-	BigInteger$clamp$LBigInteger$(r);
+	this_array$0 = r.array;
+	c$0 = r.s & BigInteger.DM;
+	while (r.t > 0 && this_array$0[r.t - 1] === c$0) {
+		-- r.t;
+	}
 	BigInteger$drShiftTo$LBigInteger$NLBigInteger$(r, 1, r);
 };
 
@@ -3661,9 +3846,10 @@ function BigInteger$modPow$LBigInteger$LBigInteger$LBigInteger$($this, e, m) {
 	var is1;
 	var r2;
 	var t;
+	var r$0;
 	var this_array$0;
 	e_array = e.array;
-	(i = BigInteger$bitLength$LBigInteger$(e), r = BigInteger$nbv$N(1), z = null);
+	(i = BigInteger$bitLength$LBigInteger$(e), r = (r$0 = ({array: [], s: 0, t: 0}), BigInteger$fromInt$LBigInteger$N(r$0, 1), r$0), z = null);
 	if (i <= 0) {
 		return r;
 	} else {
@@ -3766,8 +3952,13 @@ function BigInteger$gcd$LBigInteger$LBigInteger$($this, a) {
 	var t;
 	var i;
 	var g;
-	x = ($this.s < 0 ? BigInteger$negate$LBigInteger$($this) : BigInteger$clone$LBigInteger$($this));
-	y = (a.s < 0 ? BigInteger$negate$LBigInteger$(a) : BigInteger$clone$LBigInteger$(a));
+	var r$0;
+	var r$1;
+	var r$2;
+	var r$3;
+	var this_array$0;
+	x = ($this.s < 0 ? (r$0 = ({array: [], s: 0, t: 0}), BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, $this, r$0), r$0) : (r$1 = ({array: [], s: 0, t: 0}), BigInteger$copyTo$LBigInteger$LBigInteger$($this, r$1), r$1));
+	y = (a.s < 0 ? (r$2 = ({array: [], s: 0, t: 0}), BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, a, r$2), r$2) : (r$3 = ({array: [], s: 0, t: 0}), BigInteger$copyTo$LBigInteger$LBigInteger$(a, r$3), r$3));
 	if (BigInteger$compareTo$LBigInteger$LBigInteger$(x, y) < 0) {
 		t = x;
 		x = y;
@@ -3784,7 +3975,7 @@ function BigInteger$gcd$LBigInteger$LBigInteger$($this, a) {
 		BigInteger$rShiftTo$LBigInteger$NLBigInteger$(x, g, x);
 		BigInteger$rShiftTo$LBigInteger$NLBigInteger$(y, g, y);
 	}
-	while (BigInteger$signum$LBigInteger$(x) > 0) {
+	while ((this_array$0 = x.array, x.s < 0 ? -1 : x.t <= 0 || x.t === 1 && this_array$0[0] <= 0 ? 0 : 1) > 0) {
 		if ((i = BigInteger$getLowestSetBit$LBigInteger$(x)) > 0) {
 			BigInteger$rShiftTo$LBigInteger$NLBigInteger$(x, i, x);
 		}
@@ -3840,40 +4031,60 @@ function BigInteger$modInverse$LBigInteger$LBigInteger$($this, m) {
 	var c;
 	var d;
 	var this_array$0;
+	var this_array$2;
+	var this_array$3;
 	var r$0;
+	var r$1;
+	var r$2;
+	var r$3;
+	var r$4;
+	var r$5;
+	var this_array$4;
+	var this_array$5;
+	var this_array$6;
+	var this_array$7;
+	var this_array$8;
+	var this_array$9;
+	var this_array$10;
+	var this_array$11;
+	var this_array$12;
+	var r$6;
+	var this_array$13;
+	var this_array$14;
+	var r$8;
 	this_array$0 = m.array;
 	ac = (m.t > 0 ? this_array$0[0] & 1 : m.s) === 0;
-	if (BigInteger$isEven$LBigInteger$($this) && ac || BigInteger$signum$LBigInteger$(m) === 0) {
+	if ((this_array$2 = $this.array, ($this.t > 0 ? this_array$2[0] & 1 : $this.s) === 0) && ac || (this_array$3 = m.array, m.s < 0 ? -1 : m.t <= 0 || m.t === 1 && this_array$3[0] <= 0 ? 0 : 1) === 0) {
 		return BigInteger.ZERO;
 	}
-	(u = BigInteger$clone$LBigInteger$(m), v = BigInteger$clone$LBigInteger$($this));
-	(a = BigInteger$nbv$N(1), b = BigInteger$nbv$N(0), c = BigInteger$nbv$N(0), d = BigInteger$nbv$N(1));
-	while (BigInteger$signum$LBigInteger$(u) !== 0) {
-		while (BigInteger$isEven$LBigInteger$(u)) {
+	(u = (r$0 = ({array: [], s: 0, t: 0}), BigInteger$copyTo$LBigInteger$LBigInteger$(m, r$0), r$0), v = (r$1 = ({array: [], s: 0, t: 0}), BigInteger$copyTo$LBigInteger$LBigInteger$($this, r$1), r$1));
+	(a = (r$2 = ({array: [], s: 0, t: 0}), BigInteger$fromInt$LBigInteger$N(r$2, 1), r$2), b = (r$3 = ({array: [], s: 0, t: 0}), BigInteger$fromInt$LBigInteger$N(r$3, 0), r$3), c = (r$4 = ({array: [], s: 0, t: 0}), BigInteger$fromInt$LBigInteger$N(r$4, 0), r$4), d = (r$5 = ({array: [], s: 0, t: 0}), BigInteger$fromInt$LBigInteger$N(r$5, 1), r$5));
+	while ((this_array$12 = u.array, u.s < 0 ? -1 : u.t <= 0 || u.t === 1 && this_array$12[0] <= 0 ? 0 : 1) !== 0) {
+		while ((this_array$7 = u.array, (u.t > 0 ? this_array$7[0] & 1 : u.s) === 0)) {
 			BigInteger$rShiftTo$LBigInteger$NLBigInteger$(u, 1, u);
 			if (ac) {
-				if (! BigInteger$isEven$LBigInteger$(a) || ! BigInteger$isEven$LBigInteger$(b)) {
+				if (! (this_array$4 = a.array, (a.t > 0 ? this_array$4[0] & 1 : a.s) === 0) || ! (this_array$5 = b.array, (b.t > 0 ? this_array$5[0] & 1 : b.s) === 0)) {
 					BigInteger$addTo$LBigInteger$LBigInteger$LBigInteger$(a, $this, a);
 					BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(b, m, b);
 				}
 				BigInteger$rShiftTo$LBigInteger$NLBigInteger$(a, 1, a);
 			} else {
-				if (! BigInteger$isEven$LBigInteger$(b)) {
+				if (! (this_array$6 = b.array, (b.t > 0 ? this_array$6[0] & 1 : b.s) === 0)) {
 					BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(b, m, b);
 				}
 			}
 			BigInteger$rShiftTo$LBigInteger$NLBigInteger$(b, 1, b);
 		}
-		while (BigInteger$isEven$LBigInteger$(v)) {
+		while ((this_array$11 = v.array, (v.t > 0 ? this_array$11[0] & 1 : v.s) === 0)) {
 			BigInteger$rShiftTo$LBigInteger$NLBigInteger$(v, 1, v);
 			if (ac) {
-				if (! BigInteger$isEven$LBigInteger$(c) || ! BigInteger$isEven$LBigInteger$(d)) {
+				if (! (this_array$8 = c.array, (c.t > 0 ? this_array$8[0] & 1 : c.s) === 0) || ! (this_array$9 = d.array, (d.t > 0 ? this_array$9[0] & 1 : d.s) === 0)) {
 					BigInteger$addTo$LBigInteger$LBigInteger$LBigInteger$(c, $this, c);
 					BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(d, m, d);
 				}
 				BigInteger$rShiftTo$LBigInteger$NLBigInteger$(c, 1, c);
 			} else {
-				if (! BigInteger$isEven$LBigInteger$(d)) {
+				if (! (this_array$10 = d.array, (d.t > 0 ? this_array$10[0] & 1 : d.s) === 0)) {
 					BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(d, m, d);
 				}
 			}
@@ -3897,16 +4108,16 @@ function BigInteger$modInverse$LBigInteger$LBigInteger$($this, m) {
 		return BigInteger.ZERO;
 	}
 	if (BigInteger$compareTo$LBigInteger$LBigInteger$(d, m) >= 0) {
-		r$0 = ({array: [], s: 0, t: 0});
-		BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(d, m, r$0);
-		return r$0;
+		r$6 = ({array: [], s: 0, t: 0});
+		BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(d, m, r$6);
+		return r$6;
 	}
-	if (BigInteger$signum$LBigInteger$(d) < 0) {
+	if ((this_array$13 = d.array, d.s < 0 ? -1 : d.t <= 0 || d.t === 1 && this_array$13[0] <= 0 ? 0 : 1) < 0) {
 		BigInteger$addTo$LBigInteger$LBigInteger$LBigInteger$(d, m, d);
 	} else {
 		return d;
 	}
-	return (BigInteger$signum$LBigInteger$(d) < 0 ? BigInteger$add$LBigInteger$LBigInteger$(d, m) : d);
+	return ((this_array$14 = d.array, d.s < 0 ? -1 : d.t <= 0 || d.t === 1 && this_array$14[0] <= 0 ? 0 : 1) < 0 ? (r$8 = ({array: [], s: 0, t: 0}), BigInteger$addTo$LBigInteger$LBigInteger$LBigInteger$(d, m, r$8), r$8) : d);
 };
 
 BigInteger.modInverse$LBigInteger$LBigInteger$ = BigInteger$modInverse$LBigInteger$LBigInteger$;
@@ -3917,8 +4128,9 @@ function BigInteger$isProbablePrime$LBigInteger$N($this, t) {
 	var x_array;
 	var m;
 	var j;
+	var r$0$0;
 	var this_array$0;
-	x = ($this.s < 0 ? BigInteger$negate$LBigInteger$($this) : $this);
+	x = ($this.s < 0 ? (r$0$0 = ({array: [], s: 0, t: 0}), BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, $this, r$0$0), r$0$0) : $this);
 	x_array = x.array;
 	if (x.t === 1 && x_array[0] <= BigInteger.lowprimes[BigInteger.lowprimes.length - 1]) {
 		for (i = 0; i < BigInteger.lowprimes.length; ++ i) {
@@ -3960,6 +4172,7 @@ function BigInteger$millerRabin$LBigInteger$N($this, t) {
 	var j;
 	var a$0;
 	var r$0;
+	var r$2;
 	a$0 = BigInteger.ONE;
 	r$0 = ({array: [], s: 0, t: 0});
 	BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$($this, a$0, r$0);
@@ -3968,7 +4181,13 @@ function BigInteger$millerRabin$LBigInteger$N($this, t) {
 	if (k <= 0) {
 		return false;
 	}
-	r = BigInteger$shiftRight$LBigInteger$N(n1, k);
+	r$2 = ({array: [], s: 0, t: 0});
+	if (k < 0) {
+		BigInteger$lShiftTo$LBigInteger$NLBigInteger$(n1, - k, r$2);
+	} else {
+		BigInteger$rShiftTo$LBigInteger$NLBigInteger$(n1, k, r$2);
+	}
+	r = r$2;
 	t = t + 1 >> 1;
 	if (t > BigInteger.lowprimes.length) {
 		t = BigInteger.lowprimes.length;
@@ -4050,8 +4269,9 @@ $__jsx_merge_interface(Montgomery, Reducer);
 
 Montgomery.prototype.convert$LBigInteger$ = function (x) {
 	var r;
+	var r$0$0;
 	r = ({array: [], s: 0, t: 0});
-	BigInteger$dlShiftTo$LBigInteger$NLBigInteger$(x.s < 0 ? BigInteger$negate$LBigInteger$(x) : x, this.m.t, r);
+	BigInteger$dlShiftTo$LBigInteger$NLBigInteger$(x.s < 0 ? (r$0$0 = ({array: [], s: 0, t: 0}), BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(BigInteger.ZERO, x, r$0$0), r$0$0) : x, this.m.t, r);
 	BigInteger$divRemTo$LBigInteger$LBigInteger$LBigInteger$LBigInteger$(r, this.m, null, r);
 	if (x.s < 0 && BigInteger$compareTo$LBigInteger$LBigInteger$(r, BigInteger.ZERO) > 0) {
 		BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(this.m, r, r);
@@ -4074,6 +4294,8 @@ Montgomery.prototype.reduce$LBigInteger$ = function (x) {
 	var i;
 	var j;
 	var u0;
+	var this_array$0;
+	var c$0;
 	var mpl$0;
 	x_array = x.array;
 	while (x.t <= this.mt2) {
@@ -4089,7 +4311,11 @@ Montgomery.prototype.reduce$LBigInteger$ = function (x) {
 			x_array[++ j]++;
 		}
 	}
-	BigInteger$clamp$LBigInteger$(x);
+	this_array$0 = x.array;
+	c$0 = x.s & BigInteger.DM;
+	while (x.t > 0 && this_array$0[x.t - 1] === c$0) {
+		-- x.t;
+	}
 	BigInteger$drShiftTo$LBigInteger$NLBigInteger$(x, this.m.t, x);
 	if (BigInteger$compareTo$LBigInteger$LBigInteger$(x, this.m) >= 0) {
 		BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(x, this.m, x);
@@ -4140,14 +4366,16 @@ NullExp.prototype.sqrTo$LBigInteger$LBigInteger$ = function (x, r) {
 
 
 function Barrett(m) {
+	var this$0;
 	var r$0;
 	this.mu = null;
 	this.m = null;
 	this.r2 = ({array: [], s: 0, t: 0});
 	this.q3 = ({array: [], s: 0, t: 0});
 	BigInteger$dlShiftTo$LBigInteger$NLBigInteger$(BigInteger.ONE, 2 * m.t, this.r2);
+	this$0 = this.r2;
 	r$0 = ({array: [], s: 0, t: 0});
-	BigInteger$divRemTo$LBigInteger$LBigInteger$LBigInteger$LBigInteger$(this.r2, m, r$0, null);
+	BigInteger$divRemTo$LBigInteger$LBigInteger$LBigInteger$LBigInteger$(this$0, m, r$0, null);
 	this.mu = r$0;
 	this.m = m;
 };
@@ -4178,11 +4406,17 @@ Barrett.prototype.revert$LBigInteger$ = function (x) {
 
 
 Barrett.prototype.reduce$LBigInteger$ = function (x) {
+	var this_array$0;
+	var c$0;
 	var m$0;
 	BigInteger$drShiftTo$LBigInteger$NLBigInteger$(x, this.m.t - 1, this.r2);
 	if (x.t > this.m.t + 1) {
 		x.t = this.m.t + 1;
-		BigInteger$clamp$LBigInteger$(x);
+		this_array$0 = x.array;
+		c$0 = x.s & BigInteger.DM;
+		while (x.t > 0 && this_array$0[x.t - 1] === c$0) {
+			-- x.t;
+		}
 	}
 	BigInteger$multiplyUpperTo$LBigInteger$LBigInteger$NLBigInteger$(this.mu, this.r2, this.m.t + 1, this.q3);
 	BigInteger$multiplyLowerTo$LBigInteger$LBigInteger$NLBigInteger$(m$0 = this.m, this.q3, m$0.t + 1, this.r2);
@@ -4326,12 +4560,18 @@ function SecureRandom() {
 
 $__jsx_extend([SecureRandom], Object);
 SecureRandom.prototype.nextBytes$AN = function (ba) {
-	RNG$get_bytes$AN(ba);
+	var i$0;
+	for (i$0 = 0; i$0 < ba.length; ++ i$0) {
+		ba[i$0] = RNG$get_byte$();
+	}
 };
 
 
 function SecureRandom$nextBytes$LSecureRandom$AN($this, ba) {
-	RNG$get_bytes$AN(ba);
+	var i$0;
+	for (i$0 = 0; i$0 < ba.length; ++ i$0) {
+		ba[i$0] = RNG$get_byte$();
+	}
 };
 
 SecureRandom.nextBytes$LSecureRandom$AN = SecureRandom$nextBytes$LSecureRandom$AN;
@@ -4414,13 +4654,22 @@ function RSAKey$generate$LRSAKey$NS($this, B, E) {
 	var p1;
 	var q1;
 	var phi;
+	var this$0;
 	var a$0;
 	var r$0;
+	var this$1;
 	var a$1;
 	var r$1;
-	var r$2;
+	var this$2;
 	var a$2;
-	var r$3;
+	var r$2;
+	var this$4;
+	var a$4;
+	var r$4;
+	var r$6;
+	var this$6;
+	var a$6;
+	var r$8;
 	var p$0;
 	var q$0;
 	var d$0;
@@ -4431,13 +4680,13 @@ function RSAKey$generate$LRSAKey$NS($this, B, E) {
 	for (; ; ) {
 		for (; ; ) {
 			p$0 = $this.p = new BigInteger$0(B - qs, 1, rng);
-			if (BigInteger$compareTo$LBigInteger$LBigInteger$(BigInteger$gcd$LBigInteger$LBigInteger$(BigInteger$subtract$LBigInteger$LBigInteger$(p$0, BigInteger.ONE), ee), BigInteger.ONE) === 0 && BigInteger$isProbablePrime$LBigInteger$N($this.p, 10)) {
+			if (BigInteger$compareTo$LBigInteger$LBigInteger$(BigInteger$gcd$LBigInteger$LBigInteger$((this$0 = p$0, a$0 = BigInteger.ONE, r$0 = ({array: [], s: 0, t: 0}), BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(this$0, a$0, r$0), r$0), ee), BigInteger.ONE) === 0 && BigInteger$isProbablePrime$LBigInteger$N($this.p, 10)) {
 				break;
 			}
 		}
 		for (; ; ) {
 			q$0 = $this.q = new BigInteger$0(qs, 1, rng);
-			if (BigInteger$compareTo$LBigInteger$LBigInteger$(BigInteger$gcd$LBigInteger$LBigInteger$(BigInteger$subtract$LBigInteger$LBigInteger$(q$0, BigInteger.ONE), ee), BigInteger.ONE) === 0 && BigInteger$isProbablePrime$LBigInteger$N($this.q, 10)) {
+			if (BigInteger$compareTo$LBigInteger$LBigInteger$(BigInteger$gcd$LBigInteger$LBigInteger$((this$1 = q$0, a$1 = BigInteger.ONE, r$1 = ({array: [], s: 0, t: 0}), BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(this$1, a$1, r$1), r$1), ee), BigInteger.ONE) === 0 && BigInteger$isProbablePrime$LBigInteger$N($this.q, 10)) {
 				break;
 			}
 		}
@@ -4446,22 +4695,25 @@ function RSAKey$generate$LRSAKey$NS($this, B, E) {
 			$this.p = $this.q;
 			$this.q = t;
 		}
-		a$0 = BigInteger.ONE;
-		r$0 = ({array: [], s: 0, t: 0});
-		BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$($this.p, a$0, r$0);
-		p1 = r$0;
-		a$1 = BigInteger.ONE;
-		r$1 = ({array: [], s: 0, t: 0});
-		BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$($this.q, a$1, r$1);
-		q1 = r$1;
+		this$2 = $this.p;
+		a$2 = BigInteger.ONE;
 		r$2 = ({array: [], s: 0, t: 0});
-		BigInteger$multiplyTo$LBigInteger$LBigInteger$LBigInteger$(p1, q1, r$2);
-		phi = r$2;
-		if (BigInteger$compareTo$LBigInteger$LBigInteger$(BigInteger$gcd$LBigInteger$LBigInteger$(r$2, ee), BigInteger.ONE) === 0) {
-			a$2 = $this.q;
-			r$3 = ({array: [], s: 0, t: 0});
-			BigInteger$multiplyTo$LBigInteger$LBigInteger$LBigInteger$($this.p, a$2, r$3);
-			$this.n = r$3;
+		BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(this$2, a$2, r$2);
+		p1 = r$2;
+		this$4 = $this.q;
+		a$4 = BigInteger.ONE;
+		r$4 = ({array: [], s: 0, t: 0});
+		BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(this$4, a$4, r$4);
+		q1 = r$4;
+		r$6 = ({array: [], s: 0, t: 0});
+		BigInteger$multiplyTo$LBigInteger$LBigInteger$LBigInteger$(p1, q1, r$6);
+		phi = r$6;
+		if (BigInteger$compareTo$LBigInteger$LBigInteger$(BigInteger$gcd$LBigInteger$LBigInteger$(r$6, ee), BigInteger.ONE) === 0) {
+			this$6 = $this.p;
+			a$6 = $this.q;
+			r$8 = ({array: [], s: 0, t: 0});
+			BigInteger$multiplyTo$LBigInteger$LBigInteger$LBigInteger$(this$6, a$6, r$8);
+			$this.n = r$8;
 			d$0 = $this.d = BigInteger$modInverse$LBigInteger$LBigInteger$(ee, phi);
 			$this.dmp1 = BigInteger$mod$LBigInteger$LBigInteger$(d$0, p1);
 			$this.dmq1 = BigInteger$mod$LBigInteger$LBigInteger$($this.d, q1);
@@ -4479,10 +4731,14 @@ function RSAKey$doPrivate$LRSAKey$LBigInteger$($this, x) {
 	var a$0;
 	var r$0;
 	var this$0;
-	var r$1;
-	var this$1;
-	var a$1;
 	var r$2;
+	var r$3;
+	var this$1;
+	var a$2;
+	var r$4;
+	var this$4;
+	var a$4;
+	var r$7;
 	if ($this.p == null || $this.q == null) {
 		return BigInteger$modPow$LBigInteger$LBigInteger$LBigInteger$(x, $this.d, $this.n);
 	}
@@ -4494,14 +4750,14 @@ function RSAKey$doPrivate$LRSAKey$LBigInteger$($this, x) {
 		BigInteger$addTo$LBigInteger$LBigInteger$LBigInteger$(xp, a$0, r$0);
 		xp = r$0;
 	}
-	this$1 = BigInteger$mod$LBigInteger$LBigInteger$(BigInteger$multiply$LBigInteger$LBigInteger$(BigInteger$subtract$LBigInteger$LBigInteger$(xp, xq), $this.coeff), $this.p);
-	a$1 = $this.q;
+	this$4 = BigInteger$mod$LBigInteger$LBigInteger$((this$1 = (r$3 = ({array: [], s: 0, t: 0}), BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(xp, xq, r$3), r$3), a$2 = $this.coeff, r$4 = ({array: [], s: 0, t: 0}), BigInteger$multiplyTo$LBigInteger$LBigInteger$LBigInteger$(this$1, a$2, r$4), r$4), $this.p);
+	a$4 = $this.q;
+	r$7 = ({array: [], s: 0, t: 0});
+	BigInteger$multiplyTo$LBigInteger$LBigInteger$LBigInteger$(this$4, a$4, r$7);
+	this$0 = r$7;
 	r$2 = ({array: [], s: 0, t: 0});
-	BigInteger$multiplyTo$LBigInteger$LBigInteger$LBigInteger$(this$1, a$1, r$2);
-	this$0 = r$2;
-	r$1 = ({array: [], s: 0, t: 0});
-	BigInteger$addTo$LBigInteger$LBigInteger$LBigInteger$(this$0, xq, r$1);
-	return r$1;
+	BigInteger$addTo$LBigInteger$LBigInteger$LBigInteger$(this$0, xq, r$2);
+	return r$2;
 };
 
 RSAKey.doPrivate$LRSAKey$LBigInteger$ = RSAKey$doPrivate$LRSAKey$LBigInteger$;
@@ -4520,6 +4776,7 @@ function RSAKey$pkcs1pad2$SN(s, n) {
 	var ba;
 	var i;
 	var x;
+	var i$0$0;
 	if (n < s.length + 11) {
 		return null;
 	}
@@ -4534,7 +4791,9 @@ function RSAKey$pkcs1pad2$SN(s, n) {
 	while (n > 2) {
 		x[0] = 0;
 		while (x[0] === 0) {
-			RNG$get_bytes$AN(x);
+			for (i$0$0 = 0; i$0$0 < x.length; ++ i$0$0) {
+				x[i$0$0] = RNG$get_byte$();
+			}
 		}
 		ba[-- n] = x[0];
 	}
@@ -4677,20 +4936,20 @@ Color.limit$LColor$ = Color$limit$LColor$;
 
 Color.prototype.distance$LColor$ = function (color) {
 	var d;
-	var abs$x$0;
-	var abs$x$1;
-	var abs$x$2;
-	d = (abs$x$0 = this.red - color.red, abs$x$0 >= 0 ? abs$x$0 : - abs$x$0) + (abs$x$1 = this.green - color.green, abs$x$1 >= 0 ? abs$x$1 : - abs$x$1) + (abs$x$2 = this.blue - color.blue, abs$x$2 >= 0 ? abs$x$2 : - abs$x$2);
+	var x$0;
+	var x$1;
+	var x$2;
+	d = (x$0 = this.red - color.red, x$0 >= 0 ? x$0 : - x$0) + (x$1 = this.green - color.green, x$1 >= 0 ? x$1 : - x$1) + (x$2 = this.blue - color.blue, x$2 >= 0 ? x$2 : - x$2);
 	return d;
 };
 
 
 function Color$distance$LColor$LColor$($this, color) {
 	var d;
-	var abs$x$0;
-	var abs$x$1;
-	var abs$x$2;
-	d = (abs$x$0 = $this.red - color.red, abs$x$0 >= 0 ? abs$x$0 : - abs$x$0) + (abs$x$1 = $this.green - color.green, abs$x$1 >= 0 ? abs$x$1 : - abs$x$1) + (abs$x$2 = $this.blue - color.blue, abs$x$2 >= 0 ? abs$x$2 : - abs$x$2);
+	var x$0;
+	var x$1;
+	var x$2;
+	d = (x$0 = $this.red - color.red, x$0 >= 0 ? x$0 : - x$0) + (x$1 = $this.green - color.green, x$1 >= 0 ? x$1 : - x$1) + (x$2 = $this.blue - color.blue, x$2 >= 0 ? x$2 : - x$2);
 	return d;
 };
 
@@ -4698,8 +4957,11 @@ Color.distance$LColor$LColor$ = Color$distance$LColor$LColor$;
 
 function Color$blend$LColor$LColor$N(c1, c2, w) {
 	var result;
+	var f$0;
+	var result$0;
+	var result$1;
 	result = new Color$0(0, 0, 0);
-	result = Color$add$LColor$LColor$(Color$multiplyScalar$LColor$N(c1, 1 - w), Color$multiplyScalar$LColor$N(c2, w));
+	result = Color$add$LColor$LColor$((f$0 = 1 - w, result$0 = new Color$0(0, 0, 0), result$0.red = c1.red * f$0, result$0.green = c1.green * f$0, result$0.blue = c1.blue * f$0, result$0), (result$1 = new Color$0(0, 0, 0), result$1.red = c2.red * w, result$1.green = c2.green * w, result$1.blue = c2.blue * w, result$1));
 	return result;
 };
 
@@ -4897,9 +5159,9 @@ function Ray(pos, dir) {
 
 $__jsx_extend([Ray], Object);
 Ray.prototype.toString = function () {
-	var toString$this$0;
-	var toString$this$1;
-	return 'Ray [' + (toString$this$0 = this.position, 'Vector [' + (toString$this$0.x + "") + ',' + (toString$this$0.y + "") + ',' + (toString$this$0.z + "") + ']') + ',' + (toString$this$1 = this.direction, 'Vector [' + (toString$this$1.x + "") + ',' + (toString$this$1.y + "") + ',' + (toString$this$1.z + "") + ']') + ']';
+	var this$0;
+	var this$1;
+	return 'Ray [' + (this$0 = this.position, 'Vector [' + (this$0.x + "") + ',' + (this$0.y + "") + ',' + (this$0.z + "") + ']') + ',' + (this$1 = this.direction, 'Vector [' + (this$1.x + "") + ',' + (this$1.y + "") + ',' + (this$1.z + "") + ']') + ']';
 };
 
 
@@ -5015,11 +5277,11 @@ Sphere.prototype.intersect$LRay$ = function (ray) {
 	var D;
 	var w$0;
 	var v$0;
-	var v$1;
-	var w$2;
-	var w$1$x$0;
-	var w$1$y$0;
-	var w$1$z$0;
+	var v$3;
+	var w$5;
+	var w$2$x$0;
+	var w$2$y$0;
+	var w$2$z$0;
 	var distance$0;
 	var position$0;
 	var x$0;
@@ -5037,12 +5299,12 @@ Sphere.prototype.intersect$LRay$ = function (ray) {
 		info.isHit = true;
 		distance$0 = info.distance = - B - Math.sqrt(D);
 		v$0 = ray.position;
-		v$1 = ray.direction;
-		w$2 = distance$0;
-		w$1$x$0 = v$1.x * w$2;
-		w$1$y$0 = v$1.y * w$2;
-		w$1$z$0 = v$1.z * w$2;
-		position$0 = info.position = new Vector$0(w$1$x$0 + v$0.x, w$1$y$0 + v$0.y, w$1$z$0 + v$0.z);
+		v$3 = ray.direction;
+		w$5 = distance$0;
+		w$2$x$0 = v$3.x * w$5;
+		w$2$y$0 = v$3.y * w$5;
+		w$2$z$0 = v$3.z * w$5;
+		position$0 = info.position = new Vector$0(w$2$x$0 + v$0.x, w$2$y$0 + v$0.y, w$2$z$0 + v$0.z);
 		info.normal = Vector$normalize$LVector$(Vector$subtract$LVector$LVector$(position$0, this.position));
 		info.color = this.material.getColor$NN(0, 0);
 	} else {
@@ -5053,8 +5315,8 @@ Sphere.prototype.intersect$LRay$ = function (ray) {
 
 
 Sphere.prototype.toString = function () {
-	var toString$this$0;
-	return 'Sphere [position=' + (toString$this$0 = this.position, 'Vector [' + (toString$this$0.x + "") + ',' + (toString$this$0.y + "") + ',' + (toString$this$0.z + "") + ']') + ', radius=' + (this.radius + "") + ']';
+	var this$0;
+	return 'Sphere [position=' + (this$0 = this.position, 'Vector [' + (this$0.x + "") + ',' + (this$0.y + "") + ',' + (this$0.z + "") + ']') + ', radius=' + (this.radius + "") + ']';
 };
 
 
@@ -5075,14 +5337,14 @@ Plane.prototype.intersect$LRay$ = function (ray) {
 	var v;
 	var this$0;
 	var w$0;
-	var dot$w$1;
-	var dot$this$1;
+	var this$2;
+	var w$2;
 	var v$0;
-	var this$1;
-	var v$1;
-	var w$1$x$0;
-	var w$1$y$0;
-	var w$1$z$0;
+	var this$3;
+	var v$3;
+	var w$3$x$0;
+	var w$3$y$0;
+	var w$3$z$0;
 	var position$0;
 	var position$1;
 	info = new IntersectionInfo();
@@ -5092,25 +5354,25 @@ Plane.prototype.intersect$LRay$ = function (ray) {
 	if (Vd === 0) {
 		return info;
 	}
-	t = - ((dot$this$1 = this.position, dot$w$1 = ray.position, dot$this$1.x * dot$w$1.x + dot$this$1.y * dot$w$1.y + dot$this$1.z * dot$w$1.z) + this.d) / Vd;
+	t = - ((this$2 = this.position, w$2 = ray.position, this$2.x * w$2.x + this$2.y * w$2.y + this$2.z * w$2.z) + this.d) / Vd;
 	if (t <= 0) {
 		return info;
 	}
 	info.shape = this;
 	info.isHit = true;
 	v$0 = ray.position;
-	v$1 = ray.direction;
-	w$1$x$0 = v$1.x * t;
-	w$1$y$0 = v$1.y * t;
-	w$1$z$0 = v$1.z * t;
-	info.position = new Vector$0(w$1$x$0 + v$0.x, w$1$y$0 + v$0.y, w$1$z$0 + v$0.z);
+	v$3 = ray.direction;
+	w$3$x$0 = v$3.x * t;
+	w$3$y$0 = v$3.y * t;
+	w$3$z$0 = v$3.z * t;
+	info.position = new Vector$0(w$3$x$0 + v$0.x, w$3$y$0 + v$0.y, w$3$z$0 + v$0.z);
 	info.normal = this.position;
 	info.distance = t;
 	if (this.material.hasTexture) {
 		vU = new Vector$0((position$0 = this.position).y, position$0.z, - position$0.x);
 		vV = Vector$cross$LVector$LVector$(vU, this.position);
-		this$1 = position$1 = info.position;
-		u = this$1.x * vU.x + this$1.y * vU.y + this$1.z * vU.z;
+		this$3 = position$1 = info.position;
+		u = this$3.x * vU.x + this$3.y * vU.y + this$3.z * vU.z;
 		v = position$1.x * vV.x + position$1.y * vV.y + position$1.z * vV.z;
 		info.color = this.material.getColor$NN(u, v);
 	} else {
@@ -5121,8 +5383,8 @@ Plane.prototype.intersect$LRay$ = function (ray) {
 
 
 Plane.prototype.toString = function () {
-	var toString$this$0;
-	return 'Plane [' + (toString$this$0 = this.position, 'Vector [' + (toString$this$0.x + "") + ',' + (toString$this$0.y + "") + ',' + (toString$this$0.z + "") + ']') + ', d=' + (this.d + "") + ']';
+	var this$0;
+	return 'Plane [' + (this$0 = this.position, 'Vector [' + (this$0.x + "") + ',' + (this$0.y + "") + ',' + (this$0.z + "") + ']') + ', d=' + (this.d + "") + ']';
 };
 
 
@@ -5138,8 +5400,8 @@ function IntersectionInfo() {
 
 $__jsx_extend([IntersectionInfo], Object);
 IntersectionInfo.prototype.toString = function () {
-	var toString$this$0;
-	return 'Intersection [' + (toString$this$0 = this.position, 'Vector [' + (toString$this$0.x + "") + ',' + (toString$this$0.y + "") + ',' + (toString$this$0.z + "") + ']') + ']';
+	var this$0;
+	return 'Intersection [' + (this$0 = this.position, 'Vector [' + (this$0.x + "") + ',' + (this$0.y + "") + ',' + (this$0.z + "") + ']') + ']';
 };
 
 
@@ -5160,9 +5422,9 @@ Camera.prototype.getRay$NN = function (vx, vy) {
 	var pos;
 	var dir;
 	var ray;
-	var multiplyScalar$v$0;
-	var multiplyScalar$v$1;
-	pos = Vector$subtract$LVector$LVector$(this.screen, Vector$subtract$LVector$LVector$((multiplyScalar$v$0 = this.equator, new Vector$0(multiplyScalar$v$0.x * vx, multiplyScalar$v$0.y * vx, multiplyScalar$v$0.z * vx)), (multiplyScalar$v$1 = this.up, new Vector$0(multiplyScalar$v$1.x * vy, multiplyScalar$v$1.y * vy, multiplyScalar$v$1.z * vy))));
+	var v$0;
+	var v$1;
+	pos = Vector$subtract$LVector$LVector$(this.screen, Vector$subtract$LVector$LVector$((v$0 = this.equator, new Vector$0(v$0.x * vx, v$0.y * vx, v$0.z * vx)), (v$1 = this.up, new Vector$0(v$1.x * vy, v$1.y * vy, v$1.z * vy))));
 	pos.y = pos.y * -1;
 	dir = Vector$subtract$LVector$LVector$(pos, this.position);
 	ray = new Ray(pos, Vector$normalize$LVector$(dir));
@@ -5174,9 +5436,9 @@ function Camera$getRay$LCamera$NN($this, vx, vy) {
 	var pos;
 	var dir;
 	var ray;
-	var multiplyScalar$v$0;
-	var multiplyScalar$v$1;
-	pos = Vector$subtract$LVector$LVector$($this.screen, Vector$subtract$LVector$LVector$((multiplyScalar$v$0 = $this.equator, new Vector$0(multiplyScalar$v$0.x * vx, multiplyScalar$v$0.y * vx, multiplyScalar$v$0.z * vx)), (multiplyScalar$v$1 = $this.up, new Vector$0(multiplyScalar$v$1.x * vy, multiplyScalar$v$1.y * vy, multiplyScalar$v$1.z * vy))));
+	var v$0;
+	var v$1;
+	pos = Vector$subtract$LVector$LVector$($this.screen, Vector$subtract$LVector$LVector$((v$0 = $this.equator, new Vector$0(v$0.x * vx, v$0.y * vx, v$0.z * vx)), (v$1 = $this.up, new Vector$0(v$1.x * vy, v$1.y * vy, v$1.z * vy))));
 	pos.y = pos.y * -1;
 	dir = Vector$subtract$LVector$LVector$(pos, $this.position);
 	ray = new Ray(pos, Vector$normalize$LVector$(dir));
@@ -5399,7 +5661,7 @@ Engine.testIntersection$LEngine$LRay$LScene$LShape$ = Engine$testIntersection$LE
 Engine.prototype.getReflectionRay$LVector$LVector$LVector$ = function (P, N, V) {
 	var c1;
 	var R1;
-	var w$0;
+	var w$1;
 	var v$0$x$0;
 	var v$0$y$0;
 	var v$0$z$0;
@@ -5410,10 +5672,10 @@ Engine.prototype.getReflectionRay$LVector$LVector$LVector$ = function (P, N, V) 
 	var y$1;
 	var z$1;
 	c1 = - ((x$0 = N.x) * (x$1 = V.x) + (y$0 = N.y) * (y$1 = V.y) + (z$0 = N.z) * (z$1 = V.z));
-	w$0 = 2 * c1;
-	v$0$x$0 = x$0 * w$0;
-	v$0$y$0 = y$0 * w$0;
-	v$0$z$0 = z$0 * w$0;
+	w$1 = 2 * c1;
+	v$0$x$0 = x$0 * w$1;
+	v$0$y$0 = y$0 * w$1;
+	v$0$z$0 = z$0 * w$1;
 	R1 = new Vector$0(x$1 + v$0$x$0, y$1 + v$0$y$0, z$1 + v$0$z$0);
 	return new Ray(P, R1);
 };
@@ -5422,7 +5684,7 @@ Engine.prototype.getReflectionRay$LVector$LVector$LVector$ = function (P, N, V) 
 function Engine$getReflectionRay$LEngine$LVector$LVector$LVector$($this, P, N, V) {
 	var c1;
 	var R1;
-	var w$0;
+	var w$1;
 	var v$0$x$0;
 	var v$0$y$0;
 	var v$0$z$0;
@@ -5433,10 +5695,10 @@ function Engine$getReflectionRay$LEngine$LVector$LVector$LVector$($this, P, N, V
 	var y$1;
 	var z$1;
 	c1 = - ((x$0 = N.x) * (x$1 = V.x) + (y$0 = N.y) * (y$1 = V.y) + (z$0 = N.z) * (z$1 = V.z));
-	w$0 = 2 * c1;
-	v$0$x$0 = x$0 * w$0;
-	v$0$y$0 = y$0 * w$0;
-	v$0$z$0 = z$0 * w$0;
+	w$1 = 2 * c1;
+	v$0$x$0 = x$0 * w$1;
+	v$0$y$0 = y$0 * w$1;
+	v$0$z$0 = z$0 * w$1;
 	R1 = new Vector$0(x$1 + v$0$x$0, y$1 + v$0$y$0, z$1 + v$0$z$0);
 	return new Ray(P, R1);
 };
@@ -5463,12 +5725,13 @@ Engine.prototype.rayTrace$LIntersectionInfo$LRay$LScene$N = function (info, ray,
 	var f$0;
 	var result$0;
 	var w$0;
-	var c2$0;
-	var w$1;
-	var result$1;
+	var c1$2;
 	var result$2;
-	var dot$this$0;
-	var max$value1$0;
+	var result$3;
+	var this$0;
+	var value1$0;
+	var c1$3;
+	var result$5;
 	c1$0 = info.color;
 	f$0 = scene.background.ambience;
 	result$0 = new Color$0(0, 0, 0);
@@ -5484,7 +5747,7 @@ Engine.prototype.rayTrace$LIntersectionInfo$LRay$LScene$N = function (info, ray,
 			w$0 = info.normal;
 			L = v.x * w$0.x + v.y * w$0.y + v.z * w$0.z;
 			if (L > 0.0) {
-				color = Color$add$LColor$LColor$(color, Color$multiply$LColor$LColor$(info.color, Color$multiplyScalar$LColor$N(light.color, L)));
+				color = Color$add$LColor$LColor$(color, Color$multiply$LColor$LColor$(info.color, (c1$2 = light.color, result$2 = new Color$0(0, 0, 0), result$2.red = c1$2.red * L, result$2.green = c1$2.green * L, result$2.blue = c1$2.blue * L, result$2)));
 			}
 		}
 		if (depth <= this.options.rayDepth) {
@@ -5496,11 +5759,7 @@ Engine.prototype.rayTrace$LIntersectionInfo$LRay$LScene$N = function (info, ray,
 				} else {
 					refl.color = scene.background.color;
 				}
-				c2$0 = refl.color;
-				w$1 = info.shape.material.reflection;
-				result$1 = new Color$0(0, 0, 0);
-				result$1 = Color$add$LColor$LColor$(Color$multiplyScalar$LColor$N(color, 1 - w$1), Color$multiplyScalar$LColor$N(c2$0, w$1));
-				color = result$1;
+				color = Color$blend$LColor$LColor$N(color, refl.color, info.shape.material.reflection);
 			}
 		}
 		shadowInfo = new IntersectionInfo();
@@ -5508,20 +5767,20 @@ Engine.prototype.rayTrace$LIntersectionInfo$LRay$LScene$N = function (info, ray,
 			shadowRay = new Ray(info.position, v);
 			shadowInfo = Engine$testIntersection$LEngine$LRay$LScene$LShape$(this, shadowRay, scene, info.shape);
 			if (shadowInfo.isHit && shadowInfo.shape != info.shape) {
-				result$2 = new Color$0(0, 0, 0);
-				result$2.red = color.red * 0.5;
-				result$2.green = color.green * 0.5;
-				result$2.blue = color.blue * 0.5;
+				result$3 = new Color$0(0, 0, 0);
+				result$3.red = color.red * 0.5;
+				result$3.green = color.green * 0.5;
+				result$3.blue = color.blue * 0.5;
 				dB = 0.5 * Math.pow(shadowInfo.shape.material.transparency, 0.5);
-				color = Color$addScalar$LColor$N(result$2, dB);
+				color = Color$addScalar$LColor$N(result$3, dB);
 			}
 		}
 		if (this.options.renderHighlights && ! shadowInfo.isHit && info.shape.material.gloss > 0) {
 			Lv = Vector$normalize$LVector$(Vector$subtract$LVector$LVector$(info.shape.position, light.position));
 			E = Vector$normalize$LVector$(Vector$subtract$LVector$LVector$(scene.camera.position, info.shape.position));
 			H = Vector$normalize$LVector$(Vector$subtract$LVector$LVector$(E, Lv));
-			glossWeight = Math.pow((max$value1$0 = (dot$this$0 = info.normal, dot$this$0.x * H.x + dot$this$0.y * H.y + dot$this$0.z * H.z), max$value1$0 >= 0 ? max$value1$0 : 0), shininess);
-			color = Color$add$LColor$LColor$(Color$multiplyScalar$LColor$N(light.color, glossWeight), color);
+			glossWeight = Math.pow((value1$0 = (this$0 = info.normal, this$0.x * H.x + this$0.y * H.y + this$0.z * H.z), value1$0 >= 0 ? value1$0 : 0), shininess);
+			color = Color$add$LColor$LColor$((c1$3 = light.color, result$5 = new Color$0(0, 0, 0), result$5.red = c1$3.red * glossWeight, result$5.green = c1$3.green * glossWeight, result$5.blue = c1$3.blue * glossWeight, result$5), color);
 		}
 	}
 	Color$limit$LColor$(color);
@@ -5549,12 +5808,13 @@ function Engine$rayTrace$LEngine$LIntersectionInfo$LRay$LScene$N($this, info, ra
 	var f$0;
 	var result$0;
 	var w$0;
-	var c2$0;
-	var w$1;
-	var result$1;
+	var c1$2;
 	var result$2;
-	var dot$this$0;
-	var max$value1$0;
+	var result$3;
+	var this$0;
+	var value1$0;
+	var c1$3;
+	var result$5;
 	c1$0 = info.color;
 	f$0 = scene.background.ambience;
 	result$0 = new Color$0(0, 0, 0);
@@ -5570,7 +5830,7 @@ function Engine$rayTrace$LEngine$LIntersectionInfo$LRay$LScene$N($this, info, ra
 			w$0 = info.normal;
 			L = v.x * w$0.x + v.y * w$0.y + v.z * w$0.z;
 			if (L > 0.0) {
-				color = Color$add$LColor$LColor$(color, Color$multiply$LColor$LColor$(info.color, Color$multiplyScalar$LColor$N(light.color, L)));
+				color = Color$add$LColor$LColor$(color, Color$multiply$LColor$LColor$(info.color, (c1$2 = light.color, result$2 = new Color$0(0, 0, 0), result$2.red = c1$2.red * L, result$2.green = c1$2.green * L, result$2.blue = c1$2.blue * L, result$2)));
 			}
 		}
 		if (depth <= $this.options.rayDepth) {
@@ -5582,11 +5842,7 @@ function Engine$rayTrace$LEngine$LIntersectionInfo$LRay$LScene$N($this, info, ra
 				} else {
 					refl.color = scene.background.color;
 				}
-				c2$0 = refl.color;
-				w$1 = info.shape.material.reflection;
-				result$1 = new Color$0(0, 0, 0);
-				result$1 = Color$add$LColor$LColor$(Color$multiplyScalar$LColor$N(color, 1 - w$1), Color$multiplyScalar$LColor$N(c2$0, w$1));
-				color = result$1;
+				color = Color$blend$LColor$LColor$N(color, refl.color, info.shape.material.reflection);
 			}
 		}
 		shadowInfo = new IntersectionInfo();
@@ -5594,20 +5850,20 @@ function Engine$rayTrace$LEngine$LIntersectionInfo$LRay$LScene$N($this, info, ra
 			shadowRay = new Ray(info.position, v);
 			shadowInfo = Engine$testIntersection$LEngine$LRay$LScene$LShape$($this, shadowRay, scene, info.shape);
 			if (shadowInfo.isHit && shadowInfo.shape != info.shape) {
-				result$2 = new Color$0(0, 0, 0);
-				result$2.red = color.red * 0.5;
-				result$2.green = color.green * 0.5;
-				result$2.blue = color.blue * 0.5;
+				result$3 = new Color$0(0, 0, 0);
+				result$3.red = color.red * 0.5;
+				result$3.green = color.green * 0.5;
+				result$3.blue = color.blue * 0.5;
 				dB = 0.5 * Math.pow(shadowInfo.shape.material.transparency, 0.5);
-				color = Color$addScalar$LColor$N(result$2, dB);
+				color = Color$addScalar$LColor$N(result$3, dB);
 			}
 		}
 		if ($this.options.renderHighlights && ! shadowInfo.isHit && info.shape.material.gloss > 0) {
 			Lv = Vector$normalize$LVector$(Vector$subtract$LVector$LVector$(info.shape.position, light.position));
 			E = Vector$normalize$LVector$(Vector$subtract$LVector$LVector$(scene.camera.position, info.shape.position));
 			H = Vector$normalize$LVector$(Vector$subtract$LVector$LVector$(E, Lv));
-			glossWeight = Math.pow((max$value1$0 = (dot$this$0 = info.normal, dot$this$0.x * H.x + dot$this$0.y * H.y + dot$this$0.z * H.z), max$value1$0 >= 0 ? max$value1$0 : 0), shininess);
-			color = Color$add$LColor$LColor$(Color$multiplyScalar$LColor$N(light.color, glossWeight), color);
+			glossWeight = Math.pow((value1$0 = (this$0 = info.normal, this$0.x * H.x + this$0.y * H.y + this$0.z * H.z), value1$0 >= 0 ? value1$0 : 0), shininess);
+			color = Color$add$LColor$LColor$((c1$3 = light.color, result$5 = new Color$0(0, 0, 0), result$5.red = c1$3.red * glossWeight, result$5.green = c1$3.green * glossWeight, result$5.blue = c1$3.blue * glossWeight, result$5), color);
 		}
 	}
 	Color$limit$LColor$(color);
@@ -7995,7 +8251,7 @@ function NavierStokes() {
 		var i;
 		var y$0;
 		var x$0;
-		var y$1;
+		var y$2;
 		n = 64;
 		for (i = 1; i <= n; i++) {
 			Field$setVelocity$LField$NNNN(field, i, i, n, n);
@@ -8005,8 +8261,8 @@ function NavierStokes() {
 			field.dens[i + 1 + (y$0 + 1) * field.fluid._rowSize] = 20;
 			Field$setVelocity$LField$NNNN(field, 128 - i, n + i, - n, - n);
 			x$0 = 128 - i;
-			y$1 = n + i;
-			field.dens[x$0 + 1 + (y$1 + 1) * field.fluid._rowSize] = 30;
+			y$2 = n + i;
+			field.dens[x$0 + 1 + (y$2 + 1) * field.fluid._rowSize] = 30;
 		}
 	}
 	framesTillAddingPoints = 0;
@@ -8026,7 +8282,7 @@ function NavierStokes() {
 	function setupNavierStokes() {
 		solver = new FluidField();
 		FluidField$setResolution$LFluidField$NN(solver, 128, 128);
-		FluidField$setIterations$LFluidField$N(solver, 20);
+		solver._iterations = 20;
 		solver._displayFunc = (function (f) {
 		});
 		solver._uiCallback = prepareFrame;
@@ -8589,14 +8845,20 @@ function FluidField$_project$LFluidField$ANANANAN($this, u, v, p, div) {
 FluidField._project$LFluidField$ANANANAN = FluidField$_project$LFluidField$ANANANAN;
 
 FluidField.prototype._dens_step$ANANANANN = function (x, x0, u, v, dt) {
-	FluidField$_add_fields$LFluidField$ANANN(this, x, x0, dt);
+	var i$0;
+	for (i$0 = 0; i$0 < this._size; i$0++) {
+		x[i$0] += dt * x0[i$0];
+	}
 	FluidField$_lin_solve$LFluidField$NANANNN(this, 0, x0, x, 0, 1);
 	FluidField$_advect$LFluidField$NANANANANN(this, 0, x, x0, u, v, dt);
 };
 
 
 function FluidField$_dens_step$LFluidField$ANANANANN($this, x, x0, u, v, dt) {
-	FluidField$_add_fields$LFluidField$ANANN($this, x, x0, dt);
+	var i$0;
+	for (i$0 = 0; i$0 < $this._size; i$0++) {
+		x[i$0] += dt * x0[i$0];
+	}
 	FluidField$_lin_solve$LFluidField$NANANNN($this, 0, x0, x, 0, 1);
 	FluidField$_advect$LFluidField$NANANANANN($this, 0, x, x0, u, v, dt);
 };
@@ -8605,8 +8867,14 @@ FluidField._dens_step$LFluidField$ANANANANN = FluidField$_dens_step$LFluidField$
 
 FluidField.prototype._vel_step$ANANANANN = function (u, v, u0, v0, dt) {
 	var temp;
-	FluidField$_add_fields$LFluidField$ANANN(this, u, u0, dt);
-	FluidField$_add_fields$LFluidField$ANANN(this, v, v0, dt);
+	var i$0;
+	var i$1;
+	for (i$0 = 0; i$0 < this._size; i$0++) {
+		u[i$0] += dt * u0[i$0];
+	}
+	for (i$1 = 0; i$1 < this._size; i$1++) {
+		v[i$1] += dt * v0[i$1];
+	}
 	temp = u0;
 	u0 = u;
 	u = temp;
@@ -8629,8 +8897,14 @@ FluidField.prototype._vel_step$ANANANANN = function (u, v, u0, v0, dt) {
 
 function FluidField$_vel_step$LFluidField$ANANANANN($this, u, v, u0, v0, dt) {
 	var temp;
-	FluidField$_add_fields$LFluidField$ANANN($this, u, u0, dt);
-	FluidField$_add_fields$LFluidField$ANANN($this, v, v0, dt);
+	var i$0;
+	var i$1;
+	for (i$0 = 0; i$0 < $this._size; i$0++) {
+		u[i$0] += dt * u0[i$0];
+	}
+	for (i$1 = 0; i$1 < $this._size; i$1++) {
+		v[i$1] += dt * v0[i$1];
+	}
 	temp = u0;
 	u0 = u;
 	u = temp;
@@ -9234,6 +9508,7 @@ function DeviceMotionEventInit() {
 };
 
 $__jsx_extend([DeviceMotionEventInit], EventInit);
+var js$0 = (function () { var global = (function () { return this; }()); return { global: global, eval: global.eval, invoke: function(invocant, methodName, args) { return invocant[methodName].apply(invocant, args); } }; }());
 BenchmarkUtil.seed = 49734321;
 $__jsx_lazy_init(BenchmarkSuite, "suites", function () {
 	return [  ];
@@ -9327,17 +9602,16 @@ Splay.SPLAY_TREE_SIZE = 8000;
 Splay.SPLAY_TREE_MODIFICATIONS = 80;
 Splay.SPLAY_TREE_PAYLOAD_DEPTH = 5;
 $__jsx_lazy_init(dom, "window", function () {
-	return js.global.window;
+	return js$0.global.window;
 });
 $__jsx_lazy_init(dom, "document", function () {
-	return js.global.document;
+	return js$0.global.document;
 });
-var js = { global: function () { return this; }() };
 
 var $__jsx_classMap = {
 	"system:lib/built-in.jsx": {
-		g_StopIteration: g_StopIteration,
-		g_StopIteration$: g_StopIteration
+		StopIteration: StopIteration,
+		StopIteration$: StopIteration
 	},
 	"run.jsx": {
 		_Main: _Main,
