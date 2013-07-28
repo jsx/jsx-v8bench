@@ -111,7 +111,7 @@ function _Main() {
 
 $__jsx_extend([_Main], Object);
 function _Main$run$() {
-	dom.document.getElementById("status").innerHTML = "running ...";
+	console.log("start v8bench version " + BenchmarkSuite.version);
 	new Richards();
 	new DeltaBlue();
 	new Crypto();
