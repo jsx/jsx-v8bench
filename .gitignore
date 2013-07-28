@@ -3,3 +3,4 @@
 *.jsx.js
 original.js
 !v8bench.jsx.js
+!run-web.jsx.js
