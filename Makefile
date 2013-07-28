@@ -34,6 +34,9 @@ original:
 profile:
 	jsx --profile --release --run run-with-profile.jsx
 
+web: run-web.jsx
+	jsx --release --executable web --output $<.js $<
+
 clean:
 	rm original.js v8bench.jsx.js
 

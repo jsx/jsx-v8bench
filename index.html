@@ -2,82 +2,16 @@
   "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
+<meta http-equiv="Content-Type" content="text/html; utf-8">
 <meta http-equiv="Content-Script-Type" content="text/javascript">
 <meta http-equiv="Content-Style-Type" content="text/css">
-<title>V8 Benchmark Suite</title>
-<script type="text/javascript" src="base.js"></script>
-<script type="text/javascript" src="richards.js"></script>
-<script type="text/javascript" src="deltablue.js"></script>
-<script type="text/javascript" src="crypto.js"></script>
-<script type="text/javascript" src="raytrace.js"></script>
-<!--<script type="text/javascript" src="earley-boyer.js"></script>-->
-<script type="text/javascript" src="regexp.js"></script>
-<script type="text/javascript" src="splay.js"></script>
-<script type="text/javascript" src="navier-stokes.js"></script>
-<link type="text/css" rel="stylesheet" href="style.css" />
-<script type="text/javascript">
-var completed = 0;
-var benchmarks = BenchmarkSuite.CountBenchmarks();
-var success = true;
-
-function ShowProgress(name) {
-  var status = document.getElementById("status");
-  var percentage = ((++completed) / benchmarks) * 100;
-  status.innerHTML = "Running: " + Math.round(percentage) + "% completed.";
-}
-
-
-function AddResult(name, result) {
-  var text = name + ': ' + result;
-  var results = document.getElementById("results");
-  results.innerHTML += (text + "<br>");
-}
-
-
-function AddError(name, error) {
-  AddResult(name, '<b>error<\/b>');
-  success = false;
-}
-
-
-function AddScore(score) {
-  var status = document.getElementById("status");
-  if (success) {
-    status.innerHTML = "Score: " + score;
-  }
-}
-
-
-function Run() {
-  BenchmarkSuite.RunSuites({ NotifyStep: ShowProgress,
-                             NotifyError: AddError,
-                             NotifyResult: AddResult,
-                             NotifyScore: AddScore });
-}
-
-function ShowHintToOctane() {
-  // if the browser supports typed arrays, suggest to try Octane
-  var hasTypedArrays = typeof Uint8Array != "undefined"
-      && typeof Float64Array != "undefined"
-      && typeof (new Uint8Array(0)).subarray != "undefined";
-
-  if (!hasTypedArrays) {
-    document.getElementById('obsolete').style.display="block";
-  }
-}
-
-function Load() {
-  var version = BenchmarkSuite.version;
-  document.getElementById("version").innerHTML = version;
-  ShowHintToOctane();
-  setTimeout(Run, 200);
-}
-</script>
+<title>V8 Benchmark Suite for JSX</title>
+<link type="text/css" rel="stylesheet" href="v8bench-v7/style.css" />
+<script src="run-web.jsx.js"></script>
 </head>
-<body onload="Load()">
+<body>
 <div>
-  <div class="title"><h1>V8 Benchmark Suite - version <span id="version">?</span></h1></div>
+  <div class="title"><h1>V8 Benchmark Suite for JSX - version <span id="version">?</span></h1></div>
   <div class="warning" id="obsolete">
 Warning! The V8 benchmark has been updated!
 Consider
