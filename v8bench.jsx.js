@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// generatedy by JSX compiler 0.9.58 (2013-07-27 00:10:38 -0700; f4826cda73b6b57169d07123e7189e24102380d6)
+// generatedy by JSX compiler 0.9.58 (2013-08-01 10:07:05 +0900; c9c906e7648c0cc74d83932758d9454569c7400f)
 var JSX = {};
 (function (JSX) {
 /**
@@ -252,14 +252,12 @@ function BenchmarkSuite$RunSuites$LBenchmarkRunner$(runner) {
 	var suites;
 	var length;
 	var index;
-	var queue;
 	var RunStep;
 	continuation = null;
 	suites = BenchmarkSuite.suites;
 	length = suites.length;
 	BenchmarkSuite.scores = [  ];
 	index = 0;
-	queue = [];
 	function RunStep() {
 		var suite;
 		var score;
@@ -273,7 +271,7 @@ function BenchmarkSuite$RunSuites$LBenchmarkRunner$(runner) {
 				continuation = BenchmarkSuite$RunStep$LBenchmarkSuite$LBenchmarkRunner$(suite, runner);
 			}
 			if (continuation) {
-				queue.push(RunStep);
+				js$0.global.setTimeout(RunStep, 25);
 				return;
 			}
 		}
@@ -282,10 +280,7 @@ function BenchmarkSuite$RunSuites$LBenchmarkRunner$(runner) {
 		formatted = (value$0 > 100 ? value$0.toFixed(0) : value$0.toPrecision(3));
 		runner.NotifyScore$S(formatted);
 	}
-	queue.push(RunStep);
-	while (queue.length > 0) {
-		queue.shift()();
-	}
+	RunStep();
 };
 
 BenchmarkSuite.RunSuites$LBenchmarkRunner$ = BenchmarkSuite$RunSuites$LBenchmarkRunner$;
@@ -2390,12 +2385,10 @@ function BigInteger$fromInt$LBigInteger$N($this, x) {
 	$this.s = (x < 0 ? -1 : 0);
 	if (x > 0) {
 		this_array[0] = x;
+	} else if (x < -1) {
+		this_array[0] = x + BigInteger.DV;
 	} else {
-		if (x < -1) {
-			this_array[0] = x + BigInteger.DV;
-		} else {
-			$this.t = 0;
-		}
+		$this.t = 0;
 	}
 };
 
@@ -2423,29 +2416,19 @@ function BigInteger$fromString$LBigInteger$SN($this, s, b) {
 	this_array = $this.array;
 	if (b === 16) {
 		k = 4;
+	} else if (b === 8) {
+		k = 3;
+	} else if (b === 256) {
+		k = 8;
+	} else if (b === 2) {
+		k = 1;
+	} else if (b === 32) {
+		k = 5;
+	} else if (b === 4) {
+		k = 2;
 	} else {
-		if (b === 8) {
-			k = 3;
-		} else {
-			if (b === 256) {
-				k = 8;
-			} else {
-				if (b === 2) {
-					k = 1;
-				} else {
-					if (b === 32) {
-						k = 5;
-					} else {
-						if (b === 4) {
-							k = 2;
-						} else {
-							BigInteger$fromRadix$LBigInteger$SN($this, s, b);
-							return;
-						}
-					}
-				}
-			}
-		}
+		BigInteger$fromRadix$LBigInteger$SN($this, s, b);
+		return;
 	}
 	$this.t = 0;
 	$this.s = 0;
@@ -2461,13 +2444,11 @@ function BigInteger$fromString$LBigInteger$SN($this, s, b) {
 		mi = false;
 		if (sh === 0) {
 			this_array[$this.t++] = x;
+		} else if (sh + k > BigInteger.DB) {
+			this_array[$this.t - 1] |= (x & (1 << BigInteger.DB - sh) - 1) << sh;
+			this_array[$this.t++] = x >> BigInteger.DB - sh;
 		} else {
-			if (sh + k > BigInteger.DB) {
-				this_array[$this.t - 1] |= (x & (1 << BigInteger.DB - sh) - 1) << sh;
-				this_array[$this.t++] = x >> BigInteger.DB - sh;
-			} else {
-				this_array[$this.t - 1] |= x << sh;
-			}
+			this_array[$this.t - 1] |= x << sh;
 		}
 		sh += k;
 		if (sh >= BigInteger.DB) {
@@ -2526,24 +2507,16 @@ function BigInteger$toString$LBigInteger$N($this, b) {
 	}
 	if (b === 16) {
 		k = 4;
+	} else if (b === 8) {
+		k = 3;
+	} else if (b === 2) {
+		k = 1;
+	} else if (b === 32) {
+		k = 5;
+	} else if (b === 4) {
+		k = 2;
 	} else {
-		if (b === 8) {
-			k = 3;
-		} else {
-			if (b === 2) {
-				k = 1;
-			} else {
-				if (b === 32) {
-					k = 5;
-				} else {
-					if (b === 4) {
-						k = 2;
-					} else {
-						return BigInteger$toRadix$LBigInteger$N($this, b);
-					}
-				}
-			}
-		}
+		return BigInteger$toRadix$LBigInteger$N($this, b);
 	}
 	(km = (1 << k) - 1, m = false, r = "", i = $this.t);
 	p = BigInteger.DB - i * BigInteger.DB % k;
@@ -2806,10 +2779,8 @@ function BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$($this, a, r) {
 	r.s = (c < 0 ? -1 : 0);
 	if (c < -1) {
 		r_array[i++] = BigInteger.DV + c;
-	} else {
-		if (c > 0) {
-			r_array[i++] = c;
-		}
+	} else if (c > 0) {
+		r_array[i++] = c;
 	}
 	r.t = i;
 	this_array$0 = r.array;
@@ -3093,19 +3064,13 @@ function BigInteger$intValue$LBigInteger$($this) {
 	if ($this.s < 0) {
 		if ($this.t === 1) {
 			return this_array[0] - BigInteger.DV;
-		} else {
-			if ($this.t === 0) {
-				return -1;
-			}
+		} else if ($this.t === 0) {
+			return -1;
 		}
-	} else {
-		if ($this.t === 1) {
-			return this_array[0];
-		} else {
-			if ($this.t === 0) {
-				return 0;
-			}
-		}
+	} else if ($this.t === 1) {
+		return this_array[0];
+	} else if ($this.t === 0) {
+		return 0;
 	}
 	return (this_array[1] & (1 << 32 - BigInteger.DB) - 1) << BigInteger.DB | this_array[0];
 };
@@ -3659,10 +3624,8 @@ function BigInteger$addTo$LBigInteger$LBigInteger$LBigInteger$($this, a, r) {
 	r.s = (c < 0 ? -1 : 0);
 	if (c > 0) {
 		r_array[i++] = c;
-	} else {
-		if (c < -1) {
-			r_array[i++] = BigInteger.DV + c;
-		}
+	} else if (c < -1) {
+		r_array[i++] = BigInteger.DV + c;
 	}
 	r.t = i;
 	this_array$0 = r.array;
@@ -3852,24 +3815,16 @@ function BigInteger$modPow$LBigInteger$LBigInteger$LBigInteger$($this, e, m) {
 	(i = BigInteger$bitLength$LBigInteger$(e), r = (r$0 = ({array: [], s: 0, t: 0}), BigInteger$fromInt$LBigInteger$N(r$0, 1), r$0), z = null);
 	if (i <= 0) {
 		return r;
+	} else if (i < 18) {
+		k = 1;
+	} else if (i < 48) {
+		k = 3;
+	} else if (i < 144) {
+		k = 4;
+	} else if (i < 768) {
+		k = 5;
 	} else {
-		if (i < 18) {
-			k = 1;
-		} else {
-			if (i < 48) {
-				k = 3;
-			} else {
-				if (i < 144) {
-					k = 4;
-				} else {
-					if (i < 768) {
-						k = 5;
-					} else {
-						k = 6;
-					}
-				}
-			}
-		}
+		k = 6;
 	}
 	if (i < 8) {
 		z = new Classic(m);
@@ -4068,10 +4023,8 @@ function BigInteger$modInverse$LBigInteger$LBigInteger$($this, m) {
 					BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(b, m, b);
 				}
 				BigInteger$rShiftTo$LBigInteger$NLBigInteger$(a, 1, a);
-			} else {
-				if (! (this_array$6 = b.array, (b.t > 0 ? this_array$6[0] & 1 : b.s) === 0)) {
-					BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(b, m, b);
-				}
+			} else if (! (this_array$6 = b.array, (b.t > 0 ? this_array$6[0] & 1 : b.s) === 0)) {
+				BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(b, m, b);
 			}
 			BigInteger$rShiftTo$LBigInteger$NLBigInteger$(b, 1, b);
 		}
@@ -4083,10 +4036,8 @@ function BigInteger$modInverse$LBigInteger$LBigInteger$($this, m) {
 					BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(d, m, d);
 				}
 				BigInteger$rShiftTo$LBigInteger$NLBigInteger$(c, 1, c);
-			} else {
-				if (! (this_array$10 = d.array, (d.t > 0 ? this_array$10[0] & 1 : d.s) === 0)) {
-					BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(d, m, d);
-				}
+			} else if (! (this_array$10 = d.array, (d.t > 0 ? this_array$10[0] & 1 : d.s) === 0)) {
+				BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(d, m, d);
 			}
 			BigInteger$rShiftTo$LBigInteger$NLBigInteger$(d, 1, d);
 		}
@@ -4387,15 +4338,13 @@ Barrett.prototype.convert$LBigInteger$ = function (x) {
 	var r;
 	if (x.s < 0 || x.t > 2 * this.m.t) {
 		return BigInteger$mod$LBigInteger$LBigInteger$(x, this.m);
+	} else if (BigInteger$compareTo$LBigInteger$LBigInteger$(x, this.m) < 0) {
+		return x;
 	} else {
-		if (BigInteger$compareTo$LBigInteger$LBigInteger$(x, this.m) < 0) {
-			return x;
-		} else {
-			r = ({array: [], s: 0, t: 0});
-			BigInteger$copyTo$LBigInteger$LBigInteger$(x, r);
-			this.reduce$LBigInteger$(r);
-			return r;
-		}
+		r = ({array: [], s: 0, t: 0});
+		BigInteger$copyTo$LBigInteger$LBigInteger$(x, r);
+		this.reduce$LBigInteger$(r);
+		return r;
 	}
 };
 
@@ -5489,10 +5438,8 @@ Engine.prototype.setPixel$NNLColor$ = function (x, y, color) {
 	if (this.canvas) {
 		this.canvas.fillStyle = color.toString();
 		this.canvas.fillRect(x * pxW, y * pxH, pxW, pxH);
-	} else {
-		if (x === y) {
-			Main$0.checkNumber += Color$brightness$LColor$(color);
-		}
+	} else if (x === y) {
+		Main$0.checkNumber += Color$brightness$LColor$(color);
 	}
 };
 
@@ -5506,10 +5453,8 @@ function Engine$setPixel$LEngine$NNLColor$($this, x, y, color) {
 	if ($this.canvas) {
 		$this.canvas.fillStyle = color.toString();
 		$this.canvas.fillRect(x * pxW, y * pxH, pxW, pxH);
-	} else {
-		if (x === y) {
-			Main$0.checkNumber += Color$brightness$LColor$(color);
-		}
+	} else if (x === y) {
+		Main$0.checkNumber += Color$brightness$LColor$(color);
 	}
 };
 
@@ -8180,26 +8125,24 @@ function SplayTree$splay_$LSplayTree$N($this, key) {
 			right.left = current;
 			right = current;
 			current = current.left;
-		} else {
-			if (key > current.key) {
-				if (! current.right) {
-					break;
-				}
-				if (key > current.right.key) {
-					tmp = current.right;
-					current.right = tmp.left;
-					tmp.left = current;
-					current = tmp;
-					if (! tmp.right) {
-						break;
-					}
-				}
-				left.right = current;
-				left = current;
-				current = current.right;
-			} else {
+		} else if (key > current.key) {
+			if (! current.right) {
 				break;
 			}
+			if (key > current.right.key) {
+				tmp = current.right;
+				current.right = tmp.left;
+				tmp.left = current;
+				current = tmp;
+				if (! tmp.right) {
+					break;
+				}
+			}
+			left.right = current;
+			left = current;
+			current = current.right;
+		} else {
+			break;
 		}
 	}
 	left.right = current.left;
@@ -8346,25 +8289,23 @@ FluidField.prototype._set_bnd$NAN = function (b, x) {
 			x[j * this._rowSize] = - x[1 + j * this._rowSize];
 			x[this._width + 1 + j * this._rowSize] = - x[this._width + j * this._rowSize];
 		}
+	} else if (b === 2) {
+		for (i = 1; i <= this._width; i++) {
+			x[i] = - x[i + this._rowSize];
+			x[i + (this._height + 1) * this._rowSize] = - x[i + this._height * this._rowSize];
+		}
+		for (j = 1; j <= this._height; j++) {
+			x[j * this._rowSize] = x[1 + j * this._rowSize];
+			x[this._width + 1 + j * this._rowSize] = x[this._width + j * this._rowSize];
+		}
 	} else {
-		if (b === 2) {
-			for (i = 1; i <= this._width; i++) {
-				x[i] = - x[i + this._rowSize];
-				x[i + (this._height + 1) * this._rowSize] = - x[i + this._height * this._rowSize];
-			}
-			for (j = 1; j <= this._height; j++) {
-				x[j * this._rowSize] = x[1 + j * this._rowSize];
-				x[this._width + 1 + j * this._rowSize] = x[this._width + j * this._rowSize];
-			}
-		} else {
-			for (i = 1; i <= this._width; i++) {
-				x[i] = x[i + this._rowSize];
-				x[i + (this._height + 1) * this._rowSize] = x[i + this._height * this._rowSize];
-			}
-			for (j = 1; j <= this._height; j++) {
-				x[j * this._rowSize] = x[1 + j * this._rowSize];
-				x[this._width + 1 + j * this._rowSize] = x[this._width + j * this._rowSize];
-			}
+		for (i = 1; i <= this._width; i++) {
+			x[i] = x[i + this._rowSize];
+			x[i + (this._height + 1) * this._rowSize] = x[i + this._height * this._rowSize];
+		}
+		for (j = 1; j <= this._height; j++) {
+			x[j * this._rowSize] = x[1 + j * this._rowSize];
+			x[this._width + 1 + j * this._rowSize] = x[this._width + j * this._rowSize];
 		}
 	}
 	maxEdge = (this._height + 1) * this._rowSize;
@@ -8388,25 +8329,23 @@ function FluidField$_set_bnd$LFluidField$NAN($this, b, x) {
 			x[j * $this._rowSize] = - x[1 + j * $this._rowSize];
 			x[$this._width + 1 + j * $this._rowSize] = - x[$this._width + j * $this._rowSize];
 		}
+	} else if (b === 2) {
+		for (i = 1; i <= $this._width; i++) {
+			x[i] = - x[i + $this._rowSize];
+			x[i + ($this._height + 1) * $this._rowSize] = - x[i + $this._height * $this._rowSize];
+		}
+		for (j = 1; j <= $this._height; j++) {
+			x[j * $this._rowSize] = x[1 + j * $this._rowSize];
+			x[$this._width + 1 + j * $this._rowSize] = x[$this._width + j * $this._rowSize];
+		}
 	} else {
-		if (b === 2) {
-			for (i = 1; i <= $this._width; i++) {
-				x[i] = - x[i + $this._rowSize];
-				x[i + ($this._height + 1) * $this._rowSize] = - x[i + $this._height * $this._rowSize];
-			}
-			for (j = 1; j <= $this._height; j++) {
-				x[j * $this._rowSize] = x[1 + j * $this._rowSize];
-				x[$this._width + 1 + j * $this._rowSize] = x[$this._width + j * $this._rowSize];
-			}
-		} else {
-			for (i = 1; i <= $this._width; i++) {
-				x[i] = x[i + $this._rowSize];
-				x[i + ($this._height + 1) * $this._rowSize] = x[i + $this._height * $this._rowSize];
-			}
-			for (j = 1; j <= $this._height; j++) {
-				x[j * $this._rowSize] = x[1 + j * $this._rowSize];
-				x[$this._width + 1 + j * $this._rowSize] = x[$this._width + j * $this._rowSize];
-			}
+		for (i = 1; i <= $this._width; i++) {
+			x[i] = x[i + $this._rowSize];
+			x[i + ($this._height + 1) * $this._rowSize] = x[i + $this._height * $this._rowSize];
+		}
+		for (j = 1; j <= $this._height; j++) {
+			x[j * $this._rowSize] = x[1 + j * $this._rowSize];
+			x[$this._width + 1 + j * $this._rowSize] = x[$this._width + j * $this._rowSize];
 		}
 	}
 	maxEdge = ($this._height + 1) * $this._rowSize;
@@ -8644,19 +8583,15 @@ FluidField.prototype._advect$NANANANANN = function (b, d, d0, u, v, dt) {
 			y = j - Hdt0 * v[pos];
 			if (x < 0.5) {
 				x = 0.5;
-			} else {
-				if (x > Wp5) {
-					x = Wp5;
-				}
+			} else if (x > Wp5) {
+				x = Wp5;
 			}
 			i0 = x | 0;
 			i1 = i0 + 1;
 			if (y < 0.5) {
 				y = 0.5;
-			} else {
-				if (y > Hp5) {
-					y = Hp5;
-				}
+			} else if (y > Hp5) {
+				y = Hp5;
 			}
 			j0 = y | 0;
 			j1 = j0 + 1;
@@ -8707,19 +8642,15 @@ function FluidField$_advect$LFluidField$NANANANANN($this, b, d, d0, u, v, dt) {
 			y = j - Hdt0 * v[pos];
 			if (x < 0.5) {
 				x = 0.5;
-			} else {
-				if (x > Wp5) {
-					x = Wp5;
-				}
+			} else if (x > Wp5) {
+				x = Wp5;
 			}
 			i0 = x | 0;
 			i1 = i0 + 1;
 			if (y < 0.5) {
 				y = 0.5;
-			} else {
-				if (y > Hp5) {
-					y = Hp5;
-				}
+			} else if (y > Hp5) {
+				y = Hp5;
 			}
 			j0 = y | 0;
 			j1 = j0 + 1;
@@ -9125,6 +9056,128 @@ function Field$height$LField$($this) {
 
 Field.height$LField$ = Field$height$LField$;
 
+function Timer() {
+};
+
+$__jsx_extend([Timer], Object);
+function Timer$setTimeout$F$V$N(callback, intervalMS) {
+	return js$0.global.setTimeout(callback, intervalMS);
+};
+
+Timer.setTimeout$F$V$N = Timer$setTimeout$F$V$N;
+
+function Timer$clearTimeout$LTimerHandle$(timer) {
+	js$0.global.clearTimeout(timer);
+};
+
+Timer.clearTimeout$LTimerHandle$ = Timer$clearTimeout$LTimerHandle$;
+
+function Timer$setInterval$F$V$N(callback, intervalMS) {
+	return js$0.global.setInterval(callback, intervalMS);
+};
+
+Timer.setInterval$F$V$N = Timer$setInterval$F$V$N;
+
+function Timer$clearInterval$LTimerHandle$(timer) {
+	js$0.global.clearInterval(timer);
+};
+
+Timer.clearInterval$LTimerHandle$ = Timer$clearInterval$LTimerHandle$;
+
+function Timer$requestAnimationFrame$F$NV$(callback) {
+	return Timer._requestAnimationFrame(callback);
+};
+
+Timer.requestAnimationFrame$F$NV$ = Timer$requestAnimationFrame$F$NV$;
+
+function Timer$cancelAnimationFrame$LTimerHandle$(timer) {
+	Timer._cancelAnimationFrame(timer);
+};
+
+Timer.cancelAnimationFrame$LTimerHandle$ = Timer$cancelAnimationFrame$LTimerHandle$;
+
+function Timer$useNativeRAF$B(enable) {
+	Timer._requestAnimationFrame = Timer$_getRequestAnimationFrameImpl$B(enable);
+	Timer._cancelAnimationFrame = Timer$_getCancelAnimationFrameImpl$B(enable);
+};
+
+Timer.useNativeRAF$B = Timer$useNativeRAF$B;
+
+function Timer$_getRequestAnimationFrameImpl$B(useNativeImpl) {
+	var lastTime;
+	if (useNativeImpl) {
+		if (js$0.global.requestAnimationFrame) {
+			return (function (callback) {
+				return js$0.global.requestAnimationFrame(callback);
+			});
+		} else if (js$0.global.webkitRequestAnimationFrame) {
+			return (function (callback) {
+				return js$0.global.webkitRequestAnimationFrame(callback);
+			});
+		} else if (js$0.global.mozRequestAnimationFrame) {
+			return (function (callback) {
+				return js$0.global.mozRequestAnimationFrame(callback);
+			});
+		} else if (js$0.global.oRequestAnimationFrame) {
+			return (function (callback) {
+				return js$0.global.oRequestAnimationFrame(callback);
+			});
+		} else if (js$0.global.msRequestAnimationFrame) {
+			return (function (callback) {
+				return js$0.global.msRequestAnimationFrame(callback);
+			});
+		}
+	}
+	lastTime = 0;
+	return (function (callback) {
+		var now;
+		var timeToCall;
+		var value2$0;
+		now = Date.now();
+		value2$0 = 16 - (now - lastTime);
+		timeToCall = (0 >= value2$0 ? 0 : value2$0);
+		lastTime = now + timeToCall;
+		return js$0.global.setTimeout((function () {
+			callback(now + timeToCall);
+		}), timeToCall);
+	});
+};
+
+Timer._getRequestAnimationFrameImpl$B = Timer$_getRequestAnimationFrameImpl$B;
+
+function Timer$_getCancelAnimationFrameImpl$B(useNativeImpl) {
+	if (useNativeImpl) {
+		if (js$0.global.cancelAnimationFrame) {
+			return (function (timer) {
+				js$0.global.cancelAnimationFrame(timer);
+			});
+		} else if (js$0.global.webkitCancelAnimationFrame) {
+			return (function (timer) {
+				js$0.global.webkitCancelAnimationFrame(timer);
+			});
+		} else if (js$0.global.mozCancelAnimationFrame) {
+			return (function (timer) {
+				js$0.global.mozCancelAnimationFrame(timer);
+			});
+		} else if (js$0.global.oCancelAnimationFrame) {
+			return (function (timer) {
+				js$0.global.oCancelAnimationFrame(timer);
+			});
+		} else if (js$0.global.msCancelAnimationFrame) {
+			return (function (timer) {
+				js$0.global.msCancelAnimationFrame(timer);
+			});
+		}
+	}
+	return Timer$clearTimeout$LTimerHandle$;
+};
+
+Timer._getCancelAnimationFrameImpl$B = Timer$_getCancelAnimationFrameImpl$B;
+
+function TimerHandle() {
+};
+
+$__jsx_extend([TimerHandle], Object);
 function dom() {
 };
 
@@ -9601,6 +9654,12 @@ Main$0.checkNumber = 0;
 Splay.SPLAY_TREE_SIZE = 8000;
 Splay.SPLAY_TREE_MODIFICATIONS = 80;
 Splay.SPLAY_TREE_PAYLOAD_DEPTH = 5;
+$__jsx_lazy_init(Timer, "_requestAnimationFrame", function () {
+	return Timer$_getRequestAnimationFrameImpl$B(true);
+});
+$__jsx_lazy_init(Timer, "_cancelAnimationFrame", function () {
+	return Timer$_getCancelAnimationFrameImpl$B(true);
+});
 $__jsx_lazy_init(dom, "window", function () {
 	return js$0.global.window;
 });
@@ -9775,6 +9834,12 @@ var $__jsx_classMap = {
 		FluidField$: FluidField,
 		Field: Field,
 		Field$LFluidField$ANANAN: Field
+	},
+	"system:lib/js/timer.jsx": {
+		Timer: Timer,
+		Timer$: Timer,
+		TimerHandle: TimerHandle,
+		TimerHandle$: TimerHandle
 	},
 	"system:lib/js/js/web.jsx": {
 		dom: dom,
