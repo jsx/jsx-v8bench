@@ -14,7 +14,7 @@ import "js/web.jsx";
 
 class RayTrace {
     function constructor() {
-        var rayTrace = new BenchmarkSuite('RayTrace', 739989, [
+        new BenchmarkSuite('RayTrace', 739989, [
             new Benchmark('RayTrace', function() { Main.renderScene(); })
             ]);
     }
@@ -649,7 +649,6 @@ class Engine {
     function rayTrace(info : IntersectionInfo, ray : Ray, scene : Scene, depth : number) : Color {
         // Calc ambient
         var color = Color.multiplyScalar(info.color, scene.background.ambience);
-        var oldColor = color;
         var shininess = Math.pow(10, info.shape.material.gloss + 1);
 
         for(var i=0; i<scene.lights.length; i++){

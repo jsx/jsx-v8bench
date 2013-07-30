@@ -58,7 +58,7 @@ class RegExpTest {
             regExpBenchmark = null;
         }
 
-        var regExp = new BenchmarkSuite('RegExp', 910985, [
+        new BenchmarkSuite('RegExp', 910985, [
             new Benchmark("RegExp", RegExpRun, RegExpSetup, RegExpTearDown)
         ]);
     }

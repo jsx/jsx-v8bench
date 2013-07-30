@@ -68,7 +68,7 @@ class Crypto {
             }
         }
 
-        var crypto = new BenchmarkSuite('Crypto', 266181, [
+        new BenchmarkSuite('Crypto', 266181, [
             new Benchmark("Encrypt", encrypt),
             new Benchmark("Decrypt", decrypt)
             ]);
@@ -78,8 +78,8 @@ class Crypto {
         BigInteger.init();
 
         // JavaScript engine analysis
-        var canary = 0xdeadbeefcafe;
-        var j_lm = ((canary&0xffffff)==0xefcafe);
+        //var canary = 0xdeadbeefcafe;
+        //var j_lm = ((canary&0xffffff)==0xefcafe);
 
         // am3/28 is best for SM, Rhino, but am4/26 is best for v8.
         // Kestrel (Opera 9.5) gets its best result with am4/26.
@@ -486,7 +486,7 @@ class BigInteger {
     // (protected) r = this * a, r != this,a (HAC 14.12)
     // "this" should be the larger one if appropriate.
     function multiplyTo(a : BigInteger, r : BigInteger) : void {
-        var this_array = this.array;
+        //var this_array = this.array;
         var r_array = r.array;
         var x = this.abs(), y = a.abs();
         var y_array = y.array;

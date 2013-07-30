@@ -116,7 +116,7 @@ class Splay {
             }
         }
 
-        var splay = new BenchmarkSuite('Splay', 81491, [
+        new BenchmarkSuite('Splay', 81491, [
             new Benchmark("Splay", SplayRun, SplaySetup, SplayTearDown)
             ]);
     }

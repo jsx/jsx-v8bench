@@ -56,7 +56,7 @@ class Richards {
 
 
     function constructor() {
-        var richards = new BenchmarkSuite('Richards', 35302, [
+        new BenchmarkSuite('Richards', 35302, [
             new Benchmark("Richards", function() { this.runRichards(); })
             ]);
     }

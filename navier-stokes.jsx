@@ -78,7 +78,7 @@ class NavierStokes {
             solver = null;
         }
 
-        var navierStokes = new BenchmarkSuite('NavierStokes', 1484000, [
+        new BenchmarkSuite('NavierStokes', 1484000, [
             new Benchmark('NavierStokes',
                 runNavierStokes,
                 setupNavierStokes,
@@ -349,7 +349,7 @@ class FluidField {
     function setDisplayFunction (func : (Field) -> void) : void {
         this._displayFunc = func;
     }
-    
+
     function reset () : void {
         this._rowSize = this._width + 2;
         this._size = (this._width+2)*(this._height+2);

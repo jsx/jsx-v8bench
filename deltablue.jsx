@@ -29,7 +29,7 @@ import "./base.jsx";
 
 class DeltaBlue {
     function constructor() {
-        var DeltaBlue = new BenchmarkSuite('DeltaBlue', 66118, [
+        new BenchmarkSuite('DeltaBlue', 66118, [
             new Benchmark('DeltaBlue', function() { Main.deltaBlue(); })
         ]);
     }
