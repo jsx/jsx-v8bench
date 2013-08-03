@@ -191,28 +191,23 @@ class BigInteger {
 
     static var am : (number[],number,number,BigInteger,number,number,number)->number;
 
-    var array : number[];
+    var array = new number[];
     var s : number;
     var t : number;
 
     // (public) Constructors
     function constructor() {
-        this.array = new Array.<number>();
     }
 
     function constructor(a : number, b : number, c : SecureRandom) {
-        this();
         this.fromNumber(a,b,c);
     }
 
     function constructor(a : number[]) {
-        // when b == null && "string" != typeof a,
-        this();
         this.fromNumberArray(a);
     }
 
     function constructor(a : string, b : number) {
-        this();
         this.fromString(a,b);
     }
 

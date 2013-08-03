@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// generatedy by JSX compiler 0.9.58 (2013-08-01 10:07:05 +0900; c9c906e7648c0cc74d83932758d9454569c7400f)
+// generatedy by JSX compiler 0.9.58 (2013-08-03 09:45:18 +0900; 9621703703620ac3244c489a9332ae54ee343fc6)
 var JSX = {};
 (function (JSX) {
 /**
@@ -2291,29 +2291,29 @@ function Crypto$am4$ANNNLBigInteger$NNN(this_array, i, x, w, j, c, n) {
 Crypto.am4$ANNNLBigInteger$NNN = Crypto$am4$ANNNLBigInteger$NNN;
 
 function BigInteger() {
+	this.array = [];
 	this.s = 0;
 	this.t = 0;
-	this.array = [];
 };
 
 function BigInteger$0(a, b, c) {
+	this.array = [];
 	this.s = 0;
 	this.t = 0;
-	this.array = [];
 	BigInteger$fromNumber$LBigInteger$NNLSecureRandom$(this, a, b, c);
 };
 
 function BigInteger$1(a) {
+	this.array = [];
 	this.s = 0;
 	this.t = 0;
-	this.array = [];
 	BigInteger$fromRadix$LBigInteger$ANN(this, a, 256);
 };
 
 function BigInteger$2(a, b) {
+	this.array = [];
 	this.s = 0;
 	this.t = 0;
-	this.array = [];
 	BigInteger$fromString$LBigInteger$SN(this, a, b);
 };
 
