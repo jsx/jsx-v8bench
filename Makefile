@@ -37,6 +37,8 @@ profile:
 web: run-web.jsx
 	jsx --release --executable web --output $<.js $<
 
+build: web jsx-build
+
 clean:
 	rm original.js v8bench.jsx.js
 
