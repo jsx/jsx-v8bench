@@ -1,4 +1,4 @@
-// generatedy by JSX compiler 0.9.58 (2013-08-03 09:45:18 +0900; 9621703703620ac3244c489a9332ae54ee343fc6)
+// generatedy by JSX compiler 0.9.63 (2013-09-01 14:53:38 +0900; b8d73a00b5921afdac86c7c75dd58b18a88550ef)
 var JSX = {};
 (function (JSX) {
 /**
@@ -103,6 +103,8 @@ JSX.resetProfileResults = function () {
 JSX.DEBUG = false;
 function StopIteration() {
 	Error.call(this);
+	this.name = "StopIteration";
+	if (Error.captureStackTrace) Error.captureStackTrace(this, StopIteration);
 };
 
 $__jsx_extend([StopIteration], Error);
@@ -282,6 +284,13 @@ function XMLHttpRequestOptions() {
 };
 
 $__jsx_extend([XMLHttpRequestOptions], Object);
+function ScrollOptions() {
+	this.x = 0;
+	this.y = 0;
+	this.behavior = "";
+};
+
+$__jsx_extend([ScrollOptions], Object);
 function TrackEventInit() {
 	this.bubbles = false;
 	this.cancelable = false;
@@ -311,26 +320,22 @@ function PageTransitionEventInit() {
 };
 
 $__jsx_extend([PageTransitionEventInit], EventInit);
-function DragEventInit() {
+function ErrorEventInit() {
 	this.bubbles = false;
 	this.cancelable = false;
-	this.view = null;
-	this.detail = 0;
-	this.screenX = 0;
-	this.screenY = 0;
-	this.clientX = 0;
-	this.clientY = 0;
-	this.ctrlKey = false;
-	this.shiftKey = false;
-	this.altKey = false;
-	this.metaKey = false;
-	this.button = 0;
-	this.buttons = 0;
-	this.relatedTarget = null;
+	this.message = "";
+	this.filename = "";
+	this.lineno = 0;
+	this.column = 0;
+};
+
+$__jsx_extend([ErrorEventInit], EventInit);
+function DragEventInit() {
+	MouseEventInit.call(this);
 	this.dataTransfer = null;
 };
 
-$__jsx_extend([DragEventInit], EventInit);
+$__jsx_extend([DragEventInit], MouseEventInit);
 function CloseEventInit() {
 	this.bubbles = false;
 	this.cancelable = false;
@@ -362,15 +367,6 @@ function MessageEventInit() {
 };
 
 $__jsx_extend([MessageEventInit], EventInit);
-function ErrorEventInit() {
-	this.bubbles = false;
-	this.cancelable = false;
-	this.message = "";
-	this.filename = "";
-	this.lineno = 0;
-};
-
-$__jsx_extend([ErrorEventInit], EventInit);
 function EventSourceInit() {
 	this.withCredentials = false;
 };
@@ -1766,8 +1762,7 @@ UnaryConstraint.prototype.addToGraph$ = function () {
 UnaryConstraint.prototype.chooseMethod$I = function (mark) {
 	var s1$0;
 	var s2$0;
-	var myOutput$0;
-	this.satisfied = (myOutput$0 = this.myOutput).mark !== mark && (s1$0 = this.strength, s2$0 = myOutput$0.walkStrength, s1$0.strengthValue < s2$0.strengthValue);
+	this.satisfied = this.myOutput.mark !== mark && (s1$0 = this.strength, s2$0 = this.myOutput.walkStrength, s1$0.strengthValue < s2$0.strengthValue);
 };
 
 
@@ -1881,13 +1876,11 @@ BinaryConstraint.prototype.chooseMethod$I = function (mark) {
 	var s2$3;
 	var s1$4;
 	var s2$4;
-	var v2$0;
-	var v1$0;
 	if (this.v1.mark === mark) {
-		this.direction = (((v2$0 = this.v2).mark !== mark && (s1$0 = this.strength, s2$0 = v2$0.walkStrength, s1$0.strengthValue < s2$0.strengthValue) ? 1 : 0) | 0);
+		this.direction = ((this.v2.mark !== mark && (s1$0 = this.strength, s2$0 = this.v2.walkStrength, s1$0.strengthValue < s2$0.strengthValue) ? 1 : 0) | 0);
 	}
 	if (this.v2.mark === mark) {
-		this.direction = (((v1$0 = this.v1).mark !== mark && (s1$1 = this.strength, s2$1 = v1$0.walkStrength, s1$1.strengthValue < s2$1.strengthValue) ? -1 : 0) | 0);
+		this.direction = ((this.v1.mark !== mark && (s1$1 = this.strength, s2$1 = this.v1.walkStrength, s1$1.strengthValue < s2$1.strengthValue) ? -1 : 0) | 0);
 	}
 	s1$2 = this.v1.walkStrength;
 	s2$2 = this.v2.walkStrength;
@@ -5035,8 +5028,6 @@ function RSAKey$generate$LRSAKey$NS($this, B, E) {
 	var this$6;
 	var a$6;
 	var r$8;
-	var p$0;
-	var q$0;
 	var d$0;
 	rng = new SecureRandom();
 	qs = B >> 1;
@@ -5044,14 +5035,14 @@ function RSAKey$generate$LRSAKey$NS($this, B, E) {
 	ee = new BigInteger$2(E, 16);
 	for (; ; ) {
 		for (; ; ) {
-			p$0 = $this.p = new BigInteger$0(B - qs, 1, rng);
-			if (BigInteger$compareTo$LBigInteger$LBigInteger$(BigInteger$gcd$LBigInteger$LBigInteger$((this$0 = p$0, a$0 = BigInteger.ONE, r$0 = ({array: [], s: 0, t: 0}), BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(this$0, a$0, r$0), r$0), ee), BigInteger.ONE) === 0 && BigInteger$isProbablePrime$LBigInteger$N($this.p, 10)) {
+			$this.p = new BigInteger$0(B - qs, 1, rng);
+			if (BigInteger$compareTo$LBigInteger$LBigInteger$(BigInteger$gcd$LBigInteger$LBigInteger$((this$0 = $this.p, a$0 = BigInteger.ONE, r$0 = ({array: [], s: 0, t: 0}), BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(this$0, a$0, r$0), r$0), ee), BigInteger.ONE) === 0 && BigInteger$isProbablePrime$LBigInteger$N($this.p, 10)) {
 				break;
 			}
 		}
 		for (; ; ) {
-			q$0 = $this.q = new BigInteger$0(qs, 1, rng);
-			if (BigInteger$compareTo$LBigInteger$LBigInteger$(BigInteger$gcd$LBigInteger$LBigInteger$((this$1 = q$0, a$1 = BigInteger.ONE, r$1 = ({array: [], s: 0, t: 0}), BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(this$1, a$1, r$1), r$1), ee), BigInteger.ONE) === 0 && BigInteger$isProbablePrime$LBigInteger$N($this.q, 10)) {
+			$this.q = new BigInteger$0(qs, 1, rng);
+			if (BigInteger$compareTo$LBigInteger$LBigInteger$(BigInteger$gcd$LBigInteger$LBigInteger$((this$1 = $this.q, a$1 = BigInteger.ONE, r$1 = ({array: [], s: 0, t: 0}), BigInteger$subTo$LBigInteger$LBigInteger$LBigInteger$(this$1, a$1, r$1), r$1), ee), BigInteger.ONE) === 0 && BigInteger$isProbablePrime$LBigInteger$N($this.q, 10)) {
 				break;
 			}
 		}
@@ -9521,28 +9512,20 @@ function Timer$useNativeRAF$B(enable) {
 Timer.useNativeRAF$B = Timer$useNativeRAF$B;
 
 function Timer$_getRequestAnimationFrameImpl$B(useNativeImpl) {
+	var prefixes;
+	var i;
+	var name;
 	var lastTime;
+	var prefixes$len$0;
 	if (useNativeImpl) {
-		if (js$0.global.requestAnimationFrame) {
-			return (function (callback) {
-				return js$0.global.requestAnimationFrame(callback);
-			});
-		} else if (js$0.global.webkitRequestAnimationFrame) {
-			return (function (callback) {
-				return js$0.global.webkitRequestAnimationFrame(callback);
-			});
-		} else if (js$0.global.mozRequestAnimationFrame) {
-			return (function (callback) {
-				return js$0.global.mozRequestAnimationFrame(callback);
-			});
-		} else if (js$0.global.oRequestAnimationFrame) {
-			return (function (callback) {
-				return js$0.global.oRequestAnimationFrame(callback);
-			});
-		} else if (js$0.global.msRequestAnimationFrame) {
-			return (function (callback) {
-				return js$0.global.msRequestAnimationFrame(callback);
-			});
+		prefixes = [ "r", "webkitR", "mozR", "oR", "msR" ];
+		for ((i = 0, prefixes$len$0 = prefixes.length); i < prefixes$len$0; ++ i) {
+			name = prefixes[i] + "equestAnimationFrame";
+			if (js$0.global[name] instanceof Function) {
+				return (function (callback) {
+					return js$0.global[name](callback);
+				});
+			}
 		}
 	}
 	lastTime = 0;
@@ -9563,27 +9546,19 @@ function Timer$_getRequestAnimationFrameImpl$B(useNativeImpl) {
 Timer._getRequestAnimationFrameImpl$B = Timer$_getRequestAnimationFrameImpl$B;
 
 function Timer$_getCancelAnimationFrameImpl$B(useNativeImpl) {
+	var prefixes;
+	var i;
+	var name;
+	var prefixes$len$0;
 	if (useNativeImpl) {
-		if (js$0.global.cancelAnimationFrame) {
-			return (function (timer) {
-				js$0.global.cancelAnimationFrame(timer);
-			});
-		} else if (js$0.global.webkitCancelAnimationFrame) {
-			return (function (timer) {
-				js$0.global.webkitCancelAnimationFrame(timer);
-			});
-		} else if (js$0.global.mozCancelAnimationFrame) {
-			return (function (timer) {
-				js$0.global.mozCancelAnimationFrame(timer);
-			});
-		} else if (js$0.global.oCancelAnimationFrame) {
-			return (function (timer) {
-				js$0.global.oCancelAnimationFrame(timer);
-			});
-		} else if (js$0.global.msCancelAnimationFrame) {
-			return (function (timer) {
-				js$0.global.msCancelAnimationFrame(timer);
-			});
+		prefixes = [ "c", "webkitC", "mozC", "oC", "msC" ];
+		for ((i = 0, prefixes$len$0 = prefixes.length); i < prefixes$len$0; ++ i) {
+			name = prefixes[i] + "ancelAnimationFrame";
+			if (js$0.global[name] instanceof Function) {
+				return (function (timer) {
+					js$0.global[name](timer);
+				});
+			}
 		}
 	}
 	return Timer$clearTimeout$LTimerHandle$;
@@ -9736,6 +9711,8 @@ var $__jsx_classMap = {
 		ProgressEventInit$: ProgressEventInit,
 		XMLHttpRequestOptions: XMLHttpRequestOptions,
 		XMLHttpRequestOptions$: XMLHttpRequestOptions,
+		ScrollOptions: ScrollOptions,
+		ScrollOptions$: ScrollOptions,
 		TrackEventInit: TrackEventInit,
 		TrackEventInit$: TrackEventInit,
 		PopStateEventInit: PopStateEventInit,
@@ -9744,6 +9721,8 @@ var $__jsx_classMap = {
 		HashChangeEventInit$: HashChangeEventInit,
 		PageTransitionEventInit: PageTransitionEventInit,
 		PageTransitionEventInit$: PageTransitionEventInit,
+		ErrorEventInit: ErrorEventInit,
+		ErrorEventInit$: ErrorEventInit,
 		DragEventInit: DragEventInit,
 		DragEventInit$: DragEventInit,
 		CloseEventInit: CloseEventInit,
@@ -9752,8 +9731,6 @@ var $__jsx_classMap = {
 		StorageEventInit$: StorageEventInit,
 		MessageEventInit: MessageEventInit,
 		MessageEventInit$: MessageEventInit,
-		ErrorEventInit: ErrorEventInit,
-		ErrorEventInit$: ErrorEventInit,
 		EventSourceInit: EventSourceInit,
 		EventSourceInit$: EventSourceInit,
 		IDBObjectStoreParameters: IDBObjectStoreParameters,
